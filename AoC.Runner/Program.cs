@@ -15,7 +15,7 @@
             int year = int.Parse(args[0]);
             int day = int.Parse(args[1]);
             int part = int.Parse(args[2]);
-            int executions = args.Length == 3 ? 1 : int.Parse(args[2]);
+            int executions = args.Length == 3 ? 1 : int.Parse(args[3]);
 
             // Load the data
             var locationUri = new UriBuilder(Assembly.GetExecutingAssembly().Location!);

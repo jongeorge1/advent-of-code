@@ -1,10 +1,7 @@
 ﻿namespace AoC.Solutions.Year2019.Day08
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
-    using System.Threading.Tasks.Dataflow;
 
     public class Part01 : ISolution
     {

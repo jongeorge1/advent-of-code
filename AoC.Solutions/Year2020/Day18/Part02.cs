@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using AoC.Solutions;
 
     public class Part02 : ISolution

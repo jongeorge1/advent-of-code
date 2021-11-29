@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using AoC.Solutions;
 
     public class Rule
     {

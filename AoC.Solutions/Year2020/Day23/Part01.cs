@@ -1,6 +1,5 @@
 ﻿namespace AoC.Solutions.Year2020.Day23
 {
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using AoC.Solutions;

@@ -1,4 +1,5 @@
-﻿namespace AoC.Solutions.Year2019.Day06
+﻿#nullable disable
+namespace AoC.Solutions.Year2019.Day06
 {
     using System;
     using System.Collections.Generic;

@@ -2,7 +2,6 @@
 namespace AoC.Solutions.Year2020.Day11
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AoC.Solutions;

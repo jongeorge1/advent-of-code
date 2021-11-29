@@ -1,7 +1,6 @@
 ﻿namespace AoC.Solutions.Year2019.Day10
 {
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
 

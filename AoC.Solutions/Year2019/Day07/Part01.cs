@@ -1,6 +1,5 @@
 ﻿namespace AoC.Solutions.Year2019.Day07
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;

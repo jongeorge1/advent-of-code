@@ -1,9 +1,6 @@
 ﻿namespace AoC.Solutions.Year2019.Day12
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     public static class MoonDimensionExtensions
     {
