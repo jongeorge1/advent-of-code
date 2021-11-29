@@ -19,43 +19,16 @@
 
         private static long ModularMultiplicativeInverse(long a, long mod)
         {
-            long m0 = mod;
-            long t;
-            long q;
-            long x0 = 0;
-            long x1 = 1;
-
-            if (mod == 1)
+            long b = a % mod;
+            for (int x = 1; x < mod; x++)
             {
-                return 0;
+                if ((b * x) % mod == 1)
+                {
+                    return x;
+                }
             }
 
-            // Apply extended Euclid Algorithm
-            while (a > 1)
-            {
-                // q is quotient
-                q = a / mod;
-
-                t = mod;
-
-                // m is remainder now, process same as euclid's algo.
-                mod = a % mod;
-                a = t;
-
-                t = x0;
-
-                x0 = x1 - (q * x0);
-
-                x1 = t;
-            }
-
-            // Make x1 positive
-            if (x1 < 0)
-            {
-                x1 += m0;
-            }
-
-            return x1;
+            return 1;
         }
     }
 }

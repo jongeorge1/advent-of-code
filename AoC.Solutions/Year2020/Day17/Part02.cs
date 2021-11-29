@@ -28,7 +28,7 @@
                 int zMin = grid.Keys.Min(el => el.z) - 1;
                 int zMax = grid.Keys.Max(el => el.z) + 1;
                 int wMin = grid.Keys.Min(el => el.w) - 1;
-                int wMax = grid.Keys.Min(el => el.w) + 1;
+                int wMax = grid.Keys.Max(el => el.w) + 1;
 
                 var newSpace = new Dictionary<(int x, int y, int z, int w), bool>(10000);
 

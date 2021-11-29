@@ -18,7 +18,6 @@
                 .Select((x, i) => (x, (long)i))
                 .Where(x => x.x != "x")
                 .Select(x => (long.Parse(x.x), x.Item2))
-                .OrderBy(x => x.Item1)
                 .ToArray();
 
             // We now have a list of service numbers and the offset from the time 't' the first bus departs that we're
@@ -42,9 +41,10 @@
             // can be solved for N.
             // In our case the pairwise coprime positive integers n1...nk are our service numbers (by some stroke of
             // luck it turns out that all of our service numbers are primes... almost as if it were by intention) and
-            // arbitrary integers a1...ak are the time offsets.
+            // arbitrary integers a1...ak are obtained by subtracting the time offsets from the service numbers (because
+            // at our solution point, x, we'll be that many minutes away from the bus departing).
             long[] divisors = servicesWithOffsets.Select(x => x.serviceNumber).ToArray();
-            long[] remainders = servicesWithOffsets.Select(x => x.offset).ToArray();
+            long[] remainders = servicesWithOffsets.Select(x => x.serviceNumber - x.offset).ToArray();
 
             return ChineseRemainderTheorem.Solve(divisors, remainders).ToString();
         }

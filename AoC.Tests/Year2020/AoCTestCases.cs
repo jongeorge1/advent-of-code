@@ -45,6 +45,7 @@ namespace AoC.Tests.Year2020
         [TestCase(12, 1, "F10\r\nN3\r\nF7\r\nR90\r\nF11", "25")]
         [TestCase(12, 2, "F10\r\nN3\r\nF7\r\nR90\r\nF11", "286")]
         [TestCase(13, 1, "939\r\n7,13,x,x,59,x,31,19", "295")]
+        [TestCase(13, 2, "0\r\n7,13,x,x,59,x,31,19", "1068781")]
         [TestCase(13, 2, "0\r\n67,7,59,61", "754018")]
         [TestCase(13, 2, "0\r\n67,x,7,59,61", "779210")]
         [TestCase(13, 2, "0\r\n67,7,x,59,61", "1261476")]
@@ -77,6 +78,7 @@ namespace AoC.Tests.Year2020
         [TestCase(23, 1, "389125467", "67384529")]
         [TestCase(24, 1, "sesenwnenenewseeswwswswwnenewsewsw\r\nneeenesenwnwwswnenewnwwsewnenwseswesw\r\nseswneswswsenwwnwse\r\nnwnwneseeswswnenewneswwnewseswneseene\r\nswweswneswnenwsewnwneneseenw\r\neesenwseswswnenwswnwnwsewwnwsene\r\nsewnenenenesenwsewnenwwwse\r\nwenwwweseeeweswwwnwwe\r\nwsweesenenewnwwnwsenewsenwwsesesenwne\r\nneeswseenwwswnwswswnw\r\nnenwswwsewswnenenewsenwsenwnesesenew\r\nenewnwewneswsewnwswenweswnenwsenwsw\r\nsweneswneswneneenwnewenewwneswswnese\r\nswwesenesewenwneswnwwneseswwne\r\nenesenwswwswneneswsenwnewswseenwsese\r\nwnwnesenesenenwwnenwsewesewsesesew\r\nnenewswnwewswnenesenwnesewesw\r\neneswnwswnwsenenwnwnwwseeswneewsenese\r\nneswnwewnwnwseenwseesewsenwsweewe\r\nwseweeenwnesenwwwswnew", "10")]
         [TestCase(24, 2, "sesenwnenenewseeswwswswwnenewsewsw\r\nneeenesenwnwwswnenewnwwsewnenwseswesw\r\nseswneswswsenwwnwse\r\nnwnwneseeswswnenewneswwnewseswneseene\r\nswweswneswnenwsewnwneneseenw\r\neesenwseswswnenwswnwnwsewwnwsene\r\nsewnenenenesenwsewnenwwwse\r\nwenwwweseeeweswwwnwwe\r\nwsweesenenewnwwnwsenewsenwwsesesenwne\r\nneeswseenwwswnwswswnw\r\nnenwswwsewswnenenewsenwsenwnesesenew\r\nenewnwewneswsewnwswenweswnenwsenwsw\r\nsweneswneswneneenwnewenewwneswswnese\r\nswwesenesewenwneswnwwneseswwne\r\nenesenwswwswneneswsenwnewswseenwsese\r\nwnwnesenesenenwwnenwsewesewsesesew\r\nnenewswnwewswnenesenwnesewesw\r\neneswnwswnwsenenwnwnwwseeswneewsenese\r\nneswnwewnwnwseenwseesewsenwsweewe\r\nwseweeenwnesenwwwswnew", "2208")]
+        [TestCase(25, 1, "5764801\r\n17807724", "14897079")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2020, day, part);
