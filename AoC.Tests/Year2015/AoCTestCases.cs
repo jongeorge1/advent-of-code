@@ -65,6 +65,10 @@ namespace AoC.Tests.Year2015
         [TestCase(18, 1, ".#.#.#\r\n...##.\r\n#....#\r\n..#...\r\n#.#..#\r\n####..", "4")]
         [TestCase(18, 2, ".#.#.#\r\n...##.\r\n#....#\r\n..#...\r\n#.#..#\r\n####..", "14")] // Note the sample shows 5 steps and 17 lights
         [TestCase(19, 1, "H => HO\r\nH => OH\r\nO => HH\r\n\r\nHOH", "4")]
+        [TestCase(19, 2, "e => H\r\ne => O\r\nH => HO\r\nH => OH\r\nO => HH\r\n\r\nHOH", "3")]
+        [TestCase(19, 2, "e => H\r\ne => O\r\nH => HO\r\nH => OH\r\nO => HH\r\n\r\nHOHOHO", "6")]
+        [TestCase(22, 1, "test1", "226")]
+        [TestCase(22, 1, "test2", "641")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2015, day, part);

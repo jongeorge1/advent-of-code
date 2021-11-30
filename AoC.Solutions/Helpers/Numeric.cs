@@ -6,6 +6,17 @@
 
     public static class Numeric
     {
+        public static IEnumerable<int> Factorise(int target)
+        {
+            for (int i = 1; i <= (int)Math.Ceiling(target / 2d); i++)
+            {
+                if (target % i == 0)
+                {
+                    yield return i;
+                }
+            }
+        }
+
         public static long LeastCommonMultiple(IEnumerable<long> numbers)
         {
             return numbers.Aggregate(LeastCommonMultiple);
