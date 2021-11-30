@@ -60,7 +60,11 @@ namespace AoC.Tests.Year2015
         [TestCase(12, 2, "{\"d\":\"red\",\"e\":[1,2,3,4],\"f\":5}", "0")]
         [TestCase(12, 2, "[1,\"red\",5]", "6")]
         [TestCase(13, 1, "Alice would gain 54 happiness units by sitting next to Bob.\r\nAlice would lose 79 happiness units by sitting next to Carol.\r\nAlice would lose 2 happiness units by sitting next to David.\r\nBob would gain 83 happiness units by sitting next to Alice.\r\nBob would lose 7 happiness units by sitting next to Carol.\r\nBob would lose 63 happiness units by sitting next to David.\r\nCarol would lose 62 happiness units by sitting next to Alice.\r\nCarol would gain 60 happiness units by sitting next to Bob.\r\nCarol would gain 55 happiness units by sitting next to David.\r\nDavid would gain 46 happiness units by sitting next to Alice.\r\nDavid would lose 7 happiness units by sitting next to Bob.\r\nDavid would gain 41 happiness units by sitting next to Carol.", "330")]
-        [TestCase(15, 1, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8\r\nCinnamon: capacity 2, durability 3, flavor - 2, texture - 1, calories 3", "62842880")]
+        ////[TestCase(15, 1, "Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8\r\nCinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3", "62842880")]
+        [TestCase(17, 1, "20\r\n15\r\n10\r\n5\r\n5", "4")]
+        [TestCase(18, 1, ".#.#.#\r\n...##.\r\n#....#\r\n..#...\r\n#.#..#\r\n####..", "4")]
+        [TestCase(18, 2, ".#.#.#\r\n...##.\r\n#....#\r\n..#...\r\n#.#..#\r\n####..", "14")] // Note the sample shows 5 steps and 17 lights
+        [TestCase(19, 1, "H => HO\r\nH => OH\r\nO => HH\r\n\r\nHOH", "4")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2015, day, part);
