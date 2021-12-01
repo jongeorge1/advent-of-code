@@ -1,7 +1,6 @@
 ﻿namespace AoC.Solutions.Year2020.Day25
 {
     using System;
-    using System.Collections.Generic;
     using AoC.Solutions;
 
     public class Part01 : ISolution

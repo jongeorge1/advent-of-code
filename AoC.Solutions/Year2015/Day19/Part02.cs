@@ -1,7 +1,6 @@
 ﻿namespace AoC.Solutions.Year2015.Day19
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
 
     public class Part02 : ISolution

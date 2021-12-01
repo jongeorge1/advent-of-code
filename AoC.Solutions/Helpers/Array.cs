@@ -19,5 +19,15 @@
                     t => list.Where(e => !t.Contains(e)),
                     (t1, t2) => t1.Concat(new T[] { t2 }));
         }
+
+        public static int Product(this IEnumerable<int> list)
+        {
+            return list.Aggregate(1, (a, b) => a * b);
+        }
+
+        public static long Product(this IEnumerable<long> list)
+        {
+            return list.Aggregate(1, (long a, long b) => a * b);
+        }
     }
 }
