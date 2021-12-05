@@ -1,0 +1,30 @@
+﻿namespace AoC.Solutions.Year2021.Day04
+{
+    using System;
+    using System.Linq;
+    using AoC.Solutions;
+
+    public class Part01 : ISolution
+    {
+        public string Solve(string input)
+        {
+            string[] segments = input.Split(new string[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+
+            int[] numbers = segments[0].Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+            Board[] boards = segments[1..].Select(x => new Board(x)).ToArray();
+
+            foreach (int draw in numbers)
+            {
+                boards.MarkAll(draw);
+                Board? winner = boards.GetWinner();
+                if (winner is not null)
+                {
+                    return winner.Score(draw).ToString();
+                }
+            }
+
+            return string.Empty;
+        }
+    }
+}
