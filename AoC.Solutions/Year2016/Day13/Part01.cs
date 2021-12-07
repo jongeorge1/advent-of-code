@@ -18,7 +18,8 @@
 
             int offset = int.Parse(input);
 
-            Console.WriteLine(BuildMap(destination, offset));
+            // This line writes out the map, if you want to see it.
+            ////Console.WriteLine(BuildMap(destination, offset));
 
             // Breadth first search FTW
             Dictionary<(int, int), int> visitedLocations = new ();

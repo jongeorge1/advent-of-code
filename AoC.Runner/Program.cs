@@ -15,14 +15,18 @@
             int year = int.Parse(args[0]);
             int day = int.Parse(args[1]);
             int part = int.Parse(args[2]);
-            int executions = args.Length == 3 ? 1 : int.Parse(args[3]);
+            int executions = args.Length > 3 ? int.Parse(args[3]) : 1;
+            string data = args.Length > 4 ? args[4] : string.Empty;
 
             // Load the data
-            var locationUri = new UriBuilder(Assembly.GetExecutingAssembly().Location!);
-            string location = Uri.UnescapeDataString(locationUri.Path);
-            string locationDirectory = Path.GetDirectoryName(location) !;
-            string inputFileName = Path.Combine(locationDirectory, $"Year{year.ToString("D4")}", $"Day{day:D2}", "input.txt");
-            string data = File.ReadAllText(inputFileName);
+            if (string.IsNullOrEmpty(data))
+            {
+                var locationUri = new UriBuilder(Assembly.GetExecutingAssembly().Location!);
+                string location = Uri.UnescapeDataString(locationUri.Path);
+                string locationDirectory = Path.GetDirectoryName(location)!;
+                string inputFileName = Path.Combine(locationDirectory, $"Year{year.ToString("D4")}", $"Day{day:D2}", "input.txt");
+                data = File.ReadAllText(inputFileName);
+            }
 
             string result = string.Empty;
             var times = new List<double>(executions);
@@ -60,9 +64,9 @@
             else
             {
                 Console.WriteLine($"Processing executed {executions} times:");
-                Console.WriteLine($"\tAvg: {times.Average():0.00}ms");
-                Console.WriteLine($"\tMin: {times.Min():0.00}ms");
-                Console.WriteLine($"\tMax: {times.Max():0.00}ms");
+                Console.WriteLine($"\tAvg: {times.Average():0.0000}ms");
+                Console.WriteLine($"\tMin: {times.Min():0.0000}ms");
+                Console.WriteLine($"\tMax: {times.Max():0.0000}ms");
             }
         }
     }

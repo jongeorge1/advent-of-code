@@ -26,6 +26,20 @@ namespace AoC.Tests.Year2016
         [TestCase(7, 2, "zazbz[bzb]cdb", "1")]
         [TestCase(8, 1, "TEST\r\nrect 3x2\r\nrotate column x=1 by 1\r\nrotate row y=0 by 4\r\nrotate column x=1 by 1", "6")]
         [TestCase(13, 1, "TEST10", "11")]
+        [TestCase(14, 1, "abc", "22728")]
+        [TestCase(14, 2, "abc", "22551")]
+        [TestCase(15, 1, "Disc #1 has 5 positions; at time=0, it is at position 4.\r\nDisc #2 has 2 positions; at time=0, it is at position 1.", "5")]
+        [TestCase(16, 1, "TEST10000", "01100")]
+        [TestCase(17, 1, "hijkl", "")]
+        [TestCase(17, 1, "kglvqrro", "DDUDRLRRUDRD")]
+        [TestCase(17, 1, "ulqzkmiv", "DRURDRUDDLLDLUURRDULRLDUUDDDRR")]
+        [TestCase(17, 2, "ihgpwlah", "370")]
+        [TestCase(17, 2, "kglvqrro", "492")]
+        [TestCase(17, 2, "ulqzkmiv", "830")]
+        [TestCase(18, 1, "..^^.", "6")]
+        [TestCase(18, 1, ".^^.^.^^^^", "38")]
+        [TestCase(19, 1, "5", "3")]
+        [TestCase(19, 2, "5", "2")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2016, day, part);
