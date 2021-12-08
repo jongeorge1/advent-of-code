@@ -23,7 +23,7 @@
             {
                 var locationUri = new UriBuilder(Assembly.GetExecutingAssembly().Location!);
                 string location = Uri.UnescapeDataString(locationUri.Path);
-                string locationDirectory = Path.GetDirectoryName(location)!;
+                string locationDirectory = Path.GetDirectoryName(location) !;
                 string inputFileName = Path.Combine(locationDirectory, $"Year{year.ToString("D4")}", $"Day{day:D2}", "input.txt");
                 data = File.ReadAllText(inputFileName);
             }

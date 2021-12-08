@@ -40,6 +40,9 @@ namespace AoC.Tests.Year2016
         [TestCase(18, 1, ".^^.^.^^^^", "38")]
         [TestCase(19, 1, "5", "3")]
         [TestCase(19, 2, "5", "2")]
+        [TestCase(20, 1, "5-8\r\n0-2\r\n4-7", "3")]
+        [TestCase(21, 1, "TESTswap position 4 with position 0\r\nswap letter d with letter b\r\nreverse positions 0 through 4\r\nrotate left 1 step\r\nmove position 1 to position 4\r\nmove position 3 to position 0\r\nrotate based on position of letter b\r\nrotate based on position of letter d", "decab")]
+        [TestCase(21, 2, "TESTswap position 4 with position 0\r\nswap letter d with letter b\r\nreverse positions 0 through 4\r\nrotate left 1 step\r\nmove position 1 to position 4\r\nmove position 3 to position 0\r\nrotate based on position of letter b\r\nrotate based on position of letter d", "abcde")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2016, day, part);
