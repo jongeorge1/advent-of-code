@@ -7,15 +7,11 @@
 
     public class Floor
     {
-        private readonly int level;
-        private List<string> chips;
-        private List<string> generators;
-
         public Floor(int level, string input)
         {
-            this.level = level;
-            this.chips = new ();
-            this.generators = new ();
+            this.Level = level;
+            this.Chips = new ();
+            this.Generators = new ();
 
             if (!string.IsNullOrEmpty(input))
             {
@@ -35,44 +31,50 @@
 
         public Floor(int level, IEnumerable<string> chips, IEnumerable<string> generators)
         {
-            this.level = level;
-            this.chips = new List<string>(chips);
-            this.generators = new List<string>(generators);
+            this.Level = level;
+            this.Chips = new List<string>(chips);
+            this.Generators = new List<string>(generators);
         }
 
-        public bool IsEmpty => this.chips.Count == 0 && this.generators.Count == 0;
+        public int Level { get; }
+
+        public List<string> Chips { get; }
+
+        public List<string> Generators { get; }
+
+        public bool IsEmpty => this.Chips.Count == 0 && this.Generators.Count == 0;
 
         public bool IsStateValid
         {
             get
             {
-                if (this.generators.Count == 0 || this.chips.Count == 0)
+                if (this.Generators.Count == 0 || this.Chips.Count == 0)
                 {
                     return true;
                 }
 
                 // We know there's at least one generator here, so if there's a chip that
                 // doesn't match it then it'll get fried.
-                return this.chips.All(chip => this.generators.Contains(chip));
+                return this.Chips.All(chip => this.Generators.Contains(chip));
             }
         }
 
         public Floor Clone()
         {
-            return new Floor(this.level, this.chips.AsReadOnly(), this.generators.AsReadOnly());
+            return new Floor(this.Level, this.Chips.AsReadOnly(), this.Generators.AsReadOnly());
         }
 
         public void AddChips(IEnumerable<string> chips)
         {
-            this.chips.AddRange(chips);
-            this.chips.Sort();
+            this.Chips.AddRange(chips);
+            this.Chips.Sort();
         }
 
         public void RemoveChips(IEnumerable<string> chips)
         {
             foreach (string current in chips)
             {
-                this.chips.Remove(current);
+                this.Chips.Remove(current);
             }
         }
 
@@ -80,33 +82,31 @@
         {
             foreach (string current in generators)
             {
-                this.generators.Remove(current);
+                this.Generators.Remove(current);
             }
         }
 
         public void AddGenerators(IEnumerable<string> generators)
         {
-            this.generators.AddRange(generators);
-            this.generators.Sort();
+            this.Generators.AddRange(generators);
+            this.Generators.Sort();
         }
-
-        public string Serialize() => $"{this.level}|{string.Join(',', this.generators)}|{string.Join(',', this.chips)}";
 
         public MovableCombination[] GetAllMovableCombinations()
         {
             var combos = new List<MovableCombination>();
 
-            combos.AddRange(this.chips.Select(x => new MovableCombination(new[] { x }, System.Array.Empty<string>())));
-            combos.AddRange(this.generators.Select(x => new MovableCombination(System.Array.Empty<string>(), new[] { x })));
+            combos.AddRange(this.Chips.Select(x => new MovableCombination(new[] { x }, System.Array.Empty<string>())));
+            combos.AddRange(this.Generators.Select(x => new MovableCombination(System.Array.Empty<string>(), new[] { x })));
 
             // Now all pairs of chips and all pairs of generators
-            combos.AddRange(this.chips.GetPermutations(2).Select(x => new MovableCombination(x, System.Array.Empty<string>())));
-            combos.AddRange(this.generators.GetPermutations(2).Select(x => new MovableCombination(System.Array.Empty<string>(), x)));
+            combos.AddRange(this.Chips.GetPermutations(2).Select(x => new MovableCombination(x, System.Array.Empty<string>())));
+            combos.AddRange(this.Generators.GetPermutations(2).Select(x => new MovableCombination(System.Array.Empty<string>(), x)));
 
             // Finally all pairs of chip + generator
-            foreach (string chip in this.chips)
+            foreach (string chip in this.Chips)
             {
-                combos.AddRange(this.generators.Select(g => new MovableCombination(new[] { chip }, new[] { g })));
+                combos.AddRange(this.Generators.Select(g => new MovableCombination(new[] { chip }, new[] { g })));
             }
 
             // Finally, filter them down
@@ -121,11 +121,11 @@
 
             if (device == "generator")
             {
-                this.generators.Add(element);
+                this.Generators.Add(element);
             }
             else
             {
-                this.chips.Add(element);
+                this.Chips.Add(element);
             }
         }
     }

@@ -3,36 +3,77 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
 
     public class Area
     {
         private int elevator = 0;
-        private Floor[] floors;
 
         public Area(string input)
         {
             this.elevator = 0;
-            this.floors = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select((el, i) => new Floor(i + 1, el)).ToArray();
+            this.Floors = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select((el, i) => new Floor(i + 1, el)).ToArray();
         }
 
         private Area(int elevator, IEnumerable<Floor> floors)
         {
             this.elevator = elevator;
-            this.floors = floors.ToArray();
+            this.Floors = floors.ToArray();
         }
 
-        public bool IsStateValid => this.floors.All(x => x.IsStateValid);
+        public Floor[] Floors { get; }
 
-        public bool IsStateFinished => this.floors.Take(this.floors.Length - 1).All(x => x.IsEmpty);
+        public bool IsStateValid => this.Floors.All(x => x.IsStateValid);
+
+        public bool IsStateFinished => this.Floors.Take(this.Floors.Length - 1).All(x => x.IsEmpty);
 
         public Area Clone()
         {
-            return new Area(this.elevator, this.floors.Select(x => x.Clone()));
+            return new Area(this.elevator, this.Floors.Select(x => x.Clone()));
         }
 
         public string Serialize()
         {
-            return this.elevator + "~" + string.Join("~", this.floors.Select(el => el.Serialize()));
+            StringBuilder builder = new ();
+            builder.Append(this.elevator);
+
+            Dictionary<string, char> map = new ();
+            char current = 'a';
+
+            Func<string, char> getMappedValue = (string element) =>
+            {
+                if (!map.TryGetValue(element, out char mapped))
+                {
+                    mapped = current;
+                    map[element] = mapped;
+                    ++current;
+                }
+
+                return mapped;
+            };
+
+            foreach (Floor floor in this.Floors)
+            {
+                builder.Append('~');
+                builder.Append(floor.Level);
+                builder.Append('|');
+
+                foreach (string generator in floor.Generators)
+                {
+                    builder.Append(getMappedValue(generator));
+                    builder.Append(',');
+                }
+
+                builder.Append("|");
+
+                foreach (string chip in floor.Chips)
+                {
+                    builder.Append(getMappedValue(chip));
+                    builder.Append(',');
+                }
+            }
+
+            return builder.ToString();
         }
 
         public Area[] GetPossibleMoves()
@@ -44,7 +85,7 @@
                 moves.AddRange(this.GetPossibleMovesInDirection(-1));
             }
 
-            if (this.elevator != this.floors.Length - 1)
+            if (this.elevator != this.Floors.Length - 1)
             {
                 moves.AddRange(this.GetPossibleMovesInDirection(1));
             }
@@ -57,13 +98,13 @@
             int currentFloorIndex = this.elevator;
             int targetFloorIndex = this.elevator + direction;
 
-            MovableCombination[] movableItems = this.floors[currentFloorIndex].GetAllMovableCombinations();
+            MovableCombination[] movableItems = this.Floors[currentFloorIndex].GetAllMovableCombinations();
 
             foreach (MovableCombination combo in movableItems)
             {
                 Area newArea = this.Clone();
-                Floor currentFloor = newArea.floors[currentFloorIndex];
-                Floor targetFloor = newArea.floors[targetFloorIndex];
+                Floor currentFloor = newArea.Floors[currentFloorIndex];
+                Floor targetFloor = newArea.Floors[targetFloorIndex];
                 newArea.elevator = targetFloorIndex;
 
                 currentFloor.RemoveGenerators(combo.Generators);
