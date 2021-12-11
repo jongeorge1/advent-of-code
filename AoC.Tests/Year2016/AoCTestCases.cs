@@ -25,6 +25,7 @@ namespace AoC.Tests.Year2016
         [TestCase(7, 2, "aaa[kek]eke", "1")]
         [TestCase(7, 2, "zazbz[bzb]cdb", "1")]
         [TestCase(8, 1, "TEST\r\nrect 3x2\r\nrotate column x=1 by 1\r\nrotate row y=0 by 4\r\nrotate column x=1 by 1", "6")]
+        [TestCase(11, 1, "The first floor contains a hydrogen-compatible microchip, and a lithium-compatible microchip.\r\nThe second floor contains a hydrogen generator.\r\nThe third floor contains a lithium generator.\r\nThe fourth floor contains nothing relevant.", "11")]
         [TestCase(13, 1, "TEST10", "11")]
         [TestCase(14, 1, "abc", "22728")]
         [TestCase(14, 2, "abc", "22551")]

@@ -22,6 +22,18 @@ namespace AoC.Tests.Year2021
         [TestCase(8, 2, "be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe\r\nedbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc\r\nfgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef | cg cg fdcagb cbg\r\nfbegcd cbd adcefb dageb afcb bc aefdc ecdab fgdeca fcdbega | efabcd cedba gadfec cb\r\naecbfdg fbg gf bafeg dbefa fcge gcbea fcaegb dgceab fcbdga | gecf egdcabf bgf bfgea\r\nfgeab ca afcebg bdacfeg cfaedg gcfdb baec bfadeg bafgc acf | gebdcfa ecba ca fadegcb\r\ndbcfg fgd bdegcaf fgec aegbdf ecdfab fbedc dacgb gdcebf gf | cefg dcbef fcge gbcadfe\r\nbdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbgef\r\negadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb\r\ngcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce", "61229")]
         [TestCase(9, 1, "2199943210\r\n3987894921\r\n9856789892\r\n8767896789\r\n9899965678", "15")]
         [TestCase(9, 2, "2199943210\r\n3987894921\r\n9856789892\r\n8767896789\r\n9899965678", "1134")]
+        [TestCase(10, 1, "{([(<{}[<>[]}>{[]{[(<()>", "1197")]
+        [TestCase(10, 1, "[[<[([]))<([[{}[[()]]]", "3")]
+        [TestCase(10, 1, "[{[{({}]{}}([{[{{{}}([]", "57")]
+        [TestCase(10, 1, "[<(<(<(<{}))><([]([]()", "3")]
+        [TestCase(10, 1, "<{([([[(<>()){}]>(<<{{", "25137")]
+        [TestCase(10, 1, "[({(<(())[]>[[{[]{<()<>>\r\n[(()[<>])]({[<{<<[]>>(\r\n{([(<{}[<>[]}>{[]{[(<()>\r\n(((({<>}<{<{<>}{[]{[]{}\r\n[[<[([]))<([[{}[[()]]]\r\n[{[{({}]{}}([{[{{{}}([]\r\n{<[[]]>}<{[{[{[]{()[[[]\r\n[<(<(<(<{}))><([]([]()\r\n<{([([[(<>()){}]>(<<{{\r\n<{([{{}}[<[[[<>{}]]]>[]]", "26397")]
+        [TestCase(10, 2, "[({(<(())[]>[[{[]{<()<>>", "288957")]
+        [TestCase(10, 2, "[(()[<>])]({[<{<<[]>>(", "5566")]
+        [TestCase(10, 2, "(((({<>}<{<{<>}{[]{[]{}", "1480781")]
+        [TestCase(10, 2, "{<[[]]>}<{[{[{[]{()[[[]", "995444")]
+        [TestCase(10, 2, "<{([{{}}[<[[[<>{}]]]>[]]", "294")]
+        [TestCase(10, 2, "[({(<(())[]>[[{[]{<()<>>\r\n[(()[<>])]({[<{<<[]>>(\r\n{([(<{}[<>[]}>{[]{[(<()>\r\n(((({<>}<{<{<>}{[]{[]{}\r\n[[<[([]))<([[{}[[()]]]\r\n[{[{({}]{}}([{[{{{}}([]\r\n{<[[]]>}<{[{[{[]{()[[[]\r\n[<(<(<(<{}))><([]([]()\r\n<{([([[(<>()){}]>(<<{{\r\n<{([{{}}[<[[[<>{}]]]>[]]", "288957")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2021, day, part);
