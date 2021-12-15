@@ -43,6 +43,8 @@ namespace AoC.Tests.Year2021
         [TestCase(13, 1, "6,10\r\n0,14\r\n9,10\r\n0,3\r\n10,4\r\n4,11\r\n6,0\r\n6,12\r\n4,1\r\n0,13\r\n10,12\r\n3,4\r\n3,0\r\n8,4\r\n1,10\r\n2,14\r\n8,10\r\n9,0\r\n\r\nfold along y=7\r\nfold along x=5", "17")]
         [TestCase(14, 1, "NNCB\r\n\r\nCH->B\r\nHH->N\r\nCB->H\r\nNH->C\r\nHB->C\r\nHC->B\r\nHN->C\r\nNN->C\r\nBH->H\r\nNC->B\r\nNB->B\r\nBN->B\r\nBB->N\r\nBC->B\r\nCC->N\r\nCN->C", "1588")]
         [TestCase(14, 2, "NNCB\r\n\r\nCH->B\r\nHH->N\r\nCB->H\r\nNH->C\r\nHB->C\r\nHC->B\r\nHN->C\r\nNN->C\r\nBH->H\r\nNC->B\r\nNB->B\r\nBN->B\r\nBB->N\r\nBC->B\r\nCC->N\r\nCN->C", "2188189693529")]
+        [TestCase(15, 1, "1163751742\r\n1381373672\r\n2136511328\r\n3694931569\r\n7463417111\r\n1319128137\r\n1359912421\r\n3125421639\r\n1293138521\r\n2311944581", "40")]
+        [TestCase(15, 2, "1163751742\r\n1381373672\r\n2136511328\r\n3694931569\r\n7463417111\r\n1319128137\r\n1359912421\r\n3125421639\r\n1293138521\r\n2311944581", "315")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2021, day, part);

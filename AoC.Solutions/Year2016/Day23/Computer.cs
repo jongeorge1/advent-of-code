@@ -10,7 +10,7 @@
 
         private string[][] program;
 
-        private Dictionary<string, Action<string[]>> instructionMap;
+        private Dictionary<string, Action<string[], bool>> instructionMap;
 
         public Computer(string program)
         {
@@ -34,51 +34,104 @@
             { "d", 0 },
         };
 
+        public List<int> ToggledLocations { get; } = new ();
+
         public void Execute()
         {
             while (this.location < this.program.Length)
             {
-                this.instructionMap[this.program[this.location][0]](this.program[this.location]);
+                this.instructionMap[this.program[this.location][0]](this.program[this.location], false);
             }
         }
 
-        private void Tgl(string[] instruction)
+        private void Tgl(string[] instruction, bool bypassToggleCheck = false)
         {
-        }
-
-        private void Cpy(string[] instruction)
-        {
-            string targetRegister = instruction[2];
-
-            this.Registers[targetRegister] = this.GetValueOrRegister(instruction[1]);
-
-            ++this.location;
-        }
-
-        private void Inc(string[] instruction)
-        {
-            ++this.Registers[instruction[1]];
-            ++this.location;
-        }
-
-        private void Dec(string[] instruction)
-        {
-            --this.Registers[instruction[1]];
-            ++this.location;
-        }
-
-        private void Jnz(string[] instruction)
-        {
-            int condition = this.GetValueOrRegister(instruction[1]);
-            int offset = this.GetValueOrRegister(instruction[2]);
-
-            if (condition != 0)
+            if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
             {
-                this.location += offset;
+                // We're toggled already, so we're actually...
+                this.Inc(instruction, true);
             }
             else
             {
+                int target = this.location + this.GetValueOrRegister(instruction[1]);
+                if (this.ToggledLocations.Contains(target))
+                {
+                    this.ToggledLocations.Remove(target);
+                }
+                else
+                {
+                    this.ToggledLocations.Add(target);
+                }
+
                 ++this.location;
+            }
+        }
+
+        private void Cpy(string[] instruction, bool bypassToggleCheck = false)
+        {
+            if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
+            {
+                this.Jnz(instruction, true);
+            }
+            else
+            {
+                string targetRegister = instruction[2];
+
+                // The target register might be invalid...
+                if (this.Registers.ContainsKey(targetRegister))
+                {
+                    this.Registers[targetRegister] = this.GetValueOrRegister(instruction[1]);
+                }
+
+                ++this.location;
+            }
+        }
+
+        private void Inc(string[] instruction, bool bypassToggleCheck = false)
+        {
+            if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
+            {
+                this.Dec(instruction, true);
+            }
+            else
+            {
+                ++this.Registers[instruction[1]];
+                ++this.location;
+            }
+        }
+
+        private void Dec(string[] instruction, bool bypassToggleCheck = false)
+        {
+            if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
+            {
+                this.Inc(instruction, true);
+            }
+            else
+            {
+                --this.Registers[instruction[1]];
+                ++this.location;
+            }
+        }
+
+        private void Jnz(string[] instruction, bool bypassToggleCheck = false)
+        {
+            if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
+            {
+                this.Cpy(instruction, true);
+            }
+            else
+            {
+                int condition = this.GetValueOrRegister(instruction[1]);
+                int offset = this.GetValueOrRegister(instruction[2]);
+
+                if (condition != 0)
+                {
+                    this.location += offset;
+                }
+                else
+                {
+                    ++this.location;
+                }
             }
         }
 

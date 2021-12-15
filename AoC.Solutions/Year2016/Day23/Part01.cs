@@ -4,7 +4,15 @@
     {
         public string Solve(string input)
         {
-            var computer = new Computer(input);
+            bool testMode = input.StartsWith("TEST");
+
+            var computer = new Computer(testMode ? input[4..] : input);
+
+            if (!testMode)
+            {
+                computer.Registers["a"] = 7;
+            }
+
             computer.Execute();
 
             return computer.Registers["a"].ToString();
