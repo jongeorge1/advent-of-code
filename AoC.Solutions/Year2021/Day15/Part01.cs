@@ -19,7 +19,7 @@
             var queue = new PriorityQueue<((int X, int Y) Location, int AccumulatedRisk), int>();
             queue.Enqueue(((0, 0), 0), 0);
 
-            var lowestRisksAtLocations = new Dictionary<(int, int), int>();
+            var lowestRisksAtLocations = new Dictionary<(int, int), int>(grid.Count);
 
             while (queue.Count > 0)
             {
@@ -53,10 +53,13 @@
 
         private static IEnumerable<(int X, int Y)> GetNeighbours((int X, int Y) location)
         {
-            yield return (location.X + 1, location.Y);
-            yield return (location.X, location.Y + 1);
-            yield return (location.X - 1, location.Y);
-            yield return (location.X, location.Y - 1);
+            return new[]
+            {
+                (location.X + 1, location.Y),
+                (location.X, location.Y + 1),
+                (location.X - 1, location.Y),
+                (location.X, location.Y - 1),
+            };
         }
     }
 }
