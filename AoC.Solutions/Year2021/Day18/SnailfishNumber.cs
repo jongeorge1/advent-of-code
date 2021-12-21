@@ -15,7 +15,7 @@
 
         public static SnailfishNumber operator +(SnailfishNumber left, SnailfishNumber right)
         {
-            var result = new SnailfishNumberPair(left.DeepClone(), right.DeepClone());
+            var result = new SnailfishNumberPair(left.DeepCopy(), right.DeepCopy());
 
             do
             {
@@ -40,7 +40,7 @@
             }
             else
             {
-                return new LiteralSnailfishNumber(ref input, parent);
+                return new SnailfishNumberLiteral(ref input, parent);
             }
         }
 
@@ -61,17 +61,17 @@
                 return false;
             }
 
-            LiteralSnailfishNumber? leftItem = entryToExplode.FindFirstLiteralNumberToLeft();
-            LiteralSnailfishNumber? rightItem = entryToExplode.FindFirstLiteralNumberToRight();
+            SnailfishNumberLiteral? leftItem = entryToExplode.FindFirstLiteralNumberToLeft();
+            SnailfishNumberLiteral? rightItem = entryToExplode.FindFirstLiteralNumberToRight();
 
             if (leftItem is not null)
             {
-                leftItem.Value += entryToExplode.LeftAs<LiteralSnailfishNumber>().Value;
+                leftItem.Value += entryToExplode.LeftAs<SnailfishNumberLiteral>().Value;
             }
 
             if (rightItem is not null)
             {
-                rightItem.Value += entryToExplode.RightAs<LiteralSnailfishNumber>().Value;
+                rightItem.Value += entryToExplode.RightAs<SnailfishNumberLiteral>().Value;
             }
 
             entryToExplode.ReplaceWithValue(0);
@@ -81,7 +81,7 @@
 
         public bool SplitIfPossible()
         {
-            LiteralSnailfishNumber? entryToSplit = this.FindFirstLiteralNumberToSplit();
+            SnailfishNumberLiteral? entryToSplit = this.FindFirstLiteralNumberToSplit();
 
             if (entryToSplit is null)
             {
@@ -99,8 +99,8 @@
 
         public abstract SnailfishNumberPair? FindFirstNumberPairToExplode();
 
-        public abstract LiteralSnailfishNumber? FindFirstLiteralNumberToSplit();
+        public abstract SnailfishNumberLiteral? FindFirstLiteralNumberToSplit();
 
-        public abstract SnailfishNumber DeepClone();
+        public abstract SnailfishNumber DeepCopy();
     }
 }

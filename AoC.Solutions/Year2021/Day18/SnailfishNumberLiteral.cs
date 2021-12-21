@@ -4,15 +4,15 @@
     using System.Diagnostics;
 
     [DebuggerDisplay("{ToString()}")]
-    public class LiteralSnailfishNumber : SnailfishNumber
+    public class SnailfishNumberLiteral : SnailfishNumber
     {
-        public LiteralSnailfishNumber(int value, SnailfishNumberPair? parent = null)
+        public SnailfishNumberLiteral(int value, SnailfishNumberPair? parent = null)
             : base(parent)
         {
             this.Value = value;
         }
 
-        public LiteralSnailfishNumber(ref ReadOnlySpan<char> input, SnailfishNumberPair? parent)
+        public SnailfishNumberLiteral(ref ReadOnlySpan<char> input, SnailfishNumberPair? parent)
             : base(parent)
         {
             int nextComma = input.IndexOf(',');
@@ -30,13 +30,13 @@
         public void ReplaceWithPair(int leftValue, int rightValue)
         {
             var pair = new SnailfishNumberPair(
-                new LiteralSnailfishNumber(leftValue),
-                new LiteralSnailfishNumber(rightValue),
+                new SnailfishNumberLiteral(leftValue),
+                new SnailfishNumberLiteral(rightValue),
                 this.Parent);
 
             SnailfishNumberPair? parent = this.Parent;
 
-            if (parent.Left == this)
+            if (parent!.Left == this)
             {
                 parent.Left = pair;
             }
@@ -46,13 +46,12 @@
             }
         }
 
-
         public override SnailfishNumberPair? FindFirstNumberPairToExplode()
         {
             return null;
         }
 
-        public override LiteralSnailfishNumber? FindFirstLiteralNumberToSplit()
+        public override SnailfishNumberLiteral? FindFirstLiteralNumberToSplit()
         {
             return this.Value > 9 ? this : null;
         }
@@ -62,9 +61,9 @@
             return this.Value;
         }
 
-        public override SnailfishNumber DeepClone()
+        public override SnailfishNumber DeepCopy()
         {
-            return new LiteralSnailfishNumber(this.Value);
+            return new SnailfishNumberLiteral(this.Value);
         }
     }
 }

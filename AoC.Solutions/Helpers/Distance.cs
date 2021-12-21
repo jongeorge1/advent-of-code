@@ -18,5 +18,10 @@
         public static int Manhattan((int X, int Y, int Z) position) => Manhattan(position.X, position.Y, position.Z);
 
         public static int Manhattan(Point point) => Manhattan(point.X, point.Y);
+
+        public static int Manhattan((int X, int Y, int Z) first, (int X, int Y, int Z) second)
+        {
+            return Math.Abs(second.X - first.X) + Math.Abs(second.Y - first.Y) + Math.Abs(second.Z - first.Z);
+        }
     }
 }

@@ -42,30 +42,24 @@
 
         public override string ToString() => $"[{this.Left},{this.Right}]";
 
-        public LiteralSnailfishNumber? FindFirstLiteralNumberToLeft()
+        public SnailfishNumberLiteral? FindFirstLiteralNumberToLeft()
         {
-            if (this.Parent is null)
-            {
-                // Unlikely, but...
-                return null;
-            }
-
             // We need to move up the tree until we hit an opportunity to move down a left most branch.
             SnailfishNumberPair current = this;
 
-            while (current.Parent.Left == current)
+            while (current.Parent is not null && current.Parent.Left == current)
             {
                 current = current.Parent;
+            }
 
-                if (current.Parent is null)
-                {
-                    return null;
-                }
+            if (current.Parent is null)
+            {
+                return null;
             }
 
             // We should now have hit a point where moving down to the left, then following the right hand branches all the way to the
             // bottom gives us what we need.
-            SnailfishNumber target = current.Parent.Left;
+            SnailfishNumber target = current.Parent!.Left;
 
             while (target is SnailfishNumberPair targetPair)
             {
@@ -73,28 +67,22 @@
             }
 
             // target should now be a literal
-            return target.As<LiteralSnailfishNumber>();
+            return target.As<SnailfishNumberLiteral>();
         }
 
-        public LiteralSnailfishNumber? FindFirstLiteralNumberToRight()
+        public SnailfishNumberLiteral? FindFirstLiteralNumberToRight()
         {
-            if (this.Parent is null)
-            {
-                // Unlikely, but...
-                return null;
-            }
-
             // We need to move up the tree until we hit an opportunity to move down a left most branch.
             SnailfishNumberPair current = this;
 
-            while (current.Parent.Right == current)
+            while (current.Parent is not null && current.Parent.Right == current)
             {
                 current = current.Parent;
+            }
 
-                if (current.Parent is null)
-                {
-                    return null;
-                }
+            if (current.Parent is null)
+            {
+                return null;
             }
 
             // We should now have hit a point where moving down to the right, then following the left hand branches all the way to the
@@ -107,20 +95,20 @@
             }
 
             // target should now be a literal
-            return target.As<LiteralSnailfishNumber>();
+            return target.As<SnailfishNumberLiteral>();
         }
 
         public void ReplaceWithValue(int value)
         {
             SnailfishNumberPair? parent = this.Parent;
 
-            if (parent.Left == this)
+            if (parent!.Left == this)
             {
-                parent.Left = new LiteralSnailfishNumber(0, parent);
+                parent.Left = new SnailfishNumberLiteral(0, parent);
             }
             else
             {
-                parent.Right = new LiteralSnailfishNumber(0, parent);
+                parent.Right = new SnailfishNumberLiteral(0, parent);
             }
         }
 
@@ -134,7 +122,7 @@
             return this.Left.FindFirstNumberPairToExplode() ?? this.Right.FindFirstNumberPairToExplode();
         }
 
-        public override LiteralSnailfishNumber? FindFirstLiteralNumberToSplit()
+        public override SnailfishNumberLiteral? FindFirstLiteralNumberToSplit()
         {
             return this.Left.FindFirstLiteralNumberToSplit() ?? this.Right.FindFirstLiteralNumberToSplit();
         }
@@ -144,9 +132,9 @@
             return (this.Left.Magnitude() * 3) + (this.Right.Magnitude() * 2);
         }
 
-        public override SnailfishNumber DeepClone()
+        public override SnailfishNumber DeepCopy()
         {
-            return new SnailfishNumberPair(this.Left.DeepClone(), this.Right.DeepClone());
+            return new SnailfishNumberPair(this.Left.DeepCopy(), this.Right.DeepCopy());
         }
     }
 }

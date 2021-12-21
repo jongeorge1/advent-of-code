@@ -24,11 +24,11 @@
 
             var pair = result as SnailfishNumberPair;
 
-            Assert.That(pair!.Left, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair!.Right, Is.InstanceOf<LiteralSnailfishNumber>());
+            Assert.That(pair!.Left, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair!.Right, Is.InstanceOf<SnailfishNumberLiteral>());
 
-            Assert.That(pair.Left.As<LiteralSnailfishNumber>().Value, Is.EqualTo(left));
-            Assert.That(pair.Right.As<LiteralSnailfishNumber>().Value, Is.EqualTo(right));
+            Assert.That(pair.Left.As<SnailfishNumberLiteral>().Value, Is.EqualTo(left));
+            Assert.That(pair.Right.As<SnailfishNumberLiteral>().Value, Is.EqualTo(right));
         }
 
         [Test]
@@ -43,15 +43,15 @@
             var pair = result as SnailfishNumberPair;
 
             Assert.That(pair!.Left, Is.InstanceOf<SnailfishNumberPair>());
-            Assert.That(pair!.Right, Is.InstanceOf<LiteralSnailfishNumber>());
+            Assert.That(pair!.Right, Is.InstanceOf<SnailfishNumberLiteral>());
 
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().Left, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().LeftAs<LiteralSnailfishNumber>().Value, Is.EqualTo(1));
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().Left, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().LeftAs<SnailfishNumberLiteral>().Value, Is.EqualTo(1));
 
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().Right, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().RightAs<LiteralSnailfishNumber>().Value, Is.EqualTo(4));
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().Right, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().RightAs<SnailfishNumberLiteral>().Value, Is.EqualTo(4));
 
-            Assert.That(pair.RightAs<LiteralSnailfishNumber>().Value, Is.EqualTo(6));
+            Assert.That(pair.RightAs<SnailfishNumberLiteral>().Value, Is.EqualTo(6));
         }
 
         [Test]
@@ -65,16 +65,16 @@
 
             var pair = result as SnailfishNumberPair;
 
-            Assert.That(pair!.Left, Is.InstanceOf<LiteralSnailfishNumber>());
+            Assert.That(pair!.Left, Is.InstanceOf<SnailfishNumberLiteral>());
             Assert.That(pair!.Right, Is.InstanceOf<SnailfishNumberPair>());
 
-            Assert.That(pair.LeftAs<LiteralSnailfishNumber>().Value, Is.EqualTo(6));
+            Assert.That(pair.LeftAs<SnailfishNumberLiteral>().Value, Is.EqualTo(6));
 
-            Assert.That(pair.RightAs<SnailfishNumberPair>().Left, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.RightAs<SnailfishNumberPair>().LeftAs<LiteralSnailfishNumber>().Value, Is.EqualTo(1));
+            Assert.That(pair.RightAs<SnailfishNumberPair>().Left, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.RightAs<SnailfishNumberPair>().LeftAs<SnailfishNumberLiteral>().Value, Is.EqualTo(1));
 
-            Assert.That(pair.RightAs<SnailfishNumberPair>().Right, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.RightAs<SnailfishNumberPair>().RightAs<LiteralSnailfishNumber>().Value, Is.EqualTo(4));
+            Assert.That(pair.RightAs<SnailfishNumberPair>().Right, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.RightAs<SnailfishNumberPair>().RightAs<SnailfishNumberLiteral>().Value, Is.EqualTo(4));
         }
 
         [Test]
@@ -91,17 +91,17 @@
             Assert.That(pair!.Left, Is.InstanceOf<SnailfishNumberPair>());
             Assert.That(pair!.Right, Is.InstanceOf<SnailfishNumberPair>());
 
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().Left, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().LeftAs<LiteralSnailfishNumber>().Value, Is.EqualTo(5));
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().Left, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().LeftAs<SnailfishNumberLiteral>().Value, Is.EqualTo(5));
 
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().Right, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.LeftAs<SnailfishNumberPair>().RightAs<LiteralSnailfishNumber>().Value, Is.EqualTo(10));
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().Right, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.LeftAs<SnailfishNumberPair>().RightAs<SnailfishNumberLiteral>().Value, Is.EqualTo(10));
 
-            Assert.That(pair.RightAs<SnailfishNumberPair>().Left, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.RightAs<SnailfishNumberPair>().LeftAs<LiteralSnailfishNumber>().Value, Is.EqualTo(1));
+            Assert.That(pair.RightAs<SnailfishNumberPair>().Left, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.RightAs<SnailfishNumberPair>().LeftAs<SnailfishNumberLiteral>().Value, Is.EqualTo(1));
 
-            Assert.That(pair.RightAs<SnailfishNumberPair>().Right, Is.InstanceOf<LiteralSnailfishNumber>());
-            Assert.That(pair.RightAs<SnailfishNumberPair>().RightAs<LiteralSnailfishNumber>().Value, Is.EqualTo(4));
+            Assert.That(pair.RightAs<SnailfishNumberPair>().Right, Is.InstanceOf<SnailfishNumberLiteral>());
+            Assert.That(pair.RightAs<SnailfishNumberPair>().RightAs<SnailfishNumberLiteral>().Value, Is.EqualTo(4));
         }
 
         [Test]
