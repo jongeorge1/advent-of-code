@@ -29,7 +29,7 @@
 
         static Scanner()
         {
-            ScannerAllTransforms = ScannerDirectionTransforms.SelectMany(d => ScannerRotationTransforms.Select(r => ((int, int, int) input) => r(d(input)))).ToArray();
+            ////ScannerAllTransforms = ScannerDirectionTransforms.SelectMany(d => ScannerRotationTransforms.Select(r => ((int, int, int) input) => r(d(input)))).ToArray();
         }
 
         public Scanner(string input)
