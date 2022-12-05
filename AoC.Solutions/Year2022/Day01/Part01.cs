@@ -9,8 +9,7 @@
         public string Solve(string input)
         {
             return input.Split(Environment.NewLine + Environment.NewLine)
-                .Select(x => x.Split(Environment.NewLine).Select(x => int.Parse(x)).Sum())
-                .Max()
+                .Max(row => row.Split(Environment.NewLine).Select(int.Parse).Sum())
                 .ToString();
         }
     }

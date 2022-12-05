@@ -8,7 +8,11 @@
     {
         public string Solve(string input)
         {
-            return string.Empty;
+            return input.Split(Environment.NewLine)
+                .Select(line => (line[..(line.Length / 2)], line[(line.Length / 2)..]))
+                .Select(rucksack => rucksack.Item1.First(rucksack.Item2.Contains))
+                .Sum(b => b <= 'Z' ? b - 38 : b - 96)
+                .ToString();
         }
     }
 }
