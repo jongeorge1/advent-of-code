@@ -1,4 +1,4 @@
-﻿namespace AoC.Tests.Year2021.Day19
+﻿namespace AoC.Solutions.Year2021.Day19
 {
     using AoC.Solutions.Year2021.Day19;
     using NUnit.Framework;

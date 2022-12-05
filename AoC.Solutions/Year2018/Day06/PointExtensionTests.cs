@@ -1,4 +1,4 @@
-﻿namespace AoC.Tests.Year2018.Day06
+﻿namespace AoC.Solutions.Year2018.Day06
 {
     using System.Drawing;
     using AoC.Solutions.Year2018.Day06;

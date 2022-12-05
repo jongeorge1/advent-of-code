@@ -1,4 +1,4 @@
-﻿namespace AoC.Tests.Year2021.Day18
+﻿namespace AoC.Solutions.Year2021.Day18
 {
     using System;
     using System.Collections.Generic;

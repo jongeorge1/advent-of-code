@@ -1,4 +1,4 @@
-﻿namespace AoC.Tests.Year2019
+﻿namespace AoC.Solutions.Year2019
 {
     using System.Linq;
     using AoC.Solutions.Year2019.IntCodeVm;

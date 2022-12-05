@@ -1,4 +1,4 @@
-namespace AoC.Tests.Year2018
+namespace AoC.Solutions.Year2018
 {
     using AoC.Solutions;
     using NUnit.Framework;

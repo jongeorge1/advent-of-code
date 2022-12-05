@@ -1,4 +1,4 @@
-﻿namespace AoC.Tests.Year2018.Day04
+﻿namespace AoC.Solutions.Year2018.Day04
 {
     using System;
     using AoC.Solutions.Year2018.Day04;

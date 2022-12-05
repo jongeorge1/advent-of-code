@@ -1,4 +1,4 @@
-﻿namespace AoC.Tests.Helpers
+﻿namespace AoC.Solutions.Helpers
 {
     using System.Linq;
     using AoC.Solutions.Helpers;
