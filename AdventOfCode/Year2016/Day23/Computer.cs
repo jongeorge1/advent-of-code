@@ -11,11 +11,13 @@
         private string[][] program;
 
         private Dictionary<string, Action<string[], bool>> instructionMap;
+        
+        private bool verbose;
 
-        public Computer(string program)
+        public Computer(string program, bool verbose = false)
         {
             this.program = program.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
-
+            this.verbose = verbose;
             this.instructionMap = new ()
             {
                 { "cpy", this.Cpy },
@@ -38,6 +40,8 @@
 
         public void Execute()
         {
+            this.verbose = verbose;
+
             while (this.location < this.program.Length)
             {
                 this.instructionMap[this.program[this.location][0]](this.program[this.location], false);
@@ -48,8 +52,13 @@
         {
             if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
             {
-                // We're toggled already, so we're actually...
+                if (this.verbose)
+                {
+                    Console.WriteLine($"${this.location}: Toggled, treating as INC");
+                }
+
                 this.Inc(instruction, true);
+
             }
             else
             {
@@ -57,10 +66,18 @@
                 if (this.ToggledLocations.Contains(target))
                 {
                     this.ToggledLocations.Remove(target);
+                    if (this.verbose)
+                    {
+                        Console.WriteLine($"${this.location}: Untoggling {target}");
+                    }
                 }
                 else
                 {
                     this.ToggledLocations.Add(target);
+                    if (this.verbose)
+                    {
+                        Console.WriteLine($"${this.location}: Toggling {target}");
+                    }
                 }
 
                 ++this.location;
@@ -71,6 +88,11 @@
         {
             if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
             {
+                if (this.verbose)
+                {
+                    Console.WriteLine($"${this.location}: Toggled, treating as JNZ");
+                }
+                
                 this.Jnz(instruction, true);
             }
             else
@@ -81,6 +103,10 @@
                 if (this.Registers.ContainsKey(targetRegister))
                 {
                     this.Registers[targetRegister] = this.GetValueOrRegister(instruction[1]);
+                    if (this.verbose)
+                    {
+                        Console.WriteLine($"${this.location}: Copying {this.Registers[targetRegister]} to {targetRegister}");
+                    }
                 }
 
                 ++this.location;
@@ -91,12 +117,22 @@
         {
             if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
             {
+                if (this.verbose)
+                {
+                    Console.WriteLine($"${this.location}: Toggled, treating as DEC");
+                }
+
                 this.Dec(instruction, true);
             }
             else
             {
                 ++this.Registers[instruction[1]];
                 ++this.location;
+
+                if (this.verbose)
+                {
+                    Console.WriteLine($"${this.location}: Incrementing register {instruction[1]} to {this.Registers[instruction[1]]}");
+                }
             }
         }
 
@@ -104,12 +140,22 @@
         {
             if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
             {
+                if (this.verbose)
+                {
+                    Console.WriteLine($"${this.location}: Toggled, treating as INC");
+                }
+
                 this.Inc(instruction, true);
             }
             else
             {
                 --this.Registers[instruction[1]];
                 ++this.location;
+
+                if (this.verbose)
+                {
+                    Console.WriteLine($"${this.location}: Decrementing register {instruction[1]} to {this.Registers[instruction[1]]}");
+                }
             }
         }
 
@@ -117,6 +163,11 @@
         {
             if (!bypassToggleCheck && this.ToggledLocations.Contains(this.location))
             {
+                if (this.verbose)
+                {
+                    Console.WriteLine($"${this.location}: Toggled, treating as CPY");
+                }
+
                 this.Cpy(instruction, true);
             }
             else
@@ -126,10 +177,20 @@
 
                 if (condition != 0)
                 {
+                    if (this.verbose)
+                    {
+                        Console.WriteLine($"${this.location}: Jumping by {offset}");
+                    }
+
                     this.location += offset;
                 }
                 else
                 {
+                    if (this.verbose)
+                    {
+                        Console.WriteLine($"${this.location}: Ignoring jump");
+                    }
+
                     ++this.location;
                 }
             }

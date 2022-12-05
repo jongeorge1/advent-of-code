@@ -6,7 +6,7 @@
         {
             bool testMode = input.StartsWith("TEST");
 
-            var computer = new Computer(testMode ? input[4..] : input);
+            var computer = new Computer(testMode ? input[4..] : input, true);
 
             if (!testMode)
             {
