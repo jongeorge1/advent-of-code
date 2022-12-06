@@ -1,12 +1,21 @@
 ﻿namespace AdventOfCode.Year2022.Day06
 {
+    using System.Linq;
     using AdventOfCode;
 
     public class Part02 : ISolution
     {
         public string Solve(string input)
         {
-            return string.Empty;
+            for (int i = 14; i < input.Length; i++)
+            {
+                if (input[(i - 14)..i].Distinct().Count() == 14)
+                {
+                    return i.ToString();
+                }
+            }
+
+            return "Not found";
         }
     }
 }

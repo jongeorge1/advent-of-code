@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2022.Day06
 {
-    using System;
     using System.Linq;
     using AdventOfCode;
 
@@ -8,7 +7,15 @@
     {
         public string Solve(string input)
         {
-            return string.Empty;
+            for (int i = 4; i < input.Length; i++)
+            {
+                if (input[(i - 4)..i].Distinct().Count() == 4)
+                {
+                    return i.ToString();
+                }
+            }
+
+            return "Not found";
         }
     }
 }

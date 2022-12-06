@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Year2016.Day23
+﻿namespace AdventOfCode.Year2016.Day25
 {
     using System;
     using System.Collections.Generic;
@@ -25,6 +25,7 @@
                 { "dec", this.Dec },
                 { "jnz", this.Jnz },
                 { "tgl", this.Tgl },
+                { "out", this.Out },
             };
         }
 
@@ -37,6 +38,8 @@
         };
 
         public List<int> ToggledLocations { get; } = new ();
+
+        public Func<int, bool> Output { get; set; }
 
         public void Execute()
         {
@@ -79,6 +82,25 @@
                 }
 
                 ++this.location;
+            }
+        }
+
+        private void Out(string[] instruction, bool bypassToggleCheck = false)
+        {
+            var outputValue = this.GetValueOrRegister(instruction[1]);
+
+            if (this.verbose)
+            {
+                Console.WriteLine($"${this.location}: Outputting {outputValue}");
+            }
+
+            if (this.Output(outputValue))
+            {
+                ++this.location;
+            }
+            else
+            {
+                this.location = int.MaxValue;
             }
         }
 

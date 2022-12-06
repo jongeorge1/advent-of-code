@@ -44,8 +44,8 @@ namespace AdventOfCode.Year2016
         [TestCase(20, 1, "5-8\r\n0-2\r\n4-7", "3")]
         [TestCase(21, 1, "TESTswap position 4 with position 0\r\nswap letter d with letter b\r\nreverse positions 0 through 4\r\nrotate left 1 step\r\nmove position 1 to position 4\r\nmove position 3 to position 0\r\nrotate based on position of letter b\r\nrotate based on position of letter d", "decab")]
         [TestCase(21, 2, "TESTswap position 4 with position 0\r\nswap letter d with letter b\r\nreverse positions 0 through 4\r\nrotate left 1 step\r\nmove position 1 to position 4\r\nmove position 3 to position 0\r\nrotate based on position of letter b\r\nrotate based on position of letter d", "abcde")]
-        [TestCase(22, 2, "Filesystem Size  Used Avail  Use%\r\n/dev/grid/node-x0-y0   10T    8T     2T   80%\r\n/dev/grid/node-x0-y1   11T    6T     5T   54%\r\n/dev/grid/node-x0-y2   32T   28T     4T   87%\r\n/dev/grid/node-x1-y0    9T    7T     2T   77%\r\n/dev/grid/node-x1-y1    8T    0T     8T    0%\r\n/dev/grid/node-x1-y2   11T    7T     4T   63%\r\n/dev/grid/node-x2-y0   10T    6T     4T   60%\r\n/dev/grid/node-x2-y1    9T    8T     1T   88%\r\n/dev/grid/node-x2-y2    9T    6T     3T   66%", 7)]
         [TestCase(23, 1, "TESTcpy 2 a\r\ntgl a\r\ntgl a\r\ntgl a\r\ncpy 1 a\r\ndec a\r\ndec a", "3")]
+        [TestCase(24, 1, "###########\r\n#0.1.....2#\r\n#.#######.#\r\n#4.......3#\r\n###########", "14")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2016, day, part);

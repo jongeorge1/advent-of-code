@@ -1,4 +1,4 @@
-﻿namespace AoC.Runner
+﻿namespace AdventOfCode
 {
     using System;
     using System.Collections.Generic;
