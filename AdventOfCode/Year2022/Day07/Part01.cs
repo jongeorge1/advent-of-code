@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2022.Day07
 {
-    using System;
     using System.Linq;
     using AdventOfCode;
 
@@ -8,7 +7,9 @@
     {
         public string Solve(string input)
         {
-            return string.Empty;
+            var filesystem = new FileSystem(input);
+
+            return filesystem.AllDirectories.Where(x => x.GetSize() <= 100000).Sum(x => x.GetSize()).ToString();
         }
     }
 }
