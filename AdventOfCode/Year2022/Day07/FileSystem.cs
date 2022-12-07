@@ -35,13 +35,12 @@
                 else if (segments[0] == "dir")
                 {
                     var newDirectory = new Directory { Name = segments[1], ParentDirectory = this.CurrentDirectory };
-                    this.CurrentDirectory.Children.Add(newDirectory);
+                    this.CurrentDirectory.ChildDirectories.Add(newDirectory);
                     this.AllDirectories.Add(newDirectory);
                 }
                 else
                 {
-                    int size = int.Parse(segments[0]);
-                    this.CurrentDirectory.Children.Add(new File { Name = segments[1], Size = size, ParentDirectory = this.CurrentDirectory });
+                    this.CurrentDirectory.FileSizes += int.Parse(segments[0]);
                 }
             }
         }
@@ -54,7 +53,7 @@
 
         public int GetFreeSpace()
         {
-            return 70000000 - this.Root.GetSize();
+            return 70000000 - this.Root.GetTotalSize();
         }
     }
 }

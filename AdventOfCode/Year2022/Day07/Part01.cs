@@ -9,7 +9,7 @@
         {
             var filesystem = new FileSystem(input);
 
-            return filesystem.AllDirectories.Where(x => x.GetSize() <= 100000).Sum(x => x.GetSize()).ToString();
+            return filesystem.AllDirectories.Where(x => x.GetTotalSize() <= 100000).Sum(x => x.GetTotalSize()).ToString();
         }
     }
 }

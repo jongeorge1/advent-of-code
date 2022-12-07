@@ -4,22 +4,28 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class Directory : FileSystemEntry
+    public class Directory
     {
-        private int? size = null;
+        private int? totalSize = null;
 
-        public IList<FileSystemEntry> Children { get; } = new List<FileSystemEntry>();
+        public IList<Directory> ChildDirectories { get; } = new List<Directory>();
 
-        public override int GetSize()
+        public string Name { get; set; }
+
+        public Directory? ParentDirectory { get; set; }
+
+        public int FileSizes { get; set; }
+
+        public int GetTotalSize()
         {
-            this.size ??= this.Children.Sum(x => x.GetSize());
+            this.totalSize ??= this.FileSizes + this.ChildDirectories.Sum(x => x.GetTotalSize());
 
-            return this.size.Value;
+            return this.totalSize.Value;
         }
 
         public Directory GetChildDirectory(string name)
         {
-            return this.Children.FirstOrDefault(x => x.Name == name) as Directory ?? throw new Exception($"Attempted to get child directory with name '{name}' from directory '{this.Name}', but the directory could not be found.");
+            return this.ChildDirectories.FirstOrDefault(x => x.Name == name) ?? throw new Exception($"Attempted to get child directory with name '{name}' from directory '{this.Name}', but the directory could not be found.");
         }
     }
 }
