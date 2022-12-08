@@ -56,6 +56,10 @@
                 this.MaxZ < other.MinZ;
         }
 
+        /// <summary>
+        /// Removes any area of this region that is intersected by the supplied region. Does this by breaking
+        /// this region down into a sufficently small set of cuboids that represent the area not intersected.
+        /// </summary>
         public IEnumerable<Region> RemoveIntersection(Region other)
         {
             if (other.Contains(this))
@@ -64,7 +68,7 @@
             }
 
             if (other.DoesNotIntersect(this))
-            {
+            {   
                 return new[] { this };
             }
 
