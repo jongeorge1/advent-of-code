@@ -20,7 +20,7 @@
                 { "noop", this.NoOp },
             };
             this.X = 1;
-            this.cycle = 1;
+            this.cycle = 0;
         }
 
         public event EventHandler<TickEventArgs>? Tick;
@@ -33,6 +33,8 @@
 
         public void Execute()
         {
+            this.OnTick();
+
             foreach (var instruction in this.program)
             {
                 this.instructionMap[instruction[0]](instruction);
