@@ -1,0 +1,267 @@
+$1: Storing input value '5' in register w. w = 5, x = 0, y = 0, z = 0
+$2: Storing 'x' * '0' = 0 in 'x'. w = 5, x = 0, y = 0, z = 0
+$3: Storing 'x' + 'z' = 0 in 'x'. w = 5, x = 0, y = 0, z = 0
+$4: Storing 'x' % '26' = 0 in 'x'. w = 5, x = 0, y = 0, z = 0
+$5: Storing 'z' / '1' = 0 in 'z'. w = 5, x = 0, y = 0, z = 0
+$6: Storing 'x' + '11' = 11 in 'x'. w = 5, x = 11, y = 0, z = 0
+$7: Storing 'x' == 'w' = 0 in 'x'. w = 5, x = 0, y = 0, z = 0
+$8: Storing 'x' == '0' = 1 in 'x'. w = 5, x = 1, y = 0, z = 0
+$9: Storing 'y' * '0' = 0 in 'y'. w = 5, x = 1, y = 0, z = 0
+$10: Storing 'y' + '25' = 25 in 'y'. w = 5, x = 1, y = 25, z = 0
+$11: Storing 'y' * 'x' = 25 in 'y'. w = 5, x = 1, y = 25, z = 0
+$12: Storing 'y' + '1' = 26 in 'y'. w = 5, x = 1, y = 26, z = 0
+$13: Storing 'z' * 'y' = 0 in 'z'. w = 5, x = 1, y = 26, z = 0
+$14: Storing 'y' * '0' = 0 in 'y'. w = 5, x = 1, y = 0, z = 0
+$15: Storing 'y' + 'w' = 5 in 'y'. w = 5, x = 1, y = 5, z = 0
+$16: Storing 'y' + '6' = 11 in 'y'. w = 5, x = 1, y = 11, z = 0
+$17: Storing 'y' * 'x' = 11 in 'y'. w = 5, x = 1, y = 11, z = 0
+$18: Storing 'z' + 'y' = 11 in 'z'. w = 5, x = 1, y = 11, z = 11
+
+$19: Storing input value '8' in register w. w = 8, x = 1, y = 11, z = 11
+$20: Storing 'x' * '0' = 0 in 'x'. w = 8, x = 0, y = 11, z = 11
+$21: Storing 'x' + 'z' = 11 in 'x'. w = 8, x = 11, y = 11, z = 11
+$22: Storing 'x' % '26' = 11 in 'x'. w = 8, x = 11, y = 11, z = 11
+$23: Storing 'z' / '1' = 11 in 'z'. w = 8, x = 11, y = 11, z = 11
+$24: Storing 'x' + '11' = 22 in 'x'. w = 8, x = 22, y = 11, z = 11
+$25: Storing 'x' == 'w' = 0 in 'x'. w = 8, x = 0, y = 11, z = 11
+$26: Storing 'x' == '0' = 1 in 'x'. w = 8, x = 1, y = 11, z = 11
+$27: Storing 'y' * '0' = 0 in 'y'. w = 8, x = 1, y = 0, z = 11
+$28: Storing 'y' + '25' = 25 in 'y'. w = 8, x = 1, y = 25, z = 11
+$29: Storing 'y' * 'x' = 25 in 'y'. w = 8, x = 1, y = 25, z = 11
+$30: Storing 'y' + '1' = 26 in 'y'. w = 8, x = 1, y = 26, z = 11
+$31: Storing 'z' * 'y' = 286 in 'z'. w = 8, x = 1, y = 26, z = 286
+$32: Storing 'y' * '0' = 0 in 'y'. w = 8, x = 1, y = 0, z = 286
+$33: Storing 'y' + 'w' = 8 in 'y'. w = 8, x = 1, y = 8, z = 286
+$34: Storing 'y' + '12' = 20 in 'y'. w = 8, x = 1, y = 20, z = 286
+$35: Storing 'y' * 'x' = 20 in 'y'. w = 8, x = 1, y = 20, z = 286
+$36: Storing 'z' + 'y' = 306 in 'z'. w = 8, x = 1, y = 20, z = 306
+
+$37: Storing input value '4' in register w. w = 4, x = 1, y = 20, z = 306
+$38: Storing 'x' * '0' = 0 in 'x'. w = 4, x = 0, y = 20, z = 306
+$39: Storing 'x' + 'z' = 306 in 'x'. w = 4, x = 306, y = 20, z = 306
+$40: Storing 'x' % '26' = 20 in 'x'. w = 4, x = 20, y = 20, z = 306
+$41: Storing 'z' / '1' = 306 in 'z'. w = 4, x = 20, y = 20, z = 306
+$42: Storing 'x' + '15' = 35 in 'x'. w = 4, x = 35, y = 20, z = 306
+$43: Storing 'x' == 'w' = 0 in 'x'. w = 4, x = 0, y = 20, z = 306
+$44: Storing 'x' == '0' = 1 in 'x'. w = 4, x = 1, y = 20, z = 306
+$45: Storing 'y' * '0' = 0 in 'y'. w = 4, x = 1, y = 0, z = 306
+$46: Storing 'y' + '25' = 25 in 'y'. w = 4, x = 1, y = 25, z = 306
+$47: Storing 'y' * 'x' = 25 in 'y'. w = 4, x = 1, y = 25, z = 306
+$48: Storing 'y' + '1' = 26 in 'y'. w = 4, x = 1, y = 26, z = 306
+$49: Storing 'z' * 'y' = 7956 in 'z'. w = 4, x = 1, y = 26, z = 7956
+$50: Storing 'y' * '0' = 0 in 'y'. w = 4, x = 1, y = 0, z = 7956
+$51: Storing 'y' + 'w' = 4 in 'y'. w = 4, x = 1, y = 4, z = 7956
+$52: Storing 'y' + '8' = 12 in 'y'. w = 4, x = 1, y = 12, z = 7956
+$53: Storing 'y' * 'x' = 12 in 'y'. w = 4, x = 1, y = 12, z = 7956
+$54: Storing 'z' + 'y' = 7968 in 'z'. w = 4, x = 1, y = 12, z = 7968
+
+$55: Storing input value '2' in register w. w = 2, x = 1, y = 12, z = 7968
+$56: Storing 'x' * '0' = 0 in 'x'. w = 2, x = 0, y = 12, z = 7968
+$57: Storing 'x' + 'z' = 7968 in 'x'. w = 2, x = 7968, y = 12, z = 7968
+$58: Storing 'x' % '26' = 12 in 'x'. w = 2, x = 12, y = 12, z = 7968
+$59: Storing 'z' / '26' = 306 in 'z'. w = 2, x = 12, y = 12, z = 306
+$60: Storing 'x' + '-11' = 1 in 'x'. w = 2, x = 1, y = 12, z = 306
+$61: Storing 'x' == 'w' = 0 in 'x'. w = 2, x = 0, y = 12, z = 306
+$62: Storing 'x' == '0' = 1 in 'x'. w = 2, x = 1, y = 12, z = 306
+$63: Storing 'y' * '0' = 0 in 'y'. w = 2, x = 1, y = 0, z = 306
+$64: Storing 'y' + '25' = 25 in 'y'. w = 2, x = 1, y = 25, z = 306
+$65: Storing 'y' * 'x' = 25 in 'y'. w = 2, x = 1, y = 25, z = 306
+$66: Storing 'y' + '1' = 26 in 'y'. w = 2, x = 1, y = 26, z = 306
+$67: Storing 'z' * 'y' = 7956 in 'z'. w = 2, x = 1, y = 26, z = 7956
+$68: Storing 'y' * '0' = 0 in 'y'. w = 2, x = 1, y = 0, z = 7956
+$69: Storing 'y' + 'w' = 2 in 'y'. w = 2, x = 1, y = 2, z = 7956
+$70: Storing 'y' + '7' = 9 in 'y'. w = 2, x = 1, y = 9, z = 7956
+$71: Storing 'y' * 'x' = 9 in 'y'. w = 2, x = 1, y = 9, z = 7956
+$72: Storing 'z' + 'y' = 7965 in 'z'. w = 2, x = 1, y = 9, z = 7965
+
+$73: Storing input value '6' in register w. w = 6, x = 1, y = 9, z = 7965
+$74: Storing 'x' * '0' = 0 in 'x'. w = 6, x = 0, y = 9, z = 7965
+$75: Storing 'x' + 'z' = 7965 in 'x'. w = 6, x = 7965, y = 9, z = 7965
+$76: Storing 'x' % '26' = 9 in 'x'. w = 6, x = 9, y = 9, z = 7965
+$77: Storing 'z' / '1' = 7965 in 'z'. w = 6, x = 9, y = 9, z = 7965
+$78: Storing 'x' + '15' = 24 in 'x'. w = 6, x = 24, y = 9, z = 7965
+$79: Storing 'x' == 'w' = 0 in 'x'. w = 6, x = 0, y = 9, z = 7965
+$80: Storing 'x' == '0' = 1 in 'x'. w = 6, x = 1, y = 9, z = 7965
+$81: Storing 'y' * '0' = 0 in 'y'. w = 6, x = 1, y = 0, z = 7965
+$82: Storing 'y' + '25' = 25 in 'y'. w = 6, x = 1, y = 25, z = 7965
+$83: Storing 'y' * 'x' = 25 in 'y'. w = 6, x = 1, y = 25, z = 7965
+$84: Storing 'y' + '1' = 26 in 'y'. w = 6, x = 1, y = 26, z = 7965
+$85: Storing 'z' * 'y' = 207090 in 'z'. w = 6, x = 1, y = 26, z = 207090
+$86: Storing 'y' * '0' = 0 in 'y'. w = 6, x = 1, y = 0, z = 207090
+$87: Storing 'y' + 'w' = 6 in 'y'. w = 6, x = 1, y = 6, z = 207090
+$88: Storing 'y' + '7' = 13 in 'y'. w = 6, x = 1, y = 13, z = 207090
+$89: Storing 'y' * 'x' = 13 in 'y'. w = 6, x = 1, y = 13, z = 207090
+$90: Storing 'z' + 'y' = 207103 in 'z'. w = 6, x = 1, y = 13, z = 207103
+
+$91: Storing input value '5' in register w. w = 5, x = 1, y = 13, z = 207103
+$92: Storing 'x' * '0' = 0 in 'x'. w = 5, x = 0, y = 13, z = 207103
+$93: Storing 'x' + 'z' = 207103 in 'x'. w = 5, x = 207103, y = 13, z = 207103
+$94: Storing 'x' % '26' = 13 in 'x'. w = 5, x = 13, y = 13, z = 207103
+$95: Storing 'z' / '1' = 207103 in 'z'. w = 5, x = 13, y = 13, z = 207103
+$96: Storing 'x' + '15' = 28 in 'x'. w = 5, x = 28, y = 13, z = 207103
+$97: Storing 'x' == 'w' = 0 in 'x'. w = 5, x = 0, y = 13, z = 207103
+$98: Storing 'x' == '0' = 1 in 'x'. w = 5, x = 1, y = 13, z = 207103
+$99: Storing 'y' * '0' = 0 in 'y'. w = 5, x = 1, y = 0, z = 207103
+$100: Storing 'y' + '25' = 25 in 'y'. w = 5, x = 1, y = 25, z = 207103
+$101: Storing 'y' * 'x' = 25 in 'y'. w = 5, x = 1, y = 25, z = 207103
+$102: Storing 'y' + '1' = 26 in 'y'. w = 5, x = 1, y = 26, z = 207103
+$103: Storing 'z' * 'y' = 5384678 in 'z'. w = 5, x = 1, y = 26, z = 5384678
+$104: Storing 'y' * '0' = 0 in 'y'. w = 5, x = 1, y = 0, z = 5384678
+$105: Storing 'y' + 'w' = 5 in 'y'. w = 5, x = 1, y = 5, z = 5384678
+$106: Storing 'y' + '12' = 17 in 'y'. w = 5, x = 1, y = 17, z = 5384678
+$107: Storing 'y' * 'x' = 17 in 'y'. w = 5, x = 1, y = 17, z = 5384678
+$108: Storing 'z' + 'y' = 5384695 in 'z'. w = 5, x = 1, y = 17, z = 5384695
+
+$109: Storing input value '8' in register w. w = 8, x = 1, y = 17, z = 5384695
+$110: Storing 'x' * '0' = 0 in 'x'. w = 8, x = 0, y = 17, z = 5384695
+$111: Storing 'x' + 'z' = 5384695 in 'x'. w = 8, x = 5384695, y = 17, z = 5384695
+$112: Storing 'x' % '26' = 17 in 'x'. w = 8, x = 17, y = 17, z = 5384695
+$113: Storing 'z' / '1' = 5384695 in 'z'. w = 8, x = 17, y = 17, z = 5384695
+$114: Storing 'x' + '14' = 31 in 'x'. w = 8, x = 31, y = 17, z = 5384695
+$115: Storing 'x' == 'w' = 0 in 'x'. w = 8, x = 0, y = 17, z = 5384695
+$116: Storing 'x' == '0' = 1 in 'x'. w = 8, x = 1, y = 17, z = 5384695
+$117: Storing 'y' * '0' = 0 in 'y'. w = 8, x = 1, y = 0, z = 5384695
+$118: Storing 'y' + '25' = 25 in 'y'. w = 8, x = 1, y = 25, z = 5384695
+$119: Storing 'y' * 'x' = 25 in 'y'. w = 8, x = 1, y = 25, z = 5384695
+$120: Storing 'y' + '1' = 26 in 'y'. w = 8, x = 1, y = 26, z = 5384695
+$121: Storing 'z' * 'y' = 140002070 in 'z'. w = 8, x = 1, y = 26, z = 140002070
+$122: Storing 'y' * '0' = 0 in 'y'. w = 8, x = 1, y = 0, z = 140002070
+$123: Storing 'y' + 'w' = 8 in 'y'. w = 8, x = 1, y = 8, z = 140002070
+$124: Storing 'y' + '2' = 10 in 'y'. w = 8, x = 1, y = 10, z = 140002070
+$125: Storing 'y' * 'x' = 10 in 'y'. w = 8, x = 1, y = 10, z = 140002070
+$126: Storing 'z' + 'y' = 140002080 in 'z'. w = 8, x = 1, y = 10, z = 140002080
+
+$127: Storing input value '9' in register w. w = 9, x = 1, y = 10, z = 140002080
+$128: Storing 'x' * '0' = 0 in 'x'. w = 9, x = 0, y = 10, z = 140002080
+$129: Storing 'x' + 'z' = 140002080 in 'x'. w = 9, x = 140002080, y = 10, z = 140002080
+$130: Storing 'x' % '26' = 10 in 'x'. w = 9, x = 10, y = 10, z = 140002080
+$131: Storing 'z' / '26' = 5384695 in 'z'. w = 9, x = 10, y = 10, z = 5384695
+$132: Storing 'x' + '-7' = 3 in 'x'. w = 9, x = 3, y = 10, z = 5384695
+$133: Storing 'x' == 'w' = 0 in 'x'. w = 9, x = 0, y = 10, z = 5384695
+$134: Storing 'x' == '0' = 1 in 'x'. w = 9, x = 1, y = 10, z = 5384695
+$135: Storing 'y' * '0' = 0 in 'y'. w = 9, x = 1, y = 0, z = 5384695
+$136: Storing 'y' + '25' = 25 in 'y'. w = 9, x = 1, y = 25, z = 5384695
+$137: Storing 'y' * 'x' = 25 in 'y'. w = 9, x = 1, y = 25, z = 5384695
+$138: Storing 'y' + '1' = 26 in 'y'. w = 9, x = 1, y = 26, z = 5384695
+$139: Storing 'z' * 'y' = 140002070 in 'z'. w = 9, x = 1, y = 26, z = 140002070
+$140: Storing 'y' * '0' = 0 in 'y'. w = 9, x = 1, y = 0, z = 140002070
+$141: Storing 'y' + 'w' = 9 in 'y'. w = 9, x = 1, y = 9, z = 140002070
+$142: Storing 'y' + '15' = 24 in 'y'. w = 9, x = 1, y = 24, z = 140002070
+$143: Storing 'y' * 'x' = 24 in 'y'. w = 9, x = 1, y = 24, z = 140002070
+$144: Storing 'z' + 'y' = 140002094 in 'z'. w = 9, x = 1, y = 24, z = 140002094
+
+$145: Storing input value '7' in register w. w = 7, x = 1, y = 24, z = 140002094
+$146: Storing 'x' * '0' = 0 in 'x'. w = 7, x = 0, y = 24, z = 140002094
+$147: Storing 'x' + 'z' = 140002094 in 'x'. w = 7, x = 140002094, y = 24, z = 140002094
+$148: Storing 'x' % '26' = 24 in 'x'. w = 7, x = 24, y = 24, z = 140002094
+$149: Storing 'z' / '1' = 140002094 in 'z'. w = 7, x = 24, y = 24, z = 140002094
+$150: Storing 'x' + '12' = 36 in 'x'. w = 7, x = 36, y = 24, z = 140002094
+$151: Storing 'x' == 'w' = 0 in 'x'. w = 7, x = 0, y = 24, z = 140002094
+$152: Storing 'x' == '0' = 1 in 'x'. w = 7, x = 1, y = 24, z = 140002094
+$153: Storing 'y' * '0' = 0 in 'y'. w = 7, x = 1, y = 0, z = 140002094
+$154: Storing 'y' + '25' = 25 in 'y'. w = 7, x = 1, y = 25, z = 140002094
+$155: Storing 'y' * 'x' = 25 in 'y'. w = 7, x = 1, y = 25, z = 140002094
+$156: Storing 'y' + '1' = 26 in 'y'. w = 7, x = 1, y = 26, z = 140002094
+$157: Storing 'z' * 'y' = 3640054444 in 'z'. w = 7, x = 1, y = 26, z = 3640054444
+$158: Storing 'y' * '0' = 0 in 'y'. w = 7, x = 1, y = 0, z = 3640054444
+$159: Storing 'y' + 'w' = 7 in 'y'. w = 7, x = 1, y = 7, z = 3640054444
+$160: Storing 'y' + '4' = 11 in 'y'. w = 7, x = 1, y = 11, z = 3640054444
+$161: Storing 'y' * 'x' = 11 in 'y'. w = 7, x = 1, y = 11, z = 3640054444
+$162: Storing 'z' + 'y' = 3640054455 in 'z'. w = 7, x = 1, y = 11, z = 3640054455
+
+$163: Storing input value '1' in register w. w = 1, x = 1, y = 11, z = 3640054455
+$164: Storing 'x' * '0' = 0 in 'x'. w = 1, x = 0, y = 11, z = 3640054455
+$165: Storing 'x' + 'z' = 3640054455 in 'x'. w = 1, x = 3640054455, y = 11, z = 3640054455
+$166: Storing 'x' % '26' = 11 in 'x'. w = 1, x = 11, y = 11, z = 3640054455
+$167: Storing 'z' / '26' = 140002094 in 'z'. w = 1, x = 11, y = 11, z = 140002094
+$168: Storing 'x' + '-6' = 5 in 'x'. w = 1, x = 5, y = 11, z = 140002094
+$169: Storing 'x' == 'w' = 0 in 'x'. w = 1, x = 0, y = 11, z = 140002094
+$170: Storing 'x' == '0' = 1 in 'x'. w = 1, x = 1, y = 11, z = 140002094
+$171: Storing 'y' * '0' = 0 in 'y'. w = 1, x = 1, y = 0, z = 140002094
+$172: Storing 'y' + '25' = 25 in 'y'. w = 1, x = 1, y = 25, z = 140002094
+$173: Storing 'y' * 'x' = 25 in 'y'. w = 1, x = 1, y = 25, z = 140002094
+$174: Storing 'y' + '1' = 26 in 'y'. w = 1, x = 1, y = 26, z = 140002094
+$175: Storing 'z' * 'y' = 3640054444 in 'z'. w = 1, x = 1, y = 26, z = 3640054444
+$176: Storing 'y' * '0' = 0 in 'y'. w = 1, x = 1, y = 0, z = 3640054444
+$177: Storing 'y' + 'w' = 1 in 'y'. w = 1, x = 1, y = 1, z = 3640054444
+$178: Storing 'y' + '5' = 6 in 'y'. w = 1, x = 1, y = 6, z = 3640054444
+$179: Storing 'y' * 'x' = 6 in 'y'. w = 1, x = 1, y = 6, z = 3640054444
+$180: Storing 'z' + 'y' = 3640054450 in 'z'. w = 1, x = 1, y = 6, z = 3640054450
+
+$181: Storing input value '6' in register w. w = 6, x = 1, y = 6, z = 3640054450
+$182: Storing 'x' * '0' = 0 in 'x'. w = 6, x = 0, y = 6, z = 3640054450
+$183: Storing 'x' + 'z' = 3640054450 in 'x'. w = 6, x = 3640054450, y = 6, z = 3640054450
+$184: Storing 'x' % '26' = 6 in 'x'. w = 6, x = 6, y = 6, z = 3640054450
+$185: Storing 'z' / '26' = 140002094 in 'z'. w = 6, x = 6, y = 6, z = 140002094
+$186: Storing 'x' + '-10' = -4 in 'x'. w = 6, x = -4, y = 6, z = 140002094
+$187: Storing 'x' == 'w' = 0 in 'x'. w = 6, x = 0, y = 6, z = 140002094
+$188: Storing 'x' == '0' = 1 in 'x'. w = 6, x = 1, y = 6, z = 140002094
+$189: Storing 'y' * '0' = 0 in 'y'. w = 6, x = 1, y = 0, z = 140002094
+$190: Storing 'y' + '25' = 25 in 'y'. w = 6, x = 1, y = 25, z = 140002094
+$191: Storing 'y' * 'x' = 25 in 'y'. w = 6, x = 1, y = 25, z = 140002094
+$192: Storing 'y' + '1' = 26 in 'y'. w = 6, x = 1, y = 26, z = 140002094
+$193: Storing 'z' * 'y' = 3640054444 in 'z'. w = 6, x = 1, y = 26, z = 3640054444
+$194: Storing 'y' * '0' = 0 in 'y'. w = 6, x = 1, y = 0, z = 3640054444
+$195: Storing 'y' + 'w' = 6 in 'y'. w = 6, x = 1, y = 6, z = 3640054444
+$196: Storing 'y' + '12' = 18 in 'y'. w = 6, x = 1, y = 18, z = 3640054444
+$197: Storing 'y' * 'x' = 18 in 'y'. w = 6, x = 1, y = 18, z = 3640054444
+$198: Storing 'z' + 'y' = 3640054462 in 'z'. w = 6, x = 1, y = 18, z = 3640054462
+
+$199: Storing input value '4' in register w. w = 4, x = 1, y = 18, z = 3640054462
+$200: Storing 'x' * '0' = 0 in 'x'. w = 4, x = 0, y = 18, z = 3640054462
+$201: Storing 'x' + 'z' = 3640054462 in 'x'. w = 4, x = 3640054462, y = 18, z = 3640054462
+$202: Storing 'x' % '26' = 18 in 'x'. w = 4, x = 18, y = 18, z = 3640054462
+$203: Storing 'z' / '26' = 140002094 in 'z'. w = 4, x = 18, y = 18, z = 140002094
+$204: Storing 'x' + '-15' = 3 in 'x'. w = 4, x = 3, y = 18, z = 140002094
+$205: Storing 'x' == 'w' = 0 in 'x'. w = 4, x = 0, y = 18, z = 140002094
+$206: Storing 'x' == '0' = 1 in 'x'. w = 4, x = 1, y = 18, z = 140002094
+$207: Storing 'y' * '0' = 0 in 'y'. w = 4, x = 1, y = 0, z = 140002094
+$208: Storing 'y' + '25' = 25 in 'y'. w = 4, x = 1, y = 25, z = 140002094
+$209: Storing 'y' * 'x' = 25 in 'y'. w = 4, x = 1, y = 25, z = 140002094
+$210: Storing 'y' + '1' = 26 in 'y'. w = 4, x = 1, y = 26, z = 140002094
+$211: Storing 'z' * 'y' = 3640054444 in 'z'. w = 4, x = 1, y = 26, z = 3640054444
+$212: Storing 'y' * '0' = 0 in 'y'. w = 4, x = 1, y = 0, z = 3640054444
+$213: Storing 'y' + 'w' = 4 in 'y'. w = 4, x = 1, y = 4, z = 3640054444
+$214: Storing 'y' + '11' = 15 in 'y'. w = 4, x = 1, y = 15, z = 3640054444
+$215: Storing 'y' * 'x' = 15 in 'y'. w = 4, x = 1, y = 15, z = 3640054444
+$216: Storing 'z' + 'y' = 3640054459 in 'z'. w = 4, x = 1, y = 15, z = 3640054459
+
+$217: Storing input value '4' in register w. w = 4, x = 1, y = 15, z = 3640054459
+$218: Storing 'x' * '0' = 0 in 'x'. w = 4, x = 0, y = 15, z = 3640054459
+$219: Storing 'x' + 'z' = 3640054459 in 'x'. w = 4, x = 3640054459, y = 15, z = 3640054459
+$220: Storing 'x' % '26' = 15 in 'x'. w = 4, x = 15, y = 15, z = 3640054459
+$221: Storing 'z' / '26' = 140002094 in 'z'. w = 4, x = 15, y = 15, z = 140002094
+$222: Storing 'x' + '-9' = 6 in 'x'. w = 4, x = 6, y = 15, z = 140002094
+$223: Storing 'x' == 'w' = 0 in 'x'. w = 4, x = 0, y = 15, z = 140002094
+$224: Storing 'x' == '0' = 1 in 'x'. w = 4, x = 1, y = 15, z = 140002094
+$225: Storing 'y' * '0' = 0 in 'y'. w = 4, x = 1, y = 0, z = 140002094
+$226: Storing 'y' + '25' = 25 in 'y'. w = 4, x = 1, y = 25, z = 140002094
+$227: Storing 'y' * 'x' = 25 in 'y'. w = 4, x = 1, y = 25, z = 140002094
+$228: Storing 'y' + '1' = 26 in 'y'. w = 4, x = 1, y = 26, z = 140002094
+$229: Storing 'z' * 'y' = 3640054444 in 'z'. w = 4, x = 1, y = 26, z = 3640054444
+$230: Storing 'y' * '0' = 0 in 'y'. w = 4, x = 1, y = 0, z = 3640054444
+$231: Storing 'y' + 'w' = 4 in 'y'. w = 4, x = 1, y = 4, z = 3640054444
+$232: Storing 'y' + '13' = 17 in 'y'. w = 4, x = 1, y = 17, z = 3640054444
+$233: Storing 'y' * 'x' = 17 in 'y'. w = 4, x = 1, y = 17, z = 3640054444
+$234: Storing 'z' + 'y' = 3640054461 in 'z'. w = 4, x = 1, y = 17, z = 3640054461
+
+$235: Storing input value '2' in register w. w = 2, x = 1, y = 17, z = 3640054461
+$236: Storing 'x' * '0' = 0 in 'x'. w = 2, x = 0, y = 17, z = 3640054461
+$237: Storing 'x' + 'z' = 3640054461 in 'x'. w = 2, x = 3640054461, y = 17, z = 3640054461
+$238: Storing 'x' % '26' = 17 in 'x'. w = 2, x = 17, y = 17, z = 3640054461
+$239: Storing 'z' / '26' = 140002094 in 'z'. w = 2, x = 17, y = 17, z = 140002094
+$240: Storing 'x' + '0' = 17 in 'x'. w = 2, x = 17, y = 17, z = 140002094
+$241: Storing 'x' == 'w' = 0 in 'x'. w = 2, x = 0, y = 17, z = 140002094
+$242: Storing 'x' == '0' = 1 in 'x'. w = 2, x = 1, y = 17, z = 140002094
+$243: Storing 'y' * '0' = 0 in 'y'. w = 2, x = 1, y = 0, z = 140002094
+$244: Storing 'y' + '25' = 25 in 'y'. w = 2, x = 1, y = 25, z = 140002094
+$245: Storing 'y' * 'x' = 25 in 'y'. w = 2, x = 1, y = 25, z = 140002094
+$246: Storing 'y' + '1' = 26 in 'y'. w = 2, x = 1, y = 26, z = 140002094
+$247: Storing 'z' * 'y' = 3640054444 in 'z'. w = 2, x = 1, y = 26, z = 3640054444
+$248: Storing 'y' * '0' = 0 in 'y'. w = 2, x = 1, y = 0, z = 3640054444
+$249: Storing 'y' + 'w' = 2 in 'y'. w = 2, x = 1, y = 2, z = 3640054444
+$250: Storing 'y' + '7' = 9 in 'y'. w = 2, x = 1, y = 9, z = 3640054444
+$251: Storing 'y' * 'x' = 9 in 'y'. w = 2, x = 1, y = 9, z = 3640054444
+$252: Storing 'z' + 'y' = 3640054453 in 'z'. w = 2, x = 1, y = 9, z = 3640054453
+
+Result obtained in 7.5942ms
