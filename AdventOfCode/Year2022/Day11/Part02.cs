@@ -10,11 +10,10 @@
         public string Solve(string input)
         {
             // For round 2, the numbers stack up too fast to even store in a long; we quickly end up with overflow issues.
-            // To deal with that we need a stress management strategy that will not affect the tests.
-            // Each test is a "divisble by..." test with the divisor being a prime. So we need a method of reducing the
-            // input number without affecting whether or not it's divisible by any of those primes.
-            // To do this, we need to find the lowest common multiple of all the divisors, Then our stress management
-            // strategy can be taking the modulo of the input by that number...
+            // To deal with that we need a stress management strategy that will not affect the tests - i.e. we need a way
+            // to reduce the worry counts without affecting whether or not it's divisible by any of those primes.
+            // Fortunately, maths comes to the rescue; we can do this by taking the modulo of the worry number by 
+            // the lowest common multiple of all the divisors.
             Monkey[] monkeys = input.Split(Environment.NewLine + Environment.NewLine).Select(x => new Monkey(x)).ToArray();
 
             long lowestCommonMultipleOfAllDivisors = Numeric.LeastCommonMultiple(monkeys.Select(x => (long)x.TestDivisor));

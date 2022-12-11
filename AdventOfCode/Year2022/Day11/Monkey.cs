@@ -8,7 +8,7 @@
 
     public class Monkey
     {
-        private static readonly Func<long, long> DefaultStressManagementStrategy = input => input % 3;
+        private static readonly Func<long, long> DefaultStressManagementStrategy = input => input / 3;
 
         public Monkey(string configuration, Func<long, long>? stressManagementStrategy = null)
         {
@@ -16,7 +16,7 @@
 
             this.Number = configurationRows[0][7] - '0';
 
-            this.Items = new Queue<long>(configurationRows[1].Split(new[] { ' ', ':', ',' }, StringSplitOptions.RemoveEmptyEntries)[2..].Select(long.Parse));
+            this.Items = configurationRows[1].Split(new[] { ' ', ':', ',' }, StringSplitOptions.RemoveEmptyEntries)[2..].Select(long.Parse).ToList();
 
             string[] operationSegments = configurationRows[2][19..].Split(' ');
 
@@ -43,7 +43,7 @@
 
         public int Number { get; }
 
-        public Queue<long> Items { get; }
+        public List<long> Items { get; }
 
         public Func<long, long> Operation { get; }
 
@@ -57,14 +57,16 @@
 
         public void InspectAndThrowAllItems(Monkey[] allMonkeys)
         {
-            while (this.Items.TryDequeue(out var item))
+            foreach (long item in this.Items)
             {
                 long worryLevelAfterInspection = this.StressManagementStrategy(this.Operation(item));
                 bool inspectionResult = worryLevelAfterInspection % this.TestDivisor == 0;
                 var targetMonkey = this.ThrowTargets[inspectionResult];
-                allMonkeys[targetMonkey].Items.Enqueue(worryLevelAfterInspection);
-                ++this.ItemsInspected;
+                allMonkeys[targetMonkey].Items.Add(worryLevelAfterInspection);
             }
+
+            this.ItemsInspected += this.Items.Count;
+            this.Items.Clear();
         }
     }
 }
