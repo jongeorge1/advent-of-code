@@ -1,14 +1,15 @@
 ﻿namespace AdventOfCode.Year2022.Day12
 {
-    using System;
-    using System.Linq;
     using AdventOfCode;
 
     public class Part01 : ISolution
     {
         public string Solve(string input)
         {
-            return string.Empty;
+            var algorithm = new HillClimbingAlgorithm(input);
+
+            algorithm.TryFindShortestPathBetween(algorithm.Start, algorithm.End, out int? steps);
+            return steps!.Value.ToString();
         }
     }
 }
