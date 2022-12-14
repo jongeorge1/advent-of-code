@@ -22,7 +22,7 @@
                 enumerator.MoveNext();
                 ReadOnlySpan<char> right = enumerator.Current.Line;
 
-                if (PacketComparer.ComparePackets(ref left, ref right) == PacketTokenComparisonResult.Correct)
+                if (PacketComparer.ComparePackets(left, right) == PacketTokenComparisonResult.Correct)
                 {
                     sumOfCorrectlyOrderedPacketIndices += index;
                 }

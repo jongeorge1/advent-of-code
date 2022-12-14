@@ -10,6 +10,12 @@
             return new LineSplitEnumerator(str.AsSpan());
         }
 
+        public static LineSplitEnumerator SplitLines(this ReadOnlySpan<char> str)
+        {
+            // LineSplitEnumerator is a struct so there is no allocation here
+            return new LineSplitEnumerator(str);
+        }
+
         // Must be a ref struct as it contains a ReadOnlySpan<char>
         public ref struct LineSplitEnumerator
         {
@@ -41,7 +47,7 @@
                 {
                     // The string is composed of only one line
                     this.str = ReadOnlySpan<char>.Empty; // The remaining string is an empty string
-                    this.Current = new LineSplitEntry(span, ReadOnlySpan<char>.Empty);
+                    this.Current = new LineSplitEntry(span, ReadOnlySpan<char>.Empty, -1);
                     return true;
                 }
 
@@ -51,13 +57,13 @@
                     var next = span[index + 1];
                     if (next == '\n')
                     {
-                        this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 2));
+                        this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 2), index);
                         this.str = span.Slice(index + 2);
                         return true;
                     }
                 }
 
-                this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 1));
+                this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 1), index);
                 this.str = span.Slice(index + 1);
                 return true;
             }
@@ -65,15 +71,18 @@
 
         public readonly ref struct LineSplitEntry
         {
-            public LineSplitEntry(ReadOnlySpan<char> line, ReadOnlySpan<char> separator)
+            public LineSplitEntry(ReadOnlySpan<char> line, ReadOnlySpan<char> separator, int startIndex)
             {
                 this.Line = line;
                 this.Separator = separator;
+                this.StartIndex = startIndex;
             }
 
             public ReadOnlySpan<char> Line { get; }
 
             public ReadOnlySpan<char> Separator { get; }
+
+            public int StartIndex { get; }
 
             // This method allow to implicitly cast the type into a ReadOnlySpan<char>, so you can write the following code
             // foreach (ReadOnlySpan<char> entry in str.SplitLines())

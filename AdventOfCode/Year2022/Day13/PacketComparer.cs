@@ -1,11 +1,11 @@
 ﻿namespace AdventOfCode.Year2022.Day13
 {
-    using System.Diagnostics;
     using System;
+    using System.Diagnostics;
 
     public static class PacketComparer
     {
-        public static PacketTokenComparisonResult ComparePackets(ref ReadOnlySpan<char> left, ref ReadOnlySpan<char> right)
+        public static PacketTokenComparisonResult ComparePackets(ReadOnlySpan<char> left, ReadOnlySpan<char> right)
         {
             var leftPacketEnumerator = new PacketTokenEnumerator(left);
             var rightPacketEnumerator = new PacketTokenEnumerator(right);
