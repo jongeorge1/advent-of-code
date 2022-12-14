@@ -2,7 +2,7 @@
   "profiles": {
     "AoC.Runner": {
       "commandName": "Project",
-      "commandLineArgs": "2022 12 2"
+      "commandLineArgs": "2022 13 1"
     }
   }
 }

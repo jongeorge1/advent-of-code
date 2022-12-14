@@ -3,45 +3,65 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
     using System.Linq;
 
-    public class HillClimbingAlgorithm
+    public ref struct HillClimbingAlgorithm
     {
         public HillClimbingAlgorithm(string input)
         {
-            this.Map = input.Split(Environment.NewLine)
-                .SelectMany((row, y) => row.ToCharArray().Select((col, x) =>
+            var rows = input.Split(Environment.NewLine);
+            this.Map = new();
+
+            this.MapHeight = rows.Length;
+            this.MapWidth = rows[0].Length;
+
+            for (int y = 0; y < this.MapHeight; ++y)
+            {
+                for (int x = 0; x < this.MapWidth; ++x)
                 {
-                    if (col == 'S')
+                    var location = new Point(x, y);
+                    char height = rows[y][x];
+
+                    switch (height)
                     {
-                        this.Start = (x, y);
-                        col = 'a';
-                    }
-                    else if (col == 'E')
-                    {
-                        this.End = (x, y);
-                        col = 'z';
+                        case 'S':
+                            this.Start = location;
+                            height = 'a';
+                            break;
+
+                        case 'E':
+                            this.End = location;
+                            height = 'z';
+                            break;
                     }
 
-                    return new KeyValuePair<(int, int), char>((x, y), col);
-                })).ToDictionary(x => x.Key, x => x.Value);
+                    this.Map[location] = height;
+                }
+            }
         }
 
-        public (int X, int Y) Start { get; private set; }
+        public Point Start { get; private set; }
 
-        public (int X, int Y) End { get; private set; }
+        public Point End { get; private set; }
 
-        public Dictionary<(int X, int Y), char> Map { get; }
+        public int MapHeight { get; private set; }
 
-        private record struct State((int X, int Y) Location, int Steps)
+        public int MapWidth { get; private set; }
+
+        public Dictionary<Point, char> Map { get; }
+
+        private record struct State(Point Location, int Steps)
         {
         }
 
-        public bool TryFindShortestPathBetween((int X, int Y) start, (int X, int Y) end, [NotNullWhen(true)] out int? steps)
+        public bool TryFindShortestPathBetween(Point start, Point end, [NotNullWhen(true)] out int? steps)
         {
-            HashSet<(int X, int Y)> visitedLocations = new();
+            HashSet<Point> visitedLocations = new();
             Queue<State> states = new();
             states.Enqueue(new State(start, 0));
+
+            Span<State> nextMoves = stackalloc State[4];
 
             while (states.TryDequeue(out State current))
             {
@@ -58,9 +78,10 @@
 
                 visitedLocations.Add(current.Location);
 
-                foreach (State nextLocation in this.GetNextMoves(current))
+                int written = GetNextMoves(current, this.Map, this.MapHeight, this.MapWidth, nextMoves);
+                for (int i = 0; i < written; ++i)
                 {
-                    states.Enqueue(nextLocation);
+                    states.Enqueue(nextMoves[i]);
                 }
             }
 
@@ -73,27 +94,49 @@
             return (there - here) < 2;
         }
 
-        private IEnumerable<State> GetNextMoves(State current)
+        private static int GetNextMoves(State current, Dictionary<Point, char> map, int height, int width, Span<State> nextMoves)
         {
-            if (this.Map.TryGetValue((current.Location.X - 1, current.Location.Y), out char height) && CanMoveBetween(this.Map[current.Location], height))
+            int written = 0;
+            Point next;
+            char currentHeight = map[current.Location];
+
+            if (current.Location.X > 0)
             {
-                yield return new State((current.Location.X - 1, current.Location.Y), current.Steps + 1);
+                next = new Point(current.Location.X - 1, current.Location.Y);
+                if (CanMoveBetween(currentHeight, map[next]))
+                {
+                    nextMoves[written++] = new State(next, current.Steps + 1);
+                }
             }
 
-            if (this.Map.TryGetValue((current.Location.X + 1, current.Location.Y), out height) && CanMoveBetween(this.Map[current.Location], height))
+            if (current.Location.X < (width - 1))
             {
-                yield return new State((current.Location.X + 1, current.Location.Y), current.Steps + 1);
+                next = new Point(current.Location.X + 1, current.Location.Y);
+                if (CanMoveBetween(currentHeight, map[next]))
+                {
+                    nextMoves[written++] = new State(next, current.Steps + 1);
+                }
             }
 
-            if (this.Map.TryGetValue((current.Location.X, current.Location.Y - 1), out height) && CanMoveBetween(this.Map[current.Location], height))
+            if (current.Location.Y > 0)
             {
-                yield return new State((current.Location.X, current.Location.Y - 1), current.Steps + 1);
+                next = new Point(current.Location.X, current.Location.Y - 1);
+                if (CanMoveBetween(currentHeight, map[next]))
+                {
+                    nextMoves[written++] = new State(next, current.Steps + 1);
+                }
             }
 
-            if (this.Map.TryGetValue((current.Location.X, current.Location.Y + 1), out height) && CanMoveBetween(this.Map[current.Location], height))
+            if (current.Location.Y < (height - 1))
             {
-                yield return new State((current.Location.X, current.Location.Y + 1), current.Steps + 1);
+                next = new Point(current.Location.X, current.Location.Y + 1);
+                if (CanMoveBetween(currentHeight, map[next]))
+                {
+                    nextMoves[written++] = new State(next, current.Steps + 1);
+                }
             }
+
+            return written;
         }
     }
 }

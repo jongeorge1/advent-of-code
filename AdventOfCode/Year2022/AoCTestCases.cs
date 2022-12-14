@@ -36,6 +36,15 @@ namespace AdventOfCode.Year2022
         [TestCase(11, 2, "Monkey 0:\r\n  Starting items: 79, 98\r\n  Operation: new = old * 19\r\n  Test: divisible by 23\r\n    If true: throw to monkey 2\r\n    If false: throw to monkey 3\r\n\r\nMonkey 1:\r\n  Starting items: 54, 65, 75, 74\r\n  Operation: new = old + 6\r\n  Test: divisible by 19\r\n    If true: throw to monkey 2\r\n    If false: throw to monkey 0\r\n\r\nMonkey 2:\r\n  Starting items: 79, 60, 97\r\n  Operation: new = old * old\r\n  Test: divisible by 13\r\n    If true: throw to monkey 1\r\n    If false: throw to monkey 3\r\n\r\nMonkey 3:\r\n  Starting items: 74\r\n  Operation: new = old + 3\r\n  Test: divisible by 17\r\n    If true: throw to monkey 0\r\n    If false: throw to monkey 1", "2713310158")]
         [TestCase(12, 1, "Sabqponm\r\nabcryxxl\r\naccszExk\r\nacctuvwj\r\nabdefghi", "31")]
         [TestCase(12, 2, "Sabqponm\r\nabcryxxl\r\naccszExk\r\nacctuvwj\r\nabdefghi", "29")]
+        [TestCase(13, 1, "[1,1,3,1,1]\r\n[1,1,5,1,1]", "1")]
+        [TestCase(13, 1, "[[1],[2,3,4]]\r\n[[1],4]", "1")]
+        [TestCase(13, 1, "[9]\r\n[[8,7,6]]", "0")]
+        [TestCase(13, 1, "[[4,4],4,4]\r\n[[4,4],4,4,4]", "1")]
+        [TestCase(13, 1, "[7,7,7,7]\r\n[7,7,7]", "0")]
+        [TestCase(13, 1, "[]\r\n[3]", "1")]
+        [TestCase(13, 1, "[[[]]]\r\n[[]]", "0")]
+        [TestCase(13, 1, "[1,[2,[3,[4,[5,6,7]]]],8,9]\r\n[1,[2,[3,[4,[5,6,0]]]],8,9]", "0")]
+        [TestCase(13, 1, "[1,1,3,1,1]\r\n[1,1,5,1,1]\r\n\r\n[[1],[2,3,4]]\r\n[[1],4]\r\n\r\n[9]\r\n[[8,7,6]]\r\n\r\n[[4,4],4,4]\r\n[[4,4],4,4,4]\r\n\r\n[7,7,7,7]\r\n[7,7,7]\r\n\r\n[]\r\n[3]\r\n\r\n[[[]]]\r\n[[]]\r\n\r\n[1,[2,[3,[4,[5,6,7]]]],8,9]\r\n[1,[2,[3,[4,[5,6,0]]]],8,9]", "13")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2022, day, part);
