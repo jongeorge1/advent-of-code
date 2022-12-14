@@ -3,14 +3,38 @@
     using System;
     using System.Linq;
     using AdventOfCode;
+    using AdventOfCode.Helpers;
 
     public class Part01 : ISolution
     {
         public string Solve(string input)
         {
-            return input.Split(Environment.NewLine + Environment.NewLine)
-                .Max(row => row.Split(Environment.NewLine).Select(int.Parse).Sum())
-                .ToString();
+            int currentMaxElfLoad = 0;
+            int currentElfLoad = 0;
+
+            foreach (StringExtensions.LineSplitEntry entry in input.SplitLines())
+            {
+                if (entry.Line.Length == 0)
+                {
+                    if (currentElfLoad > currentMaxElfLoad)
+                    {
+                        currentMaxElfLoad = currentElfLoad;
+                    }
+
+                    currentElfLoad = 0;
+                }
+                else
+                {
+                    currentElfLoad += int.Parse(entry.Line);
+                }
+            }
+
+            if (currentElfLoad > currentMaxElfLoad)
+            {
+                currentMaxElfLoad = currentElfLoad;
+            }
+
+            return currentMaxElfLoad.ToString();
         }
     }
 }
