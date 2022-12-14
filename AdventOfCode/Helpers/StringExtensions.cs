@@ -20,6 +20,7 @@
         public ref struct LineSplitEnumerator
         {
             private ReadOnlySpan<char> str;
+            private int cumulativeIndex = 0;
 
             public LineSplitEnumerator(ReadOnlySpan<char> str)
             {
@@ -47,7 +48,7 @@
                 {
                     // The string is composed of only one line
                     this.str = ReadOnlySpan<char>.Empty; // The remaining string is an empty string
-                    this.Current = new LineSplitEntry(span, ReadOnlySpan<char>.Empty, -1);
+                    this.Current = new LineSplitEntry(span, ReadOnlySpan<char>.Empty, this.cumulativeIndex);
                     return true;
                 }
 
@@ -57,13 +58,15 @@
                     var next = span[index + 1];
                     if (next == '\n')
                     {
-                        this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 2), index);
+                        this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 2), this.cumulativeIndex);
+                        this.cumulativeIndex += index + 2;
                         this.str = span.Slice(index + 2);
                         return true;
                     }
                 }
 
-                this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 1), index);
+                this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 1), this.cumulativeIndex);
+                this.cumulativeIndex += index + 1;
                 this.str = span.Slice(index + 1);
                 return true;
             }

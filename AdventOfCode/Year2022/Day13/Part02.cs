@@ -17,7 +17,10 @@
 
         public string Solve(string input)
         {
-            List<string> fullInput = (input + DividerPackets).Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var fullInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).ToList();
+            fullInput.Add(FirstDividerPacket);
+            fullInput.Add(SecondDividerPacket);
+
             fullInput.Sort((string left, string right) =>
             {
                 var comparisonResult = PacketComparer.ComparePackets(left.AsSpan(), right.AsSpan());
