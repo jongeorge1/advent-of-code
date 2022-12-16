@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AdventOfCode.Benchmarks": {
+      "commandName": "Project",
+      "commandLineArgs": "2022 2 1"
+    }
+  }
+}

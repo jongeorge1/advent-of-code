@@ -34,10 +34,6 @@
                 }
             });
 
-            for (int y = 0; y < maxCoordinate; ++y)
-            {
-            }
-
             return result.ToString();
         }
     }
