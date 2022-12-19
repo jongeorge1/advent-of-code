@@ -41,8 +41,8 @@
 
             var seenStates = new Dictionary<PlaySpaceState, (int MaxHeight, int StonesDropped)>();
 
-            int jetPatternIndex = 0;
-            int jetPatternLength = input.Length;
+            short jetPatternIndex = 0;
+            short jetPatternLength = (short)input.Length;
 
             int stonesDropped = 0;
             int currentMaxHeight = 0;
@@ -51,7 +51,7 @@
             {
                 Debug.Assert(currentMaxHeight >= 0);
 
-                int currentShape = (int)(stonesDropped % 5);
+                byte currentShape = (byte)(stonesDropped % 5);
                 int currentLeft = 2;
                 int currentBottom = currentMaxHeight + 4;
                 bool landed = false;
@@ -86,7 +86,7 @@
 
                 ++stonesDropped;
 
-                var newState = MemoizeState(currentMaxHeight, currentShape, jetPatternIndex - 1, ref playSpace);
+                var newState = MemoizeState(currentMaxHeight, currentShape, (short)(jetPatternIndex - 1), ref playSpace);
 
                 // Have we seen this state before?
                 if (seenStates.TryGetValue(newState, out (int MaxHeight, int StonesDropped) heightAndCount))
@@ -185,11 +185,11 @@
             return int.Max(currentMaxHeight, currentBottom + shape.Length - 1);
         }
 
-        private PlaySpaceState MemoizeState(int currentMaxHeight, int currentShapeIndex, int currentJetIndex, ref Span<byte> playSpace)
+        private PlaySpaceState MemoizeState(int currentMaxHeight, byte currentShapeIndex, short currentJetIndex, ref Span<byte> playSpace)
         {
             // Our memoized state is going to represent the "shape" of the top layer of the play space by recording the
             // distance "down" you need to travel in each column before you hit a rock.
-            (int Distance, bool Done)[] shape = new (int, bool)[7];
+            (short Distance, bool Done)[] shape = new (short, bool)[7];
             int row = currentMaxHeight;
 
             while (row >= 0 && !(shape[0].Done && shape[1].Done && shape[2].Done && shape[3].Done && shape[4].Done && shape[5].Done && shape[6].Done))
@@ -225,15 +225,15 @@
         }
 
         private readonly record struct PlaySpaceState(
-            int Col0,
-            int Col1,
-            int Col2,
-            int Col3,
-            int Col4,
-            int Col5,
-            int Col6,
-            int LastJetPatternIndex,
-            int LastShape)
+            short Col0,
+            short Col1,
+            short Col2,
+            short Col3,
+            short Col4,
+            short Col5,
+            short Col6,
+            short LastJetPatternIndex,
+            byte LastShape)
         {
         }
     }
