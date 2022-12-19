@@ -9,12 +9,11 @@
 
     public class Part02 : ISolution
     {
-        // We're going to represent the play space and shapes using bytes.
         // Firstly the shapes: We hold them as arrays of bytes, from bottom to top (i.e. the entry with index 0
         // is the bottom.
         // To facilitate the bit shifting we'll need later, our representations will pretend they are at the
         // left of the play space (left being the high bit). To make this easier to read (and change if I'm 
-        // wrong, then I'll bitshift them here rather than working out the right numbers.
+        // wrong), then I'll bitshift them here rather than working out the right numbers.
         private static readonly byte[][] Shapes = new byte[][]
         {
             // Line
@@ -37,10 +36,10 @@
 
         public string Solve(string input)
         {
-            var playSpace = new List<byte>(10000)
-            {
-                127,
-            };
+            Span<byte> playSpace = stackalloc byte[8800];
+            playSpace[0] = 127;
+
+            var seenStates = new Dictionary<PlaySpaceState, (int MaxHeight, int StonesDropped)>();
 
             int jetPatternIndex = 0;
             int jetPatternLength = input.Length;
@@ -48,9 +47,11 @@
             int stonesDropped = 0;
             int currentMaxHeight = 0;
 
-            while (stonesDropped < 2022)
+            while (true)
             {
-                int currentShape = stonesDropped % 5;
+                Debug.Assert(currentMaxHeight >= 0);
+
+                int currentShape = (int)(stonesDropped % 5);
                 int currentLeft = 2;
                 int currentBottom = currentMaxHeight + 4;
                 bool landed = false;
@@ -84,12 +85,45 @@
                 }
 
                 ++stonesDropped;
+
+                var newState = MemoizeState(currentMaxHeight, currentShape, jetPatternIndex - 1, ref playSpace);
+
+                // Have we seen this state before?
+                if (seenStates.TryGetValue(newState, out (int MaxHeight, int StonesDropped) heightAndCount))
+                {
+                    // We've hit the repeat.
+                    int periodicity = stonesDropped - heightAndCount.StonesDropped;
+                    int heightDifference = currentMaxHeight - heightAndCount.MaxHeight;
+
+                    // We're aiming for the height after we've hit 1000000000000 stones dropped. So, we need to remove the number
+                    // of stones we've dropped already, then find out how many times we need to repeat this segment to get close to
+                    // that target.
+                    var repeats = (1000000000000L - stonesDropped) / periodicity;
+                    long stonesDroppedDuringTheRepeats = repeats * periodicity;
+                    long extraHeightDroppedDuringTheRepeats = heightDifference * repeats;
+
+                    // What's left?
+                    int remainingStonesToDrop = (int)((1000000000000L - stonesDropped) % periodicity);
+
+                    // Find the state where we've dropped the correct number of stones
+                    var el = seenStates.Single(x => x.Value.StonesDropped == heightAndCount.StonesDropped + remainingStonesToDrop);
+
+                    long heightDroppedDuringRemainingPeriod = el.Value.MaxHeight - heightAndCount.MaxHeight;
+
+                    long finalMaxHeight = currentMaxHeight + extraHeightDroppedDuringTheRepeats + heightDroppedDuringRemainingPeriod;
+
+                    return finalMaxHeight.ToString();
+                }
+                else
+                {
+                    seenStates.Add(newState, (currentMaxHeight, stonesDropped));
+                }
             }
 
             return currentMaxHeight.ToString();
         }
 
-        private static bool CanMoveLeft(int currentLeft, int currentBottom, ref byte[] shape, ref List<byte> playSpace)
+        private static bool CanMoveLeft(int currentLeft, int currentBottom, ref byte[] shape, ref Span<byte> playSpace)
         {
             // We can move left if:
             // 1. We wouldn't move off the edge. This requires currentLeft > 0, which we can test for immediately.
@@ -102,7 +136,7 @@
             return CanMove(currentLeft - 1, currentBottom, ref shape, ref playSpace);
         }
 
-        private static bool CanMoveRight(int currentLeft, int currentBottom, ref byte[] shape, int shapeMaxLeft, ref List<byte> playSpace)
+        private static bool CanMoveRight(int currentLeft, int currentBottom, ref byte[] shape, int shapeMaxLeft, ref Span<byte> playSpace)
         {
             // We can move right if:
             // 1. We wouldn't move off the edge. This requires currentRight < max right for the shape, which we can test for immediately.
@@ -115,18 +149,12 @@
             return CanMove(currentLeft + 1, currentBottom, ref shape, ref playSpace);
         }
 
-        private static bool CanMove(int suggestedLeft, int suggestedBottom, ref byte[] shape, ref List<byte> playSpace)
+        private static bool CanMove(int suggestedLeft, int suggestedBottom, ref byte[] shape, ref Span<byte> playSpace)
         {
             // Now the comparisons.
             for (int shapeRow = 0; shapeRow < shape.Length; ++shapeRow)
             {
                 int playSpaceRow = suggestedBottom + shapeRow;
-
-                if (playSpace.Count <= playSpaceRow)
-                {
-                    return true;
-                }
-
                 if ((playSpace[playSpaceRow] & (shape[shapeRow] >> suggestedLeft)) != 0)
                 {
                     return false;
@@ -136,7 +164,7 @@
             return true;
         }
 
-        private static bool CanFall(int currentLeft, int currentBottom, ref byte[] shape, ref List<byte> playSpace)
+        private static bool CanFall(int currentLeft, int currentBottom, ref byte[] shape, ref Span<byte> playSpace)
         {
             if (currentBottom == 1)
             {
@@ -146,22 +174,67 @@
             return CanMove(currentLeft, currentBottom - 1, ref shape, ref playSpace);
         }
 
-        private static int AddShapeToPlaySpace(int currentLeft, int currentBottom, int currentMaxHeight, ref byte[] shape, ref List<byte> playSpace)
+        private static int AddShapeToPlaySpace(int currentLeft, int currentBottom, int currentMaxHeight, ref byte[] shape, ref Span<byte> playSpace)
         {
             for (int shapeRow = 0; shapeRow < shape.Length; ++shapeRow)
             {
                 int playSpaceRow = currentBottom + shapeRow;
-                if (playSpace.Count <= playSpaceRow)
-                {
-                    playSpace.Add((byte)(shape[shapeRow] >> currentLeft));
-                }
-                else
-                {
-                    playSpace[playSpaceRow] = (byte)(playSpace[playSpaceRow] | (byte)(shape[shapeRow] >> currentLeft));
-                }
+                playSpace[playSpaceRow] = (byte)(playSpace[playSpaceRow] | (byte)(shape[shapeRow] >> currentLeft));
             }
 
             return int.Max(currentMaxHeight, currentBottom + shape.Length - 1);
+        }
+
+        private PlaySpaceState MemoizeState(int currentMaxHeight, int currentShapeIndex, int currentJetIndex, ref Span<byte> playSpace)
+        {
+            // Our memoized state is going to represent the "shape" of the top layer of the play space by recording the
+            // distance "down" you need to travel in each column before you hit a rock.
+            (int Distance, bool Done)[] shape = new (int, bool)[7];
+            int row = currentMaxHeight;
+
+            while (row >= 0 && !(shape[0].Done && shape[1].Done && shape[2].Done && shape[3].Done && shape[4].Done && shape[5].Done && shape[6].Done))
+            {
+                for (int column = 0; column < 7; ++column)
+                {
+                    if (!shape[column].Done)
+                    {
+                        if ((playSpace[row] & (byte)Math.Pow(2, column)) == 0)
+                        {
+                            ++shape[column].Distance;
+                        }
+                        else
+                        {
+                            shape[column].Done = true;
+                        }
+                    }
+                }
+
+                --row;
+            }
+
+            return new PlaySpaceState(
+                shape[0].Distance,
+                shape[1].Distance,
+                shape[2].Distance,
+                shape[3].Distance,
+                shape[4].Distance,
+                shape[5].Distance,
+                shape[6].Distance,
+                currentJetIndex,
+                currentShapeIndex);
+        }
+
+        private readonly record struct PlaySpaceState(
+            int Col0,
+            int Col1,
+            int Col2,
+            int Col3,
+            int Col4,
+            int Col5,
+            int Col6,
+            int LastJetPatternIndex,
+            int LastShape)
+        {
         }
     }
 }
