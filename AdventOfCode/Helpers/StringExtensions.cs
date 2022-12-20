@@ -4,6 +4,11 @@
 
     public static class StringExtensions
     {
+        public static StringSplitEnumerator SplitLines(this string str)
+        {
+            return new StringSplitEnumerator(str.AsSpan(), Environment.NewLine.AsSpan());
+        }
+
         public static StringSplitEnumerator OptimizedSplit(this string str, string delimiter)
         {
             // LineSplitEnumerator is a struct so there is no allocation here
@@ -16,7 +21,7 @@
             return new StringSplitEnumerator(str.AsSpan(), delimiter);
         }
 
-        public static StringSplitEnumerator SplitLines(this ReadOnlySpan<char> str, ReadOnlySpan<char> delimiter)
+        public static StringSplitEnumerator OptimizedSplit(this ReadOnlySpan<char> str, ReadOnlySpan<char> delimiter)
         {
             // LineSplitEnumerator is a struct so there is no allocation here
             return new StringSplitEnumerator(str, delimiter);
