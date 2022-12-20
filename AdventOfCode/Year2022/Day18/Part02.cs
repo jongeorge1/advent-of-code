@@ -53,8 +53,6 @@
                 cubes.Keys.Max(v => v.Y) + 1,
                 cubes.Keys.Max(v => v.Z) + 1);
 
-            Console.WriteLine($"Current allocated stack size: {StackSize.GetAllocatedStackSize().ToString()}");
-
             // Now we'll start in the corner and recursively fill in the spaces the steam can reach.
             ExpandSteamFrom((boundingBox.MinX, boundingBox.MinY, boundingBox.MinZ), boundingBox, cubes);
 
@@ -83,37 +81,42 @@
         }
 
         private static void ExpandSteamFrom(
-            (int X, int Y, int Z) location,
+            (int X, int Y, int Z) startLocation,
             (int MinX, int MinY, int MinZ, int MaxX, int MaxY, int MaxZ) boundingBox,
             Dictionary<(int X, int Y, int Z), SpaceType> cubes)
         {
-            if (location.X < boundingBox.MinX
-                || location.Y < boundingBox.MinY
-                || location.Z < boundingBox.MinZ
-                || location.X > boundingBox.MaxX
-                || location.Y > boundingBox.MaxY
-                || location.Z > boundingBox.MaxZ)
-            {
-                // We're outside the area of interest
-                return;
-            }
+            Queue<(int X, int Y, int Z)> expansionQueue = new();
+            expansionQueue.Enqueue(startLocation);
 
-            if (cubes.ContainsKey(location))
+            while (expansionQueue.Count > 0)
             {
-                // Either we've already filled this space with steam, or it's filled by lava. Either
-                // way we can't expand here.
-                return;
-            }
+                (int X, int Y, int Z) location = expansionQueue.Dequeue();
 
-            // Expand the steam to this location
-            cubes.Add(location, SpaceType.Steam);
+                if (location.X < boundingBox.MinX
+                    || location.Y < boundingBox.MinY
+                    || location.Z < boundingBox.MinZ
+                    || location.X > boundingBox.MaxX
+                    || location.Y > boundingBox.MaxY
+                    || location.Z > boundingBox.MaxZ)
+                {
+                    // We're outside the area of interest
+                    continue;
+                }
 
-            foreach ((int XOffset, int YOffset, int ZOffset) offset in Offsets)
-            {
-                ExpandSteamFrom(
-                    (location.X + offset.XOffset, location.Y + offset.YOffset, location.Z + offset.ZOffset),
-                    boundingBox,
-                    cubes);
+                if (cubes.ContainsKey(location))
+                {
+                    // Either we've already filled this space with steam, or it's filled by lava. Either
+                    // way we can't expand here.
+                    continue;
+                }
+
+                // Expand the steam to this location
+                cubes.Add(location, SpaceType.Steam);
+
+                foreach ((int XOffset, int YOffset, int ZOffset) offset in Offsets)
+                {
+                    expansionQueue.Enqueue((location.X + offset.XOffset, location.Y + offset.YOffset, location.Z + offset.ZOffset));
+                }
             }
         }
     }
