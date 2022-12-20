@@ -48,7 +48,7 @@ namespace AdventOfCode.Year2022.Day15
         public static List<Sensor> BuildSensors(string input)
         {
             List<Sensor> result = new();
-            foreach (StringExtensions.LineSplitEntry line in input.SplitLines())
+            foreach (StringExtensions.StringSplitEntry line in input.OptimizedSplit(Environment.NewLine.AsSpan()))
             {
                 result.Add(new Sensor(line));
             }

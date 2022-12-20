@@ -31,7 +31,7 @@
         {
             Dictionary<(int X, int Y, int Z), SpaceType> cubes = new();
 
-            foreach (StringExtensions.LineSplitEntry current in input.SplitLines())
+            foreach (StringExtensions.StringSplitEntry current in input.OptimizedSplit(Environment.NewLine))
             {
                 int separatorIndex = current.Line.IndexOf(',');
                 int x = int.Parse(current.Line[..separatorIndex]);

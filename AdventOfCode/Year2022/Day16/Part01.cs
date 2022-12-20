@@ -13,7 +13,7 @@
         {
             Dictionary<string, Valve> valves = new();
             int countOfValvesWorthOpening = 0;
-            foreach (StringExtensions.LineSplitEntry line in input.SplitLines())
+            foreach (StringExtensions.StringSplitEntry line in input.OptimizedSplit(Environment.NewLine.AsSpan()))
             {
                 int flowRateEnd = line.Line.IndexOf(';');
 

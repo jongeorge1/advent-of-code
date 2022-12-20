@@ -13,7 +13,7 @@
             int written = 0;
             int currentElfLoad = 0;
 
-            foreach (StringExtensions.LineSplitEntry entry in input.SplitLines())
+            foreach (StringExtensions.StringSplitEntry entry in input.OptimizedSplit(Environment.NewLine.AsSpan()))
             {
                 if (entry.Line.Length == 0)
                 {

@@ -4,34 +4,42 @@
 
     public static class StringExtensions
     {
-        public static LineSplitEnumerator SplitLines(this string str)
+        public static StringSplitEnumerator OptimizedSplit(this string str, string delimiter)
         {
             // LineSplitEnumerator is a struct so there is no allocation here
-            return new LineSplitEnumerator(str.AsSpan());
+            return new StringSplitEnumerator(str.AsSpan(), delimiter.AsSpan());
         }
 
-        public static LineSplitEnumerator SplitLines(this ReadOnlySpan<char> str)
+        public static StringSplitEnumerator OptimizedSplit(this string str, ReadOnlySpan<char> delimiter)
         {
             // LineSplitEnumerator is a struct so there is no allocation here
-            return new LineSplitEnumerator(str);
+            return new StringSplitEnumerator(str.AsSpan(), delimiter);
+        }
+
+        public static StringSplitEnumerator SplitLines(this ReadOnlySpan<char> str, ReadOnlySpan<char> delimiter)
+        {
+            // LineSplitEnumerator is a struct so there is no allocation here
+            return new StringSplitEnumerator(str, delimiter);
         }
 
         // Must be a ref struct as it contains a ReadOnlySpan<char>
-        public ref struct LineSplitEnumerator
+        public ref struct StringSplitEnumerator
         {
+            private readonly ReadOnlySpan<char> delimiter;
             private ReadOnlySpan<char> str;
             private int cumulativeIndex = 0;
 
-            public LineSplitEnumerator(ReadOnlySpan<char> str)
+            public StringSplitEnumerator(ReadOnlySpan<char> str, ReadOnlySpan<char> delimiter)
             {
                 this.str = str;
+                this.delimiter = delimiter;
                 this.Current = default;
             }
 
-            public LineSplitEntry Current { get; private set; }
+            public StringSplitEntry Current { get; private set; }
 
             // Needed to be compatible with the foreach operator
-            public LineSplitEnumerator GetEnumerator() => this;
+            public StringSplitEnumerator GetEnumerator() => this;
 
             public bool MoveNext()
             {
@@ -43,38 +51,25 @@
                     return false;
                 }
 
-                var index = span.IndexOfAny('\r', '\n');
+                var index = span.IndexOf(this.delimiter);
                 if (index == -1)
                 {
                     // The string is composed of only one line
                     this.str = ReadOnlySpan<char>.Empty; // The remaining string is an empty string
-                    this.Current = new LineSplitEntry(span, ReadOnlySpan<char>.Empty, this.cumulativeIndex);
+                    this.Current = new StringSplitEntry(span, ReadOnlySpan<char>.Empty, this.cumulativeIndex);
                     return true;
                 }
 
-                if (index < span.Length - 1 && span[index] == '\r')
-                {
-                    // Try to consume the '\n' associated to the '\r'
-                    var next = span[index + 1];
-                    if (next == '\n')
-                    {
-                        this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 2), this.cumulativeIndex);
-                        this.cumulativeIndex += index + 2;
-                        this.str = span.Slice(index + 2);
-                        return true;
-                    }
-                }
-
-                this.Current = new LineSplitEntry(span.Slice(0, index), span.Slice(index, 1), this.cumulativeIndex);
-                this.cumulativeIndex += index + 1;
-                this.str = span.Slice(index + 1);
+                this.Current = new StringSplitEntry(span.Slice(0, index), span.Slice(index, this.delimiter.Length), this.cumulativeIndex);
+                this.cumulativeIndex += index + this.delimiter.Length;
+                this.str = span.Slice(index + this.delimiter.Length);
                 return true;
             }
         }
 
-        public readonly ref struct LineSplitEntry
+        public readonly ref struct StringSplitEntry
         {
-            public LineSplitEntry(ReadOnlySpan<char> line, ReadOnlySpan<char> separator, int startIndex)
+            public StringSplitEntry(ReadOnlySpan<char> line, ReadOnlySpan<char> separator, int startIndex)
             {
                 this.Line = line;
                 this.Separator = separator;
@@ -89,7 +84,7 @@
 
             // This method allow to implicitly cast the type into a ReadOnlySpan<char>, so you can write the following code
             // foreach (ReadOnlySpan<char> entry in str.SplitLines())
-            public static implicit operator ReadOnlySpan<char>(LineSplitEntry entry) => entry.Line;
+            public static implicit operator ReadOnlySpan<char>(StringSplitEntry entry) => entry.Line;
 
             // This method allow to deconstruct the type, so you can write any of the following code
             // foreach (var entry in str.SplitLines()) { _ = entry.Line; }

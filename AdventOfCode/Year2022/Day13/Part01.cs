@@ -9,7 +9,7 @@
     {
         public string Solve(string input)
         {
-            StringExtensions.LineSplitEnumerator enumerator = input.SplitLines();
+            StringExtensions.StringSplitEnumerator enumerator = input.OptimizedSplit(Environment.NewLine.AsSpan());
 
             int index = 1;
             int sumOfCorrectlyOrderedPacketIndices = 0;
