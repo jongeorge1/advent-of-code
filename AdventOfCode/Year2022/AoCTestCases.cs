@@ -55,7 +55,9 @@ namespace AdventOfCode.Year2022
         [TestCase(17, 1, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>", "3068")]
         [TestCase(17, 2, ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>", "1514285714288")]
         [TestCase(18, 1, "1,1,1\r\n2,1,1", "10")]
+        [TestCase(18, 1, "12,18,4", "6")]
         [TestCase(18, 1, "2,2,2\r\n1,2,2\r\n3,2,2\r\n2,1,2\r\n2,3,2\r\n2,2,1\r\n2,2,3\r\n2,2,4\r\n2,2,6\r\n1,2,5\r\n3,2,5\r\n2,1,5\r\n2,3,5", "64")]
+        [TestCase(18, 2, "2,2,2\r\n1,2,2\r\n3,2,2\r\n2,1,2\r\n2,3,2\r\n2,2,1\r\n2,2,3\r\n2,2,4\r\n2,2,6\r\n1,2,5\r\n3,2,5\r\n2,1,5\r\n2,3,5", "58")]
         [TestCase(19, 1, "Blueprint 1: Each ore robot costs 4 ore. Each clay robot costs 2 ore. Each obsidian robot costs 3 ore and 14 clay. Each geode robot costs 2 ore and 7 obsidian.", "9")]
         [TestCase(19, 1, "Blueprint 1: Each ore robot costs 4 ore. Each clay robot costs 2 ore. Each obsidian robot costs 3 ore and 14 clay. Each geode robot costs 2 ore and 7 obsidian.\r\nBlueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 8 clay. Each geode robot costs 3 ore and 12 obsidian.", "33")]
         public void Tests(int day, int part, string input, string expectedResult)
