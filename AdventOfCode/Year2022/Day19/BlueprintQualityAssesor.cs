@@ -4,9 +4,9 @@
 
     public static class BlueprintQualityAssesor
     {
-        public static int CalculateQualityLevel(ref Blueprint blueprint)
+        public static int CalculateQualityLevel(ref Blueprint blueprint, byte availableTime)
         {
-            int geodeCount = DetermineLargestNumberOfGeodesThatCanBeOpened(ref blueprint);
+            int geodeCount = DetermineLargestNumberOfGeodesThatCanBeOpened(ref blueprint, availableTime);
             int quality = geodeCount * blueprint.Number;
 
             //Console.WriteLine($"Blueprint {blueprint.Number} can obtain {geodeCount} geodes and has quality {quality}");
@@ -14,9 +14,9 @@
             return quality;
         }
 
-        private static int DetermineLargestNumberOfGeodesThatCanBeOpened(ref Blueprint blueprint)
+        public static int DetermineLargestNumberOfGeodesThatCanBeOpened(ref Blueprint blueprint, byte availableTime)
         {
-            var startingState = new MineralCollectionState(24, 1, 0, 0, 0, 0, 0, 0, 0);
+            var startingState = new MineralCollectionState(availableTime, 1, 0, 0, 0, 0, 0, 0, 0);
             return DetermineLargestNumberOfGeodesThatCanBeOpenedFromState(ref startingState, ref blueprint);
         }
 

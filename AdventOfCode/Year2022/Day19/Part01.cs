@@ -22,7 +22,7 @@
             int sum = 0;
             for (int i = 0; i < processedBlueprintCount; ++i)
             {
-                sum += BlueprintQualityAssesor.CalculateQualityLevel(ref blueprints[i]);
+                sum += BlueprintQualityAssesor.CalculateQualityLevel(ref blueprints[i], 24);
             }
 
             return sum.ToString();
