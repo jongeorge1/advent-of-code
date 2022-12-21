@@ -19,7 +19,13 @@
 
             blueprints = blueprints[0..processedBlueprintCount];
 
-            return string.Empty;
+            int sum = 0;
+            for (int i = 0; i < processedBlueprintCount; ++i)
+            {
+                sum += BlueprintQualityAssesor.CalculateQualityLevel(ref blueprints[i]);
+            }
+
+            return sum.ToString();
         }
     }
 }

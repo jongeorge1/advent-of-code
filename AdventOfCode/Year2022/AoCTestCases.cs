@@ -43,6 +43,7 @@ namespace AdventOfCode.Year2022
         [TestCase(13, 1, "[7,7,7,7]\r\n[7,7,7]", "0")]
         [TestCase(13, 1, "[]\r\n[3]", "1")]
         [TestCase(13, 1, "[[[]]]\r\n[[]]", "0")]
+        [TestCase(13, 1, "[[[],6,2,[8,[],[2,7,9],[]]],[[],[]]]\r\n[[[]],[10,[],4,[5,[9,4]]],[[[],[2,9,0],9,3,1]],[[[6]],7,[[5,2],[5,7,9,7,6],[6,4,2,9]],[[3,7,6,7,10],9,[8,0,8,0],[9,4,4]]]]", "0")]
         [TestCase(13, 1, "[1,[2,[3,[4,[5,6,7]]]],8,9]\r\n[1,[2,[3,[4,[5,6,0]]]],8,9]", "0")]
         [TestCase(13, 1, "[1,1,3,1,1]\r\n[1,1,5,1,1]\r\n\r\n[[1],[2,3,4]]\r\n[[1],4]\r\n\r\n[9]\r\n[[8,7,6]]\r\n\r\n[[4,4],4,4]\r\n[[4,4],4,4,4]\r\n\r\n[7,7,7,7]\r\n[7,7,7]\r\n\r\n[]\r\n[3]\r\n\r\n[[[]]]\r\n[[]]\r\n\r\n[1,[2,[3,[4,[5,6,7]]]],8,9]\r\n[1,[2,[3,[4,[5,6,0]]]],8,9]", "13")]
         [TestCase(13, 2, "[1,1,3,1,1]\r\n[1,1,5,1,1]\r\n\r\n[[1],[2,3,4]]\r\n[[1],4]\r\n\r\n[9]\r\n[[8,7,6]]\r\n\r\n[[4,4],4,4]\r\n[[4,4],4,4,4]\r\n\r\n[7,7,7,7]\r\n[7,7,7]\r\n\r\n[]\r\n[3]\r\n\r\n[[[]]]\r\n[[]]\r\n\r\n[1,[2,[3,[4,[5,6,7]]]],8,9]\r\n[1,[2,[3,[4,[5,6,0]]]],8,9]", "140")]
@@ -59,6 +60,7 @@ namespace AdventOfCode.Year2022
         [TestCase(18, 1, "2,2,2\r\n1,2,2\r\n3,2,2\r\n2,1,2\r\n2,3,2\r\n2,2,1\r\n2,2,3\r\n2,2,4\r\n2,2,6\r\n1,2,5\r\n3,2,5\r\n2,1,5\r\n2,3,5", "64")]
         [TestCase(18, 2, "2,2,2\r\n1,2,2\r\n3,2,2\r\n2,1,2\r\n2,3,2\r\n2,2,1\r\n2,2,3\r\n2,2,4\r\n2,2,6\r\n1,2,5\r\n3,2,5\r\n2,1,5\r\n2,3,5", "58")]
         [TestCase(19, 1, "Blueprint 1: Each ore robot costs 4 ore. Each clay robot costs 2 ore. Each obsidian robot costs 3 ore and 14 clay. Each geode robot costs 2 ore and 7 obsidian.", "9")]
+        [TestCase(19, 1, "Blueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 8 clay. Each geode robot costs 3 ore and 12 obsidian.", "24")]
         [TestCase(19, 1, "Blueprint 1: Each ore robot costs 4 ore. Each clay robot costs 2 ore. Each obsidian robot costs 3 ore and 14 clay. Each geode robot costs 2 ore and 7 obsidian.\r\nBlueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 8 clay. Each geode robot costs 3 ore and 12 obsidian.", "33")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
