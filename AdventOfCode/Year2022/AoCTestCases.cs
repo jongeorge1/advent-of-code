@@ -63,6 +63,7 @@ namespace AdventOfCode.Year2022
         [TestCase(19, 1, "Blueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 8 clay. Each geode robot costs 3 ore and 12 obsidian.", "24")]
         [TestCase(19, 1, "Blueprint 1: Each ore robot costs 4 ore. Each clay robot costs 2 ore. Each obsidian robot costs 3 ore and 14 clay. Each geode robot costs 2 ore and 7 obsidian.\r\nBlueprint 2: Each ore robot costs 2 ore. Each clay robot costs 3 ore. Each obsidian robot costs 3 ore and 8 clay. Each geode robot costs 3 ore and 12 obsidian.", "33")]
         [TestCase(20, 1, "1\r\n2\r\n-3\r\n3\r\n-2\r\n0\r\n4", "3")]
+        [TestCase(20, 2, "1\r\n2\r\n-3\r\n3\r\n-2\r\n0\r\n4", "1623178306")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2022, day, part);

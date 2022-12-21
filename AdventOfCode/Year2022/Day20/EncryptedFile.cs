@@ -15,7 +15,7 @@
             {
                 var newItem = new EncryptedFileListItem
                 {
-                    Number = int.Parse(current),
+                    Number = long.Parse(current),
                 };
 
                 if (itemCount > 0)
@@ -45,9 +45,18 @@
 
         public EncryptedFileListItem Zero { get; }
 
-        public int ReadAndSumCoordinates()
+        public void ApplyDecryptionKey(long multiplier)
         {
-            int coordinate = 0;
+            foreach (var current in this.ListItems)
+            {
+                current.Number *= multiplier;
+                current.NumberOffset = current.Number % (this.ListItems.Length - 1);
+            }
+        }
+
+        public long ReadAndSumCoordinates()
+        {
+            long coordinate = 0;
 
             EncryptedFileListItem currentCoordinateItem = this.Zero;
 

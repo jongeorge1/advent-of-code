@@ -29,7 +29,7 @@
                 currentPrevious.AdjustedNext = currentNext;
                 currentNext.AdjustedPrevious = currentPrevious;
 
-                var targetPrevious = current.Move(current.Number);
+                var targetPrevious = current.Move(current.NumberOffset);
                 var targetNext = targetPrevious.AdjustedNext;
 
                 // Now insert it in the target location

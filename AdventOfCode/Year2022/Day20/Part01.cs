@@ -7,6 +7,7 @@
         public string Solve(string input)
         {
             var file = new EncryptedFile(input);
+            file.ApplyDecryptionKey(1);
 
             var mixer = new Mixer(file);
 
