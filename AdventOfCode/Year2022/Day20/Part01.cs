@@ -1,14 +1,18 @@
 ﻿namespace AdventOfCode.Year2022.Day20
 {
-    using System;
-    using System.Linq;
     using AdventOfCode;
 
     public class Part01 : ISolution
     {
         public string Solve(string input)
         {
-            return string.Empty;
+            var file = new EncryptedFile(input);
+
+            var mixer = new Mixer(file);
+
+            mixer.Mix();
+
+            return file.ReadAndSumCoordinates().ToString();
         }
     }
 }
