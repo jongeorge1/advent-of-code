@@ -10,7 +10,10 @@
         byte ObsidianRobotOreCost,
         byte ObsidianRobotClayCost,
         byte GeodeRobotOreCost,
-        byte GeodeRobotObsidianCost)
+        byte GeodeRobotObsidianCost,
+        byte MaximumRequiredOreRobots,
+        byte MaximumRequiredClayRobots,
+        byte MaximumRequiredObsidianRobots)
     {
         public static Blueprint FromInputString(ReadOnlySpan<char> input)
         {
@@ -54,6 +57,10 @@
             wordEnumerator.MoveNext();
             byte geodeRobotObsidianCost = byte.Parse(wordEnumerator.Current.Line);
 
+            byte maximumRequiredOreRobots = Math.Max(
+                Math.Max(oreRobotOreCost, clayRobotOreCost),
+                Math.Max(obsidianRobotOreCost, geodeRobotOreCost));
+
             return new Blueprint(
                 number,
                 oreRobotOreCost,
@@ -61,6 +68,9 @@
                 obsidianRobotOreCost,
                 obsidianRobotClayCost,
                 geodeRobotOreCost,
+                geodeRobotObsidianCost,
+                maximumRequiredOreRobots,
+                obsidianRobotClayCost,
                 geodeRobotObsidianCost);
         }
     }

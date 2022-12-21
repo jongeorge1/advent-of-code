@@ -1,15 +1,17 @@
 ﻿namespace AdventOfCode.Year2022.Day19
 {
     using System;
-    using System.Diagnostics;
-    using AdventOfCode.Year2016.Day17;
 
     public static class BlueprintQualityAssesor
     {
         public static int CalculateQualityLevel(ref Blueprint blueprint)
         {
             int geodeCount = DetermineLargestNumberOfGeodesThatCanBeOpened(ref blueprint);
-            return geodeCount * blueprint.Number;
+            int quality = geodeCount * blueprint.Number;
+
+            //Console.WriteLine($"Blueprint {blueprint.Number} can obtain {geodeCount} geodes and has quality {quality}");
+
+            return quality;
         }
 
         private static int DetermineLargestNumberOfGeodesThatCanBeOpened(ref Blueprint blueprint)
@@ -39,7 +41,7 @@
                 int timeToRequiredObsidian = (int)Math.Ceiling(Math.Max(blueprint.GeodeRobotObsidianCost - state.AvailableObsidian, 0) / (decimal)state.ObsidianRobotCount) + 1;
                 timeToNextRobot = Math.Max(timeToRequiredOre, timeToRequiredObsidian);
 
-                if (timeToNextRobot < state.TimeRemaining - 1)
+                if (timeToNextRobot < state.TimeRemaining)
                 {
                     nextState = state.AfterTime(timeToNextRobot).AddGeodeRobot(blueprint.GeodeRobotOreCost, blueprint.GeodeRobotObsidianCost);
 
@@ -47,17 +49,24 @@
                         bestResultSoFar,
                         DetermineLargestNumberOfGeodesThatCanBeOpenedFromState(ref nextState, ref blueprint, bestResultSoFar));
                 }
+                else
+                {
+                    // We're in a position where don't have enough time to build any more geode robots, so what we have is as good as it
+                    // gets. In this case, just look at how many geodes we'll have by the end.
+                    nextState = state.AfterTime(state.TimeRemaining);
+                    bestResultSoFar = Math.Max(nextState.CrackedGeodes, bestResultSoFar);
+                }
             }
 
             // Second, obsidan. We may not be in a position where we can just wait for one of these, as we may not have a
-            // clay robot.
-            if (state.ClayRobotCount > 0)
+            // clay robot. Also, we may have the maximum useful number of obsidian robots already
+            if (state.ClayRobotCount > 0 && state.ObsidianRobotCount < blueprint.MaximumRequiredObsidianRobots)
             {
                 int timeToRequiredOre = (int)Math.Ceiling(Math.Max(blueprint.ObsidianRobotOreCost - state.AvailableOre, 0) / (decimal)state.OreRobotCount) + 1;
                 int timeToRequiredClay = (int)Math.Ceiling(Math.Max(blueprint.ObsidianRobotClayCost - state.AvailableClay, 0) / (decimal)state.ClayRobotCount) + 1;
                 timeToNextRobot = Math.Max(timeToRequiredOre, timeToRequiredClay);
 
-                if (timeToNextRobot < state.TimeRemaining - 1)
+                if (timeToNextRobot < state.TimeRemaining)
                 {
                     nextState = state.AfterTime(timeToNextRobot).AddObsidianRobot(blueprint.ObsidianRobotOreCost, blueprint.ObsidianRobotClayCost);
 
@@ -67,38 +76,39 @@
                 }
             }
 
-            // Next, clay. We will always be in a position where we can build a new clay robot at some point.
-            timeToNextRobot = (int)Math.Ceiling(Math.Max(blueprint.ClayRobotOreCost - state.AvailableOre, 0) / (decimal)state.OreRobotCount) + 1;
-            if (timeToNextRobot < state.TimeRemaining - 1)
+            // Next, clay. We will always be in a position where we can build a new clay robot at some point. However, we might not need to.
+            if (state.ClayRobotCount < blueprint.MaximumRequiredClayRobots)
             {
-                nextState = state.AfterTime(timeToNextRobot).AddClayRobot(blueprint.ClayRobotOreCost);
+                timeToNextRobot = (int)Math.Ceiling(Math.Max(blueprint.ClayRobotOreCost - state.AvailableOre, 0) / (decimal)state.OreRobotCount) + 1;
+                if (timeToNextRobot < state.TimeRemaining)
+                {
+                    nextState = state.AfterTime(timeToNextRobot).AddClayRobot(blueprint.ClayRobotOreCost);
 
-                bestResultSoFar = Math.Max(
-                    bestResultSoFar,
-                    DetermineLargestNumberOfGeodesThatCanBeOpenedFromState(ref nextState, ref blueprint, bestResultSoFar));
+                    bestResultSoFar = Math.Max(
+                        bestResultSoFar,
+                        DetermineLargestNumberOfGeodesThatCanBeOpenedFromState(ref nextState, ref blueprint, bestResultSoFar));
+                }
             }
 
-            // Finally, ore. We will always be in a position where we can build a new ore robot at some point.
-            // To build an ore robot, we need to wait for (the cost of an ore robot) - (number of ore we already have) * minutes to gather the materials,
-            // plus 1 minute to actually build the thing.
-            timeToNextRobot = (int)Math.Ceiling(Math.Max(blueprint.OreRobotOreCost - state.AvailableOre, 0) / (decimal)state.OreRobotCount) + 1;
-            // It's only of any use if there's a minute left after that
-            if (timeToNextRobot < state.TimeRemaining - 1) 
+            // Finally, ore. We will always be in a position where we can build a new ore robot at some point, but we won't always need to.
+            if (state.OreRobotCount < blueprint.MaximumRequiredOreRobots)
             {
-                nextState = state.AfterTime(timeToNextRobot).AddOreRobot(blueprint.OreRobotOreCost);
+                // To build an ore robot, we need to wait for (the cost of an ore robot) - (number of ore we already have) * minutes to gather the materials,
+                // plus 1 minute to actually build the thing.
+                timeToNextRobot = (int)Math.Ceiling(Math.Max(blueprint.OreRobotOreCost - state.AvailableOre, 0) / (decimal)state.OreRobotCount) + 1;
+                // It's only of any use if there's a minute left after that
+                if (timeToNextRobot < state.TimeRemaining)
+                {
+                    nextState = state.AfterTime(timeToNextRobot).AddOreRobot(blueprint.OreRobotOreCost);
 
-                // This will definitely be the best result so far.
-                bestResultSoFar = Math.Max(
-                    bestResultSoFar,
-                    DetermineLargestNumberOfGeodesThatCanBeOpenedFromState(ref nextState, ref blueprint, bestResultSoFar));
+                    // This will definitely be the best result so far.
+                    bestResultSoFar = Math.Max(
+                        bestResultSoFar,
+                        DetermineLargestNumberOfGeodesThatCanBeOpenedFromState(ref nextState, ref blueprint, bestResultSoFar));
+                }
             }
 
-            // What if we just stopped now and did nothing?
-            nextState = state.AfterTime(state.TimeRemaining);
-
-            return nextState.CrackedGeodes > bestResultSoFar
-                ? nextState.CrackedGeodes
-                : bestResultSoFar;
+            return bestResultSoFar;
         }
     }
 
@@ -115,7 +125,7 @@
     {
         public MineralCollectionState AfterTime(int time)
         {
-            if (time < 1)
+            if (time < 1 || time > this.TimeRemaining)
             {
                 throw new Exception("Invalid time");
             }
