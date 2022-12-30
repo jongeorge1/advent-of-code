@@ -6,7 +6,19 @@
     {
         public string Solve(string input)
         {
-            return string.Empty;
+            var map = new Map(input);
+            int roundCount = 0;
+
+            bool atLeastOneElfMoved;
+
+            do
+            {
+                atLeastOneElfMoved = map.ExecuteRound();
+                ++roundCount;
+            }
+            while (atLeastOneElfMoved);
+
+            return roundCount.ToString();
         }
     }
 }
