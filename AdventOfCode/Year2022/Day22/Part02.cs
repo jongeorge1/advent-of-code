@@ -1,26 +1,11 @@
 ﻿namespace AdventOfCode.Year2022.Day22
 {
     using System;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Runtime.CompilerServices;
     using AdventOfCode;
-    using NUnit.Framework;
 
     public class Part02 : ISolution
     {
-        private const char OpenTile = '.';
-        private const char SolidWall = '#';
-        private const char Void = ' ';
         private static readonly char[] Directions = new[] { 'L', 'R' };
-
-        private static readonly (int dX, int dY)[] DirectionOffsets = new[]
-        {
-            (1, 0),
-            (0, 1),
-            (-1, 0),
-            (0, -1),
-        };
 
         public string Solve(string input)
         {
@@ -29,151 +14,66 @@
 
             map = map[..^2];
 
-            var cubeDescriptor = MapCube(ref map);
+            var cubeMap = new CubeMap(map);
 
-            return string.Empty;
-        }
+            // We'll be starting at the top left of the first cube.
+            CubeFaceDescriptor currentCube = cubeMap.CubeFaces[0];
+            (int X, int Y) currentLocation = (currentCube.MapGridXBounds.Start, currentCube.MapGridYBounds.Start);
+            int currentDirection = 0;
 
-        private static int ChangeDirection(int currentDirection, int change)
-        {
-            return (currentDirection + change + 4) % 4;
-        }
+            // Console.WriteLine($"Starting at ({currentLocation.X}, {currentLocation.Y}) on face {currentCube.Id} facing {currentDirection}");
 
-        private static CubeFaceDescriptor[] MapCube(ref string[] map)
-        {
-            int faceSize = map.Length > 12 ? 50 : 4;
-
-            // To understand the cube, we first need to work out how the net is structured.
-            // Imagine the input being split into a grid with each square containing 50 map
-            // spaces. We need to work out which spaces in that grid contain cube faces.
-            int gridWidth = map.Max(x => x.Length) / faceSize;
-            int gridHeight = map.Length / faceSize;
-
-            int cubeFacesDiscovered = 0;
-            var cubeFaces = new CubeFaceDescriptor[6];
-
-            for (int gridRow = 0; gridRow < gridHeight; ++gridRow)
+            while (instructions.Length > 0)
             {
-                for (int gridColumn = 0; gridColumn < gridWidth; ++gridColumn)
-                {
-                    string targetRow = map[gridRow * faceSize];
+                // The next thing we want to consume will be a number
+                int nextDirectionChange = instructions.IndexOfAny(Directions);
 
-                    if (targetRow.Length > (gridColumn * faceSize) && targetRow[gridColumn * faceSize] != Void)
+                int number = nextDirectionChange == -1
+                    ? int.Parse(instructions)
+                    : int.Parse(instructions[0..nextDirectionChange]);
+
+                // Console.WriteLine($"Attempting to move {number} steps");
+
+                // Apply the steps
+                for (int i = 0; i < number; ++i)
+                {
+                    // Get the next destination in the current direction.
+                    ((int X, int Y) proposedLocation, CubeFaceDescriptor proposedLocationCubeFace, int proposedNewDirection) = currentCube.GetNextLocationFrom(currentLocation, currentDirection);
+
+                    if (map[proposedLocation.Y][proposedLocation.X] == CubeMap.OpenTile)
                     {
-                        cubeFaces[cubeFacesDiscovered++] = new CubeFaceDescriptor
-                        {
-                            Id = cubeFacesDiscovered,
-                            CubeGridRow = gridRow,
-                            CubeGridColumn = gridColumn,
-                            MapGridXBounds = (gridColumn * faceSize, (gridColumn * faceSize) + faceSize - 1),
-                            MapGridYBounds = (gridRow * faceSize, (gridRow * faceSize) + faceSize - 1),
-                        };
+                        // Console.WriteLine($"Moving to ({proposedLocation.X}, {proposedLocation.Y}) on face {proposedLocationCubeFace.Id} facing {proposedNewDirection}");
+
+                        currentCube = proposedLocationCubeFace;
+                        currentLocation = proposedLocation;
+                        currentDirection = proposedNewDirection;
+                    }
+                    else
+                    {
+                        // Console.WriteLine($"Cannot take next step to ({proposedLocation.X}, {proposedLocation.Y}) on face {proposedLocationCubeFace.Id} facing {proposedNewDirection}; moving to next instruction");
+                        break;
                     }
                 }
-            }
 
-            // Now we have the descriptors, link them together. This step is kind of like folding up the cube and is the hardest bit; we
-            // we need to also determine the direction change that will apply as we transition from one face to the next.
-            // First do the directly connected faces.
-            foreach (CubeFaceDescriptor cubeFace in cubeFaces)
-            {
-                for (int direction = 0; direction < DirectionOffsets.Length; ++direction)
+                // Change direction
+                if (nextDirectionChange != -1)
                 {
-                    if (cubeFace.ConnectedFaces[direction] is null)
-                    {
-                        CubeFaceDescriptor? directlyConnectedFace = cubeFaces
-                            .SingleOrDefault(target => target.CubeGridColumn == cubeFace.CubeGridColumn + DirectionOffsets[direction].dX && target.CubeGridRow == cubeFace.CubeGridRow + DirectionOffsets[direction].dY);
+                    char newDirection = instructions[nextDirectionChange];
+                    currentDirection = newDirection == 'R' ? ++currentDirection : --currentDirection;
+                    currentDirection = (currentDirection + 4) % 4;
 
-                        if (directlyConnectedFace is not null)
-                        {
-                            cubeFace.ConnectedFaces[direction] = directlyConnectedFace;
-                            cubeFace.FaceTraversalDirectionChanges[direction] = 0;
-
-                            directlyConnectedFace.ConnectedFaces[ChangeDirection(direction, 2)] = cubeFace;
-                            directlyConnectedFace.FaceTraversalDirectionChanges[ChangeDirection(direction, 2)] = 0;
-                        }
-                    }
+                    // Console.WriteLine($"Changing direction to {currentDirection}");
                 }
+
+                // Move to the next instruction
+                instructions = nextDirectionChange == -1
+                    ? ReadOnlySpan<char>.Empty
+                    : instructions[(nextDirectionChange + 1)..];
             }
 
-            // Now the remaining scenarios. There are only 11 ways you can lay out a cube net, so there are only so many scenarios
-            // we need to consider.
-            bool changed = true;
-            while (changed)
-            {
-                changed = false;
-                foreach (CubeFaceDescriptor cubeFace in cubeFaces)
-                {
-                    for (int direction = 0; direction < 4; ++direction)
-                    {
-                        if (cubeFace.ConnectedFaces[direction] is null)
-                        {
-                            // The face isn't connected. However, if either of the faces on the
-                            // adjacent sides are, and they have further connections in this direction,
-                            // we can join these up. We need to check both the left and right sides
-                            // separately. To make thinking about this easier, the comments will pretend
-                            // that our "direction" is "right", and the adjacent sides are "up" and "down".
-                            int down = ChangeDirection(direction, 1);
-                            int up = ChangeDirection(direction, -1);
-
-                            // Slightly more problematic is that the connected face might require an orientation
-                            // change so it's not as simple as down-right.
-                            if (cubeFace.ConnectedFaces[down] is not null)
-                            {
-                                int nextDirection = ChangeDirection(direction, cubeFace.FaceTraversalDirectionChanges[down]);
-                                var targetFace = cubeFace.ConnectedFaces[down].ConnectedFaces[nextDirection];
-                                if (targetFace is not null)
-                                {
-                                    var combinedTraversalDirectionChanges = cubeFace.FaceTraversalDirectionChanges[down] + cubeFace.ConnectedFaces[down].FaceTraversalDirectionChanges[nextDirection];
-                                    cubeFace.ConnectedFaces[direction] = targetFace;
-                                    cubeFace.FaceTraversalDirectionChanges[direction] = combinedTraversalDirectionChanges + 1;
-                                    var targetFaceConnectionEdge = ChangeDirection(up, combinedTraversalDirectionChanges);
-                                    Debug.Assert(targetFace.ConnectedFaces[targetFaceConnectionEdge] is null);
-                                    targetFace.ConnectedFaces[targetFaceConnectionEdge] = cubeFace;
-                                    targetFace.FaceTraversalDirectionChanges[targetFaceConnectionEdge] = -combinedTraversalDirectionChanges - 1;
-                                    changed = true;
-                                }
-                            }
-                            else if (cubeFace.ConnectedFaces[direction] is null && cubeFace.ConnectedFaces[up] is not null)
-                            {
-                                int nextDirection = ChangeDirection(direction, cubeFace.FaceTraversalDirectionChanges[up]);
-                                var targetFace = cubeFace.ConnectedFaces[up].ConnectedFaces[nextDirection];
-                                if (targetFace is not null)
-                                {
-                                    var combinedTraversalDirectionChanges = cubeFace.FaceTraversalDirectionChanges[up] + cubeFace.ConnectedFaces[up].FaceTraversalDirectionChanges[nextDirection];
-                                    cubeFace.ConnectedFaces[direction] = targetFace;
-                                    cubeFace.FaceTraversalDirectionChanges[direction] = combinedTraversalDirectionChanges - 1;
-                                    var targetFaceConnectionEdge = ChangeDirection(down, combinedTraversalDirectionChanges);
-                                    Debug.Assert(targetFace.ConnectedFaces[targetFaceConnectionEdge] is null);
-                                    targetFace.ConnectedFaces[targetFaceConnectionEdge] = cubeFace;
-                                    targetFace.FaceTraversalDirectionChanges[targetFaceConnectionEdge] = 1 - combinedTraversalDirectionChanges;
-                                    changed = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            return cubeFaces;
+            int password = ((currentLocation.X + 1) * 4) + ((currentLocation.Y + 1) * 1000) + currentDirection;
+            return password.ToString();
         }
 
-        [DebuggerDisplay("{Id}: [{CubeGridRow}, {CubeGridColumn}]")]
-        private class CubeFaceDescriptor
-        {
-            public int Id { get; set; }
-
-            public int CubeGridRow { get; set; }
-
-            public int CubeGridColumn { get; set; }
-
-            public (int Start, int End) MapGridXBounds { get; set; }
-
-            public (int Start, int End) MapGridYBounds { get; set; }
-
-            public CubeFaceDescriptor[] ConnectedFaces { get; } = new CubeFaceDescriptor[4];
-
-            public int[] FaceTraversalDirectionChanges { get; } = new int[4];
-        }
     }
 }
