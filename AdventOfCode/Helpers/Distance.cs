@@ -10,6 +10,11 @@
             return Math.Abs(x) + Math.Abs(y);
         }
 
+        public static int Manhattan((int X, int Y) position)
+        {
+            return Math.Abs(position.X) + Math.Abs(position.Y);
+        }
+
         public static int Manhattan((int X, int Y) first, (int X, int Y) second)
         {
             return Math.Abs(second.X - first.X) + Math.Abs(second.Y - first.Y);

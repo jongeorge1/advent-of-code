@@ -4,12 +4,14 @@
     {
         public string Solve(string input)
         {
-            var computer = new Computer(input, true);
+            var computer = new Computer(input, false);
 
             int startValue = 1;
 
             do
             {
+                computer.Reset();
+
                 int stableCount = 0;
                 int? expectedNextValue = null;
 

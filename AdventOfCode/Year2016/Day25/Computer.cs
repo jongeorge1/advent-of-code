@@ -29,6 +29,12 @@
             };
         }
 
+        public void Reset()
+        {
+            this.location = 0;
+            this.ToggledLocations.Clear();
+        }
+
         public Dictionary<string, int> Registers { get; } = new ()
         {
             { "a", 0 },
@@ -55,7 +61,7 @@
             {
                 if (this.verbose)
                 {
-                    Console.WriteLine($"${this.location}: Toggled, treating as INC");
+                    Console.WriteLine($"{this.location}: Toggled, treating as INC");
                 }
 
                 this.Inc(instruction, true);
@@ -69,7 +75,7 @@
                     this.ToggledLocations.Remove(target);
                     if (this.verbose)
                     {
-                        Console.WriteLine($"${this.location}: Untoggling {target}");
+                        Console.WriteLine($"{this.location}: Untoggling {target}");
                     }
                 }
                 else
@@ -77,7 +83,7 @@
                     this.ToggledLocations.Add(target);
                     if (this.verbose)
                     {
-                        Console.WriteLine($"${this.location}: Toggling {target}");
+                        Console.WriteLine($"{this.location}: Toggling {target}");
                     }
                 }
 
@@ -91,7 +97,7 @@
 
             if (this.verbose)
             {
-                Console.WriteLine($"${this.location}: Outputting {outputValue}");
+                Console.WriteLine($"{this.location}: Outputting {outputValue}");
             }
 
             if (this.Output(outputValue))
@@ -110,7 +116,7 @@
             {
                 if (this.verbose)
                 {
-                    Console.WriteLine($"${this.location}: Toggled, treating as JNZ");
+                    Console.WriteLine($"{this.location}: Toggled, treating as JNZ");
                 }
                 
                 this.Jnz(instruction, true);
@@ -125,7 +131,7 @@
                     this.Registers[targetRegister] = this.GetValueOrRegister(instruction[1]);
                     if (this.verbose)
                     {
-                        Console.WriteLine($"${this.location}: Copying {this.Registers[targetRegister]} to {targetRegister}");
+                        Console.WriteLine($"{this.location}: Copying {this.Registers[targetRegister]} to {targetRegister}");
                     }
                 }
 
@@ -139,7 +145,7 @@
             {
                 if (this.verbose)
                 {
-                    Console.WriteLine($"${this.location}: Toggled, treating as DEC");
+                    Console.WriteLine($"{this.location}: Toggled, treating as DEC");
                 }
 
                 this.Dec(instruction, true);
@@ -151,7 +157,7 @@
 
                 if (this.verbose)
                 {
-                    Console.WriteLine($"${this.location}: Incrementing register {instruction[1]} to {this.Registers[instruction[1]]}");
+                    Console.WriteLine($"{this.location}: Incrementing register {instruction[1]} to {this.Registers[instruction[1]]}");
                 }
             }
         }
@@ -162,7 +168,7 @@
             {
                 if (this.verbose)
                 {
-                    Console.WriteLine($"${this.location}: Toggled, treating as INC");
+                    Console.WriteLine($"{this.location}: Toggled, treating as INC");
                 }
 
                 this.Inc(instruction, true);
@@ -174,7 +180,7 @@
 
                 if (this.verbose)
                 {
-                    Console.WriteLine($"${this.location}: Decrementing register {instruction[1]} to {this.Registers[instruction[1]]}");
+                    Console.WriteLine($"{this.location}: Decrementing register {instruction[1]} to {this.Registers[instruction[1]]}");
                 }
             }
         }
@@ -185,7 +191,7 @@
             {
                 if (this.verbose)
                 {
-                    Console.WriteLine($"${this.location}: Toggled, treating as CPY");
+                    Console.WriteLine($"{this.location}: Toggled, treating as CPY");
                 }
 
                 this.Cpy(instruction, true);
@@ -199,7 +205,7 @@
                 {
                     if (this.verbose)
                     {
-                        Console.WriteLine($"${this.location}: Jumping by {offset}");
+                        Console.WriteLine($"{this.location}: Jumping by {offset}");
                     }
 
                     this.location += offset;
@@ -208,7 +214,7 @@
                 {
                     if (this.verbose)
                     {
-                        Console.WriteLine($"${this.location}: Ignoring jump");
+                        Console.WriteLine($"{this.location}: Ignoring jump");
                     }
 
                     ++this.location;

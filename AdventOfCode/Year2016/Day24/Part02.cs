@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using AdventOfCode.Helpers;
 
-    public class Part01 : ISolution
+    public class Part02 : ISolution
     {
         public string Solve(string input)
         {
@@ -95,8 +95,23 @@
 
                 if (current.CollectedPois.Count == allPois.Count)
                 {
-                    // We've got all the POIs in fewer steps than the current best
-                    shortestPathSoFar = current.Steps;
+                    // We've got all the POIs. But are we back at the target?
+                    if (current.Location == startLocation)
+                    {
+                        shortestPathSoFar = current.Steps;
+                    }
+                    else
+                    {
+                        var next = new RouteState
+                        {
+                            CollectedPois = new List<(int X, int Y)>(current.CollectedPois),
+                            Location = startLocation,
+                            Steps = current.Steps + shortestPaths[(startLocation, current.Location)],
+                        };
+
+                        stateQueue.Enqueue(next);
+                    }
+
                     continue;
                 }
 
