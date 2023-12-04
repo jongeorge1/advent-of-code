@@ -4,9 +4,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            return (input.Count(x => x == '(') - input.Count(x => x == ')')).ToString();
+            return (input[0].Count(x => x == '(') - input[0].Count(x => x == ')')).ToString();
         }
     }
 }

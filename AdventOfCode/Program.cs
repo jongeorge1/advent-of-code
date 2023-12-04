@@ -16,16 +16,16 @@
             int day = int.Parse(args[1]);
             int part = int.Parse(args[2]);
             int executions = args.Length > 3 ? int.Parse(args[3]) : 1;
-            string data = args.Length > 4 ? args[4] : string.Empty;
+            string[] data = args.Length > 4 ? args[4].Split(Environment.NewLine) : new string[0];
 
             // Load the data
-            if (string.IsNullOrEmpty(data))
+            if (data.Length == 0)
             {
                 var locationUri = new UriBuilder(Assembly.GetExecutingAssembly().Location!);
                 string location = Uri.UnescapeDataString(locationUri.Path);
                 string locationDirectory = Path.GetDirectoryName(location) !;
                 string inputFileName = Path.Combine(locationDirectory, $"Year{year.ToString("D4")}", $"Day{day:D2}", "input.txt");
-                data = File.ReadAllText(inputFileName);
+                data = File.ReadAllLines(inputFileName);
             }
 
             string result = string.Empty;

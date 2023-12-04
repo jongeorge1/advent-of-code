@@ -2,6 +2,6 @@
 {
     public interface ISolution
     {
-        string Solve(string input);
+        string Solve(string[] input);
     }
 }

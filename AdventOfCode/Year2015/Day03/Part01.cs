@@ -14,12 +14,12 @@
                 { '<', input => (input.Item1 - 1, input.Item2) },
             };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var visitedLocations = new HashSet<(int, int)> { (0, 0) };
             (int, int) location = (0, 0);
 
-            foreach (char current in input)
+            foreach (char current in input[0])
             {
                 location = Mutators[current](location);
                 visitedLocations.Add(location);

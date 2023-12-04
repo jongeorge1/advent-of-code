@@ -6,12 +6,8 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            foreach (StringExtensions.StringSplitEntry entry in input.OptimizedSplit(Environment.NewLine.AsSpan()))
-            {
-            }
-
             return string.Empty;
         }
     }

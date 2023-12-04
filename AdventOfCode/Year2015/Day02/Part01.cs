@@ -5,10 +5,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             return input
-                .Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Split('x', StringSplitOptions.RemoveEmptyEntries))
                 .Select(x => (Length: int.Parse(x[0]), Width: int.Parse(x[1]), Height: int.Parse(x[2])))
                 .Sum(x => CalculateRequiredPaper(x.Length, x.Width, x.Height))

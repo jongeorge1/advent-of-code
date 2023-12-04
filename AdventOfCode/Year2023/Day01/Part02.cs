@@ -32,20 +32,20 @@
                 3,
             ];
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int runningTotal = 0;
 
             int currentFirstDigit = -1;
             int currentLastDigit = 0;
 
-            foreach (StringExtensions.StringSplitEntry entry in input.OptimizedSplit(Environment.NewLine.AsSpan()))
+            foreach (string entry in input)
             {
-                for (int i = 0; i < entry.Line.Length; i++)
+                for (int i = 0; i < entry.Length; i++)
                 {
-                    if (char.IsDigit(entry.Line[i]))
+                    if (char.IsDigit(entry[i]))
                     {
-                        currentLastDigit = entry.Line[i] - '0';
+                        currentLastDigit = entry[i] - '0';
 
                         if (currentFirstDigit == -1)
                         {
@@ -56,7 +56,7 @@
                     {
                         for (int word = 0; word < numbers.Length; word++)
                         {
-                            if (i + numbers[word].Length <= entry.Line.Length && entry.Line[i..].StartsWith(numbers[word]))
+                            if (i + numbers[word].Length <= entry.Length && entry[i..].StartsWith(numbers[word]))
                             {
                                 currentLastDigit = word + 1;
 

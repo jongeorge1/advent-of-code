@@ -6,10 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             return input
-                .Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Split('x', StringSplitOptions.RemoveEmptyEntries))
                 .Select(x => x.Select(int.Parse).ToList())
                 .Sum(this.CalculateRequiredRibbon)

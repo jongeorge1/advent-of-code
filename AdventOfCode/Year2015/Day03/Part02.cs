@@ -14,21 +14,21 @@
                 { '<', input => (input.Item1 - 1, input.Item2) },
             };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var visitedLocations = new HashSet<(int, int)> { (0, 0) };
             (int, int) santasLocation = (0, 0);
             (int, int) roboSantasLocation = (0, 0);
 
-            for (int i = 0; i < input.Length; i += 2)
+            for (int i = 0; i < input[0].Length; i += 2)
             {
-                santasLocation = Mutators[input[i]](santasLocation);
+                santasLocation = Mutators[input[0][i]](santasLocation);
                 visitedLocations.Add(santasLocation);
             }
 
-            for (int i = 1; i < input.Length; i += 2)
+            for (int i = 1; i < input[0].Length; i += 2)
             {
-                roboSantasLocation = Mutators[input[i]](roboSantasLocation);
+                roboSantasLocation = Mutators[input[0][i]](roboSantasLocation);
                 visitedLocations.Add(roboSantasLocation);
             }
 
