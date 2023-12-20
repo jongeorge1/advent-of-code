@@ -6,79 +6,60 @@
 
     public class Part02 : ISolution
     {
-        private static string[] numbers =
+        private static (string SearchString, int Number)[] numbers =
             [
-                "one",
-                "two",
-                "three",
-                "four",
-                "five",
-                "six",
-                "seven",
-                "eight",
-                "nine",
-            ];
-
-        private static int[] numberSkipChars =
-            [
-                2,
-                2,
-                4,
-                4,
-                3,
-                3,
-                4,
-                4,
-                3,
+                ("1", 1),
+                ("2", 2),
+                ("3", 3),
+                ("4", 4),
+                ("5", 5),
+                ("6", 6),
+                ("7", 7),
+                ("8", 8),
+                ("9", 9),
+                ("one", 1),
+                ("two", 2),
+                ("three", 3),
+                ("four", 4),
+                ("five", 5),
+                ("six", 6),
+                ("seven", 7),
+                ("eight", 8),
+                ("nine", 9),
             ];
 
         public string Solve(string[] input)
         {
             int runningTotal = 0;
 
-            int currentFirstDigit = -1;
-            int currentLastDigit = 0;
-
             foreach (string entry in input)
             {
-                for (int i = 0; i < entry.Length; i++)
-                {
-                    if (char.IsDigit(entry[i]))
-                    {
-                        currentLastDigit = entry[i] - '0';
+                ReadOnlySpan<char> entrySpan = entry.AsSpan();
 
-                        if (currentFirstDigit == -1)
-                        {
-                            currentFirstDigit = currentLastDigit;
-                        }
-                    }
-                    else
-                    {
-                        for (int word = 0; word < numbers.Length; word++)
-                        {
-                            if (i + numbers[word].Length <= entry.Length && entry[i..].StartsWith(numbers[word]))
-                            {
-                                currentLastDigit = word + 1;
+                int digit = FindFirstDigitInSpan(entrySpan, 0, 1);
+                runningTotal += digit * 10;
 
-                                if (currentFirstDigit == -1)
-                                {
-                                    currentFirstDigit = currentLastDigit;
-                                }
-
-                                i += numberSkipChars[word] - 1;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                runningTotal += currentFirstDigit * 10;
-                runningTotal += currentLastDigit;
-
-                currentFirstDigit = -1;
+                digit = FindFirstDigitInSpan(entrySpan, entrySpan.Length - 1, -1);
+                runningTotal += digit;
             }
 
             return runningTotal.ToString();
+        }
+
+        private static int FindFirstDigitInSpan(ReadOnlySpan<char> span, int startIndex, int direction)
+        {
+            for (int i = startIndex; i < span.Length; i += direction)
+            {
+                foreach ((string SearchString, int Number) number in numbers)
+                {
+                    if (i + number.SearchString.Length <= span.Length && span[i..].StartsWith(number.SearchString))
+                    {
+                        return number.Number;
+                    }
+                }
+            }
+
+            throw new Exception("No digit found in span");
         }
     }
 }

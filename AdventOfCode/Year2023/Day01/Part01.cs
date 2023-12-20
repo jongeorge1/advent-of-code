@@ -1,41 +1,26 @@
 ﻿namespace AdventOfCode.Year2023.Day01
 {
     using System;
+    using System.Buffers;
+    using System.ComponentModel.DataAnnotations;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part01 : ISolution
     {
+        private static SearchValues<char> digits = SearchValues.Create("123456789");
+
         public string Solve(string[] input)
         {
             int runningTotal = 0;
 
-            int currentFirstDigit = -1;
-            int currentLastDigit = 0;
-
             foreach (string entry in input)
             {
-                // Iterating over each entry takes an additional ~4us.
-                for (int i = 0; i < entry.Length; i++)
-                {
-                    // This check takes ~0.7us.
-                    if (char.IsDigit(entry[i]))
-                    {
-                        // This code takes around ~5us.
-                        currentLastDigit = entry[i] - '0';
+                ReadOnlySpan<char> entrySpan = entry.AsSpan();
+                int index = entrySpan.IndexOfAny(digits);
+                runningTotal += (entrySpan[index] - '0') * 10;
 
-                        if (currentFirstDigit == -1)
-                        {
-                            currentFirstDigit = currentLastDigit;
-                        }
-                    }
-                }
-
-                // The next three lines account for around 1us.
-                runningTotal += currentFirstDigit * 10;
-                runningTotal += currentLastDigit;
-
-                currentFirstDigit = -1;
+                index = entrySpan.LastIndexOfAny(digits);
+                runningTotal += entrySpan[index] - '0';
             }
 
             // Converting the number to a string takes ~4us.
