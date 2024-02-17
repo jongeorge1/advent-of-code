@@ -23,6 +23,8 @@ namespace AdventOfCode.Year2023
         [TestCase(6, 2, "Time:      7  15   30\r\nDistance:  9  40  200", "71503")]
         [TestCase(7, 1, "32T3K 765\r\nT55J5 684\r\nKK677 28\r\nKTJJT 220\r\nQQQJA 483", "6440")]
         [TestCase(7, 2, "32T3K 765\r\nT55J5 684\r\nKK677 28\r\nKTJJT 220\r\nQQQJA 483", "5905")]
+        [TestCase(8, 1, "RL\r\n\r\nAAA = (BBB, CCC)\r\nBBB = (DDD, EEE)\r\nCCC = (ZZZ, GGG)\r\nDDD = (DDD, DDD)\r\nEEE = (EEE, EEE)\r\nGGG = (GGG, GGG)\r\nZZZ = (ZZZ, ZZZ)", "2")]
+        [TestCase(8, 1, "LLR\r\n\r\nAAA = (BBB, BBB)\r\nBBB = (AAA, ZZZ)\r\nZZZ = (ZZZ, ZZZ)", "6")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2023, day, part);
