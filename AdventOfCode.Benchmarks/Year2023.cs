@@ -49,4 +49,36 @@
         {
         }
     }
+
+    [MemoryDiagnoser]
+    public class Year2023Day04Part01 : BenchmarkBase
+    {
+        public Year2023Day04Part01() : base(2023, 4, 1)
+        {
+        }
+    }
+
+    [MemoryDiagnoser]
+    public class Year2023Day04Part02 : BenchmarkBase
+    {
+        public Year2023Day04Part02() : base(2023, 4, 2)
+        {
+        }
+    }
+
+    [MemoryDiagnoser]
+    public class Year2023Day05Part01 : BenchmarkBase
+    {
+        public Year2023Day05Part01() : base(2023, 5, 1)
+        {
+        }
+    }
+
+    [MemoryDiagnoser]
+    public class Year2023Day05Part02 : BenchmarkBase
+    {
+        public Year2023Day05Part02() : base(2023, 5, 2)
+        {
+        }
+    }
 }
