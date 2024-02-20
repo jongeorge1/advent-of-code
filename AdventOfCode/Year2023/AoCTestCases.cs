@@ -25,6 +25,14 @@ namespace AdventOfCode.Year2023
         [TestCase(7, 2, "32T3K 765\r\nT55J5 684\r\nKK677 28\r\nKTJJT 220\r\nQQQJA 483", "5905")]
         [TestCase(8, 1, "RL\r\n\r\nAAA = (BBB, CCC)\r\nBBB = (DDD, EEE)\r\nCCC = (ZZZ, GGG)\r\nDDD = (DDD, DDD)\r\nEEE = (EEE, EEE)\r\nGGG = (GGG, GGG)\r\nZZZ = (ZZZ, ZZZ)", "2")]
         [TestCase(8, 1, "LLR\r\n\r\nAAA = (BBB, BBB)\r\nBBB = (AAA, ZZZ)\r\nZZZ = (ZZZ, ZZZ)", "6")]
+        [TestCase(8, 2, "LR\r\n\r\n11A = (11B, XXX)\r\n11B = (XXX, 11Z)\r\n11Z = (11B, XXX)\r\n22A = (22B, XXX)\r\n22B = (22C, 22C)\r\n22C = (22Z, 22Z)\r\n22Z = (22B, 22B)\r\nXXX = (XXX, XXX)", "6")]
+        [TestCase(9, 1, "0 3 6 9 12 15\r\n1 3 6 10 15 21\r\n10 13 16 21 30 45", "114")]
+        [TestCase(9, 2, "0 3 6 9 12 15\r\n1 3 6 10 15 21\r\n10 13 16 21 30 45", "2")]
+        [TestCase(10, 1, "-L|F7\r\n7S-7|\r\nL|7||\r\n-L-J|\r\nL|-JF", "4")]
+        [TestCase(10, 1, "..F7.\r\n.FJ|.\r\nSJ.L7\r\n|F--J\r\nLJ...", "8")]
+        [TestCase(10, 2, "...........\r\n.S-------7.\r\n.|F-----7|.\r\n.||.....||.\r\n.||.....||.\r\n.|L-7.F-J|.\r\n.|..|.|..|.\r\n.L--J.L--J.\r\n...........", "4")]
+        [TestCase(10, 2, ".F----7F7F7F7F-7....\r\n.|F--7||||||||FJ....\r\n.||.FJ||||||||L7....\r\nFJL7L7LJLJ||LJ.L-7..\r\nL--J.L7...LJS7F-7L7.\r\n....F-J..F7FJ|L7L7L7\r\n....L7.F7||L7|.L7L7|\r\n.....|FJLJ|FJ|F7|.LJ\r\n....FJL-7.||.||||...\r\n....L---J.LJ.LJLJ...", "8")]
+        [TestCase(10, 2, "FF7FSF7F7F7F7F7F---7\r\nL|LJ||||||||||||F--J\r\nFL-7LJLJ||||||LJL-77\r\nF--JF--7||LJLJ7F7FJ-\r\nL---JF-JLJ.||-FJLJJ7\r\n|F|F-JF---7F7-L7L|7|\r\n|FFJF7L7F-JF7|JL---7\r\n7-L-JL7||F7|L7F-7F7|\r\nL.L7LFJ|||||FJL7||LJ\r\nL7JLJL-JLJLJL--JLJ.L", "10")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2023, day, part);
