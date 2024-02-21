@@ -1,6 +1,7 @@
 ﻿namespace AdventOfCode.Year2023.Day12
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using AdventOfCode;
 
@@ -29,25 +30,28 @@
             int springsCount = springs.Length;
 
             Queue<EvaluationState> evaluations = new ();
-            evaluations.Enqueue(new EvaluationState(new List<char>(), 0));
+            evaluations.Enqueue(new EvaluationState(0, 0, 0));
 
-            while (evaluations.TryDequeue(out var current))
+            while (evaluations.TryDequeue(out EvaluationState? current))
             {
-                if (current.SpringsIndex == springs.Length)
+                if (current.IsComplete(springsCount))
                 {
-                    // We have reached the end and this is a valid arrangement.
-                    ++validArrangements;
+                    if (current.ExpectedGroupsFound(expectedGroups))
+                    {
+                        ++validArrangements;
+                    }
+
                     continue;
                 }
 
-                if (springs[current.SpringsIndex] == '?')
+                if (springs[current.EvaluatedSprings] == '?')
                 {
-                    if (TryCreateNewEvaluationState(current, '.', springsCount, expectedGroups, out EvaluationState? newWorkingState))
+                    if (TryCreateNewEvaluationState(current, '.', expectedGroups, out EvaluationState? newWorkingState))
                     {
                         evaluations.Enqueue(newWorkingState);
                     }
 
-                    if (TryCreateNewEvaluationState(current, '#', springsCount, expectedGroups, out EvaluationState? newBrokenState))
+                    if (TryCreateNewEvaluationState(current, '#', expectedGroups, out EvaluationState? newBrokenState))
                     {
                         evaluations.Enqueue(newBrokenState);
                     }
@@ -56,8 +60,7 @@
                 {
                     if (TryCreateNewEvaluationState(
                         current,
-                        springs[current.SpringsIndex],
-                        springsCount,
+                        springs[current.EvaluatedSprings],
                         expectedGroups,
                         out EvaluationState? newState))
                     {
@@ -72,84 +75,91 @@
         private static bool TryCreateNewEvaluationState(
             EvaluationState current,
             char newSpringState,
-            int springsCount,
             int[] expectedGroups,
-            out EvaluationState newEvaluationState)
+            [NotNullWhen(true)] out EvaluationState? newEvaluationState)
         {
-            newEvaluationState = new EvaluationState(new List<char>(current.Springs), current.SpringsIndex + 1);
-            newEvaluationState.Springs.Add(newSpringState);
-            return IsValid(newEvaluationState, springsCount, expectedGroups);
-        }
+            newEvaluationState = null;
 
-        private static bool IsValid(EvaluationState state, int totalSpings, int[] expectedGroups)
-        {
-            int checksumPointer = 0;
-            bool inGroup = false;
-            int currentGroupSize = 0;
-
-            for (int i = 0; i < state.Springs.Count; ++i)
+            if (newSpringState == '.')
             {
-                if (state.Springs[i] == '#')
+                if (current.CurrentGroupSize > 0)
                 {
-                    // We've entered a new group. This is fine as long as we're expecting another group...
-                    if (checksumPointer == expectedGroups.Length)
+                    // We've just finished off a group. Compare it against the expected next group size
+                    // and return a new state if it's correct.
+                    if (current.CurrentGroupSize == expectedGroups[current.MatchedGroups])
                     {
-                        return false;
+                        // All good. Return a new state
+                        newEvaluationState = new EvaluationState(
+                            current.EvaluatedSprings + 1,
+                            current.MatchedGroups + 1,
+                            0);
+                        return true;
                     }
 
-                    inGroup = true;
-                    ++currentGroupSize;
-                }
-                else if (inGroup)
-                {
-                    // We've just finished a group
-                    if (currentGroupSize == expectedGroups[checksumPointer])
-                    {
-                        // The group was the expected size. That means we're still potentially valid.
-                        // Set up to evaluate the next group.
-                        inGroup = false;
-                        currentGroupSize = 0;
-                        checksumPointer++;
-                    }
-                    else
-                    {
-                        // We've just finished a group that didn't match the expected size. We're not valid.
-                        return false;
-                    }
-                }
-            }
-
-            // If we were in a group at the end of the loop, we need to do the final "end of group" check.
-            if (inGroup)
-            {
-                if (currentGroupSize == expectedGroups[checksumPointer])
-                {
-                    checksumPointer++;
-                }
-                else if (currentGroupSize < expectedGroups[checksumPointer] && state.Springs.Count < totalSpings)
-                {
-                    // We haven't got the full picture yet, so although the final group size doesn't match,
-                    // this is still potentially valid.
-                    return true;
-                }
-                else
-                {
                     return false;
                 }
+
+                // We weren't in a group, and we still aren't
+                newEvaluationState = new EvaluationState(
+                    current.EvaluatedSprings + 1,
+                    current.MatchedGroups,
+                    0);
+
+                return true;
             }
 
-            // We're now potentially valid. However, if we're at the end of the list of springs but not
-            // the end of the checksums we've got a problem...
-            if (state.Springs.Count == totalSpings && checksumPointer != expectedGroups.Length)
+            // We're in a group. If we weren't in one already, we should check to see that we're expecting
+            // another group
+            if (current.CurrentGroupSize == 0 && current.MatchedGroups == expectedGroups.Length)
             {
                 return false;
             }
 
+            // If we are in one, we should check to see that we haven't exceeded the next expected group size.
+            // (Use > because we are about to add one to the current group size.
+            if (current.CurrentGroupSize >= expectedGroups[current.MatchedGroups])
+            {
+                return false;
+            }
+
+            // We're in a group. We don't need to do anything special here, because we'll evaluate
+            // whether things are correct once we've exited the group.
+            newEvaluationState = new EvaluationState(
+                current.EvaluatedSprings + 1,
+                current.MatchedGroups,
+                current.CurrentGroupSize + 1);
+
             return true;
         }
 
-        private record EvaluationState(List<char> Springs, int SpringsIndex)
+        private record EvaluationState(int EvaluatedSprings, int MatchedGroups, int? CurrentGroupSize)
         {
+            public bool IsComplete(int expectedSpringsCount)
+            {
+                return this.EvaluatedSprings == expectedSpringsCount;
+            }
+
+            public bool ExpectedGroupsFound(int[] expectedGroups)
+            {
+                int matchedGroups = this.MatchedGroups;
+
+                if (this.CurrentGroupSize > 0)
+                {
+                    // We were in a group when we hit the end. If there's exactly one group left to match,
+                    // and it's the right size, then we're good. Otherwise not.
+                    if (expectedGroups[this.MatchedGroups] == this.CurrentGroupSize)
+                    {
+                        matchedGroups++;
+                    }
+                    else
+                    {
+                        // The group size didn't match, so this can't be valid.
+                        return false;
+                    }
+                }
+
+                return matchedGroups == expectedGroups.Length;
+            }
         }
     }
 }
