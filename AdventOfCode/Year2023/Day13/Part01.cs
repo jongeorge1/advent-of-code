@@ -113,7 +113,7 @@
             return parsedRows;
         }
 
-        private int[] RotateGridClockwise(int[] grid, int width)
+        private static int[] RotateGridClockwise(int[] grid, int width)
         {
             int[] newRows = new int[width];
 
