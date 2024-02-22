@@ -1,8 +1,10 @@
 ﻿namespace AdventOfCode.Year2023.Day12
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using System.Security.Cryptography;
     using AdventOfCode;
 
     public class Part01 : ISolution
@@ -46,12 +48,12 @@
 
                 if (springs[current.EvaluatedSprings] == '?')
                 {
-                    if (TryCreateNewEvaluationState(current, '.', expectedGroups, out EvaluationState? newWorkingState))
+                    if (TryCreateNewEvaluationState(current, '.', springsCount, expectedGroups, out EvaluationState? newWorkingState))
                     {
                         evaluations.Enqueue(newWorkingState);
                     }
 
-                    if (TryCreateNewEvaluationState(current, '#', expectedGroups, out EvaluationState? newBrokenState))
+                    if (TryCreateNewEvaluationState(current, '#', springsCount, expectedGroups, out EvaluationState? newBrokenState))
                     {
                         evaluations.Enqueue(newBrokenState);
                     }
@@ -61,6 +63,7 @@
                     if (TryCreateNewEvaluationState(
                         current,
                         springs[current.EvaluatedSprings],
+                        springsCount,
                         expectedGroups,
                         out EvaluationState? newState))
                     {
@@ -75,6 +78,7 @@
         private static bool TryCreateNewEvaluationState(
             EvaluationState current,
             char newSpringState,
+            int expectedSpringsCount,
             int[] expectedGroups,
             [NotNullWhen(true)] out EvaluationState? newEvaluationState)
         {
@@ -93,7 +97,8 @@
                             current.EvaluatedSprings + 1,
                             current.MatchedGroups + 1,
                             0);
-                        return true;
+
+                        return newEvaluationState.CanComplete(expectedSpringsCount, expectedGroups);
                     }
 
                     return false;
@@ -105,7 +110,7 @@
                     current.MatchedGroups,
                     0);
 
-                return true;
+                return newEvaluationState.CanComplete(expectedSpringsCount, expectedGroups);
             }
 
             // We're in a group. If we weren't in one already, we should check to see that we're expecting
@@ -129,14 +134,22 @@
                 current.MatchedGroups,
                 current.CurrentGroupSize + 1);
 
-            return true;
+            return newEvaluationState.CanComplete(expectedSpringsCount, expectedGroups);
         }
 
-        private record EvaluationState(int EvaluatedSprings, int MatchedGroups, int? CurrentGroupSize)
+        private record EvaluationState(int EvaluatedSprings, int MatchedGroups, int CurrentGroupSize)
         {
             public bool IsComplete(int expectedSpringsCount)
             {
                 return this.EvaluatedSprings == expectedSpringsCount;
+            }
+
+            public bool CanComplete(int expectedSpringsCount, int[] expectedGroups)
+            {
+                int remainingSprings = expectedSpringsCount - this.EvaluatedSprings;
+                int[] remainingGroups = expectedGroups[this.MatchedGroups..];
+                int minimumRequiredRemainingSprings = remainingGroups.Sum() + remainingGroups.Count() - 1 - this.CurrentGroupSize;
+                return remainingSprings >= minimumRequiredRemainingSprings;
             }
 
             public bool ExpectedGroupsFound(int[] expectedGroups)

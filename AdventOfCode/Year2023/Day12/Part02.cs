@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading.Tasks;
@@ -16,7 +17,7 @@
             foreach (string item in input)
             {
                 runningTotal += GetPossibleArrangementCount(item);
-                Console.WriteLine(runningTotal);
+                Console.WriteLine($"{runningTotal} arrangements found");
             }
 
             return runningTotal.ToString();
@@ -44,10 +45,12 @@
 
             int springsCount = springs.Length;
 
-            Queue<EvaluationState> evaluations = new();
-            evaluations.Enqueue(new EvaluationState(0, 0, 0));
+            Stack<EvaluationState> evaluations = new();
+            evaluations.Push(new EvaluationState(0, 0, 0));
 
-            while (evaluations.TryDequeue(out EvaluationState? current))
+            Dictionary<int, int> seenStates = new();
+
+            while (evaluations.TryPop(out EvaluationState? current))
             {
                 if (current.IsComplete(springsCount))
                 {
@@ -61,14 +64,20 @@
 
                 if (springs[current.EvaluatedSprings] == '?')
                 {
-                    if (TryCreateNewEvaluationState(current, '.', expectedGroups, out EvaluationState? newWorkingState))
+                    // Could be either. We can be a bit intelligent here; if we're in a group and the group is
+                    // already at the expected length, we shouldn't add another broken spring. Similarly, if we've
+                    // already evaluated all groups, we shouldn't add another broken spring.
+                    if (current.MatchedGroups < expectedGroups.Length && current.CurrentGroupSize < expectedGroups[current.MatchedGroups])
                     {
-                        evaluations.Enqueue(newWorkingState);
+                        if (TryCreateNewEvaluationState(current, '#', springsCount, expectedGroups, out EvaluationState? newBrokenState))
+                        {
+                            evaluations.Push(newBrokenState);
+                        }
                     }
 
-                    if (TryCreateNewEvaluationState(current, '#', expectedGroups, out EvaluationState? newBrokenState))
+                    if (TryCreateNewEvaluationState(current, '.', springsCount, expectedGroups, out EvaluationState? newWorkingState))
                     {
-                        evaluations.Enqueue(newBrokenState);
+                        evaluations.Push(newWorkingState);
                     }
                 }
                 else
@@ -76,12 +85,15 @@
                     if (TryCreateNewEvaluationState(
                         current,
                         springs[current.EvaluatedSprings],
+                        springsCount,
                         expectedGroups,
                         out EvaluationState? newState))
                     {
-                        evaluations.Enqueue(newState);
+                        evaluations.Push(newState);
                     }
                 }
+
+                ////Console.WriteLine($"    Evaluating {evaluations.Count} possibilities");
             }
 
             return validArrangements;
@@ -90,6 +102,7 @@
         private static bool TryCreateNewEvaluationState(
             EvaluationState current,
             char newSpringState,
+            int expectedSpringsCount,
             int[] expectedGroups,
             [NotNullWhen(true)] out EvaluationState? newEvaluationState)
         {
@@ -108,7 +121,8 @@
                             current.EvaluatedSprings + 1,
                             current.MatchedGroups + 1,
                             0);
-                        return true;
+
+                        return newEvaluationState.CanComplete(expectedSpringsCount, expectedGroups);
                     }
 
                     return false;
@@ -120,7 +134,7 @@
                     current.MatchedGroups,
                     0);
 
-                return true;
+                return newEvaluationState.CanComplete(expectedSpringsCount, expectedGroups);
             }
 
             // We're in a group. If we weren't in one already, we should check to see that we're expecting
@@ -144,14 +158,22 @@
                 current.MatchedGroups,
                 current.CurrentGroupSize + 1);
 
-            return true;
+            return newEvaluationState.CanComplete(expectedSpringsCount, expectedGroups);
         }
 
-        private record EvaluationState(int EvaluatedSprings, int MatchedGroups, int? CurrentGroupSize)
+        private record EvaluationState(int EvaluatedSprings, int MatchedGroups, int CurrentGroupSize)
         {
             public bool IsComplete(int expectedSpringsCount)
             {
                 return this.EvaluatedSprings == expectedSpringsCount;
+            }
+
+            public bool CanComplete(int expectedSpringsCount, int[] expectedGroups)
+            {
+                int remainingSprings = expectedSpringsCount - this.EvaluatedSprings;
+                int[] remainingGroups = expectedGroups[this.MatchedGroups..];
+                int minimumRequiredRemainingSprings = remainingGroups.Sum() + remainingGroups.Count() - 1 - this.CurrentGroupSize;
+                return remainingSprings >= minimumRequiredRemainingSprings;
             }
 
             public bool ExpectedGroupsFound(int[] expectedGroups)
