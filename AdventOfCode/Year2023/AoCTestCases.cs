@@ -42,6 +42,7 @@ namespace AdventOfCode.Year2023
         [TestCase(12, 1, "????.######..#####. 1,6,5", "4")]
         [TestCase(12, 1, "?###???????? 3,2,1", "10")]
         [TestCase(12, 2, "???.### 1,1,3\r\n.??..??...?##. 1,1,3\r\n?#?#?#?#?#?#?#? 1,3,1,6\r\n????.#...#... 4,1,1\r\n????.######..#####. 1,6,5\r\n?###???????? 3,2,1", "525152")]
+        [TestCase(13, 1, "#.##..##.\r\n..#.##.#.\r\n##......#\r\n##......#\r\n..#.##.#.\r\n..##..##.\r\n#.#.##.#.\r\n\r\n#...##..#\r\n#....#..#\r\n..##..###\r\n#####.##.\r\n#####.##.\r\n..##..###\r\n#....#..#", "405")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2023, day, part);
