@@ -1,7 +1,9 @@
 ﻿namespace AdventOfCode.Year2023.Day14
 {
     using System;
+    using System.Collections.Generic;
     using System.Runtime.CompilerServices;
+    using System.Text;
     using AdventOfCode;
 
     public class Part02 : ISolution
@@ -10,21 +12,70 @@
         {
             PlatformItem[,] layout = BuildPlatformLayout(input);
 
-            for (int i = 0; i < 1000000; i++)
-            {
-                layout = TiltNorth(layout);
-                layout = TiltWest(layout);
-                layout = TiltSouth(layout);
-                layout = TiltEast(layout);
-            }
+            Dictionary<int, int> seenStates = new ();
 
-            Console.WriteLine($"After 1000000 cycles:");
-            PrintLayout(layout);
-            Console.WriteLine();
+            int cycles = 0;
+
+            // First, loop until we hit a state we've seen before.
+
+            int interval = 0;
+            int firstOccurance = 0;
+
+            do
+            {
+                layout = Cycle(layout);
+
+                int hash = GetLayoutHash(layout);
+
+                ++cycles;
+
+                // Have we seen this has before?
+                if (seenStates.TryGetValue(hash, out firstOccurance))
+                {
+                    // Work out how many more we need to do as a result.
+                    interval = cycles - firstOccurance;
+                }
+
+                seenStates[hash] = cycles;
+            }
+            while (interval == 0);
+
+            Console.WriteLine($"First occurance {firstOccurance}, interval {interval}");
+
+            // Use these to work out how many more cycles are required before we stop.
+            int remainingCycles = (1000000000 - firstOccurance) % interval;
+
+            for (int i = 0; i < remainingCycles; ++i)
+            {
+                layout = Cycle(layout);
+            }
 
             int score = CalculateLoad(layout);
 
             return score.ToString();
+        }
+
+        private static PlatformItem[,] Cycle(PlatformItem[,] layout)
+        {
+            layout = TiltNorth(layout);
+            layout = TiltWest(layout);
+            layout = TiltSouth(layout);
+            layout = TiltEast(layout);
+            return layout;
+        }
+
+        private static int GetLayoutHash(PlatformItem[,] layout)
+        {
+            StringBuilder builder = new();
+            for (int row = 0; row < layout.GetLength(1); ++row)
+            {
+                for (int col = 0; col < layout.GetLength(0); ++col)
+                {
+                    builder.Append((byte)layout[col, row]);
+                }
+            }
+
+            return builder.ToString().GetHashCode();
         }
 
         private static void PrintLayout(PlatformItem[,] layout)

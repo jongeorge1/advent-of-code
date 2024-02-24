@@ -45,6 +45,7 @@ namespace AdventOfCode.Year2023
         [TestCase(13, 1, "#.##..##.\r\n..#.##.#.\r\n##......#\r\n##......#\r\n..#.##.#.\r\n..##..##.\r\n#.#.##.#.\r\n\r\n#...##..#\r\n#....#..#\r\n..##..###\r\n#####.##.\r\n#####.##.\r\n..##..###\r\n#....#..#", "405")]
         [TestCase(13, 2, "#.##..##.\r\n..#.##.#.\r\n##......#\r\n##......#\r\n..#.##.#.\r\n..##..##.\r\n#.#.##.#.\r\n\r\n#...##..#\r\n#....#..#\r\n..##..###\r\n#####.##.\r\n#####.##.\r\n..##..###\r\n#....#..#", "400")]
         [TestCase(14, 1, "OOOO.#.O..\r\nOO..#....#\r\nOO..O##..O\r\nO..#.OO...\r\n........#.\r\n..#....#.#\r\n..O..#.O.O\r\n..O.......\r\n#....###..\r\n#....#....", "136")]
+        [TestCase(14, 2, "OOOO.#.O..\r\nOO..#....#\r\nOO..O##..O\r\nO..#.OO...\r\n........#.\r\n..#....#.#\r\n..O..#.O.O\r\n..O.......\r\n#....###..\r\n#....#....", "64")]
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2023, day, part);
