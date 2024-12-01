@@ -7,14 +7,14 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Span<Blueprint> blueprints = stackalloc Blueprint[30];
             int processedBlueprintCount = 0;
 
-            foreach (StringExtensions.StringSplitEntry current in input.SplitLines())
+            foreach (string current in input)
             {
-                blueprints[processedBlueprintCount++] = Blueprint.FromInputString(current.Line);
+                blueprints[processedBlueprintCount++] = Blueprint.FromInputString(current);
             }
 
             blueprints = blueprints[0..processedBlueprintCount];

@@ -4,7 +4,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var map = new Map(input);
             int roundCount = 0;

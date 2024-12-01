@@ -8,20 +8,19 @@
 
     public ref struct HillClimbingAlgorithm
     {
-        public HillClimbingAlgorithm(string input)
+        public HillClimbingAlgorithm(string[] input)
         {
-            var rows = input.Split(Environment.NewLine);
-            this.Map = new();
+            this.Map = [];
 
-            this.MapHeight = rows.Length;
-            this.MapWidth = rows[0].Length;
+            this.MapHeight = input.Length;
+            this.MapWidth = input[0].Length;
 
             for (int y = 0; y < this.MapHeight; ++y)
             {
                 for (int x = 0; x < this.MapWidth; ++x)
                 {
                     var location = new Point(x, y);
-                    char height = rows[y][x];
+                    char height = input[y][x];
 
                     switch (height)
                     {

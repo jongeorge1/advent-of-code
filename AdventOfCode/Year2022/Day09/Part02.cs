@@ -17,7 +17,7 @@
             { 'R', (1, 0) },
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             return KnotSimulation.Run(input, 10);
         }

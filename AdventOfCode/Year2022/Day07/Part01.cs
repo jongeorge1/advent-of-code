@@ -5,7 +5,7 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var filesystem = new FileSystem(input);
 

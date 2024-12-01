@@ -1,35 +1,24 @@
 ﻿namespace AdventOfCode.Year2022.Day13
 {
-    using System;
+    using System.Linq;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
-    using static AdventOfCode.Helpers.StringExtensions;
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            StringExtensions.StringSplitEnumerator enumerator = input.OptimizedSplit(Environment.NewLine.AsSpan());
-
             int index = 1;
             int sumOfCorrectlyOrderedPacketIndices = 0;
 
-            do
+            foreach (string[] pair in input.Chunk(2))
             {
-                enumerator.MoveNext();
-                ReadOnlySpan<char> left = enumerator.Current.Line;
-
-                enumerator.MoveNext();
-                ReadOnlySpan<char> right = enumerator.Current.Line;
-
-                if (PacketComparer.ComparePackets(left, right) == PacketTokenComparisonResult.Correct)
+                if (PacketComparer.ComparePackets(pair[0], pair[1]) == PacketTokenComparisonResult.Correct)
                 {
                     sumOfCorrectlyOrderedPacketIndices += index;
                 }
 
                 ++index;
             }
-            while (enumerator.MoveNext());
 
             return sumOfCorrectlyOrderedPacketIndices.ToString();
         }

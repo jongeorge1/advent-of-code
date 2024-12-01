@@ -5,13 +5,13 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             long total = 0;
 
-            foreach (StringExtensions.StringSplitEntry current in input.SplitLines())
+            foreach (string current in input)
             {
-                total += SnafuConverter.ToLong(current.Line);
+                total += SnafuConverter.ToLong(current);
             }
 
             return SnafuConverter.ToSnafu(total).ToString();

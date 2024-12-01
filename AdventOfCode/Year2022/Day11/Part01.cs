@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Monkey[] monkeys = input.Split(Environment.NewLine + Environment.NewLine).Select(x => new Monkey(x)).ToArray();
+            Monkey[] monkeys = input.Select(x => new Monkey(x)).ToArray();
 
             for (int round = 0; round < 20; ++round)
             {

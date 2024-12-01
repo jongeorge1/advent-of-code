@@ -6,11 +6,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Dictionary<string, Monkey> monkeys = new();
 
-            foreach (string line in input.Split(Environment.NewLine))
+            foreach (string line in input)
             {
                 var elements = line.Split(new char[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 if (elements.Length == 4)

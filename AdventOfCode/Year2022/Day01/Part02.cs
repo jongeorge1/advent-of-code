@@ -7,22 +7,22 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Span<int> loads = stackalloc int[1000];
             int written = 0;
             int currentElfLoad = 0;
 
-            foreach (StringExtensions.StringSplitEntry entry in input.OptimizedSplit(Environment.NewLine.AsSpan()))
+            foreach (string entry in input)
             {
-                if (entry.Line.Length == 0)
+                if (entry.Length == 0)
                 {
                     loads[written++] = currentElfLoad;
                     currentElfLoad = 0;
                 }
                 else
                 {
-                    currentElfLoad += int.Parse(entry.Line);
+                    currentElfLoad += int.Parse(entry);
                 }
             }
 

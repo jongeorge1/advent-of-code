@@ -7,14 +7,13 @@
     {
         private static readonly char[] Directions = new[] { 'L', 'R' };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] map = input.Split(Environment.NewLine);
-            ReadOnlySpan<char> instructions = map[^1].AsSpan();
+            ReadOnlySpan<char> instructions = input[^1].AsSpan();
 
-            map = map[..^2];
+            input = input[..^2];
 
-            var cubeMap = new CubeMap(map);
+            var cubeMap = new CubeMap(input);
 
             // We'll be starting at the top left of the first cube.
             CubeFaceDescriptor currentCube = cubeMap.CubeFaces[0];
@@ -40,7 +39,7 @@
                     // Get the next destination in the current direction.
                     ((int X, int Y) proposedLocation, CubeFaceDescriptor proposedLocationCubeFace, int proposedNewDirection) = currentCube.GetNextLocationFrom(currentLocation, currentDirection);
 
-                    if (map[proposedLocation.Y][proposedLocation.X] == CubeMap.OpenTile)
+                    if (input[proposedLocation.Y][proposedLocation.X] == CubeMap.OpenTile)
                     {
                         // Console.WriteLine($"Moving to ({proposedLocation.X}, {proposedLocation.Y}) on face {proposedLocationCubeFace.Id} facing {proposedNewDirection}");
 

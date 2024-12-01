@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            return input.Split(Environment.NewLine)
+            return input
                 .Sum(Score)
                 .ToString();
         }

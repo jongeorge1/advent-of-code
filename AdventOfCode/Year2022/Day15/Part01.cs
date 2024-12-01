@@ -9,11 +9,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int targetRow = 2000000;
 
-            if (MemoryExtensions.Equals(input[0..4], "TEST"))
+            if (MemoryExtensions.Equals(input[0][0..4], "TEST"))
             {
                 targetRow = 10;
                 input = input[4..];

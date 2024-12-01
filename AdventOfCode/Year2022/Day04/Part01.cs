@@ -7,9 +7,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            return input.Split(new[] { Environment.NewLine, "-", "," }, StringSplitOptions.RemoveEmptyEntries)
+            return input
                 .Select(int.Parse)
                 .Chunk(4)
                 .Count(assignment =>

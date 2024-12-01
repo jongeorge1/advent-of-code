@@ -8,11 +8,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Dictionary<(int X, int Y), CaveContent> map = new();
 
-            foreach (var line in input.Split(Environment.NewLine))
+            foreach (var line in input)
             {
                 string[] segments = line.Split(new[] { ',', ' ', '-', '>' }, StringSplitOptions.RemoveEmptyEntries);
 

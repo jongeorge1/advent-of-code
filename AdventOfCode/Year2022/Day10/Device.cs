@@ -11,9 +11,9 @@
         private int cycle;
 
 
-        public Device(string program)
+        public Device(string[] program)
         {
-            this.program = program.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
+            this.program = program.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
             this.instructionMap = new()
             {
                 { "addx", this.AddX },

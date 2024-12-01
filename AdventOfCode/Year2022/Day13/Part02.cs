@@ -15,9 +15,9 @@
 
         private const string DividerPackets = $"\r\n{FirstDividerPacket}\r\n{SecondDividerPacket}";
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var fullInput = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var fullInput = input.ToList();
             fullInput.Add(FirstDividerPacket);
             fullInput.Add(SecondDividerPacket);
 

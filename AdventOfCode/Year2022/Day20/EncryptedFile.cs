@@ -4,14 +4,14 @@
 
     public class EncryptedFile
     {
-        public EncryptedFile(string input)
+        public EncryptedFile(string[] input)
         {
             // Going to try for part 1 with a linked list that has two sets of links; the original and the new.
-            var numbers = new EncryptedFileListItem[5000];
+            var numbers = new EncryptedFileListItem[input.Length];
 
             int itemCount = 0;
 
-            foreach (StringExtensions.StringSplitEntry current in input.SplitLines())
+            foreach (string current in input)
             {
                 var newItem = new EncryptedFileListItem
                 {
@@ -31,8 +31,6 @@
                     this.Zero = newItem;
                 }
             }
-
-            numbers = numbers[..itemCount];
 
             // Join the start and end items.
             numbers[0].AdjustedPrevious = numbers[^1];

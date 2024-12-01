@@ -34,7 +34,7 @@
 
         private static readonly int[] ShapeMaxLefts = new[] { 3, 4, 4, 6, 5 };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Span<byte> playSpace = stackalloc byte[8800];
             playSpace[0] = 127;
@@ -58,11 +58,11 @@
 
                 while (!landed)
                 {
-                    if (input[jetPatternIndex] == '<' && CanMoveLeft(currentLeft, currentBottom, ref Shapes[currentShape], ref playSpace))
+                    if (input[0][jetPatternIndex] == '<' && CanMoveLeft(currentLeft, currentBottom, ref Shapes[currentShape], ref playSpace))
                     {
                         --currentLeft;
                     }
-                    else if (input[jetPatternIndex] == '>' && CanMoveRight(currentLeft, currentBottom, ref Shapes[currentShape], ShapeMaxLefts[currentShape], ref playSpace))
+                    else if (input[0][jetPatternIndex] == '>' && CanMoveRight(currentLeft, currentBottom, ref Shapes[currentShape], ShapeMaxLefts[currentShape], ref playSpace))
                     {
                         ++currentLeft;
                     }

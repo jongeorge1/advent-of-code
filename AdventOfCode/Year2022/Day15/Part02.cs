@@ -1,17 +1,17 @@
 ﻿namespace AdventOfCode.Year2022.Day15
 {
-    using System.Collections.Generic;
     using System;
-    using AdventOfCode;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using AdventOfCode;
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int maxCoordinate = 4000000;
 
-            if (MemoryExtensions.Equals(input[0..4], "TEST"))
+            if (MemoryExtensions.Equals(input[0][0..4], "TEST"))
             {
                 maxCoordinate = 20;
                 input = input[4..];

@@ -63,7 +63,7 @@
                             maxGreens = Math.Max(count, maxGreens);
                             break;
                         default:
-                            throw new Exception("Unrecognised colour");
+                            throw new Exception($"Unrecognised colour '{colour}'");
                     }
                 }
 

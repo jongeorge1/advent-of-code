@@ -5,11 +5,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            for (int i = 4; i < input.Length; i++)
+            for (int i = 4; i < input[0].Length; i++)
             {
-                if (input[(i - 4)..i].Distinct().Count() == 4)
+                if (input[0][(i - 4)..i].Distinct().Count() == 4)
                 {
                     return i.ToString();
                 }

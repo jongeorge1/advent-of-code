@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             (List<char>[] stacks, (int Count, int From, int To)[] instructions) = this.ParseInput(input);
 
@@ -20,11 +20,11 @@
             return string.Concat(stacks.Select(x => x[0]));
         }
 
-        private (List<char>[] stacks, (int Count, int From, int To)[]) ParseInput(string input)
+        private (List<char>[] stacks, (int Count, int From, int To)[]) ParseInput(string[] input)
         {
-            string[] sections = input.Split(Environment.NewLine + Environment.NewLine);
+            int emptyLineIndex = Array.IndexOf(input, string.Empty);
 
-            string[] rawConfiguration = sections[0].Split(Environment.NewLine);
+            string[] rawConfiguration = input[0..emptyLineIndex];
 
             // Parse the initial configuration. First: how many stacks do we have?
             int stackCount = (rawConfiguration[0].Length + 1) / 4;
@@ -54,8 +54,8 @@
                 }
             }
 
-            (int, int, int)[] instructions = sections[1].Split(new[] { Environment.NewLine, " " }, StringSplitOptions.None)
-                .Chunk(6)
+            (int, int, int)[] instructions = input[(emptyLineIndex + 1) ..]
+                .Select(x => x.Split(' '))
                 .Select(x => (int.Parse(x[1]), int.Parse(x[3]) - 1, int.Parse(x[5]) - 1))
                 .ToArray();
 

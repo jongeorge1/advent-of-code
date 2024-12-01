@@ -5,11 +5,11 @@
 
     public class FileSystem
     {
-        public FileSystem(string input)
+        public FileSystem(string[] input)
         {
             this.CurrentDirectory = this.Root;
 
-            foreach (string command in input.Split(Environment.NewLine))
+            foreach (string command in input)
             {
                 string[] segments = command.Split(" ");
                 if (segments[0] == "$" && segments[1] == "cd")

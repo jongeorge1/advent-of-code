@@ -7,14 +7,14 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // For round 2, the numbers stack up too fast to even store in a long; we quickly end up with overflow issues.
             // To deal with that we need a stress management strategy that will not affect the tests - i.e. we need a way
             // to reduce the worry counts without affecting whether or not it's divisible by any of those primes.
             // Fortunately, maths comes to the rescue; we can do this by taking the modulo of the worry number by 
             // the lowest common multiple of all the divisors.
-            Monkey[] monkeys = input.Split(Environment.NewLine + Environment.NewLine).Select(x => new Monkey(x)).ToArray();
+            Monkey[] monkeys = input.Select(x => new Monkey(x)).ToArray();
 
             long lowestCommonMultipleOfAllDivisors = Numeric.LeastCommonMultiple(monkeys.Select(x => (long)x.TestDivisor));
             Func<long, long> stressManagementStrategy = input => input % lowestCommonMultipleOfAllDivisors;

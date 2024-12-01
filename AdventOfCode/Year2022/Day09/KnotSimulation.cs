@@ -15,7 +15,7 @@
             { 'R', (1, 0) },
         };
 
-        public static string Run(string input, int knotCount)
+        public static string Run(string[] input, int knotCount)
         {
             HashSet<(int X, int Y)> tailVisitedLocations = new()
             {
@@ -24,7 +24,7 @@
 
             (int X, int Y)[] knots = new (int, int)[knotCount];
 
-            foreach (string row in input.Split(Environment.NewLine))
+            foreach (string row in input)
             {
                 var direction = Directions[row[0]];
                 var times = int.Parse(row[2..]);

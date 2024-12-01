@@ -24,14 +24,14 @@
             { '/', (long knownValue, long target) => knownValue * target },
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var monkeys = new Dictionary<string, Monkey>();
 
             var humanMonkey = new Human(ref monkeys);
             monkeys.Add("humn", humanMonkey);
 
-            foreach (string line in input.Split(Environment.NewLine))
+            foreach (string line in input)
             {
                 var elements = line.Split(new char[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 

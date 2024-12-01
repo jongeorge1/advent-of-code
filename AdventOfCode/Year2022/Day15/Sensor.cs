@@ -45,10 +45,10 @@ namespace AdventOfCode.Year2022.Day15
                 this.SensorLocation.Y + this.ClosestBeaconDistance);
         }
 
-        public static List<Sensor> BuildSensors(string input)
+        public static List<Sensor> BuildSensors(string[] input)
         {
-            List<Sensor> result = new();
-            foreach (StringExtensions.StringSplitEntry line in input.OptimizedSplit(Environment.NewLine.AsSpan()))
+            List<Sensor> result = [];
+            foreach (string line in input)
             {
                 result.Add(new Sensor(line));
             }

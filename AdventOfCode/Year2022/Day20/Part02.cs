@@ -5,7 +5,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var file = new EncryptedFile(input);
             file.ApplyDecryptionKey(811589153);

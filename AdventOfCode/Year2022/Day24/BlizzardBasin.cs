@@ -22,42 +22,38 @@
         private int width;
         private int height;
 
-        public BlizzardBasin(string map)
+        public BlizzardBasin(string[] map)
         {
-            StringExtensions.StringSplitEnumerator mapRows = map.SplitLines();
-
             // Skip the first row as it's "wall". This will also apply to the first column.
-            mapRows.MoveNext();
+            int currentRow = 1;
 
             // However, we can use it to establish the "width" of the play area...
-            this.width = mapRows.Current.Line.Length - 2;
+            this.width = map[currentRow].Length - 2;
 
-            int row = 0;
-
-            while (mapRows.MoveNext() && mapRows.Current.Line[1] != '#')
+            while (currentRow < map.Length && map[currentRow][1] != '#')
             {
-                this.horizontalBlizzards[row] = new List<(int StartColumn, int Direction)>();
+                this.horizontalBlizzards[currentRow - 1] = new List<(int StartColumn, int Direction)>();
 
-                for (int column = 0; column < mapRows.Current.Line.Length - 1; ++column)
+                for (int column = 0; column < map[currentRow].Length - 1; ++column)
                 {
-                    if (row == 0)
+                    if (currentRow == 1)
                     {
                         this.verticalBlizzards[column] = new List<(int StartRow, int Direction)>();
                     }
 
-                    switch (mapRows.Current.Line[column + 1])
+                    switch (map[currentRow][column + 1])
                     {
                         case '>':
-                            this.horizontalBlizzards[row].Add((column, 1));
+                            this.horizontalBlizzards[currentRow - 1].Add((column, 1));
                             break;
                         case '<':
-                            this.horizontalBlizzards[row].Add((column, -1));
+                            this.horizontalBlizzards[currentRow - 1].Add((column, -1));
                             break;
                         case '^':
-                            this.verticalBlizzards[column].Add((row, -1));
+                            this.verticalBlizzards[column].Add((currentRow - 1, -1));
                             break;
                         case 'v':
-                            this.verticalBlizzards[column].Add((row, 1));
+                            this.verticalBlizzards[column].Add((currentRow - 1, 1));
                             break;
                         default:
                             // no-op
@@ -65,10 +61,10 @@
                     }
                 }
 
-                ++row;
+                ++currentRow;
             }
 
-            this.height = row;
+            this.height = currentRow - 1;
         }
 
         public int FindTimeFromEntranceToExit(int startTime)

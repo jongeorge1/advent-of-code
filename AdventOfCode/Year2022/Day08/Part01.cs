@@ -7,16 +7,14 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(Environment.NewLine);
-
-            Dictionary<(int X, int Y), int> forest = rows
+            Dictionary<(int X, int Y), int> forest = input
                 .SelectMany((row, y) => row.Select((col, x) => ((x, y), int.Parse(col.ToString()))))
                 .ToDictionary(x => x.Item1, x => x.Item2);
 
-            int height = rows.Length;
-            int width = rows[0].Length;
+            int height = input.Length;
+            int width = input[0].Length;
 
             // Need to "look" at the forest from every point around the outside and build up a list.
             // of visible trees. Use a hashset to avoid the need to check whether we've seen a tree

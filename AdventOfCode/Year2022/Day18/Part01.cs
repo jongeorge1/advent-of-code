@@ -18,15 +18,15 @@
             (0, 0, 1),
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             HashSet<(int X, int Y, int Z)> cubes = new();
 
-            foreach (StringExtensions.StringSplitEntry current in input.OptimizedSplit(Environment.NewLine.AsSpan()))
+            foreach (string current in input)
             {
-                int separatorIndex = current.Line.IndexOf(',');
-                int x = int.Parse(current.Line[..separatorIndex]);
-                ReadOnlySpan<char> remainder = current.Line[(separatorIndex + 1)..];
+                int separatorIndex = current.IndexOf(',');
+                int x = int.Parse(current[..separatorIndex]);
+                ReadOnlySpan<char> remainder = current[(separatorIndex + 1) ..];
                 separatorIndex = remainder.IndexOf(',');
                 int y = int.Parse(remainder[..separatorIndex]);
                 int z = int.Parse(remainder[(separatorIndex + 1)..]);

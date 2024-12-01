@@ -17,7 +17,7 @@
 
         private int currentProposalFunctionStartIndex = 0;
 
-        public Map(string input)
+        public Map(string[] input)
         {
             this.proposalFunctions = new[]
             {
@@ -25,9 +25,9 @@
                     this.TryProposeMovingSouth,
                     this.TryProposeMovingWest,
                     this.TryProposeMovingEast,
-                };
+            };
 
-            this.elfLocations = input.Split(Environment.NewLine)
+            this.elfLocations = input
                 .SelectMany((row, y) => row.Select((col, x) => (x, y, col)))
                 .Where(space => space.col == Elf)
                 .Select(space => (space.x, space.y))

@@ -1,20 +1,17 @@
 ﻿namespace AdventOfCode.Year2022.Day01
 {
-    using System;
-    using System.Linq;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int currentMaxElfLoad = 0;
             int currentElfLoad = 0;
 
-            foreach (StringExtensions.StringSplitEntry entry in input.OptimizedSplit(Environment.NewLine.AsSpan()))
+            foreach (string entry in input)
             {
-                if (entry.Line.Length == 0)
+                if (entry.Length == 0)
                 {
                     if (currentElfLoad > currentMaxElfLoad)
                     {
@@ -25,7 +22,7 @@
                 }
                 else
                 {
-                    currentElfLoad += int.Parse(entry.Line);
+                    currentElfLoad += int.Parse(entry);
                 }
             }
 

@@ -2,21 +2,19 @@
 {
     using System;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Span<Blueprint> blueprints = stackalloc Blueprint[3];
             int processedBlueprintCount = 0;
 
-            StringExtensions.StringSplitEnumerator enumerator = input.SplitLines();
+            int index = 0;
 
             while (processedBlueprintCount < 3)
             {
-                enumerator.MoveNext();
-                blueprints[processedBlueprintCount++] = Blueprint.FromInputString(enumerator.Current.Line);
+                blueprints[processedBlueprintCount++] = Blueprint.FromInputString(input[index++]);
             }
 
             int sum = 1;

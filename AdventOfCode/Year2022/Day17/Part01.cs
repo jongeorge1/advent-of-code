@@ -35,7 +35,7 @@
 
         private static readonly int[] ShapeMaxLefts = new[] { 3, 4, 4, 6, 5 };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // For now, we'll store the "play space" in a big list. Might want to look at pre-allocating it later.
             // Maximum space we could possibly need to store the entire play space would be if 2022 4-high columns landed
@@ -59,11 +59,11 @@
 
                 while (!landed)
                 {
-                    if (input[jetPatternIndex] == '<' && CanMoveLeft(currentLeft, currentBottom, ref Shapes[currentShape], ref playSpace))
+                    if (input[0][jetPatternIndex] == '<' && CanMoveLeft(currentLeft, currentBottom, ref Shapes[currentShape], ref playSpace))
                     {
                         --currentLeft;
                     }
-                    else if (input[jetPatternIndex] == '>' && CanMoveRight(currentLeft, currentBottom, ref Shapes[currentShape], ShapeMaxLefts[currentShape], ref playSpace))
+                    else if (input[0][jetPatternIndex] == '>' && CanMoveRight(currentLeft, currentBottom, ref Shapes[currentShape], ShapeMaxLefts[currentShape], ref playSpace))
                     {
                         ++currentLeft;
                     }

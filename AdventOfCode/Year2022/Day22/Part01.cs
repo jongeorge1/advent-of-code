@@ -2,10 +2,7 @@
 {
     using System;
     using System.Linq;
-    using System.Reflection;
     using AdventOfCode;
-    using AdventOfCode.Year2018.Day15;
-    using NUnit.Framework;
 
     public class Part01 : ISolution
     {
@@ -22,23 +19,22 @@
             (0, -1),
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] map = input.Split(Environment.NewLine);
-            ReadOnlySpan<char> instructions = map[^1].AsSpan();
+            ReadOnlySpan<char> instructions = input[^1].AsSpan();
 
-            map = map[..^2];
+            input = input[..^2];
 
             // To make things easier, we're going to maintain a list of start and end
             // indices for each row and column of the map
-            (int Start, int End)[] mapXBounds = Enumerable.Range(0, map.Length).Select(_ => (int.MaxValue, 0)).ToArray();
-            (int Start, int End)[] mapYBounds = Enumerable.Range(0, map.Max(row => row.Length)).Select(_ => (int.MaxValue, 0)).ToArray();
+            (int Start, int End)[] mapXBounds = Enumerable.Range(0, input.Length).Select(_ => (int.MaxValue, 0)).ToArray();
+            (int Start, int End)[] mapYBounds = Enumerable.Range(0, input.Max(row => row.Length)).Select(_ => (int.MaxValue, 0)).ToArray();
 
             for (int row = 0; row < mapXBounds.Length; ++row)
             {
                 for (int col = 0; col < mapYBounds.Length; ++col)
                 {
-                    if (col < map[row].Length && map[row][col] != Void)
+                    if (col < input[row].Length && input[row][col] != Void)
                     {
                         if (row < mapYBounds[col].Start)
                         {
@@ -107,7 +103,7 @@
                     }
 
                     // If our move wouldn't take us into a wall, go ahead
-                    if (map[destination.Y][destination.X] == OpenTile)
+                    if (input[destination.Y][destination.X] == OpenTile)
                     {
                         location = destination;
                     }

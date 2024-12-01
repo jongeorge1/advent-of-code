@@ -6,25 +6,22 @@
     using System.Linq;
     using System.Text;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
-    using AdventOfCode.Year2016.Day17;
-    using NUnit.Framework;
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Dictionary<string, Valve> valves = new();
             int countOfValvesWorthOpening = 0;
-            foreach (StringExtensions.StringSplitEntry line in input.OptimizedSplit(Environment.NewLine.AsSpan()))
+            foreach (string line in input)
             {
-                int flowRateEnd = line.Line.IndexOf(';');
+                int flowRateEnd = line.IndexOf(';');
 
                 var valve = new Valve
                 {
-                    Name = line.Line[6..8].ToString(),
-                    FlowRate = int.Parse(line.Line[23..flowRateEnd]),
-                    Destinations = line.Line[(flowRateEnd + 24)..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
+                    Name = line[6..8].ToString(),
+                    FlowRate = int.Parse(line[23..flowRateEnd]),
+                    Destinations = line[(flowRateEnd + 24)..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
                 };
 
                 if (valve.FlowRate > 0)
