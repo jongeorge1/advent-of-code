@@ -1,6 +1,8 @@
 ﻿namespace AdventOfCode.Year2015.Day06
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text.RegularExpressions;
 
     public class Part02 : ISolution
@@ -9,9 +11,9 @@
 
         private readonly int[,] grid = new int[1000, 1000];
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            MatchCollection matches = ExtractionRegex.Matches(input);
+            IEnumerable<Match> matches = input.SelectMany(x => ExtractionRegex.Matches(x));
 
             foreach (Match match in matches)
             {

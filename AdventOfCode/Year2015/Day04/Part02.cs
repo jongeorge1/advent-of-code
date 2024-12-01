@@ -5,14 +5,14 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int current = 1;
             var hasher = MD5.Create();
 
             while (true)
             {
-                byte[] hashbytes = Encoding.UTF8.GetBytes(input + current);
+                byte[] hashbytes = Encoding.UTF8.GetBytes(input[0] + current);
                 byte[] hash = hasher.ComputeHash(hashbytes);
 
                 // To convert this back into a string representation of the hash, we'd concatenate the 2-digit hex

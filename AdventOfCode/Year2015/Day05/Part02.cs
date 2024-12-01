@@ -5,10 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             return input
-                .Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
                 .Count(IsNice)
                 .ToString();
         }
