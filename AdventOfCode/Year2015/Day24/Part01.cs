@@ -7,9 +7,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            long[] weights = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).OrderByDescending(x => x).ToArray();
+            long[] weights = input.Select(long.Parse).OrderByDescending(x => x).ToArray();
 
             // We can work out the size of each group by dividing the total size by three.
             long groupWeight = weights.Sum() / 3;

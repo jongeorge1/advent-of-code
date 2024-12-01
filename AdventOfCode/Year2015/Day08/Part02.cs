@@ -4,14 +4,12 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] entries = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
             int totalCodeLength = 0;
             int totalStringLength = 0;
 
-            foreach (string entry in entries)
+            foreach (string entry in input)
             {
                 totalStringLength += entry.Length;
                 totalCodeLength += 2; // For the quotes.

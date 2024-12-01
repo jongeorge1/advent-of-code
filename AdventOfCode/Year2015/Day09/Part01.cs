@@ -6,14 +6,12 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] entries = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
             var distances = new Dictionary<(string, string), int>();
             var locationsSet = new HashSet<string>();
 
-            foreach (string entry in entries)
+            foreach (string entry in input)
             {
                 string[] components = entry.Split(' ');
                 int distance = int.Parse(components[4]);

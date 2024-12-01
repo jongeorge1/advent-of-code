@@ -4,9 +4,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int targetPresents = int.Parse(input);
+            int targetPresents = int.Parse(input[0]);
 
             // Just iterating until we find the house takes forever. So rather than do that, we'll provision a big array
             // to represent houses, and work out the present counts for each.

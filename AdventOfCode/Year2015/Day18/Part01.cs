@@ -6,17 +6,16 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            IDictionary<(int x, int y), bool> grid = rows
+            IDictionary<(int x, int y), bool> grid = input
                 .Select(x => x.ToCharArray())
                 .SelectMany((entry, row) => entry.Select((item, col) => (Location: (x: col, y: row), Entry: item)))
                 .Where(entry => entry.Entry == '#')
                 .ToDictionary(item => item.Location, _ => true);
 
-            int width = rows[0].Length;
-            int height = rows.Length;
+            int width = input[0].Length;
+            int height = input.Length;
 
             // 100 cycles in "live" mode, 4 in "test" mode.
             int cycles = width == 6 ? 4 : 100;

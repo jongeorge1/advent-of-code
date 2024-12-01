@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int[] containers = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            int[] containers = input.Select(int.Parse).ToArray();
             Array.Sort(containers);
             Array.Reverse(containers);
 

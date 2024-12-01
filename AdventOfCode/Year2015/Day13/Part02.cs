@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Dictionary<string, Person> people = BuildPeopleDictionary(input);
             people.Add("Me", new Person("Me"));
@@ -34,11 +34,11 @@
             return total;
         }
 
-        private static Dictionary<string, Person> BuildPeopleDictionary(string input)
+        private static Dictionary<string, Person> BuildPeopleDictionary(string[] input)
         {
             var result = new Dictionary<string, Person>();
 
-            foreach (string rule in input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (string rule in input)
             {
                 string[] components = rule.Split(new char[] { '.', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 string name = components[0];

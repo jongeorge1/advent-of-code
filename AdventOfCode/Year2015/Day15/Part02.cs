@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Ingredient[] ingredients = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(x => new Ingredient(x)).ToArray();
+            Ingredient[] ingredients = input.Select(x => new Ingredient(x)).ToArray();
 
             return BuildQuantityCombinations()
                 .Where(combination => CountCalories(combination, ingredients) == 500)

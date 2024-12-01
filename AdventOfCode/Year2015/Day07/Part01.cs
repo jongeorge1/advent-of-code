@@ -2,7 +2,7 @@
 {
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var circuit = new Circuit(input);
             IWire targetWire = circuit.Wires["a"];

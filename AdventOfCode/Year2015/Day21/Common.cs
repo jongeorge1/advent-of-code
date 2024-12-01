@@ -5,14 +5,12 @@
 
     public static class Common
     {
-        public static Combatant GetBoss(string input)
+        public static Combatant GetBoss(string[] input)
         {
-            string[] rows = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
             return new Combatant(
-                int.Parse(rows[0].Split(' ')[^1]),
-                int.Parse(rows[1].Split(' ')[^1]),
-                int.Parse(rows[2].Split(' ')[^1]));
+                int.Parse(input[0].Split(' ')[^1]),
+                int.Parse(input[1].Split(' ')[^1]),
+                int.Parse(input[2].Split(' ')[^1]));
         }
 
         public static IEnumerable<(Item Weapon, Item Armour, Item rings)> GetKitCombos()

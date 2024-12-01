@@ -2,7 +2,7 @@
 {
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int x = 1;
             int y = 1;

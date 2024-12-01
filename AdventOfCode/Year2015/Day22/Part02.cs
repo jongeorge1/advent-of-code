@@ -5,17 +5,15 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
             var initialState = new BattleState
             {
                 NextTurnNumber = 1,
                 PlayerHitPoints = 50,
                 PlayerMana = 500,
-                BossHitPoints = int.Parse(rows[0].Split(' ')[^1]),
-                BossDamage = int.Parse(rows[1].Split(' ')[^1]),
+                BossHitPoints = int.Parse(input[0].Split(' ')[^1]),
+                BossDamage = int.Parse(input[1].Split(' ')[^1]),
                 HardMode = true,
             };
 

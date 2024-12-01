@@ -5,9 +5,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var doc = JToken.Parse(input);
+            var doc = JToken.Parse(input[0]);
 
             int numbers = SumNumbersInToken(doc);
             return numbers.ToString();

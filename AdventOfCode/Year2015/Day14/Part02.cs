@@ -5,9 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Reindeer[] reindeer = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(x => new Reindeer(x)).ToArray();
+            Reindeer[] reindeer = input.Select(x => new Reindeer(x)).ToArray();
 
             var scores = reindeer.ToDictionary(x => x, _ => 0);
 

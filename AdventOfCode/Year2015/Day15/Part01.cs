@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Ingredient[] ingredients = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(x => new Ingredient(x)).ToArray();
+            Ingredient[] ingredients = input.Select(x => new Ingredient(x)).ToArray();
 
             return BuildQuantityCombinations().Max(combination => ScoreCombination(combination, ingredients)).ToString();
         }

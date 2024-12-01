@@ -4,16 +4,16 @@
     {
         private static readonly char[] BannedLetters = new[] { 'i', 'o', 'l' };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            input = input.Trim();
+            string data = input[0].Trim();
 
             while (true)
             {
-                input = IncrementPassword(input);
-                if (IsPasswordValid(input))
+                data = IncrementPassword(data);
+                if (IsPasswordValid(data))
                 {
-                    return input;
+                    return data;
                 }
             }
         }

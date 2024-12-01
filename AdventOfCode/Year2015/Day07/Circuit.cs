@@ -5,12 +5,9 @@
 
     public class Circuit
     {
-        public Circuit(string input)
+        public Circuit(string[] input)
         {
-            string[] instructions = input
-                .Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string instruction in instructions)
+            foreach (string instruction in input)
             {
                 string[] components = instruction.Split(' ');
 

@@ -20,9 +20,9 @@
             { "perfumes", 1 },
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Sue[] sues = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).Select(x => new Sue(x)).ToArray();
+            Sue[] sues = input.Select(x => new Sue(x)).ToArray();
 
             return sues.First(x => x.Matches(KnownFacts)).Number;
         }

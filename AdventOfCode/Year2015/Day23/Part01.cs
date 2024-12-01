@@ -6,10 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            List<(string Instruction, string Parameters)> instructions = rows.Select(x => (x[..3], x[4..])).ToList();
+            List<(string Instruction, string Parameters)> instructions = input.Select(x => (x[..3], x[4..])).ToList();
 
             var registers = new Dictionary<string, int>()
             {

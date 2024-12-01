@@ -4,16 +4,16 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            input = input.Trim();
+            string data = input[0].Trim();
 
             for (int i = 0; i < 40; i++)
             {
-                input = LookAndSay(input);
+                data = LookAndSay(data);
             }
 
-            return input.Length.ToString();
+            return data.Length.ToString();
         }
 
         private static string LookAndSay(string input)

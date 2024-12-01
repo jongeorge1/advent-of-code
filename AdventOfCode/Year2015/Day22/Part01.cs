@@ -5,11 +5,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             BattleState initialState;
 
-            if (input == "test1")
+            if (input[0] == "test1")
             {
                 initialState = new BattleState
                 {
@@ -20,7 +20,7 @@
                     BossHitPoints = 13,
                 };
             }
-            else if (input == "test2")
+            else if (input[0] == "test2")
             {
                 initialState = new BattleState
                 {
@@ -33,15 +33,13 @@
             }
             else
             {
-                string[] rows = input.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
                 initialState = new BattleState
                 {
                     NextTurnNumber = 1,
                     PlayerHitPoints = 50,
                     PlayerMana = 500,
-                    BossHitPoints = int.Parse(rows[0].Split(' ')[^1]),
-                    BossDamage = int.Parse(rows[1].Split(' ')[^1]),
+                    BossHitPoints = int.Parse(input[0].Split(' ')[^1]),
+                    BossDamage = int.Parse(input[1].Split(' ')[^1]),
                 };
             }
 
