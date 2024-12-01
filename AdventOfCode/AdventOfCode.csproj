@@ -11,21 +11,18 @@
 
   <ItemGroup>
     <Compile Remove="Year2016\**" />
-    <Compile Remove="Year2017\**" />
     <Compile Remove="Year2018\**" />
     <Compile Remove="Year2019\**" />
     <Compile Remove="Year2020\**" />
     <Compile Remove="Year2021\**" />
     <Compile Remove="Year2022\**" />
     <EmbeddedResource Remove="Year2016\**" />
-    <EmbeddedResource Remove="Year2017\**" />
     <EmbeddedResource Remove="Year2018\**" />
     <EmbeddedResource Remove="Year2019\**" />
     <EmbeddedResource Remove="Year2020\**" />
     <EmbeddedResource Remove="Year2021\**" />
     <EmbeddedResource Remove="Year2022\**" />
     <None Remove="Year2016\**" />
-    <None Remove="Year2017\**" />
     <None Remove="Year2018\**" />
     <None Remove="Year2019\**" />
     <None Remove="Year2020\**" />

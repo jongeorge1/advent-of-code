@@ -5,13 +5,13 @@ namespace AdventOfCode.Year2017.Day02
 {
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int checksumTotal = 0;
 
-            foreach (StringExtensions.StringSplitEntry row in input.SplitLines())
+            foreach (string row in input)
             {
-                checksumTotal += CalculateChecksum(row.Line);
+                checksumTotal += CalculateChecksum(row);
             }
 
             return checksumTotal.ToString();

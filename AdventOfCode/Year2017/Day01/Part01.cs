@@ -2,21 +2,22 @@
 {
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int total = 0;
+            string data = input[0];
 
-            for (int i = 0; i < input.Length - 1; ++i)
+            for (int i = 0; i < data.Length - 1; ++i)
             {
-                if (input[i] == input[i + 1])
+                if (data[i] == data[i + 1])
                 {
-                    total += input[i] - '0';
+                    total += data[i] - '0';
                 }
             }
 
-            if (input[^1] == input[0])
+            if (data[^1] == data[0])
             {
-                total += input[^1] - '0';
+                total += data[^1] - '0';
             }
 
             return total.ToString();

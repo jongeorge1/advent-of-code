@@ -2,18 +2,19 @@
 {
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int length = input.Length;
+            string data = input[0];
+            int length = data.Length;
             int offset = length / 2;
             int total = 0;
 
-            for (int i = 0; i < input.Length; ++i)
+            for (int i = 0; i < data.Length; ++i)
             {
                 int target = (i + offset) % length;
-                if (input[i] == input[target])
+                if (data[i] == data[target])
                 {
-                    total += input[i] - '0';
+                    total += data[i] - '0';
                 }
             }
 
