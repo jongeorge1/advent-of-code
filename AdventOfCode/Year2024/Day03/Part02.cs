@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Year2024.Day03
+﻿namespace AdventOfCode.Year2024.Day03;
 
 using AdventOfCode;
 
