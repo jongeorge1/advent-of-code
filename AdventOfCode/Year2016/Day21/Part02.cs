@@ -6,17 +6,17 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             string scrambled = "fbgdceah";
 
-            if (input.StartsWith("TEST"))
+            if (input[0].StartsWith("TEST"))
             {
                 scrambled = "decab";
-                input = input[4..];
+                input = input[1..];
             }
 
-            string[] instructions = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Reverse().ToArray();
+            string[] instructions = input.Reverse().ToArray();
 
             char[] unscrambled = scrambled.ToCharArray();
 
@@ -148,7 +148,7 @@
             int x = int.Parse(commandSegments[2]);
             int y = int.Parse(commandSegments[4]);
 
-            char[] reversedSegment = current[x.. (y + 1)].Reverse().ToArray();
+            char[] reversedSegment = current[x..(y + 1)].Reverse().ToArray();
 
             Array.Copy(current, 0, result, 0, x);
             Array.Copy(reversedSegment, 0, result, x, reversedSegment.Length);

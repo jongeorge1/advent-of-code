@@ -15,25 +15,25 @@
         // To facilitate the bit shifting we'll need later, our representations will pretend they are at the
         // left of the play space (left being the high bit). To make this easier to read (and change if I'm 
         // wrong, then I'll bitshift them here rather than working out the right numbers.
-        private static readonly byte[][] Shapes = new byte[][]
-        {
+        private static readonly byte[][] Shapes =
+        [
             // Line
-            new byte[] { 15 << 3 },
+            [15 << 3],
 
             // Cross
-            new byte[] { 2 << 4, 7 << 4, 2 << 4 },
+            [2 << 4, 7 << 4, 2 << 4],
 
             // Backwards L
-            new byte[] { 7 << 4, 1 << 4, 1 << 4 },
+            [7 << 4, 1 << 4, 1 << 4],
 
             // Column
-            new byte[] { 1 << 6, 1 << 6, 1 << 6, 1 << 6 },
+            [1 << 6, 1 << 6, 1 << 6, 1 << 6],
 
             // Square
-            new byte[] { 3 << 5, 3 << 5 },
-        };
+            [3 << 5, 3 << 5],
+        ];
 
-        private static readonly int[] ShapeMaxLefts = new[] { 3, 4, 4, 6, 5 };
+        private static readonly int[] ShapeMaxLefts = [3, 4, 4, 6, 5];
 
         public string Solve(string[] input)
         {

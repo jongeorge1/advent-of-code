@@ -8,7 +8,7 @@
 
     public class Part02 : ISolution
     {
-        private static Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownLeftSide = new Dictionary<char, Func<long, long, long>>
+        private static readonly Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownLeftSide = new Dictionary<char, Func<long, long, long>>
         {
             { '+', (long knownValue, long target) => target - knownValue },
             { '-', (long knownValue, long target) => knownValue - target },
@@ -16,7 +16,7 @@
             { '/', (long knownValue, long target) => knownValue / target },
         };
 
-        private static Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownRightSide = new Dictionary<char, Func<long, long, long>>
+        private static readonly Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownRightSide = new Dictionary<char, Func<long, long, long>>
         {
             { '+', (long knownValue, long target) => target - knownValue },
             { '-', (long knownValue, long target) => knownValue + target },
@@ -33,7 +33,7 @@
 
             foreach (string line in input)
             {
-                var elements = line.Split(new char[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] elements = line.Split(new char[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (elements[0] == "humn")
                 {
@@ -68,7 +68,7 @@
                 }
             }
 
-            OperatorMonkey rootMonkey = (OperatorMonkey)monkeys["root"];
+            var rootMonkey = (OperatorMonkey)monkeys["root"];
 
             // Collapse down branches that don't rely on humans
             Collapse(rootMonkey, ref monkeys);
@@ -137,15 +137,16 @@
 
         public abstract class Monkey
         {
-            private bool? dependsOnHuman = null;
             protected readonly Dictionary<string, Monkey> allMonkeys;
+
+            private bool? dependsOnHuman = null;
 
             protected Monkey(ref Dictionary<string, Monkey> allMonkeys)
             {
                 this.allMonkeys = allMonkeys;
             }
 
-            public string Name { get; set; }
+            public string? Name { get; set; }
 
             public bool DependsOnHuman
             {
@@ -187,7 +188,6 @@
             }
 
             public long Number { get; set; }
-
 
             public override long Yell() => this.Number;
 

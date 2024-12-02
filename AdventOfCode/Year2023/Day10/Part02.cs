@@ -35,9 +35,8 @@
                         // to outside or vice versa depends on what type of pipe it is.
                         if (tileType == TileType.NorthSouth)
                         {
-                                // This is the simplest case
-                                currentlyInside = !currentlyInside;
-
+                            // This is the simplest case
+                            currentlyInside = !currentlyInside;
                         }
                         else if (tileType == TileType.NorthEast ||
                             tileType == TileType.NorthWest ||
@@ -79,7 +78,7 @@
 
         private static Dictionary<(int, int), char> BuildLoopMap(string[] input, (int X, int Y) startPosition, char startTileType)
         {
-            Dictionary<(int X, int Y), char> loopTiles = new ();
+            Dictionary<(int X, int Y), char> loopTiles = new();
 
             (int X, int Y) currentPosition = startPosition;
             char currentTileType = startTileType;
@@ -214,13 +213,13 @@
 
             public const char Start = 'S';
 
-            public static char[] NorthConnectedTiles = { NorthSouth, NorthEast, NorthWest };
+            public static readonly char[] NorthConnectedTiles = [NorthSouth, NorthEast, NorthWest];
 
-            public static char[] SouthConnectedTiles = { NorthSouth, SouthEast, SouthWest };
+            public static readonly char[] SouthConnectedTiles = [NorthSouth, SouthEast, SouthWest];
 
-            public static char[] EastConnectedTiles = { NorthEast, SouthEast, EastWest };
+            public static readonly char[] EastConnectedTiles = [NorthEast, SouthEast, EastWest];
 
-            public static char[] WestConnectedTiles = { NorthWest, SouthWest, EastWest };
+            public static readonly char[] WestConnectedTiles = [NorthWest, SouthWest, EastWest];
         }
     }
 }

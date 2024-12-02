@@ -1,5 +1,6 @@
 namespace AdventOfCode.Year2016
 {
+    using System;
     using AdventOfCode;
     using NUnit.Framework;
 
@@ -49,7 +50,7 @@ namespace AdventOfCode.Year2016
         public void Tests(int day, int part, string input, string expectedResult)
         {
             ISolution solution = SolutionFactory.GetSolution(2016, day, part);
-            string result = solution.Solve(input);
+            string result = solution.Solve(input.Split(Environment.NewLine));
             Assert.That(result, Is.EqualTo(expectedResult));
         }
     }

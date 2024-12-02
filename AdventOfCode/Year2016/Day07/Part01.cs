@@ -9,15 +9,14 @@
     {
         private static readonly Regex NotRegex = new Regex(@"\[(\w+)\]", RegexOptions.Compiled);
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             int supportsTlsCount = 0;
 
-            for (int i = 0; i < rows.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 // Extract the sections in square brackets
-                string row = rows[i];
+                string row = input[i];
                 var notSections = new List<string>();
 
                 MatchCollection matches = NotRegex.Matches(row);
@@ -45,10 +44,10 @@
             // console.log(input);
             for (int i = 0; i < input.Length - 3; i++)
             {
-                string source = input[i.. (i + 2)];
+                string source = input[i..(i + 2)];
                 if (source[0] != source[1])
                 {
-                    string target = input[(i + 2) .. (i + 4)];
+                    string target = input[(i + 2) ..(i + 4)];
                     string search = new string(source.Reverse().ToArray());
 
                     if (target == search)

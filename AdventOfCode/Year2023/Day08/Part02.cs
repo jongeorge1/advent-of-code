@@ -5,7 +5,7 @@
     using System.Linq;
     using AdventOfCode;
 
-    public class Part02: ISolution
+    public class Part02 : ISolution
     {
         public string Solve(string[] input)
         {
@@ -42,13 +42,12 @@
                     {
                         locations[i] = map.Right;
                     }
-
                 }
 
                 ++position;
                 ++steps;
-
-            } while (locations.Any(x => !x.EndsWith('Z')));
+            }
+            while (locations.Any(x => !x.EndsWith('Z')));
 
             return steps.ToString();
         }

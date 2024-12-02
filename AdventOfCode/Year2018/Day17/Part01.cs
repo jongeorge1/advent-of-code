@@ -4,7 +4,7 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Point[] clayPoints = Parser.Parse(input);
 

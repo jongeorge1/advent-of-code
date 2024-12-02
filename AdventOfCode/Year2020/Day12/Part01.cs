@@ -16,7 +16,7 @@
                 { 270, input => (input.Item1 - 1, input.Item2) },
             };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Get rid of the newlines
             string[] data = input

@@ -26,8 +26,8 @@
 
             foreach (string row in input)
             {
-                var direction = Directions[row[0]];
-                var times = int.Parse(row[2..]);
+                (int X, int Y) direction = Directions[row[0]];
+                int times = int.Parse(row[2..]);
 
                 for (int i = 0; i < times; ++i)
                 {

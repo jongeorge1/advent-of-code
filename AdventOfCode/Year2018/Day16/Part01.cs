@@ -5,9 +5,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            (Sample[] Samples, Instruction[] instructions) data = Parser.Parse(input);
+            (Sample[] Samples, Instruction[] instructions) data = Parser.Parse(input[0]);
 
             IEnumerable<(Sample x, int)> testResults = data.Samples.Select(x => (x, x.GetMatchingOperationsCount()));
 

@@ -19,9 +19,9 @@
 
         private int nextInput = 0;
 
-        public Computer(string program, string modelNumber, bool verbose = false)
+        public Computer(string[] program, string modelNumber, bool verbose = false)
         {
-            this.program = program.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
+            this.program = program.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
             this.inputs = modelNumber.ToCharArray().Select(x => x - '1' + 1).ToArray();
             this.verbose = verbose;
             this.instructionMap = new ()
@@ -70,7 +70,7 @@
 
         private void Add(string[] instruction)
         {
-            var result = this.Registers[instruction[1]] + this.GetValueOrRegister(instruction[2]);
+            long result = this.Registers[instruction[1]] + this.GetValueOrRegister(instruction[2]);
             this.Registers[instruction[1]] = result;
             ++this.location;
 
@@ -82,7 +82,7 @@
 
         private void Mul(string[] instruction)
         {
-            var result = this.Registers[instruction[1]] * this.GetValueOrRegister(instruction[2]);
+            long result = this.Registers[instruction[1]] * this.GetValueOrRegister(instruction[2]);
             this.Registers[instruction[1]] = result;
             ++this.location;
 
@@ -94,7 +94,7 @@
 
         private void Div(string[] instruction)
         {
-            var result = (long)Math.Floor((decimal)this.Registers[instruction[1]] / this.GetValueOrRegister(instruction[2]));
+            long result = (long)Math.Floor((decimal)this.Registers[instruction[1]] / this.GetValueOrRegister(instruction[2]));
             this.Registers[instruction[1]] = result;
             ++this.location;
 
@@ -106,7 +106,7 @@
 
         private void Mod(string[] instruction)
         {
-            var result = this.Registers[instruction[1]] % this.GetValueOrRegister(instruction[2]);
+            long result = this.Registers[instruction[1]] % this.GetValueOrRegister(instruction[2]);
             this.Registers[instruction[1]] = result;
             ++this.location;
 
@@ -118,7 +118,7 @@
 
         private void Eql(string[] instruction)
         {
-            var result = this.Registers[instruction[1]] == this.GetValueOrRegister(instruction[2]) ? 1 : 0;
+            int result = this.Registers[instruction[1]] == this.GetValueOrRegister(instruction[2]) ? 1 : 0;
             this.Registers[instruction[1]] = result;
             ++this.location;
 

@@ -19,13 +19,13 @@
 
         public Map(string[] input)
         {
-            this.proposalFunctions = new[]
-            {
+            this.proposalFunctions =
+            [
                     (TryProposeDelegate)this.TryProposeMovingNorth,
-                    this.TryProposeMovingSouth,
-                    this.TryProposeMovingWest,
-                    this.TryProposeMovingEast,
-            };
+                this.TryProposeMovingSouth,
+                this.TryProposeMovingWest,
+                this.TryProposeMovingEast,
+            ];
 
             this.elfLocations = input
                 .SelectMany((row, y) => row.Select((col, x) => (x, y, col)))

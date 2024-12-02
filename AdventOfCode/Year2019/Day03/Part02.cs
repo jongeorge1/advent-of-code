@@ -15,10 +15,9 @@
             { 'R', new Point(1, 0) },
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             List<Point>[] lines = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(path => path.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries))
                 .Select(path => this.BuildPoints(path))
                 .ToArray();

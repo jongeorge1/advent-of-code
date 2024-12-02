@@ -7,10 +7,9 @@ namespace AdventOfCode.Year2019.Day06
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var directOrbits = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Split(new string[] { ")" }, StringSplitOptions.RemoveEmptyEntries))
                 .ToDictionary(x => x[1], x => x[0]);
 

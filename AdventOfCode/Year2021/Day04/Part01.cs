@@ -6,13 +6,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] segments = input.Split(new string[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+            int[] numbers = input[0].Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 
-            int[] numbers = segments[0].Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-
-            Board[] boards = segments[1..].Select(x => new Board(x)).ToArray();
+            Board[] boards = input[1..].Select(x => new Board(x)).ToArray();
 
             foreach (int draw in numbers)
             {

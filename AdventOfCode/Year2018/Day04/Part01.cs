@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var timeRecords = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(TimeRecord.FromString).ToList();
+            var timeRecords = input.Select(TimeRecord.FromString).ToList();
             timeRecords = this.SortAndPopulateGuardNumbers(timeRecords);
 
             int[] guardIds = timeRecords.Where(x => x.GuardNumber.HasValue).Select(x => x.GuardNumber!.Value).Distinct().ToArray();

@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Disc[] discs = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => new Disc(x)).OrderBy(x => x.Positions).ToArray();
+            Disc[] discs = input.Select(x => new Disc(x)).OrderBy(x => x.Positions).ToArray();
 
             // We can solve this using Chinese Remainder Theorem. The divisors are our disc position counts - this gives the rotation cycle.
             // The remainders are derived from the disc number, current position, and total positions. Essentially, the remainder we'll be looking

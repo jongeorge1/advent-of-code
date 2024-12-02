@@ -5,12 +5,12 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int targetRecipeCount = int.Parse(input);
+            int targetRecipeCount = int.Parse(input[0]);
             var recipies = new List<int>(targetRecipeCount + 10) { 3, 7 };
 
-            int[] elves = new[] { 0, 1 };
+            int[] elves = [0, 1];
 
             while (recipies.Count < targetRecipeCount + 10)
             {

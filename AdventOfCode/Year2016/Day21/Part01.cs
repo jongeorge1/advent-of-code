@@ -6,21 +6,19 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             string plainText = "abcdefgh";
 
-            if (input.StartsWith("TEST"))
+            if (input[0].StartsWith("TEST"))
             {
                 plainText = "abcde";
-                input = input[4..];
+                input = input[1..];
             }
-
-            string[] instructions = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).ToArray();
 
             char[] scrambled = plainText.ToCharArray();
 
-            foreach (string instruction in instructions)
+            foreach (string instruction in input)
             {
                 string[] components = instruction.Split(' ');
 
@@ -136,7 +134,7 @@
             int x = int.Parse(commandSegments[2]);
             int y = int.Parse(commandSegments[4]);
 
-            char[] reversedSegment = current[x.. (y + 1)].Reverse().ToArray();
+            char[] reversedSegment = current[x..(y + 1)].Reverse().ToArray();
 
             Array.Copy(current, 0, result, 0, x);
             Array.Copy(reversedSegment, 0, result, x, reversedSegment.Length);

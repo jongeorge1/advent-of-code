@@ -4,9 +4,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int serialNumber = int.Parse(input);
+            int serialNumber = int.Parse(input[0]);
 
             // Grid is represented as a 1d array because it's easier to work with.
             // Remember in this form, the grid is 0 based but the question expectes 1 based...

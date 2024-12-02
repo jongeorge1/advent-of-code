@@ -7,8 +7,8 @@
 
     public class Part01 : ISolution
     {
-        private static readonly char[] Openers = new char[] { '(', '[', '{', '<' };
-        private static readonly Dictionary<char, char> Closers = new ()
+        private static readonly char[] Openers = ['(', '[', '{', '<'];
+        private static readonly Dictionary<char, char> Closers = new()
         {
             { '(', ')' },
             { '[', ']' },
@@ -16,7 +16,7 @@
             { '<', '>' },
         };
 
-        private static readonly Dictionary<char, int> SyntaxErrorScores = new ()
+        private static readonly Dictionary<char, int> SyntaxErrorScores = new()
         {
             { ')', 3 },
             { ']', 57 },
@@ -24,13 +24,11 @@
             { '>', 25137 },
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).ToArray();
-
             int syntaxErrorScore = 0;
 
-            foreach (string row in rows)
+            foreach (string row in input)
             {
                 var validationStack = new Stack<char>();
 

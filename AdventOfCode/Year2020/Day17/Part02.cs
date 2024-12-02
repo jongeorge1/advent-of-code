@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // For some bonkers reason, IDictionary<TKey, TValue> is faster at lookups than a HashSet<T>. So we're using
             // that here, even though we don't care about the values (because we're only storing elements that are "on".

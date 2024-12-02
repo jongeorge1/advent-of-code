@@ -6,10 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var inputs = input.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
+            var inputs = input.ToList();
             int infectionIndex = inputs.IndexOf("Infection:");
 
             string[] immuneSystem = inputs.Skip(1).Take(infectionIndex - 1).ToArray();

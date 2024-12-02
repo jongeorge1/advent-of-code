@@ -2,7 +2,7 @@
 {
     public class Part01 : ISolution
     {
-        private static readonly char[] BannedLetters = new[] { 'i', 'o', 'l' };
+        private static readonly char[] BannedLetters = ['i', 'o', 'l'];
 
         public string Solve(string[] input)
         {

@@ -1,17 +1,15 @@
 ﻿namespace AdventOfCode.Year2020.Day01
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using AdventOfCode;
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var numbers = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => int.Parse(x))
-                .ToList();
+            IEnumerable<int> numbers = input.Select(int.Parse);
 
             foreach (int first in numbers)
             {

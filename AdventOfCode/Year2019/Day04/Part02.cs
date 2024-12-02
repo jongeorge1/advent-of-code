@@ -5,9 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int[] range = input
+            int[] range = input[0]
                 .Split(new string[] { "-" }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToArray();

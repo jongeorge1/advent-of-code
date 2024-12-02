@@ -5,7 +5,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int bestResult = input.Length;
 
@@ -13,7 +13,7 @@
             // from this code?
             return ParallelEnumerable.Range('a', 26)
                 .Min(c => PolymerReactor.React(
-                    Regex.Replace(input, ((char)c).ToString(), string.Empty, RegexOptions.IgnoreCase))
+                    Regex.Replace(input[0], ((char)c).ToString(), string.Empty, RegexOptions.IgnoreCase))
                     .Length)
                 .ToString();
         }

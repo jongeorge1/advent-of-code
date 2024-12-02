@@ -5,9 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string data)
+        public string Solve(string[] data)
         {
-            var vm = new AsyncIntCodeVm(data);
+            var vm = new AsyncIntCodeVm(data[0]);
             long[] outputs = vm.Execute(5);
 
             return outputs.LastOrDefault().ToString();

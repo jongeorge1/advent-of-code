@@ -5,13 +5,12 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] inputLines = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            var state = State.Parse(inputLines[0].Substring(15));
+            var state = State.Parse(input[0].Substring(15));
 
-            string[] ruleLines = new string[inputLines.Length - 1];
-            Array.Copy(inputLines, 1, ruleLines, 0, ruleLines.Length);
+            string[] ruleLines = new string[input.Length - 1];
+            Array.Copy(input, 1, ruleLines, 0, ruleLines.Length);
 
             Rule[] rules = ruleLines.Select(Rule.Parse).ToArray();
 

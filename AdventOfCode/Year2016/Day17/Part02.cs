@@ -10,10 +10,10 @@
     {
         private readonly MD5 hasher = MD5.Create();
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Once more with the breadth-first search
-            var start = new State { X = 0, Y = 0, Steps = 0, Path = string.Empty, AvailableDirections = this.GetAvailableDirections(input, string.Empty, 0, 0) };
+            var start = new State { X = 0, Y = 0, Steps = 0, Path = string.Empty, AvailableDirections = this.GetAvailableDirections(input[0], string.Empty, 0, 0) };
 
             var queue = new PriorityQueue<State, int>();
             queue.Enqueue(start, start.Steps);
@@ -43,7 +43,7 @@
                 {
                     string newPath = current.Path + direction;
                     (int x, int y) = GetNewLocation(direction, current.X, current.Y);
-                    queue.Enqueue(new State { X = x, Y = y, Steps = newPath.Length, Path = newPath, AvailableDirections = this.GetAvailableDirections(input, newPath, x, y) }, newPath.Length);
+                    queue.Enqueue(new State { X = x, Y = y, Steps = newPath.Length, Path = newPath, AvailableDirections = this.GetAvailableDirections(input[0], newPath, x, y) }, newPath.Length);
                 }
             }
 

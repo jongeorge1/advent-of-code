@@ -14,9 +14,9 @@
                 + Math.Abs(point1.T - point2.T);
         }
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            (int X, int Y, int Z, int T)[] points = input.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+            (int X, int Y, int Z, int T)[] points = input
                 .Select(x => x.Split(',').Select(int.Parse).ToArray())
                 .Select(y => (y[0], y[1], y[2], y[3]))
                 .ToArray();

@@ -5,9 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            (Sample[] Samples, Instruction[] Instructions) data = Parser.Parse(input);
+            (Sample[] Samples, Instruction[] Instructions) data = Parser.Parse(input[0]);
 
             IEnumerable<(Sample Sample, Operation[] CandidateOperations)> testResults = data.Samples.Select(x => (x, x.GetMatchingOperations()));
 
@@ -28,7 +28,7 @@
             // Now we have allocated all the operations we can run the program
             // For ease of use we'll stick the operations in a dictionary...
             var operationsDictionary = operations.ToDictionary(x => x.OpCode!.Value, x => x);
-            int[] register = new[] { 0, 0, 0, 0 };
+            int[] register = [0, 0, 0, 0];
 
             foreach (Instruction instruction in data.Instructions)
             {

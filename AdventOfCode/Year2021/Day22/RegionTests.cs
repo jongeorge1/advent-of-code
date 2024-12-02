@@ -51,7 +51,7 @@
 
             Assert.AreEqual(1, result.Count);
 
-            var resultRegion = result[0];
+            Region resultRegion = result[0];
 
             Assert.AreEqual(region1, resultRegion);
         }
@@ -66,7 +66,7 @@
 
             Assert.AreEqual(1, result.Count);
 
-            var resultRegion = result[0];
+            Region resultRegion = result[0];
 
             var expectedResult = new Region(4, 5, 2, 5, 2, 5);
 
@@ -83,7 +83,7 @@
 
             Assert.AreEqual(1, result.Count);
 
-            var resultRegion = result[0];
+            Region resultRegion = result[0];
 
             var expectedResult = new Region(2, 3, 2, 5, 2, 5);
 
@@ -114,7 +114,7 @@
 
             Assert.AreEqual(1, result.Count);
 
-            var resultRegion = result[0];
+            Region resultRegion = result[0];
 
             var expectedResult = new Region(2, 5, 4, 5, 2, 5);
 
@@ -131,7 +131,7 @@
 
             Assert.AreEqual(1, result.Count);
 
-            var resultRegion = result[0];
+            Region resultRegion = result[0];
 
             var expectedResult = new Region(2, 5, 2, 3, 2, 5);
 
@@ -162,7 +162,7 @@
 
             Assert.AreEqual(1, result.Count);
 
-            var resultRegion = result[0];
+            Region resultRegion = result[0];
 
             var expectedResult = new Region(2, 5, 2, 5, 4, 5);
 
@@ -179,7 +179,7 @@
 
             Assert.AreEqual(1, result.Count);
 
-            var resultRegion = result[0];
+            Region resultRegion = result[0];
 
             var expectedResult = new Region(2, 5, 2, 5, 2, 3);
 

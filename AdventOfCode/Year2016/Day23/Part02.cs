@@ -2,7 +2,7 @@
 {
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Analysis of the program suggest that it's calculating the factorial of the number that
             // starts in register a, then adding on the result of multiplying two further numbers

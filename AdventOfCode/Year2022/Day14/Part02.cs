@@ -12,7 +12,7 @@
         {
             Dictionary<(int X, int Y), CaveContent> map = new();
 
-            foreach (var line in input)
+            foreach (string line in input)
             {
                 string[] segments = line.Split(new[] { ',', ' ', '-', '>' }, StringSplitOptions.RemoveEmptyEntries);
 

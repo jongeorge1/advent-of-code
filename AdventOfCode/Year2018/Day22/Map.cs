@@ -13,12 +13,12 @@
             this.RiskLevels = riskLevels;
         }
 
-        public static Tools[] AllowedTools { get; } = new[]
-            {
+        public static Tools[] AllowedTools { get; } =
+            [
                 Tools.ClimbingGear | Tools.Torch,
                 Tools.Neither | Tools.ClimbingGear,
                 Tools.Neither | Tools.Torch,
-            };
+            ];
 
         public (int X, int Y) TargetLocation { get; set; }
 
@@ -32,10 +32,8 @@
 
         public int Width => this.ErosionLevels.GetLength(0);
 
-        public static Map FromInput(string input, int padding = 0)
+        public static Map FromInput(string[] rows, int padding = 0)
         {
-            string[] rows = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
             int depth = int.Parse(rows[0].Substring(7));
 
             string[] coordinates = rows[1].Substring(8).Split(',');

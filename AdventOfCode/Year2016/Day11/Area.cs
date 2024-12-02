@@ -9,10 +9,10 @@
     {
         private int elevator = 0;
 
-        public Area(string input)
+        public Area(string[] input)
         {
             this.elevator = 0;
-            this.Floors = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select((el, i) => new Floor(i + 1, el)).ToArray();
+            this.Floors = input.Select((el, i) => new Floor(i + 1, el)).ToArray();
         }
 
         private Area(int elevator, IEnumerable<Floor> floors)
@@ -34,10 +34,10 @@
 
         public string Serialize()
         {
-            StringBuilder builder = new ();
+            StringBuilder builder = new();
             builder.Append(this.elevator);
 
-            Dictionary<string, char> map = new ();
+            Dictionary<string, char> map = new();
             char current = 'a';
 
             Func<string, char> getMappedValue = (string element) =>
@@ -78,7 +78,7 @@
 
         public Area[] GetPossibleMoves()
         {
-            List<Area> moves = new ();
+            List<Area> moves = new();
 
             if (this.elevator != 0)
             {

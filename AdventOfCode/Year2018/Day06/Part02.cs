@@ -6,11 +6,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input) => this.Solve(input, 10000);
+        public string Solve(string[] input) => this.Solve(input, 10000);
 
-        public string Solve(string input, int targetDistance)
+        public string Solve(string[] input, int targetDistance)
         {
-            var points = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(PointBuilder.FromString).ToList();
+            var points = input.Select(PointBuilder.FromString).ToList();
 
             // Find the extent of the board that contains points
             var topLeft = new Point

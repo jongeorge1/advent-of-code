@@ -8,11 +8,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
-            bool[] enhancement = components[0].ToCharArray().Select(x => x == '#').ToArray();
+            bool[] enhancement = input[0].ToCharArray().Select(x => x == '#').ToArray();
 
             // If both the first and last elements of the enhancement are '#' then the first iteration will
             // turn all "out of range" pixels to lit and they will stay that way. So that must be considered
@@ -22,7 +20,7 @@
                 throw new Exception("Bad input");
             }
 
-            var image = components[1..].SelectMany((row, y) => row.ToCharArray().Select((col, x) => ((x, y), col == '#'))).ToDictionary(x => x.Item1, x => x.Item2);
+            var image = input[1..].SelectMany((row, y) => row.ToCharArray().Select((col, x) => ((x, y), col == '#'))).ToDictionary(x => x.Item1, x => x.Item2);
 
             for (int i = 0; i < 2; ++i)
             {

@@ -150,13 +150,13 @@
 
             public const char Start = 'S';
 
-            public static char[] NorthConnectedTiles = { NorthSouth, NorthEast, NorthWest };
+            public static readonly char[] NorthConnectedTiles = [NorthSouth, NorthEast, NorthWest];
 
-            public static char[] SouthConnectedTiles = { NorthSouth, SouthEast, SouthWest };
+            public static readonly char[] SouthConnectedTiles = [NorthSouth, SouthEast, SouthWest];
 
-            public static char[] EastConnectedTiles = { NorthEast, SouthEast, EastWest };
+            public static readonly char[] EastConnectedTiles = [NorthEast, SouthEast, EastWest];
 
-            public static char[] WestConnectedTiles = { NorthWest, SouthWest, EastWest };
+            public static readonly char[] WestConnectedTiles = [NorthWest, SouthWest, EastWest];
         }
     }
 }

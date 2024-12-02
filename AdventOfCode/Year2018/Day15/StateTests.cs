@@ -1,5 +1,6 @@
 ﻿namespace AdventOfCode.Year2018.Day15
 {
+    using System;
     using AdventOfCode.Year2018.Day15;
     using NUnit.Framework;
 
@@ -8,7 +9,7 @@
         [Test]
         public void ParseSetsYOffsetCorrectly()
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######");
+            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
 
             Assert.That(state.YOffset, Is.EqualTo(7));
         }
@@ -16,7 +17,7 @@
         [Test]
         public void ParseSetsYMaxCorrectly()
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######");
+            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
 
             Assert.That(state.MaxY, Is.EqualTo(5));
         }
@@ -24,9 +25,9 @@
         [Test]
         public void ParseSetsWallsCorrectly()
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######");
+            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
 
-            int[] wallLocations = new[] { 0, 1, 2, 3, 4, 5, 6, 7, 13, 14, 20, 21, 27, 28, 29, 30, 31, 32, 33, 34 };
+            int[] wallLocations = [0, 1, 2, 3, 4, 5, 6, 7, 13, 14, 20, 21, 27, 28, 29, 30, 31, 32, 33, 34];
 
             foreach (int current in wallLocations)
             {
@@ -37,9 +38,9 @@
         [Test]
         public void ParseSetsSpacesCorrectly()
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######");
+            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
 
-            int[] spaceLocations = new[] { 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26 };
+            int[] spaceLocations = [8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26];
 
             foreach (int current in spaceLocations)
             {
@@ -50,9 +51,9 @@
         [Test]
         public void ParseSetsElvesCorrectly()
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######");
+            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
 
-            int[] elfLocations = new[] { 11, 15, 19, 25 };
+            int[] elfLocations = [11, 15, 19, 25];
 
             foreach (int current in elfLocations)
             {
@@ -63,9 +64,9 @@
         [Test]
         public void ParseSetsGoblinsCorrectly()
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######");
+            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
 
-            int[] goblinLocations = new[] { 9, 17, 23 };
+            int[] goblinLocations = [9, 17, 23];
 
             foreach (int current in goblinLocations)
             {

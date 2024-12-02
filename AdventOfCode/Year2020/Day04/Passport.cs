@@ -6,9 +6,9 @@
 
     public class Passport
     {
-        private static readonly string[] RequiredEntries = new[] { "ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt" };
+        private static readonly string[] RequiredEntries = ["ecl", "pid", "eyr", "hcl", "byr", "iyr", "hgt"];
 
-        private static readonly string[] ValidEyeColours = new[] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
+        private static readonly string[] ValidEyeColours = ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"];
 
         private readonly string[] keyValuePairs;
 

@@ -10,10 +10,10 @@
     {
         public string Solve(string[] input)
         {
-            List<Galaxy> galaxies = new ();
+            List<Galaxy> galaxies = new();
 
-            List<int> emptyRows = new ();
-            List<int> emptyColumns = new ();
+            List<int> emptyRows = new();
+            List<int> emptyColumns = new();
 
             // Make a list of rows and columns that have no galaxies in them
             for (int y = 0; y < input.Length; y++)

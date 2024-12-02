@@ -7,9 +7,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Dictionary<(int X, int Y), int> baseGrid = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
+            Dictionary<(int X, int Y), int> baseGrid = input
                 .SelectMany((row, y) => row.ToCharArray().Select((col, x) => ((x, y), int.Parse(col.ToString()))))
                 .ToDictionary(x => x.Item1, x => x.Item2);
 

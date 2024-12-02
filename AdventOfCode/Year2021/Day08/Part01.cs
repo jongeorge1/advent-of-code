@@ -6,11 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var inputLines = input.Split(Environment.NewLine).ToList();
-
-            (string[] Inputs, string[] Outputs)[] digits = inputLines.Select(x => x.Split('|'))
+            (string[] Inputs, string[] Outputs)[] digits = input.Select(x => x.Split('|'))
                 .Select(x => (x[0].Split(' ', StringSplitOptions.RemoveEmptyEntries), x[1].Split(' ', StringSplitOptions.RemoveEmptyEntries)))
                 .ToArray();
 

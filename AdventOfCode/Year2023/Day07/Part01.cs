@@ -41,6 +41,12 @@
 
         public struct Hand : IComparable<Hand>
         {
+            public char[] Cards { get; set; }
+
+            public int Bid { get; set; }
+
+            public int Type { get; set; }
+
             public static Hand Create(string input)
             {
                 char[] cards = input[0..5].ToCharArray();
@@ -52,22 +58,28 @@
                 if (groupedCards.Length == 1)
                 {
                     strength = 7; // 5 of a kind
-                } else if (groupedCards.Length == 2 && groupedCards[0].Count == 4)
+                }
+                else if (groupedCards.Length == 2 && groupedCards[0].Count == 4)
                 {
                     strength = 6; // 4 of a kind
-                } else if (groupedCards.Length == 2)
+                }
+                else if (groupedCards.Length == 2)
                 {
                     strength = 5; // Full house
-                } else if (groupedCards.Length == 3 && groupedCards[0].Count == 3)
+                }
+                else if (groupedCards.Length == 3 && groupedCards[0].Count == 3)
                 {
                     strength = 4; // 3 of a kind
-                } else if (groupedCards.Length == 3)
+                }
+                else if (groupedCards.Length == 3)
                 {
                     strength = 3; // 2 pair
-                } else if (groupedCards.Length == 4)
+                }
+                else if (groupedCards.Length == 4)
                 {
                     strength = 2; // 1 pair
-                } else
+                }
+                else
                 {
                     strength = 1; // High card
                 }
@@ -79,12 +91,6 @@
                     Bid = bid,
                 };
             }
-
-            public char[] Cards { get; set; }
-
-            public int Bid { get; set; }
-
-            public int Type { get; set; }
 
             public int CompareTo(Hand other)
             {

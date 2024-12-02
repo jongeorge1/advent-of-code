@@ -12,27 +12,27 @@
         // Firstly the shapes: We hold them as arrays of bytes, from bottom to top (i.e. the entry with index 0
         // is the bottom.
         // To facilitate the bit shifting we'll need later, our representations will pretend they are at the
-        // left of the play space (left being the high bit). To make this easier to read (and change if I'm 
+        // left of the play space (left being the high bit). To make this easier to read (and change if I'm
         // wrong), then I'll bitshift them here rather than working out the right numbers.
-        private static readonly byte[][] Shapes = new byte[][]
-        {
+        private static readonly byte[][] Shapes =
+        [
             // Line
-            new byte[] { 15 << 3 },
+            [15 << 3],
 
             // Cross
-            new byte[] { 2 << 4, 7 << 4, 2 << 4 },
+            [2 << 4, 7 << 4, 2 << 4],
 
             // Backwards L
-            new byte[] { 7 << 4, 1 << 4, 1 << 4 },
+            [7 << 4, 1 << 4, 1 << 4],
 
             // Column
-            new byte[] { 1 << 6, 1 << 6, 1 << 6, 1 << 6 },
+            [1 << 6, 1 << 6, 1 << 6, 1 << 6],
 
             // Square
-            new byte[] { 3 << 5, 3 << 5 },
-        };
+            [3 << 5, 3 << 5],
+        ];
 
-        private static readonly int[] ShapeMaxLefts = new[] { 3, 4, 4, 6, 5 };
+        private static readonly int[] ShapeMaxLefts = [3, 4, 4, 6, 5];
 
         public string Solve(string[] input)
         {
@@ -86,7 +86,7 @@
 
                 ++stonesDropped;
 
-                var newState = MemoizeState(currentMaxHeight, currentShape, (short)(jetPatternIndex - 1), ref playSpace);
+                PlaySpaceState newState = MemoizeState(currentMaxHeight, currentShape, (short)(jetPatternIndex - 1), ref playSpace);
 
                 // Have we seen this state before?
                 if (seenStates.TryGetValue(newState, out (int MaxHeight, int StonesDropped) heightAndCount))
@@ -98,7 +98,7 @@
                     // We're aiming for the height after we've hit 1000000000000 stones dropped. So, we need to remove the number
                     // of stones we've dropped already, then find out how many times we need to repeat this segment to get close to
                     // that target.
-                    var repeats = (1000000000000L - stonesDropped) / periodicity;
+                    long repeats = (1000000000000L - stonesDropped) / periodicity;
                     long stonesDroppedDuringTheRepeats = repeats * periodicity;
                     long extraHeightDroppedDuringTheRepeats = heightDifference * repeats;
 
@@ -106,7 +106,7 @@
                     int remainingStonesToDrop = (int)((1000000000000L - stonesDropped) % periodicity);
 
                     // Find the state where we've dropped the correct number of stones
-                    var el = seenStates.Single(x => x.Value.StonesDropped == heightAndCount.StonesDropped + remainingStonesToDrop);
+                    KeyValuePair<PlaySpaceState, (int MaxHeight, int StonesDropped)> el = seenStates.Single(x => x.Value.StonesDropped == heightAndCount.StonesDropped + remainingStonesToDrop);
 
                     long heightDroppedDuringRemainingPeriod = el.Value.MaxHeight - heightAndCount.MaxHeight;
 

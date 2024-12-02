@@ -35,10 +35,10 @@
             {
                 int separatorIndex = current.IndexOf(',');
                 int x = int.Parse(current[..separatorIndex]);
-                ReadOnlySpan<char> remainder = current[(separatorIndex + 1)..];
+                ReadOnlySpan<char> remainder = current[(separatorIndex + 1) ..];
                 separatorIndex = remainder.IndexOf(',');
                 int y = int.Parse(remainder[..separatorIndex]);
-                int z = int.Parse(remainder[(separatorIndex + 1)..]);
+                int z = int.Parse(remainder[(separatorIndex + 1) ..]);
 
                 cubes.Add((x, y, z), SpaceType.Lava);
             }

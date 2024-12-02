@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // First, break up into the components of the input.
             string[] inputComponents = input.Split(Environment.NewLine + Environment.NewLine);

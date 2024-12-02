@@ -5,9 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var state = input.Split(',').Select(int.Parse).ToList();
+            var state = input[0].Split(',').Select(int.Parse).ToList();
 
             long totalLanternFish = state.Count;
 

@@ -10,8 +10,8 @@
             this.Execute = instruction;
         }
 
-        public static Operation[] All { get; } = new[]
-        {
+        public static Operation[] All { get; } =
+        [
             new Operation("addr", (registers, instruction) => registers[instruction.C] = registers[instruction.A] + registers[instruction.B]),
             new Operation("addi", (registers, instruction) => registers[instruction.C] = registers[instruction.A] + instruction.B),
             new Operation("mulr", (registers, instruction) => registers[instruction.C] = registers[instruction.A] * registers[instruction.B]),
@@ -28,7 +28,7 @@
             new Operation("eqir", (registers, instruction) => registers[instruction.C] = instruction.A == registers[instruction.B] ? 1 : 0),
             new Operation("eqri", (registers, instruction) => registers[instruction.C] = registers[instruction.A] == instruction.B ? 1 : 0),
             new Operation("eqrr", (registers, instruction) => registers[instruction.C] = registers[instruction.A] == registers[instruction.B] ? 1 : 0),
-        };
+        ];
 
         public string Name { get; set; }
 

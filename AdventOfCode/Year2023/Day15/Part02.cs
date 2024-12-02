@@ -11,7 +11,7 @@
     {
         public string Solve(string[] input)
         {
-            Box[] boxes = new Box[256];
+            var boxes = new Box[256];
 
             boxes.Initialize();
 
@@ -31,7 +31,6 @@
                 int boxNumber = Hash(lensLabel);
                 Box box = boxes[boxNumber];
 
-
                 if (enumerator.Current.Line[operationIndex] == '-')
                 {
                     box.RemoveLensIfExists(lensLabel);
@@ -39,7 +38,7 @@
                 else
                 {
                     // It's an =, so we need to get the new focal length and then add/replace
-                    int focalLength = int.Parse(enumerator.Current.Line[(operationIndex + 1)..]);
+                    int focalLength = int.Parse(enumerator.Current.Line[(operationIndex + 1) ..]);
                     box.AddOrReplaceLens(lensLabel, focalLength);
                 }
             }
@@ -104,13 +103,12 @@
                 {
                     int index = this.Lenses.IndexOf(match);
                     this.Lenses.RemoveAt(index);
-                    this.Lenses.Insert(index, new (label, focalLength));
+                    this.Lenses.Insert(index, new(label, focalLength));
                 }
                 else
                 {
-                    this.Lenses.Add(new (label, focalLength));
+                    this.Lenses.Add(new(label, focalLength));
                 }
-
             }
         }
 

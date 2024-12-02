@@ -6,10 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             (long From, long To)[] ipAddresses = input
-                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Split('-', StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToArray())
                 .Select(x => (x[0], x[1]))
                 .OrderBy(x => x.Item1)

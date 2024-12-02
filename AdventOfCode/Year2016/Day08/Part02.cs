@@ -7,39 +7,38 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             int width = 50;
             int height = 6;
 
-            if (rows[0] == "TEST")
+            if (input[0] == "TEST")
             {
-                rows = rows.Skip(1).ToArray();
+                input = input.Skip(1).ToArray();
                 width = 7;
                 height = 3;
             }
 
             var display = new Display(height, width);
 
-            foreach (string row in rows)
+            foreach (string row in input)
             {
                 // rect 4x1
                 // rotate row y=0 by 4
                 // rotate column x=0 by 1
                 if (row.StartsWith("rect"))
                 {
-                    string[] components = row.Split(new[] { ' ', 'x' });
+                    string[] components = row.Split([' ', 'x']);
                     display.Rect(int.Parse(components[1]), int.Parse(components[2]));
                 }
                 else if (row.StartsWith("rotate row"))
                 {
-                    string[] components = row.Split(new[] { ' ', '=' });
+                    string[] components = row.Split([' ', '=']);
                     display.RotateRow(int.Parse(components[3]), int.Parse(components[5]));
                 }
                 else if (row.StartsWith("rotate column"))
                 {
-                    string[] components = row.Split(new[] { ' ', '=' });
+                    string[] components = row.Split([' ', '=']);
                     display.RotateColumn(int.Parse(components[3]), int.Parse(components[5]));
                 }
             }

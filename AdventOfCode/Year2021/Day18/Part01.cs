@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            SnailfishNumber[] numbers = input.Split(Environment.NewLine).Select(SnailfishNumber.Parse).ToArray();
+            SnailfishNumber[] numbers = input.Select(SnailfishNumber.Parse).ToArray();
 
             SnailfishNumber result = numbers.Aggregate((curr, next) => curr + next);
 

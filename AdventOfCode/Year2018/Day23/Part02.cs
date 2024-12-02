@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var bots = input.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+            var bots = input
                 .Select(x => new Nanobot(x))
                 .ToList();
 

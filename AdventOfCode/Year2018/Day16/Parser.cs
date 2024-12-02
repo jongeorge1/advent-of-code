@@ -46,7 +46,7 @@
 
         private static Sample BuildSampleFromMatch(Match input)
         {
-            int[] preOp = new[] { int.Parse(input.Groups[1].Value), int.Parse(input.Groups[2].Value), int.Parse(input.Groups[3].Value), int.Parse(input.Groups[4].Value) };
+            int[] preOp = [int.Parse(input.Groups[1].Value), int.Parse(input.Groups[2].Value), int.Parse(input.Groups[3].Value), int.Parse(input.Groups[4].Value)];
             var instruction = new Instruction
             {
                 OpCode = int.Parse(input.Groups[5].Value),
@@ -54,7 +54,7 @@
                 B = int.Parse(input.Groups[7].Value),
                 C = int.Parse(input.Groups[8].Value),
             };
-            int[] postOp = new[] { int.Parse(input.Groups[9].Value), int.Parse(input.Groups[10].Value), int.Parse(input.Groups[11].Value), int.Parse(input.Groups[12].Value) };
+            int[] postOp = [int.Parse(input.Groups[9].Value), int.Parse(input.Groups[10].Value), int.Parse(input.Groups[11].Value), int.Parse(input.Groups[12].Value)];
 
             return new Sample
             {

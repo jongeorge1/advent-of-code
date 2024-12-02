@@ -23,7 +23,7 @@
 
             fullInput.Sort((string left, string right) =>
             {
-                var comparisonResult = PacketComparer.ComparePackets(left.AsSpan(), right.AsSpan());
+                PacketTokenComparisonResult comparisonResult = PacketComparer.ComparePackets(left.AsSpan(), right.AsSpan());
                 return comparisonResult switch
                 {
                     PacketTokenComparisonResult.Correct => -1,
@@ -32,8 +32,8 @@
                 };
             });
 
-            var indexOfFirstDivider = fullInput.IndexOf(FirstDividerPacket) + 1;
-            var indexOfSecondDivider = fullInput.IndexOf(SecondDividerPacket) + 1;
+            int indexOfFirstDivider = fullInput.IndexOf(FirstDividerPacket) + 1;
+            int indexOfSecondDivider = fullInput.IndexOf(SecondDividerPacket) + 1;
 
             return (indexOfFirstDivider * indexOfSecondDivider).ToString();
         }

@@ -4,9 +4,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int presentCount = int.Parse(input);
+            int presentCount = int.Parse(input[0]);
 
             // Find the highest power of three that is less than the number
             int power = 0;

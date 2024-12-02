@@ -6,27 +6,25 @@
 
     public class Day10Common
     {
-        private readonly Regex allocationRegex = new (@"value (\d+)[\w\s]+ (\d+)");
-        private readonly Regex instructionRegex = new (@"bot (\d+) gives low to (\w+) (\d+) and high to (\w+) (\d+)");
+        private readonly Regex allocationRegex = new(@"value (\d+)[\w\s]+ (\d+)");
+        private readonly Regex instructionRegex = new(@"bot (\d+) gives low to (\w+) (\d+) and high to (\w+) (\d+)");
 
-        public Dictionary<int, Bot> Bots { get; } = new ();
+        public Dictionary<int, Bot> Bots { get; } = new();
 
-        public Dictionary<int, Output> Outputs { get; } = new ();
+        public Dictionary<int, Output> Outputs { get; } = new();
 
-        public void ProcessInput(string input)
+        public void ProcessInput(string[] input)
         {
-            string[] commands = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
-            for (int i = 0; i < commands.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
-                if (commands[i].StartsWith("value"))
+                if (input[i].StartsWith("value"))
                 {
-                    Match match = this.allocationRegex.Match(commands[i]);
+                    Match match = this.allocationRegex.Match(input[i]);
                     this.GetBot(int.Parse(match.Groups[2].Value)).Values.Add(int.Parse(match.Groups[1].Value));
                 }
                 else
                 {
-                    Match match = this.instructionRegex.Match(commands[i]);
+                    Match match = this.instructionRegex.Match(input[i]);
                     Bot bot = this.GetBot(int.Parse(match.Groups[1].Value));
                     bot.LowDestination = this.GetDestination(match.Groups[2].Value, int.Parse(match.Groups[3].Value));
                     bot.HighDestination = this.GetDestination(match.Groups[4].Value, int.Parse(match.Groups[5].Value));
@@ -49,7 +47,7 @@
         {
             if (!this.Outputs.TryGetValue(number, out Output? output))
             {
-                output = new (number);
+                output = new(number);
                 this.Outputs.Add(number, output);
             }
 

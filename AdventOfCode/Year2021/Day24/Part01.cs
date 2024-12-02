@@ -6,7 +6,7 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var computer = new Computer(input, "58426589716442", true);
             computer.Execute();

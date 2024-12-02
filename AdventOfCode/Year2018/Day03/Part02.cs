@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var claims = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(Claim.FromString).ToList();
+            var claims = input.Select(Claim.FromString).ToList();
             var overlaps = claims.ToDictionary(x => x, _ => new List<Claim>());
 
             foreach (Claim outer in claims)

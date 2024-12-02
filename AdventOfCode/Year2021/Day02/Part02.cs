@@ -6,14 +6,13 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] directions = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToArray();
             int aim = 0;
             int forward = 0;
             int depth = 0;
 
-            foreach (string current in directions)
+            foreach (string current in input)
             {
                 if (current.StartsWith("forward"))
                 {

@@ -15,11 +15,11 @@
             string ToRegex(IDictionary<int, IRule> allRules);
         }
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(Environment.NewLine + Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            string[] ruleInputs = components[0].Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            string[] messages = components[1].Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            int blankRowIndex = Array.IndexOf(input, string.Empty);
+            string[] ruleInputs = input[0..blankRowIndex];
+            string[] messages = input[(blankRowIndex + 1) ..];
 
             int maxLength = messages.Max(x => x.Length);
 

@@ -8,13 +8,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            bool[] enhancement = input[0].ToCharArray().Select(x => x == '#').ToArray();
 
-            bool[] enhancement = components[0].ToCharArray().Select(x => x == '#').ToArray();
-
-            var image = components[1..].SelectMany((row, y) => row.ToCharArray().Select((col, x) => ((x, y), col == '#'))).ToDictionary(x => x.Item1, x => x.Item2);
+            var image = input[1..].SelectMany((row, y) => row.ToCharArray().Select((col, x) => ((x, y), col == '#'))).ToDictionary(x => x.Item1, x => x.Item2);
 
             for (int i = 0; i < 50; ++i)
             {

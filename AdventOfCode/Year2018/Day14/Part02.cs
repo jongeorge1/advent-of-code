@@ -6,12 +6,12 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var recipies = new List<int>(25000000) { 3, 7 };
-            var inputNumbers = input.ToCharArray().Select(x => int.Parse(x.ToString())).ToList();
+            var inputNumbers = input[0].ToCharArray().Select(x => int.Parse(x.ToString())).ToList();
 
-            int[] elves = new[] { 0, 1 };
+            int[] elves = [0, 1];
             int iterations = 0;
 
             while (true)

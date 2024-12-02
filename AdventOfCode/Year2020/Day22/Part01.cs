@@ -7,11 +7,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] deckInputs = input.Split(Environment.NewLine + Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            IEnumerable<int>? deck1Input = deckInputs[0].Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(int.Parse);
-            IEnumerable<int>? deck2Input = deckInputs[1].Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Skip(1).Select(int.Parse);
+            int blankLineIndex = Array.IndexOf(input, string.Empty);
+            IEnumerable<int>? deck1Input = input[1..blankLineIndex].Select(int.Parse);
+            IEnumerable<int>? deck2Input = input[(blankLineIndex + 2) ..].Select(int.Parse);
 
             var deck1 = new Queue<int>(deck1Input);
             var deck2 = new Queue<int>(deck2Input);

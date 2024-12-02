@@ -6,10 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var directOrbits = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Split(new string[] { ")" }, StringSplitOptions.RemoveEmptyEntries))
                 .GroupBy(x => x[0])
                 .ToDictionary(x => x.Key, x => x.Select(i => i[1]).ToArray());

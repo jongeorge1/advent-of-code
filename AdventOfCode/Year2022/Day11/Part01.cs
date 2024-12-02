@@ -12,7 +12,7 @@
 
             for (int round = 0; round < 20; ++round)
             {
-                foreach (var monkey in monkeys)
+                foreach (Monkey monkey in monkeys)
                 {
                     monkey.InspectAndThrowAllItems(monkeys);
                 }

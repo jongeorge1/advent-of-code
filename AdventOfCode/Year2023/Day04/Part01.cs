@@ -24,7 +24,7 @@
         private static int ScoreScratchcard(ref string card, int winningNumbersStartColumn, int winningNumbersCount, int actualNumbersStartColumn)
         {
             ReadOnlySpan<char> row = card.AsSpan();
-            ReadOnlySpan<char> winningNumberStrip = row[winningNumbersStartColumn.. (actualNumbersStartColumn - 2)];
+            ReadOnlySpan<char> winningNumberStrip = row[winningNumbersStartColumn..(actualNumbersStartColumn - 2)];
             ReadOnlySpan<char> actualNumberStrip = row[actualNumbersStartColumn..];
 
             int winningNumberCount = 0;

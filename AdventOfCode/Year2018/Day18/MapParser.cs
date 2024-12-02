@@ -5,9 +5,8 @@
 
     public static class MapParser
     {
-        public static (char[] Map, int yOffset) Parse(string input)
+        public static (char[] Map, int yOffset) Parse(string[] rows)
         {
-            string[] rows = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             int yOffset = rows[0].Length;
             char[] map = rows.SelectMany(x => x.ToCharArray()).ToArray();
 

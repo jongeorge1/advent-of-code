@@ -11,14 +11,14 @@
         private string[][] program;
 
         private Dictionary<string, Action<string[], bool>> instructionMap;
-        
+
         private bool verbose;
 
-        public Computer(string program, bool verbose = false)
+        public Computer(string[] program, bool verbose = false)
         {
-            this.program = program.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
+            this.program = program.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
             this.verbose = verbose;
-            this.instructionMap = new ()
+            this.instructionMap = new()
             {
                 { "cpy", this.Cpy },
                 { "inc", this.Inc },
@@ -29,13 +29,7 @@
             };
         }
 
-        public void Reset()
-        {
-            this.location = 0;
-            this.ToggledLocations.Clear();
-        }
-
-        public Dictionary<string, int> Registers { get; } = new ()
+        public Dictionary<string, int> Registers { get; } = new()
         {
             { "a", 0 },
             { "b", 0 },
@@ -43,9 +37,15 @@
             { "d", 0 },
         };
 
-        public List<int> ToggledLocations { get; } = new ();
+        public List<int> ToggledLocations { get; } = new();
 
         public Func<int, bool> Output { get; set; }
+
+        public void Reset()
+        {
+            this.location = 0;
+            this.ToggledLocations.Clear();
+        }
 
         public void Execute()
         {
@@ -65,7 +65,6 @@
                 }
 
                 this.Inc(instruction, true);
-
             }
             else
             {
@@ -93,7 +92,7 @@
 
         private void Out(string[] instruction, bool bypassToggleCheck = false)
         {
-            var outputValue = this.GetValueOrRegister(instruction[1]);
+            int outputValue = this.GetValueOrRegister(instruction[1]);
 
             if (this.verbose)
             {
@@ -118,7 +117,7 @@
                 {
                     Console.WriteLine($"{this.location}: Toggled, treating as JNZ");
                 }
-                
+
                 this.Jnz(instruction, true);
             }
             else

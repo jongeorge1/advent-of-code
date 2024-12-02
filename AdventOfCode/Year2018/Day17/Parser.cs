@@ -7,9 +7,9 @@
 
     public static class Parser
     {
-        public static Point[] Parse(string input)
+        public static Point[] Parse(string[] input)
         {
-            IEnumerable<Point> clayPoints = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).SelectMany(ParseRow);
+            IEnumerable<Point> clayPoints = input.SelectMany(ParseRow);
             return clayPoints.ToArray();
         }
 
@@ -45,7 +45,7 @@
 
             if (components.Length == 1)
             {
-                return new[] { components[0] };
+                return [components[0]];
             }
 
             return Enumerable.Range(components[0], components[1] - components[0] + 1).ToArray();

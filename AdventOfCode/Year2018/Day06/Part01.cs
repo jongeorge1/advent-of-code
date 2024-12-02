@@ -7,9 +7,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var points = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(PointBuilder.FromString).ToList();
+            var points = input.Select(PointBuilder.FromString).ToList();
 
             // Find the extent of the board that contains points
             var topLeft = new Point

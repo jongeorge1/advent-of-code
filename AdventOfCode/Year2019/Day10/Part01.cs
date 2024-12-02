@@ -6,10 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string data)
+        public string Solve(string[] data)
         {
             Point[] points = data
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .SelectMany((row, rowNum) => row.ToCharArray().Select((col, colNum) => (new Point(rowNum, colNum), col)))
                 .Where(x => x.col == '#')
                 .Select(x => x.Item1)

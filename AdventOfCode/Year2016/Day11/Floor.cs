@@ -10,8 +10,8 @@
         public Floor(int level, string input)
         {
             this.Level = level;
-            this.Chips = new ();
-            this.Generators = new ();
+            this.Chips = new();
+            this.Generators = new();
 
             if (!string.IsNullOrEmpty(input))
             {

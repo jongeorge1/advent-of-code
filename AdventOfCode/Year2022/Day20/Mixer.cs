@@ -13,15 +13,15 @@
         {
             for (int index = 0; index < this.file.ListItems.Length; ++index)
             {
-                var current = this.file.ListItems[index];
+                EncryptedFileListItem current = this.file.ListItems[index];
 
                 if (current.Number == 0)
                 {
                     continue;
                 }
 
-                var currentPrevious = current.AdjustedPrevious;
-                var currentNext = current.AdjustedNext;
+                EncryptedFileListItem currentPrevious = current.AdjustedPrevious;
+                EncryptedFileListItem currentNext = current.AdjustedNext;
 
                 // Before we do the "move", we need to remove "current" from the list in case there's a scenario
                 // where we wrap multiple times - it needs to take account of the fact that we've already taken
@@ -29,8 +29,8 @@
                 currentPrevious.AdjustedNext = currentNext;
                 currentNext.AdjustedPrevious = currentPrevious;
 
-                var targetPrevious = current.Move(current.NumberOffset);
-                var targetNext = targetPrevious.AdjustedNext;
+                EncryptedFileListItem targetPrevious = current.Move(current.NumberOffset);
+                EncryptedFileListItem targetNext = targetPrevious.AdjustedNext;
 
                 // Now insert it in the target location
                 targetPrevious.AdjustedNext = current;

@@ -5,10 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             return input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => int.Parse(x))
                 .Select(this.CalculateTotalFuelRequirementForMass)
                 .Sum()

@@ -7,7 +7,7 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             IDictionary<(int x, int y, int z), bool> grid = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.ToCharArray())

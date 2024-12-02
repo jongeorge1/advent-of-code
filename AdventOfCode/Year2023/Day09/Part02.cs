@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            var sequences = input.Select(x => new Sequence(x));
+            IEnumerable<Sequence> sequences = input.Select(x => new Sequence(x));
             return sequences.Sum(x => x.ExtrapolatePreviousValue()).ToString();
         }
 

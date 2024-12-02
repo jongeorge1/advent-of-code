@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int[] items = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).ToArray();
+            int[] items = input.Select(x => int.Parse(x)).ToArray();
             var seenFrequencies = new Dictionary<int, bool>();
 
             int i = 0;

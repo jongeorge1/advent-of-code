@@ -6,10 +6,10 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // target area: x=277..318, y=-92..-53
-            string[] components = input.Split(new[] { 'x', 'y', '=', '.', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] components = input[0].Split(new[] { 'x', 'y', '=', '.', ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             int minX = int.Parse(components[2]);
             int maxX = int.Parse(components[3]);
             int minY = int.Parse(components[4]);

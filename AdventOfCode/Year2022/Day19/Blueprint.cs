@@ -17,7 +17,7 @@
     {
         public static Blueprint FromInputString(ReadOnlySpan<char> input)
         {
-            var wordEnumerator = StringExtensions.OptimizedSplit(input, " ".AsSpan());
+            StringExtensions.StringSplitEnumerator wordEnumerator = StringExtensions.OptimizedSplit(input, " ".AsSpan());
             wordEnumerator.MoveNext();
             wordEnumerator.MoveNext();
             byte number = byte.Parse(wordEnumerator.Current.Line[..^1]);

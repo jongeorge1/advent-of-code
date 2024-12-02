@@ -5,10 +5,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            return input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).OrderBy(x => x).ToArray())
+            return input.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).OrderBy(x => x).ToArray())
                 .Count(x => x[0] + x[1] > x[2])
                 .ToString();
         }

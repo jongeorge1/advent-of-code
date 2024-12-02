@@ -15,7 +15,7 @@
 
             int minimumSteps = int.MaxValue;
 
-            foreach (var location in algorithm.Map.Where(x => x.Value == 'a'))
+            foreach (KeyValuePair<System.Drawing.Point, char> location in algorithm.Map.Where(x => x.Value == 'a'))
             {
                 if (algorithm.TryFindShortestPathBetween(location.Key, algorithm.End, out int? steps) && steps < minimumSteps)
                 {

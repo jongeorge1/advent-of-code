@@ -11,14 +11,14 @@
         private string[][] program;
 
         private Dictionary<string, Action<string[], bool>> instructionMap;
-        
+
         private bool verbose;
 
-        public Computer(string program, bool verbose = false)
+        public Computer(string[] program, bool verbose = false)
         {
-            this.program = program.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
+            this.program = program.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
             this.verbose = verbose;
-            this.instructionMap = new ()
+            this.instructionMap = new()
             {
                 { "cpy", this.Cpy },
                 { "inc", this.Inc },
@@ -28,7 +28,7 @@
             };
         }
 
-        public Dictionary<string, int> Registers { get; } = new ()
+        public Dictionary<string, int> Registers { get; } = new()
         {
             { "a", 0 },
             { "b", 0 },
@@ -36,7 +36,7 @@
             { "d", 0 },
         };
 
-        public List<int> ToggledLocations { get; } = new ();
+        public List<int> ToggledLocations { get; } = new();
 
         public void Execute()
         {
@@ -56,7 +56,6 @@
                 }
 
                 this.Inc(instruction, true);
-
             }
             else
             {
@@ -90,7 +89,7 @@
                 {
                     Console.WriteLine($"${this.location}: Toggled, treating as JNZ");
                 }
-                
+
                 this.Jnz(instruction, true);
             }
             else

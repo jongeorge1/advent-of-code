@@ -5,7 +5,7 @@
 
     public class Part01 : ISolution
     {
-        private static readonly string[] DisallowedStrings = new[] { "ab", "cd", "pq", "xy" };
+        private static readonly string[] DisallowedStrings = ["ab", "cd", "pq", "xy"];
 
         public string Solve(string[] input)
         {

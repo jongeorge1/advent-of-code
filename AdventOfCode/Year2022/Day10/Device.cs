@@ -10,7 +10,6 @@
         private string[][] program;
         private int cycle;
 
-
         public Device(string[] program)
         {
             this.program = program.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
@@ -35,7 +34,7 @@
         {
             this.OnTick();
 
-            foreach (var instruction in this.program)
+            foreach (string[] instruction in this.program)
             {
                 this.instructionMap[instruction[0]](instruction);
             }

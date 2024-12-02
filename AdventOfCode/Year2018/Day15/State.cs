@@ -20,14 +20,13 @@ namespace AdventOfCode.Year2018.Day15
 
         public int MaxY { get; set; }
 
-        public static State Parse(string input)
+        public static State Parse(string[] input)
         {
-            string[] inputRows = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            int yOffset = inputRows[0].Length;
-            char[] mapChars = inputRows.SelectMany(x => x.ToCharArray()).ToArray();
+            int yOffset = input[0].Length;
+            char[] mapChars = input.SelectMany(x => x.ToCharArray()).ToArray();
             MapSpace[] map = Enumerable.Range(0, mapChars.Length).Select(x => MapSpace.Parse(mapChars[x], x)).ToArray();
 
-            return new State(map, yOffset, inputRows.Length);
+            return new State(map, yOffset, input.Length);
         }
 
         public override string ToString()

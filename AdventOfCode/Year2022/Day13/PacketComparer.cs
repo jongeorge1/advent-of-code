@@ -39,8 +39,8 @@
 
         private static PacketTokenComparisonResult CompareListToNumber(ref PacketTokenEnumerator left, ref PacketTokenEnumerator right)
         {
-            Debug.Assert(left.Current.TokenType == PacketTokenType.ListStart);
-            Debug.Assert(right.Current.TokenType == PacketTokenType.Number);
+            Debug.Assert(left.Current.TokenType == PacketTokenType.ListStart, "Unexpected situation");
+            Debug.Assert(right.Current.TokenType == PacketTokenType.Number, "Unexpected situation");
 
             // Some scenarios:
             // 1. The left list is empty. This is "Correct"
@@ -61,7 +61,7 @@
                 return CompareListToNumber(ref left, ref right);
             }
 
-            var comparisonResult = CompareNumbers(ref left, ref right);
+            PacketTokenComparisonResult comparisonResult = CompareNumbers(ref left, ref right);
 
             if (comparisonResult == PacketTokenComparisonResult.Indeterminate)
             {
@@ -78,7 +78,6 @@
 
             return comparisonResult;
         }
-
 
         private static PacketTokenComparisonResult CompareNumberToList(ref PacketTokenEnumerator left, ref PacketTokenEnumerator right)
         {
@@ -104,7 +103,7 @@
                 return CompareNumberToList(ref left, ref right);
             }
 
-            var comparisonResult = CompareNumbers(ref left, ref right);
+            PacketTokenComparisonResult comparisonResult = CompareNumbers(ref left, ref right);
 
             if (comparisonResult == PacketTokenComparisonResult.Indeterminate)
             {
@@ -149,7 +148,7 @@
                 }
 
                 // We're on tokens that we need to compare to determine the result.
-                var comparisonResult = CompareAtCurrentToken(ref left, ref right);
+                PacketTokenComparisonResult comparisonResult = CompareAtCurrentToken(ref left, ref right);
                 if (comparisonResult != PacketTokenComparisonResult.Indeterminate)
                 {
                     return comparisonResult;

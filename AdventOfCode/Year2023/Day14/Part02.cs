@@ -8,11 +8,18 @@
 
     public class Part02 : ISolution
     {
+        public enum PlatformItem : byte
+        {
+            Empty = 0,
+            RoundRock = 1,
+            CubeRock = 2,
+        }
+
         public string Solve(string[] input)
         {
             PlatformItem[,] layout = BuildPlatformLayout(input);
 
-            Dictionary<int, int> seenStates = new ();
+            Dictionary<int, int> seenStates = new();
 
             int cycles = 0;
 
@@ -314,13 +321,6 @@
             }
 
             return tilted;
-        }
-
-        public enum PlatformItem : byte
-        {
-            Empty = 0,
-            RoundRock = 1,
-            CubeRock = 2,
         }
     }
 }

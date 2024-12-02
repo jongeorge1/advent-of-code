@@ -7,17 +7,16 @@
 
     public class Part02 : ISolution
     {
-        private static readonly Regex NotRegex = new (@"\[(\w+)\]", RegexOptions.Compiled);
+        private static readonly Regex NotRegex = new(@"\[(\w+)\]", RegexOptions.Compiled);
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             int supportsSslCount = 0;
 
-            for (int i = 0; i < rows.Length; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 // Extract the sections in square brackets
-                string row = rows[i];
+                string row = input[i];
 
                 MatchCollection matches = NotRegex.Matches(row);
 
@@ -47,7 +46,7 @@
             {
                 if (input[i] == input[i + 2] && input[i] != input[i + 1])
                 {
-                    yield return input[i.. (i + 3)];
+                    yield return input[i..(i + 3)];
                 }
             }
         }

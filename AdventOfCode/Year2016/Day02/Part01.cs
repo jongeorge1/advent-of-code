@@ -4,21 +4,20 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            char[][] grid = new[]
-            {
-                new[] { '1', '2', '3' },
-                new[] { '4', '5', '6' },
-                new[] { '7', '8', '9' },
-            };
+            char[][] grid =
+            [
+                ['1', '2', '3'],
+                ['4', '5', '6'],
+                ['7', '8', '9'],
+            ];
 
-            string[] commands = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             string result = string.Empty;
 
             (int x, int y) location = (1, 1);
 
-            foreach (string command in commands)
+            foreach (string command in input)
             {
                 foreach (char step in command)
                 {

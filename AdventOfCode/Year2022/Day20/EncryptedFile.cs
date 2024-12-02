@@ -45,7 +45,7 @@
 
         public void ApplyDecryptionKey(long multiplier)
         {
-            foreach (var current in this.ListItems)
+            foreach (EncryptedFileListItem current in this.ListItems)
             {
                 current.Number *= multiplier;
                 current.NumberOffset = current.Number % (this.ListItems.Length - 1);

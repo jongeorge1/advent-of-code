@@ -40,13 +40,13 @@ namespace AdventOfCode.Year2018.Day15
             // don't need to worry about bounds checking. If this wasn't the case we'd
             // need to check to see if the space we're looking at was on the edge of the
             // map before checking the adjacent spaces.
-            int[] adjacentLocations = new[]
-            {
+            int[] adjacentLocations =
+            [
                 space.Location - state.YOffset,
                 space.Location - 1,
                 space.Location + 1,
                 space.Location + state.YOffset,
-            };
+            ];
 
 #pragma warning disable SA1009 // Closing parenthesis should be spaced correctly
             return adjacentLocations.Select(x => state.Map[x]).Where(x => x != null)!;

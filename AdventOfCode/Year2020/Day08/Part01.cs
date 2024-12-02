@@ -7,7 +7,7 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Instruction[] data = input
                 .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)

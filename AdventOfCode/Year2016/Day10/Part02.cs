@@ -2,7 +2,7 @@
 {
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var day10 = new Day10Common();
             day10.ProcessInput(input);

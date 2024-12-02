@@ -1,5 +1,6 @@
 ﻿namespace AdventOfCode.Year2018.Day15
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AdventOfCode.Year2018.Day15;
@@ -10,7 +11,7 @@
         [Test]
         public void FindInRangeSpacesTests()
         {
-            var state = State.Parse("#######\r\n#E..G.#\r\n#...#.#\r\n#.G.#G#\r\n#######");
+            var state = State.Parse("#######\r\n#E..G.#\r\n#...#.#\r\n#.G.#G#\r\n#######".Split(Environment.NewLine));
 
             // Get the elf in the top left corner
             Unit targetUnit = state.Map[8].Unit!;
@@ -24,7 +25,7 @@
         [TestCase("#######\r\n#.E...#\r\n#...?.#\r\n#..?G?#\r\n#######", 9, new[] { 9, 10, 11, 18 })]
         public void GetPathToClosestTests(string input, int startLocation, int[] expectedPath)
         {
-            var state = State.Parse(input);
+            var state = State.Parse(input.Split(Environment.NewLine));
 
             // Get the elf in the top left corner
             Unit targetUnit = state.Map[startLocation].Unit!;

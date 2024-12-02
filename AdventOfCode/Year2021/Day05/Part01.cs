@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Vent[] vents = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(x => new Vent(x)).Where(x => !x.IsDiagonal).ToArray();
+            Vent[] vents = input.Select(x => new Vent(x)).Where(x => !x.IsDiagonal).ToArray();
 
             // Find the problem space
             (int X, int Y) bottomLeft = (vents.Min(x => x.MinX), vents.Min(x => x.MinY));

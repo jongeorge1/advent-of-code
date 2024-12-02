@@ -7,9 +7,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            return this.GetDecompressedLength(input).ToString();
+            return this.GetDecompressedLength(input[0]).ToString();
         }
 
         private long GetDecompressedLength(string input)

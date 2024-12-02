@@ -5,17 +5,17 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int size = 272;
 
-            if (input.StartsWith("TEST"))
+            if (input[0].StartsWith("TEST"))
             {
                 size = 20;
-                input = input[4..];
+                input[0] = input[0][4..];
             }
 
-            var data = input.ToList();
+            var data = input[0].ToList();
 
             while (data.Count < size)
             {

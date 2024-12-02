@@ -9,14 +9,12 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
-            var playerStates = new[]
+            DiracDicePlayerState[] playerStates = new[]
             {
-                new DiracDicePlayerState { Position = int.Parse(components[0].Split(' ')[^1]) - 1, Score = 0 },
-                new DiracDicePlayerState { Position = int.Parse(components[1].Split(' ')[^1]) - 1, Score = 0 },
+                new DiracDicePlayerState { Position = int.Parse(input[0].Split(' ')[^1]) - 1, Score = 0 },
+                new DiracDicePlayerState { Position = int.Parse(input[1].Split(' ')[^1]) - 1, Score = 0 },
             };
 
             var gameState = new DiracDiceGameState
@@ -33,7 +31,7 @@
 
             while (queue.Count > 0)
             {
-                var current = queue.Dequeue();
+                DiracDiceGameState current = queue.Dequeue();
 
                 if (current.IsGameOver())
                 {
@@ -41,7 +39,7 @@
                 }
                 else
                 {
-                    foreach (var newState in current.TakeTurn())
+                    foreach (DiracDiceGameState newState in current.TakeTurn())
                     {
                         queue.Enqueue(newState);
                     }

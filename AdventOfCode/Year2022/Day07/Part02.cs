@@ -9,7 +9,7 @@
         {
             var filesystem = new FileSystem(input);
 
-            var requiredSize = 30000000 - filesystem.GetFreeSpace();
+            int requiredSize = 30000000 - filesystem.GetFreeSpace();
 
             return filesystem.AllDirectories.Where(x => x.GetTotalSize() >= requiredSize).Min(x => x.GetTotalSize()).ToString();
         }

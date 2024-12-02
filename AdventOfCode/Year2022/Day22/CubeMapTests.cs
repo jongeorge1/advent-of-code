@@ -20,7 +20,6 @@
         // 11        ..C...#.11
         //   0123456789012345
 
-
         private static readonly string[] TestMapData = "        ...#\r\n        .#..\r\n        #...\r\n        ....\r\n...#.......#\r\n........#...\r\n..#....#....\r\n..........#.\r\n        ...#....\r\n        .....#..\r\n        .#......\r\n        ......#.".Split(Environment.NewLine);
 
         [Test]
@@ -67,12 +66,12 @@
         {
             var map = new CubeMap(TestMapData);
 
-            var originalCubeFace = map.CubeFaces[originalCubeFaceIndex];
-            var expectedCubeFace = map.CubeFaces[expectedCubeFaceIndex];
-            var originalLocation = (originalX, originalY);
-            var expectedLocation = (expectedX, expectedY);
+            CubeFaceDescriptor originalCubeFace = map.CubeFaces[originalCubeFaceIndex];
+            CubeFaceDescriptor expectedCubeFace = map.CubeFaces[expectedCubeFaceIndex];
+            (int originalX, int originalY) originalLocation = (originalX, originalY);
+            (int expectedX, int expectedY) expectedLocation = (expectedX, expectedY);
 
-            var (actualLocation, actualCubeFace, actualDirection) = originalCubeFace.GetNextLocationFrom(originalLocation, originalDirection);
+            ((int X, int Y) actualLocation, CubeFaceDescriptor actualCubeFace, int actualDirection) = originalCubeFace.GetNextLocationFrom(originalLocation, originalDirection);
 
             Assert.AreEqual(expectedLocation, actualLocation);
             Assert.AreEqual(expectedCubeFace, actualCubeFace);

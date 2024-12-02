@@ -11,7 +11,7 @@
 
         private int totalColumns = 0;
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             this.totalColumns = input.IndexOf(Environment.NewLine);
 

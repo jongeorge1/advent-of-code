@@ -7,11 +7,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int flashes = 0;
 
-            var grid = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
+            var grid = input
                 .SelectMany((row, y) => row.ToCharArray().Select((c, x) => (x, y, int.Parse(c.ToString()))))
                 .ToDictionary(i => (i.x, i.y), i => i.Item3);
 

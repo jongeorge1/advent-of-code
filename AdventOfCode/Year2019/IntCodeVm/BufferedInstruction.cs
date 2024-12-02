@@ -7,8 +7,8 @@
     {
         private const int MaximumParameters = 3;
 
-        private static readonly Func<VmState, int, int[], BufferBlock<long>, BufferBlock<long>, int>[] InstructionStrategies = new Func<VmState, int, int[], BufferBlock<long>, BufferBlock<long>, int>[]
-        {
+        private static readonly Func<VmState, int, int[], BufferBlock<long>, BufferBlock<long>, int>[] InstructionStrategies =
+        [
             null!,
 
             // 1. Add
@@ -64,7 +64,7 @@
                 state.RelativeBase += (int)state.GetParameter(pointer + 1, parameterModes[0]);
                 return pointer + 2;
             },
-        };
+        ];
 
         private readonly int[] parameterModes = new int[MaximumParameters];
 

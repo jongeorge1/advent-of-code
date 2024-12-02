@@ -10,9 +10,9 @@
     {
         public const int TargetSteps = 1000;
 
-        public string Solve(string data)
+        public string Solve(string[] data)
         {
-            IEnumerable<Moon> moons = data.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+            IEnumerable<Moon> moons = data
                 .Select(x => x.Split(new char[] { ',', '<', '>', '=', 'x', 'y', 'z', ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray())
                 .Select(m => new Moon(m[0], m[1], m[2]));
 

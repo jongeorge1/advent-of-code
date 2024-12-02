@@ -6,15 +6,15 @@
 
     public class PointExtensionTests
     {
-        private static readonly Point[] Points = new[]
-            {
+        private static readonly Point[] Points =
+            [
                 new Point { X = 1, Y = 1 },
                 new Point { X = 1, Y = 6 },
                 new Point { X = 8, Y = 3 },
                 new Point { X = 3, Y = 4 },
                 new Point { X = 5, Y = 5 },
                 new Point { X = 8, Y = 9 },
-            };
+            ];
 
         [Test]
         public void FindClosestWithSingleMatch()

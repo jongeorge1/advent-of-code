@@ -5,9 +5,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            return input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).Sum().ToString();
+            return input.Select(x => int.Parse(x)).Sum().ToString();
         }
     }
 }

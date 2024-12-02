@@ -35,9 +35,9 @@
             this.EnergyConsumed = baseState.EnergyConsumed;
         }
 
-        public BurrowState(string input, string[] additionalRoomSlots)
+        public BurrowState(string[] input, string[] additionalRoomSlots)
         {
-            var roomInputs = input.Split(Environment.NewLine)
+            var roomInputs = input
                 .Skip(2)
                 .Take(2)
                 .Select(x => x.Replace(" ", string.Empty).Replace("#", string.Empty))
@@ -119,7 +119,7 @@
                 do
                 {
                     // Start the step count as if we've moved up to the exit from the room.
-                    var totalStepsTaken = this.roomSlotsCount - roomSlotOfEntityToMove.Value - 1;
+                    int totalStepsTaken = this.roomSlotsCount - roomSlotOfEntityToMove.Value - 1;
 
                     for (int i = RoomEntryPositions[room]; moveLeft ? i >= 0 : i < CorridorLength; i += moveLeft ? -1 : 1)
                     {
@@ -181,9 +181,9 @@
         {
             for (int i = 0; i < RoomsCount; ++i)
             {
-                var entitiesFound = this.corridor.Count(x => x == i);
+                int entitiesFound = this.corridor.Count(x => x == i);
 
-                foreach (var current in this.rooms)
+                foreach (int current in this.rooms)
                 {
                     if (current == i)
                     {
@@ -203,12 +203,12 @@
         public string GetMemento()
         {
             StringBuilder builder = new();
-            foreach (var current in this.corridor)
+            foreach (int current in this.corridor)
             {
                 builder.Append(current);
             }
 
-            foreach (var current in this.rooms)
+            foreach (int current in this.rooms)
             {
                 builder.Append(current);
             }

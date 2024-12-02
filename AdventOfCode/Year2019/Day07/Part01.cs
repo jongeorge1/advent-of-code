@@ -8,9 +8,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string data)
+        public string Solve(string[] data)
         {
-            long[] memory = AsyncIntCodeVm.CreateMemoryFromProgramInput(data);
+            long[] memory = AsyncIntCodeVm.CreateMemoryFromProgramInput(data[0]);
 
             var results = new List<(int A, int B, int C, int D, int E, long Output)>(100000);
 

@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            (string Step, string PreRequisite)[] statements = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(this.ParseStatement).ToArray();
+            (string Step, string PreRequisite)[] statements = input.Select(this.ParseStatement).ToArray();
             string[] allSteps = statements.Select(x => x.Step).Union(statements.Select(x => x.PreRequisite)).Distinct().ToArray();
             var stepsWithDependencies = allSteps.ToDictionary(x => x, x => statements.Where(s => s.Step == x).Select(s => s.PreRequisite).ToArray());
 

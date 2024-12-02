@@ -6,11 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] numbers = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-
-            return (OxygenGeneratorReading(numbers) * Co2ScrubberRating(numbers)).ToString();
+            return (OxygenGeneratorReading(input) * Co2ScrubberRating(input)).ToString();
         }
 
         private static int OxygenGeneratorReading(string[] numbers)

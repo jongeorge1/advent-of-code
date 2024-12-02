@@ -4,9 +4,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var packet = Packet.ReadPacketFromHex(input);
+            var packet = Packet.ReadPacketFromHex(input[0]);
 
             return packet.Evaluate().ToString();
         }

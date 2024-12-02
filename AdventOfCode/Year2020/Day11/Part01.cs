@@ -12,7 +12,7 @@ namespace AdventOfCode.Year2020.Day11
 
         private int totalColumns = 0;
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Get rid of the newlines
             char[][] grid = input

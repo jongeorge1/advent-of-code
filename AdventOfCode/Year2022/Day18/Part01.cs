@@ -29,7 +29,7 @@
                 ReadOnlySpan<char> remainder = current[(separatorIndex + 1) ..];
                 separatorIndex = remainder.IndexOf(',');
                 int y = int.Parse(remainder[..separatorIndex]);
-                int z = int.Parse(remainder[(separatorIndex + 1)..]);
+                int z = int.Parse(remainder[(separatorIndex + 1) ..]);
 
                 cubes.Add((x, y, z));
             }
@@ -38,7 +38,7 @@
 
             foreach ((int X, int Y, int Z) cube in cubes)
             {
-                foreach (var offset in Offsets)
+                foreach ((int XOffset, int YOffset, int ZOffset) offset in Offsets)
                 {
                     if (!cubes.Contains((cube.X + offset.XOffset, cube.Y + offset.YOffset, cube.Z + offset.ZOffset)))
                     {

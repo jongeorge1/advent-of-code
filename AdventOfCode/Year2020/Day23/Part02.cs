@@ -6,11 +6,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // The input contains 9 cups, labelled 1 to 9. To make life easier, we're going to make the labels 0-based
             // so we can use modulo arithmetic and have easy access to the cups.
-            int[] inputLabels = input.ToCharArray().Select(x => x - '1').ToArray();
+            int[] inputLabels = input[0].ToCharArray().Select(x => x - '1').ToArray();
             Cup[] cups = Enumerable.Range(0, 1000000).Select(x => new Cup { Label = x }).ToArray();
 
             // Join up the entries in the array.
@@ -58,12 +58,12 @@
 
             for (int move = 0; move < 10000000; move++)
             {
-                Cup[] pickedUpCups = new[]
-                {
+                Cup[] pickedUpCups =
+                [
                     current.Next,
                     current.Next.Next,
                     current.Next.Next.Next,
-                };
+                ];
 
                 // Remove these cups from the list.
                 current.Next = pickedUpCups[2].Next;

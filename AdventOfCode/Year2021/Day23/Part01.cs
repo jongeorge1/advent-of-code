@@ -7,7 +7,7 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var state = new BurrowState(input, Array.Empty<string>());
             var processingQueue = new PriorityQueue<BurrowState, long>();
@@ -31,7 +31,7 @@
                     return next.EnergyConsumed.ToString();
                 }
 
-                foreach (var move in next.PossibleMoves())
+                foreach (BurrowState move in next.PossibleMoves())
                 {
                     processingQueue.Enqueue(move, move.EnergyConsumed);
                 }

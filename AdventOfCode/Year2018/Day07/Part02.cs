@@ -6,11 +6,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input) => this.Solve(input, 5, 60);
+        public string Solve(string[] input) => this.Solve(input, 5, 60);
 
-        public string Solve(string input, int workers, int baseStepTime)
+        public string Solve(string[] input, int workers, int baseStepTime)
         {
-            (char Step, char PreRequisite)[] statements = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(this.ParseStatement).ToArray();
+            (char Step, char PreRequisite)[] statements = input.Select(this.ParseStatement).ToArray();
             char[] allSteps = statements.Select(x => x.Step).Union(statements.Select(x => x.PreRequisite)).Distinct().ToArray();
             var stepsWithDependencies = allSteps.ToDictionary(x => x, x => statements.Where(s => s.Step == x).Select(s => s.PreRequisite).ToArray());
 

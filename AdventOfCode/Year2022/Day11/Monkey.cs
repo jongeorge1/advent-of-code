@@ -61,7 +61,7 @@
             {
                 long worryLevelAfterInspection = this.StressManagementStrategy(this.Operation(item));
                 bool inspectionResult = worryLevelAfterInspection % this.TestDivisor == 0;
-                var targetMonkey = this.ThrowTargets[inspectionResult];
+                int targetMonkey = this.ThrowTargets[inspectionResult];
                 allMonkeys[targetMonkey].Items.Add(worryLevelAfterInspection);
             }
 

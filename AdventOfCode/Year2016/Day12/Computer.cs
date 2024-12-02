@@ -14,11 +14,11 @@
 
         private Dictionary<string, Action<string[]>> instructionMap;
 
-        public Computer(string program)
+        public Computer(string[] program)
         {
-            this.program = program.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
+            this.program = program.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
 
-            this.instructionMap = new ()
+            this.instructionMap = new()
             {
                 { "cpy", this.Cpy },
                 { "inc", this.Inc },
@@ -27,7 +27,7 @@
             };
         }
 
-        public Dictionary<string, int> Registers { get; } = new ()
+        public Dictionary<string, int> Registers { get; } = new()
         {
             { "a", 0 },
             { "b", 0 },

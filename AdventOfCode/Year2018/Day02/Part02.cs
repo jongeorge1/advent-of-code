@@ -5,13 +5,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var boxIds = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-            foreach (string outer in boxIds)
+            foreach (string outer in input)
             {
-                foreach (string inner in boxIds)
+                foreach (string inner in input)
                 {
                     if (outer == inner)
                     {

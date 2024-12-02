@@ -23,7 +23,7 @@
 
             Parallel.For(0, maxCoordinate, (y, state) =>
             {
-                var coveredRanges = sensors.GetCoveredRangesForTargetRow(y, 0, maxCoordinate);
+                List<(int XMin, int XMax)> coveredRanges = sensors.GetCoveredRangesForTargetRow(y, 0, maxCoordinate);
 
                 // Do the covered ranges leave space for a beacon?
                 if (coveredRanges.Count == 2)

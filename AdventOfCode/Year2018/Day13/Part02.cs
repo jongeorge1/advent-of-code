@@ -6,12 +6,10 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] inputLines = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-            int yOffset = inputLines[0].Length;
-            string map = string.Concat(inputLines);
+            int yOffset = input[0].Length;
+            string map = string.Concat(input);
 
             // Find the minecarts
             List<Minecart> minecarts = Minecart.FindInMap(ref map, yOffset);

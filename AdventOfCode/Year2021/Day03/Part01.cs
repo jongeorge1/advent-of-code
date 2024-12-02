@@ -6,11 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] numbers = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-
-            return (GammaRate(numbers) * EpsilonRate(numbers)).ToString();
+            return (GammaRate(input) * EpsilonRate(input)).ToString();
         }
 
         private static int GammaRate(string[] numbers)

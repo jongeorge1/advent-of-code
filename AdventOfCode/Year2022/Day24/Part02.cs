@@ -7,7 +7,7 @@
         public string Solve(string[] input)
         {
             var map = new BlizzardBasin(input);
-            var totalTime = map.FindTimeFromEntranceToExit(0);
+            int totalTime = map.FindTimeFromEntranceToExit(0);
             totalTime = map.FindTimeFromExitToEntrance(totalTime);
             totalTime = map.FindTimeFromEntranceToExit(totalTime);
 

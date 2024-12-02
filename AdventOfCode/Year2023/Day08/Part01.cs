@@ -10,7 +10,7 @@
         {
             string directions = input[0];
 
-            Dictionary<string, (string Left, string Right)> maps = new ();
+            Dictionary<string, (string Left, string Right)> maps = new();
 
             foreach (string step in input[2..])
             {
@@ -40,8 +40,8 @@
 
                 ++position;
                 ++steps;
-
-            } while (location != "ZZZ");
+            }
+            while (location != "ZZZ");
 
             return steps.ToString();
         }

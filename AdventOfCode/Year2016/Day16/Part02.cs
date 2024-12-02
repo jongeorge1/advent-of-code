@@ -5,11 +5,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int size = 35651584;
 
-            var data = input.ToList();
+            var data = input[0].ToList();
 
             while (data.Count < size)
             {

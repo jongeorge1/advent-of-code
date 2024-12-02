@@ -8,7 +8,7 @@
         {
             int k = (int)Math.Ceiling((Math.Sqrt(n) - 1) / 2);
             int t = (2 * k) + 1;
-            var m = (int)Math.Pow(t, 2);
+            int m = (int)Math.Pow(t, 2);
 
             t = t - 1;
 

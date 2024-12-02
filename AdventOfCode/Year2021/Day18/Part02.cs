@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            SnailfishNumber[] numbers = input.Split(Environment.NewLine).Select(SnailfishNumber.Parse).ToArray();
+            SnailfishNumber[] numbers = input.Select(SnailfishNumber.Parse).ToArray();
 
             int largestMagnitude = 0;
 

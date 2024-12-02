@@ -6,7 +6,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var numbers = input
                 .Split(',', StringSplitOptions.RemoveEmptyEntries)

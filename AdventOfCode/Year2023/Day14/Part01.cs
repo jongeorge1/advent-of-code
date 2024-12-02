@@ -52,7 +52,6 @@
 
                     ++currentRow;
                 }
-
             }
 
             return runningTotal.ToString();

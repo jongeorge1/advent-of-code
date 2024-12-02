@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             string[] additionalRows = new[]
             {
@@ -37,7 +37,7 @@
                     return next.EnergyConsumed.ToString();
                 }
 
-                foreach (var move in next.PossibleMoves())
+                foreach (BurrowState move in next.PossibleMoves())
                 {
                     processingQueue.Enqueue(move, move.EnergyConsumed);
                 }

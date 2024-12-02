@@ -2,7 +2,7 @@
 {
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var area = new Area(input);
             area.Floors[0].AddChips(new[] { "elerium", "dilithium" });

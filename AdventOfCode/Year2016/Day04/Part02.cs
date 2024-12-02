@@ -5,9 +5,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Room[] rooms = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => new Room(x)).Where(x => x.IsValid).ToArray();
+            Room[] rooms = input.Select(x => new Room(x)).Where(x => x.IsValid).ToArray();
 
             Room targetRoom = rooms.First(x => x.DecryptedName().StartsWith("north"));
 

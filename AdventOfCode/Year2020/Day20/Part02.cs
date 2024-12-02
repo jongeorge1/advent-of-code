@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             Tile[] tiles = input.Split(Environment.NewLine + Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => new Tile(x))
@@ -80,7 +80,7 @@
                 char[] inverse = edge.ToCharArray();
                 Array.Reverse(inverse);
 
-                this.Orientations = new string[] { edge, new string(inverse) };
+                this.Orientations = [edge, new string(inverse)];
             }
 
             public string[] Orientations { get; }

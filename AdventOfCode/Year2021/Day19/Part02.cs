@@ -7,9 +7,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Scanner[] scanners = input.Split(Environment.NewLine + Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => new Scanner(x)).ToArray();
+            Scanner[] scanners = string.Join(Environment.NewLine, input).Split(Environment.NewLine + Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => new Scanner(x)).ToArray();
 
             Scanner.ResolveAllPositionsRelativeToFirst(scanners);
 

@@ -5,7 +5,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string data)
+        public string Solve(string[] data)
         {
             bool testMode = data.Length < 100;
             int width = testMode ? 2 : 25;
@@ -13,7 +13,7 @@
 
             int layerSize = width * height;
 
-            char[][] layers = data
+            char[][] layers = data[0]
                 .ToCharArray()
                 .Select((layer, index) => (index, layer))
                 .GroupBy(pixel => pixel.index / layerSize)

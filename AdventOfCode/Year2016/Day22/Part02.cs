@@ -5,10 +5,10 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Note: the quickest way to solve this is to print the grid and then count it by hand.
-            Node[] nodes = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Skip(2).Select(x => new Node(x)).ToArray();
+            Node[] nodes = input.Skip(2).Select(x => new Node(x)).ToArray();
 
             int maxX = nodes.Max(x => x.X);
             int maxY = nodes.Max(x => x.Y);

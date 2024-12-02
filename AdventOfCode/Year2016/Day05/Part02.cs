@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int current = 1;
 
@@ -19,7 +19,7 @@
 
             while (filledPasscodePositions < 8)
             {
-                byte[] currentBytes = Encoding.UTF8.GetBytes(input + current);
+                byte[] currentBytes = Encoding.UTF8.GetBytes(input[0] + current);
                 byte[] hash = hasher.ComputeHash(currentBytes);
 
                 // To convert this back into a string representation of the hash, we'd concatenate the 2-digit hex

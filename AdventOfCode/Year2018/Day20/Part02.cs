@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Dictionary<Point, Doors> map = Mapper.Map(input);
+            Dictionary<Point, Doors> map = Mapper.Map(input[0]);
 
             // We need to find the furthest room, defined as the room
             // for which the shortest path takes you through the most doors.

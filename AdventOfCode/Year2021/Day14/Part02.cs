@@ -8,20 +8,18 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(Environment.NewLine + Environment.NewLine);
-            string current = components[0];
+            string current = input[0];
 
-            var transforms = components[1].Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
-                .ToDictionary(x => x[0..2], x => new[] { new string(new[] { x[0], x[^1] }), new string(new[] { x[^1], x[1] }) });
+            var transforms = input[2..].ToDictionary(x => x[0..2], x => new[] { new string(new[] { x[0], x[^1] }), new string(new[] { x[^1], x[1] }) });
 
             var currentPairs = transforms.ToDictionary(x => x.Key, _ => 0L);
 
             // Break up the input into pairs
             for (int pos = 0; pos < (current.Length - 1); ++pos)
             {
-                ++currentPairs[current[pos.. (pos + 2)]];
+                ++currentPairs[current[pos..(pos + 2)]];
             }
 
             for (int step = 0; step < 40; ++step)
@@ -44,7 +42,7 @@
             var counts = currentPairs.GroupBy(x => x.Key[0])
                 .ToDictionary(x => x.Key, x => x.Sum(y => y.Value));
 
-            ++counts[components[0][^1]];
+            ++counts[input[0][^1]];
 
             var orderedCounts = counts.OrderBy(x => x.Value).ToList();
 

@@ -10,7 +10,7 @@
 
         public int PlayerMana { get; set; }
 
-        public int PlayerArmour { get; set;  }
+        public int PlayerArmour { get; set; }
 
         public int PlayerSpentMana { get; set; }
 

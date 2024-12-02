@@ -16,15 +16,13 @@
             { "w", ((int x, int y, int z) current) => (current.x - 1, current.y + 1, current.z) },
         };
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] directions = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
             // Represent the hex grid using cube coordinate system; see https://www.redblobgames.com/grids/hexagons/
             // for more info.
             var flippedTiles = new Dictionary<(int, int, int), bool>();
 
-            foreach (string direction in directions)
+            foreach (string direction in input)
             {
                 (int, int, int) location = GetLocation(direction);
                 if (flippedTiles.ContainsKey(location))

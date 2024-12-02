@@ -5,9 +5,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int width = input.Length;
+            int width = input[0].Length;
 
             int rows = width switch
             {
@@ -16,7 +16,7 @@
                 _ => 40,
             };
 
-            Dictionary<(int x, int y), bool> tiles = input.Select((tile, x) => (tile == '.' ? true : false, x)).ToDictionary(x => (x.x, 0), x => x.Item1);
+            Dictionary<(int x, int y), bool> tiles = input[0].Select((tile, x) => (tile == '.' ? true : false, x)).ToDictionary(x => (x.x, 0), x => x.Item1);
 
             for (int y = 1; y < rows; ++y)
             {

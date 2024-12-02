@@ -20,7 +20,7 @@
         [TestCase("122", 37)]
         public void ConvertFromSnafuTests(string snafu, int expected)
         {
-            var actual = SnafuConverter.ToLong(snafu.AsSpan());
+            long actual = SnafuConverter.ToLong(snafu.AsSpan());
             Assert.AreEqual(expected, actual);
         }
 
@@ -39,7 +39,7 @@
         [TestCase(37, "122")]
         public void ConvertToSnafuTests(int number, string expected)
         {
-            var actual = SnafuConverter.ToSnafu(number);
+            ReadOnlySpan<char> actual = SnafuConverter.ToSnafu(number);
             Assert.AreEqual(expected, actual.ToString());
         }
     }

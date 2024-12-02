@@ -5,9 +5,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Room[] rooms = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => new Room(x)).ToArray();
+            Room[] rooms = input.Select(x => new Room(x)).ToArray();
             return rooms.Where(x => x.IsValid).Sum(x => x.SectorId).ToString();
         }
     }

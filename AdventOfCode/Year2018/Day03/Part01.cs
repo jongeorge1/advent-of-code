@@ -6,9 +6,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var claims = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries).Select(Claim.FromString).ToList();
+            var claims = input.Select(Claim.FromString).ToList();
 
             var locations = new Dictionary<int, int>();
             const int yOffset = 1000;

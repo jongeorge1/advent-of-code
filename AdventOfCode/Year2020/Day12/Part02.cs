@@ -6,7 +6,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Get rid of the newlines
             string[] data = input

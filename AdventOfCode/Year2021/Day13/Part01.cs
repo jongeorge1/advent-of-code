@@ -7,14 +7,13 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(Environment.NewLine + Environment.NewLine);
-            List<(int X, int Y)> dots = components[0].Split(Environment.NewLine).Select(x => x.Split(',')).Select(x => (int.Parse(x[0]), int.Parse(x[1]))).ToList();
-            List<(string Axis, int Position)> folds = components[1].Split(Environment.NewLine).Select(x => x.Split(new[] { ' ', '=' })).Select(x => (x[^2], int.Parse(x[^1]))).ToList();
+            List<(int X, int Y)> dots = input.Select(x => x.Split(',')).Select(x => (int.Parse(x[0]), int.Parse(x[1]))).ToList();
+            List<(string Axis, int Position)> folds = input[1].Split(Environment.NewLine).Select(x => x.Split([' ', '='])).Select(x => (x[^2], int.Parse(x[^1]))).ToList();
 
             // We're only doing one fold.
-            HashSet<(int, int)> results = new ();
+            HashSet<(int, int)> results = new();
 
             (string Axis, int Position) firstFold = folds[0];
             if (firstFold.Axis == "x")

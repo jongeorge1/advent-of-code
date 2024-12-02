@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int[][] originalGrid = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
+            int[][] originalGrid = input
                 .Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray())
                 .ToArray();
 

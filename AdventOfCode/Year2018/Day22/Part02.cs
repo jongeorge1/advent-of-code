@@ -6,7 +6,7 @@
 
     public partial class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // The question tells us we might have to go past the target in the X and/or
             // Y direction so I added the ability to specify padding to the map. I initially

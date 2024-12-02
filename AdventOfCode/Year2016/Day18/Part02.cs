@@ -5,7 +5,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Note for anyone reading. I didn't get around to doing this puzzle until 2021, 5 years after it was originally set.
             // By the time I did, I'd also just got a PC with an AMD Ryzen 9 5950X processor, which I suspect was substantially
@@ -14,9 +14,9 @@
             // you simply stop and derive the answer from what you've already seen. But this solution just brute forces the answer
             // in about 10 seconds.
             const int rows = 400000;
-            int width = input.Length;
+            int width = input[0].Length;
 
-            Dictionary<(int x, int y), bool> tiles = input.Select((tile, x) => (tile == '.' ? true : false, x)).ToDictionary(x => (x.x, 0), x => x.Item1);
+            Dictionary<(int x, int y), bool> tiles = input[0].Select((tile, x) => (tile == '.' ? true : false, x)).ToDictionary(x => (x.x, 0), x => x.Item1);
 
             for (int y = 1; y < rows; ++y)
             {

@@ -6,9 +6,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var discs = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => new Disc(x)).OrderBy(x => x.Positions).ToList();
+            var discs = input.Select(x => new Disc(x)).OrderBy(x => x.Positions).ToList();
             discs.Add(new Disc(discs.Max(x => x.Number) + 1, 11, 0));
 
             long[] divisors = discs.Select(x => (long)x.Positions).ToArray();

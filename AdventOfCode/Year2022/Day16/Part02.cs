@@ -21,7 +21,7 @@
                 {
                     Name = line[6..8].ToString(),
                     FlowRate = int.Parse(line[23..flowRateEnd]),
-                    Destinations = line[(flowRateEnd + 24)..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
+                    Destinations = line[(flowRateEnd + 24) ..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
                 };
 
                 if (valve.FlowRate > 0)
@@ -71,7 +71,7 @@
                     return current.TotalPressureReleased.ToString();
                 }
 
-                var maximumPossibleTotalPressureRelease = current.MaximumPossibleTotalPressureRelease(valves);
+                int maximumPossibleTotalPressureRelease = current.MaximumPossibleTotalPressureRelease(valves);
 
                 // If the maximum possible pressure release is less than the max we've seen
                 // so far, cut this branch off.
@@ -173,7 +173,7 @@
                 Console.Write(valve.FlowRate);
                 Console.WriteLine("]");
 
-                foreach (var target in valve.Destinations)
+                foreach (string target in valve.Destinations)
                 {
                     Console.Write("    ");
                     Console.Write(valve.Name);
@@ -208,7 +208,7 @@
                 StringBuilder memo = new();
                 memo.Append(this.TimeRemaining);
                 memo.Append(",");
-                if (string.Compare(this.PersonLocation, this.ElephantLocation) < 0 )
+                if (string.Compare(this.PersonLocation, this.ElephantLocation) < 0)
                 {
                     memo.Append(this.PersonLocation);
                     memo.Append(",");
@@ -221,7 +221,7 @@
                     memo.Append(this.PersonLocation);
                 }
 
-                foreach (var current in this.OpenValves)
+                foreach (string current in this.OpenValves)
                 {
                     memo.Append(current);
                     memo.Append(",");
@@ -310,7 +310,6 @@
                     OpenValves = new SortedSet<string>(this.OpenValves),
                 };
             }
-
 
             public PathState WithOpenedValve(string valveName, int valvePressureReleaseRate, bool openedByPerson)
             {

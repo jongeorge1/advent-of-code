@@ -2,7 +2,7 @@
 {
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             var computer = new Computer(input);
             computer.Registers["c"] = 1;

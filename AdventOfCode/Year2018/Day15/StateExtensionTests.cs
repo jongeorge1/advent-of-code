@@ -1,5 +1,6 @@
 ﻿namespace AdventOfCode.Year2018.Day15
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AdventOfCode.Year2018.Day15;
@@ -14,7 +15,7 @@
         [TestCase("#######\r\n#E..G.#\r\n#...#E#\r\n#.G.#G#\r\n#######", 26, new int[0], Description = "Unit below")]
         public void GetAdjacentSpacesTests(string stateInput, int location, int[] expectedResults)
         {
-            var state = State.Parse(stateInput);
+            var state = State.Parse(stateInput.Split(Environment.NewLine));
             MapSpace startLocation = state.Map[location];
             MapSpace[] result = state.GetEmptyAdjacentSpaces(startLocation).ToArray();
 
@@ -29,14 +30,14 @@
         [TestCase("#########\r\n#G..G..G#\r\n#.......#\r\n#.......#\r\n#G..E..G#\r\n#.......#\r\n#.......#\r\n#G..G..G#\r\n#########", 3, "#########\r\n#.......#\r\n#..GGG..#\r\n#..GEG..#\r\n#G..G...#\r\n#......G#\r\n#.......#\r\n#.......#\r\n#########")]
         public void RoundTests(string initialState, int numberOfRounds, string expectedState)
         {
-            var state = State.Parse(initialState);
+            var state = State.Parse(initialState.Split(Environment.NewLine));
 
             for (int i = 0; i < numberOfRounds; i++)
             {
                 state.Round();
             }
 
-            var expected = State.Parse(expectedState);
+            var expected = State.Parse(expectedState.Split(Environment.NewLine));
 
             Assert.That(state.ToString(), Is.EqualTo(expected.ToString()));
         }

@@ -7,12 +7,12 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            Dictionary<string, List<string>> pathways = new ();
+            Dictionary<string, List<string>> pathways = new();
 
             // Build a map...
-            foreach (string row in input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
+            foreach (string row in input)
             {
                 string[] caves = row.Split('-');
 

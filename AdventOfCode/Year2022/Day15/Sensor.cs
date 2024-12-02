@@ -19,17 +19,17 @@ namespace AdventOfCode.Year2022.Day15
 
             int end = input.IndexOf(',');
             int sensorX = int.Parse(input[0..end]);
-            input = input[(end + 1)..];
+            input = input[(end + 1) ..];
 
             int start = input.IndexOf('=') + 1;
             end = input.IndexOf(':');
             int sensorY = int.Parse(input[start..end]);
-            input = input[(end + 1)..];
+            input = input[(end + 1) ..];
 
             start = input.IndexOf('=') + 1;
             end = input.IndexOf(',');
             int beaconX = int.Parse(input[start..end]);
-            input = input[(end + 1)..];
+            input = input[(end + 1) ..];
 
             start = input.IndexOf('=') + 1;
             int beaconY = int.Parse(input[start..]);

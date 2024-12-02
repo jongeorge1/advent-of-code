@@ -11,17 +11,17 @@
 
     public class Part02 : ISolution
     {
-        private static readonly Point[] Directions = new Point[]
-        {
+        private static readonly Point[] Directions =
+        [
             new Point(0, 1),
             new Point(1, 0),
             new Point(0, -1),
             new Point(-1, 0),
-        };
+        ];
 
-        public string Solve(string data)
+        public string Solve(string[] data)
         {
-            var vm = new AsyncIntCodeVm(data);
+            var vm = new AsyncIntCodeVm(data[0]);
             vm.InputBuffer.Post(1);
 
             int direction = 0; // Facing up

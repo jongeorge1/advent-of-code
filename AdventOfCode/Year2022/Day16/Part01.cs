@@ -21,7 +21,7 @@
                 {
                     Name = line[6..8].ToString(),
                     FlowRate = int.Parse(line[23..flowRateEnd]),
-                    Destinations = line[(flowRateEnd + 24)..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
+                    Destinations = line[(flowRateEnd + 24) ..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
                 };
 
                 if (valve.FlowRate > 0)
@@ -58,7 +58,7 @@
                     //return current.TotalPressureReleased.ToString();
                 }
 
-                var maximumPossibleTotalPressureRelease = current.MaximumPossibleTotalPressureRelease(valves);
+                int maximumPossibleTotalPressureRelease = current.MaximumPossibleTotalPressureRelease(valves);
 
                 // If the maximum possible pressure release is less than the max we've seen
                 // so far, cut this branch off.
@@ -110,7 +110,7 @@
                 Console.Write(valve.FlowRate);
                 Console.WriteLine("]");
 
-                foreach (var target in valve.Destinations)
+                foreach (string target in valve.Destinations)
                 {
                     Console.Write("    ");
                     Console.Write(valve.Name);
@@ -133,6 +133,8 @@
             public int TotalPressureReleased { get; set; }
 
             public List<string> OpenValves { get; set; }
+
+            public readonly bool CurrentValveIsOpen => this.OpenValves.Contains(this.Location);
 
             public int MaximumPossibleTotalPressureRelease(Dictionary<string, Valve> allValves)
             {
@@ -173,8 +175,6 @@
 
                 return potentialFinalPressureRelease;
             }
-
-            public bool CurrentValveIsOpen => this.OpenValves.Contains(this.Location);
 
             public PathState ToFinalState()
             {

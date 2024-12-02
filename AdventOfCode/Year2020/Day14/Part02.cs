@@ -8,7 +8,7 @@ namespace AdventOfCode.Year2020.Day14
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // Get rid of the newlines
             string[][] data = input
@@ -70,7 +70,7 @@ namespace AdventOfCode.Year2020.Day14
             if (firstX == -1)
             {
                 // No more 'X' - return the input parsed as a long.
-                return new[] { Convert.ToInt64(string.Join(string.Empty, input), 2) };
+                return [Convert.ToInt64(string.Join(string.Empty, input), 2)];
             }
 
             // There's at least one X.

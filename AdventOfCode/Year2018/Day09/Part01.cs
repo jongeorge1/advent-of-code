@@ -4,9 +4,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(' ');
+            string[] components = input[0].Split(' ');
 
             return this.Solve(int.Parse(components[0]), int.Parse(components[6])).ToString();
         }

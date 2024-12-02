@@ -8,13 +8,11 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] rows = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
             var reactor = new Reactor();
 
-            foreach (string current in rows)
+            foreach (string current in input)
             {
                 string[] instruction = current.Split(new char[] { ' ', '=', '.', ',' }, StringSplitOptions.RemoveEmptyEntries);
 

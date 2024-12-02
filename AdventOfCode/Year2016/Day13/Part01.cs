@@ -6,24 +6,24 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             (int x, int y) destination = (31, 39);
 
-            if (input.StartsWith("TEST"))
+            if (input[0].StartsWith("TEST"))
             {
-                input = input[4..];
+                input[0] = input[0][4..];
                 destination = (7, 4);
             }
 
-            int offset = int.Parse(input);
+            int offset = int.Parse(input[0]);
 
             // This line writes out the map, if you want to see it.
             ////Console.WriteLine(BuildMap(destination, offset));
 
             // Breadth first search FTW
-            Dictionary<(int, int), int> visitedLocations = new ();
-            PriorityQueue<((int x, int y) position, int steps), int> processingQueue = new ();
+            Dictionary<(int, int), int> visitedLocations = new();
+            PriorityQueue<((int x, int y) position, int steps), int> processingQueue = new();
 
             processingQueue.Enqueue(((1, 1), 0), 0);
 
@@ -76,13 +76,13 @@
 
         private static IEnumerable<(int x, int y)> GetPotentialNextLocations((int x, int y) location, int offset)
         {
-            (int, int)[] potentialLocations = new[]
-            {
+            (int, int)[] potentialLocations =
+            [
                 (location.x + 1, location.y),
                 (location.x - 1, location.y),
                 (location.x, location.y + 1),
                 (location.x, location.y - 1),
-            };
+            ];
 
             return potentialLocations.Where(x => IsOpenSpace(x, offset));
         }

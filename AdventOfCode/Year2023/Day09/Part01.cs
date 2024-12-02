@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            var sequences = input.Select(x => new Sequence(x));
+            IEnumerable<Sequence> sequences = input.Select(x => new Sequence(x));
             return sequences.Sum(x => x.ExtrapolateNextValue()).ToString();
         }
 
@@ -23,13 +23,13 @@
 
             public int ExtrapolateNextValue()
             {
-                List<List<int>> differences = new ();
+                List<List<int>> differences = new();
                 differences.Add(this.numbers.ToList());
 
                 while (differences.Last().Any(x => x != 0))
                 {
                     List<int> target = differences.Last();
-                    List<int> result = new ();
+                    List<int> result = new();
                     for (int i = 1; i < target.Count; ++i)
                     {
                         result.Add(target[i] - target[i - 1]);

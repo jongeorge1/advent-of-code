@@ -99,13 +99,13 @@ namespace AdventOfCode.Year2022.Day22
                             if (cubeFace.ConnectedFaces[down] is not null)
                             {
                                 int nextDirection = ChangeDirection(direction, cubeFace.FaceTraversalDirectionChanges[down]);
-                                var targetFace = cubeFace.ConnectedFaces[down].ConnectedFaces[nextDirection];
+                                CubeFaceDescriptor? targetFace = cubeFace.ConnectedFaces[down].ConnectedFaces[nextDirection];
                                 if (targetFace is not null)
                                 {
-                                    var combinedTraversalDirectionChanges = cubeFace.FaceTraversalDirectionChanges[down] + cubeFace.ConnectedFaces[down].FaceTraversalDirectionChanges[nextDirection];
+                                    int combinedTraversalDirectionChanges = cubeFace.FaceTraversalDirectionChanges[down] + cubeFace.ConnectedFaces[down].FaceTraversalDirectionChanges[nextDirection];
                                     cubeFace.ConnectedFaces[direction] = targetFace;
                                     cubeFace.FaceTraversalDirectionChanges[direction] = combinedTraversalDirectionChanges + 1;
-                                    var targetFaceConnectionEdge = ChangeDirection(up, combinedTraversalDirectionChanges);
+                                    int targetFaceConnectionEdge = ChangeDirection(up, combinedTraversalDirectionChanges);
                                     Debug.Assert(targetFace.ConnectedFaces[targetFaceConnectionEdge] is null);
                                     targetFace.ConnectedFaces[targetFaceConnectionEdge] = cubeFace;
                                     targetFace.FaceTraversalDirectionChanges[targetFaceConnectionEdge] = -combinedTraversalDirectionChanges - 1;
@@ -115,13 +115,13 @@ namespace AdventOfCode.Year2022.Day22
                             else if (cubeFace.ConnectedFaces[direction] is null && cubeFace.ConnectedFaces[up] is not null)
                             {
                                 int nextDirection = ChangeDirection(direction, cubeFace.FaceTraversalDirectionChanges[up]);
-                                var targetFace = cubeFace.ConnectedFaces[up].ConnectedFaces[nextDirection];
+                                CubeFaceDescriptor? targetFace = cubeFace.ConnectedFaces[up].ConnectedFaces[nextDirection];
                                 if (targetFace is not null)
                                 {
-                                    var combinedTraversalDirectionChanges = cubeFace.FaceTraversalDirectionChanges[up] + cubeFace.ConnectedFaces[up].FaceTraversalDirectionChanges[nextDirection];
+                                    int combinedTraversalDirectionChanges = cubeFace.FaceTraversalDirectionChanges[up] + cubeFace.ConnectedFaces[up].FaceTraversalDirectionChanges[nextDirection];
                                     cubeFace.ConnectedFaces[direction] = targetFace;
                                     cubeFace.FaceTraversalDirectionChanges[direction] = combinedTraversalDirectionChanges - 1;
-                                    var targetFaceConnectionEdge = ChangeDirection(down, combinedTraversalDirectionChanges);
+                                    int targetFaceConnectionEdge = ChangeDirection(down, combinedTraversalDirectionChanges);
                                     Debug.Assert(targetFace.ConnectedFaces[targetFaceConnectionEdge] is null);
                                     targetFace.ConnectedFaces[targetFaceConnectionEdge] = cubeFace;
                                     targetFace.FaceTraversalDirectionChanges[targetFaceConnectionEdge] = 1 - combinedTraversalDirectionChanges;

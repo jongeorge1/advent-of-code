@@ -53,7 +53,7 @@
                     return false;
                 }
 
-                var index = span.IndexOf(this.delimiter);
+                int index = span.IndexOf(this.delimiter);
                 if (index == -1)
                 {
                     // The string is composed of only one line

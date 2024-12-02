@@ -6,7 +6,7 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             (int x, int y)[] movementMatrices = new[]
             {
@@ -16,7 +16,7 @@
                 (-1, 0),
             };
 
-            string[] directions = input.Split(", ");
+            string[] directions = input[0].Split(", ");
             (int x, int y) location = (0, 0);
             int currentDirection = 0;
 

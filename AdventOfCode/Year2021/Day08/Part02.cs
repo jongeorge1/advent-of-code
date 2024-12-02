@@ -7,11 +7,9 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            var inputLines = input.Split(Environment.NewLine).ToList();
-
-            (string[] Inputs, string[] Outputs)[] digits = inputLines.Select(x => x.Split('|'))
+            (string[] Inputs, string[] Outputs)[] digits = input.Select(x => x.Split('|'))
                 .Select(x => (x[0].Split(' ', StringSplitOptions.RemoveEmptyEntries), x[1].Split(' ', StringSplitOptions.RemoveEmptyEntries)))
                 .ToArray();
 
@@ -39,8 +37,8 @@
             // - Finally we look at the two remaining with 6 digits, 0 and 9. The one that contains all the signals of 3 is 9. The other is 0.
             // We can then match the outputs against the inputs to determine the code. There's not guarantee that the order of signals in the outputs
             // will match the orders in the inputs, so we sort them before getting started.
-            Dictionary<int, string> digits = new ();
-            Dictionary<char, char> signals = new ();
+            Dictionary<int, string> digits = new();
+            Dictionary<char, char> signals = new();
 
             string[] inputs = display.Inputs.Select(x => string.Concat(x.OrderBy(y => y))).ToArray();
             string[] outputs = display.Outputs.Select(x => string.Concat(x.OrderBy(y => y))).ToArray();

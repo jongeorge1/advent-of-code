@@ -4,9 +4,9 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            uint presentCount = uint.Parse(input);
+            uint presentCount = uint.Parse(input[0]);
 
             // This is a case of something called the Josephus problem -
             // https://en.wikipedia.org/wiki/Josephus_problem:

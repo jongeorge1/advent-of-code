@@ -10,9 +10,9 @@
         private const int Edge = int.MaxValue;
         private const int Unfilled = -1;
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            int[][] rows = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Select(x => x.ToCharArray().Select(y => int.Parse(y.ToString())).ToArray()).ToArray();
+            int[][] rows = input.Select(x => x.ToCharArray().Select(y => int.Parse(y.ToString())).ToArray()).ToArray();
 
             int width = rows[0].Length;
             int height = rows.Length;

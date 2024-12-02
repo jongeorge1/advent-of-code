@@ -17,9 +17,9 @@
         {
             int newEdgeLength = this.EdgeLength / 2;
 
-            int[] newXMins = new[] { this.Corner1.X, this.Corner1.X + newEdgeLength };
-            int[] newYMins = new[] { this.Corner1.Y, this.Corner1.Y + newEdgeLength };
-            int[] newZMins = new[] { this.Corner1.Z, this.Corner1.Z + newEdgeLength };
+            int[] newXMins = [this.Corner1.X, this.Corner1.X + newEdgeLength];
+            int[] newYMins = [this.Corner1.Y, this.Corner1.Y + newEdgeLength];
+            int[] newZMins = [this.Corner1.Z, this.Corner1.Z + newEdgeLength];
 
             return newXMins.SelectMany(x =>
                 newYMins.SelectMany(y =>

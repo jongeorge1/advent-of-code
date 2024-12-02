@@ -13,7 +13,7 @@
             {
                 if ((args.Cycle - 20) % 40 == 0)
                 {
-                    signalStrength += args.Cycle * ((Device)sender).X;
+                    signalStrength += args.Cycle * ((Device)sender!).X;
                 }
             };
 

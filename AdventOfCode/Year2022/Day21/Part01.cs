@@ -12,7 +12,7 @@
 
             foreach (string line in input)
             {
-                var elements = line.Split(new char[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] elements = line.Split(new char[] { ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 if (elements.Length == 4)
                 {
                     var newMonkey = new OperatorMonkey

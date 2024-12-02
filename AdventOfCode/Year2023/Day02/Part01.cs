@@ -12,7 +12,7 @@
 
             foreach (string entry in input)
             {
-                Game game = new (entry);
+                Game game = new(entry);
                 if (game.IsPossible())
                 {
                     runningTotal += game.Id;

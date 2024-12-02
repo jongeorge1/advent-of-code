@@ -6,7 +6,7 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             // First we need to parse the input and build a map of points.
             var map = new HashSet<(int X, int Y)>();
@@ -15,11 +15,11 @@
             var allPois = new List<(int X, int Y)>();
 
             int y = 0;
-            foreach (StringExtensions.StringSplitEntry row in input.SplitLines())
+            foreach (string row in input)
             {
-                for (int x = 0; x < row.Line.Length; ++x)
+                for (int x = 0; x < row.Length; ++x)
                 {
-                    switch (row.Line[x])
+                    switch (row[x])
                     {
                         case '#':
                             break;

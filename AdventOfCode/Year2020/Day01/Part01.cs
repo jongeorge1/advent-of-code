@@ -2,25 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using AdventOfCode;
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            ReadOnlySpan<char> newLine = Environment.NewLine.AsSpan();
-            var numbers = new List<int>(1000);
-            ReadOnlySpan<char> inputSpan = input.AsSpan();
-
-            while (inputSpan.Length > 0)
-            {
-                int end = inputSpan.IndexOf(newLine, StringComparison.InvariantCultureIgnoreCase);
-
-                ReadOnlySpan<char> current = end == -1 ? inputSpan : inputSpan[0..end];
-                numbers.Add(int.Parse(current));
-
-                inputSpan = inputSpan[(end + newLine.Length) ..];
-            }
+            IEnumerable<int> numbers = input.Select(int.Parse);
 
             foreach (int number in numbers)
             {

@@ -8,15 +8,14 @@
 
     public class Part02 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
-            string[] components = input.Split(Environment.NewLine + Environment.NewLine);
-            HashSet<(int X, int Y)> dots = new HashSet<(int, int)>(components[0].Split(Environment.NewLine).Select(x => x.Split(',')).Select(x => (int.Parse(x[0]), int.Parse(x[1]))));
-            List<(string Axis, int Position)> folds = components[1].Split(Environment.NewLine).Select(x => x.Split(new[] { ' ', '=' })).Select(x => (x[^2], int.Parse(x[^1]))).ToList();
+            HashSet<(int X, int Y)> dots = new HashSet<(int, int)>(input.Select(x => x.Split(',')).Select(x => (int.Parse(x[0]), int.Parse(x[1]))));
+            List<(string Axis, int Position)> folds = input[1].Split(Environment.NewLine).Select(x => x.Split([' ', '='])).Select(x => (x[^2], int.Parse(x[^1]))).ToList();
 
             foreach ((string Axis, int Position) fold in folds)
             {
-                HashSet<(int, int)> results = new ();
+                HashSet<(int, int)> results = new();
 
                 if (fold.Axis == "x")
                 {
@@ -56,7 +55,7 @@
             int maxX = dots.Max(x => x.X);
             int maxY = dots.Max(x => x.Y);
 
-            StringBuilder output = new ();
+            StringBuilder output = new();
 
             for (int y = 0; y <= maxY; ++y)
             {

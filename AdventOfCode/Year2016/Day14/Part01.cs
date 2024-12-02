@@ -10,7 +10,7 @@
     {
         private readonly MD5 hasher = MD5.Create();
 
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             int testIndex = 0;
             var keys = new List<int>();
@@ -22,7 +22,7 @@
                 // Make sure we have enough hashes for the look-ahead
                 while (hashes.Count <= testIndex + 1000)
                 {
-                    hashes.Add(this.GetHash(input, hashes.Count));
+                    hashes.Add(this.GetHash(input[0], hashes.Count));
                 }
 
                 // Now see if the current hash is a key
@@ -47,7 +47,7 @@
                 char matchChar = hash[i];
                 if (hash[i + 1] == matchChar && hash[i + 2] == matchChar)
                 {
-                    string searchString = new (new[] { matchChar, matchChar, matchChar, matchChar, matchChar });
+                    string searchString = new(new[] { matchChar, matchChar, matchChar, matchChar, matchChar });
                     return hashes.Skip(testIndex + 1).Take(1000).Any(x => x.IndexOf(searchString) != -1);
                 }
             }

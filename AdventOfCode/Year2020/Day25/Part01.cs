@@ -5,12 +5,11 @@
 
     public class Part01 : ISolution
     {
-        public string Solve(string input)
+        public string Solve(string[] input)
         {
             const long subjectNumber = 7;
-            string[] keys = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            long cardPublicKey = long.Parse(keys[0]);
-            long doorPublicKey = long.Parse(keys[1]);
+            long cardPublicKey = long.Parse(input[0]);
+            long doorPublicKey = long.Parse(input[1]);
 
             long cardLoopSize = CalculateLoopSize(subjectNumber, cardPublicKey);
             long encryptionKey = CalculateEncryptionKey(cardLoopSize, doorPublicKey);
