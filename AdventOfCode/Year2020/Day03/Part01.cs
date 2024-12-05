@@ -1,15 +1,12 @@
 ﻿namespace AdventOfCode.Year2020.Day03
 {
-    using System;
     using AdventOfCode;
 
     public class Part01 : ISolution
     {
         public string Solve(string[] input)
         {
-            string[] rows = input.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-            return this.CountTreesOnSlope(rows, 3, 1).ToString();
+            return this.CountTreesOnSlope(input, 3, 1).ToString();
         }
 
         private int CountTreesOnSlope(string[] map, int colStep, int rowStep)

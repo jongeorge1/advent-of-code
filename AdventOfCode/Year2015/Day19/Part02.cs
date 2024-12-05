@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2015.Day19
 {
-    using System;
     using System.Linq;
 
     public class Part02 : ISolution

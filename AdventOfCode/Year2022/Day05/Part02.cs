@@ -32,7 +32,7 @@
             var stacks = new List<char>[stackCount];
             for (int i = 0; i < stackCount; i++)
             {
-                stacks[i] = new List<char>();
+                stacks[i] = [];
             }
 
             // Unlike Part 1, where we used a set of stacks and therefore had to process

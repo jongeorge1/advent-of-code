@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2021.Day12
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AdventOfCode;
@@ -9,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            Dictionary<string, List<string>> pathways = new();
+            Dictionary<string, List<string>> pathways = [];
 
             // Build a map...
             foreach (string row in input)
@@ -18,7 +17,7 @@
 
                 if (!pathways.TryGetValue(caves[0], out List<string>? paths))
                 {
-                    paths = new List<string>();
+                    paths = [];
                     pathways[caves[0]] = paths;
                 }
 
@@ -26,7 +25,7 @@
 
                 if (!pathways.TryGetValue(caves[1], out paths))
                 {
-                    paths = new List<string>();
+                    paths = [];
                     pathways[caves[1]] = paths;
                 }
 
@@ -40,7 +39,7 @@
             // We could do this using breadth or depth first; it doesn't really matter.
             int completeRoutes = 0;
             var queue = new Queue<List<string>>();
-            queue.Enqueue(new List<string> { "start" });
+            queue.Enqueue(["start"]);
 
             while (queue.Count > 0)
             {

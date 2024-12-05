@@ -1,11 +1,7 @@
 ﻿namespace AdventOfCode.Year2022.Day17
 {
     using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
     using AdventOfCode;
-    using NUnit.Framework;
 
     public class Part01 : ISolution
     {

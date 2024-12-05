@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2022.Day08
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AdventOfCode;

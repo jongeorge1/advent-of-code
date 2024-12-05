@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2018.Day06
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;

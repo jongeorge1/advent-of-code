@@ -5,7 +5,6 @@
     using System.Diagnostics;
     using System.Linq;
     using AdventOfCode;
-    using NUnit.Framework;
 
     public class Part02 : ISolution
     {

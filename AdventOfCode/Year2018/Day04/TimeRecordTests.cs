@@ -1,39 +1,37 @@
-﻿namespace AdventOfCode.Year2018.Day04
+﻿namespace AdventOfCode.Year2018.Day04;
+
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+public class TimeRecordTests
 {
-    using System;
-    using AdventOfCode.Year2018.Day04;
-    using NUnit.Framework;
-
-    public class TimeRecordTests
+    [TestMethod]
+    public void CreationFromStartsShiftTimeRecordString()
     {
-        [Test]
-        public void CreationFromStartsShiftTimeRecordString()
-        {
-            var result = TimeRecord.FromString("[1518-11-14 00:02] Guard #3011 begins shift");
+        var result = TimeRecord.FromString("[1518-11-14 00:02] Guard #3011 begins shift");
 
-            Assert.That(result.DateTime, Is.EqualTo(new DateTime(1518, 11, 14, 0, 2, 0)));
-            Assert.That(result.Activity, Is.EqualTo(TimeRecordActivity.StartsShift));
-            Assert.That(result.GuardNumber, Is.EqualTo(3011));
-        }
+        Assert.AreEqual(new DateTime(1518, 11, 14, 0, 2, 0), result.DateTime);
+        Assert.AreEqual(TimeRecordActivity.StartsShift, result.Activity);
+        Assert.AreEqual(3011, result.GuardNumber);
+    }
 
-        [Test]
-        public void CreationFromFallsAsleepTimeRecordString()
-        {
-            var result = TimeRecord.FromString("[1518-11-01 23:58] falls asleep");
+    [TestMethod]
+    public void CreationFromFallsAsleepTimeRecordString()
+    {
+        var result = TimeRecord.FromString("[1518-11-01 23:58] falls asleep");
 
-            Assert.That(result.DateTime, Is.EqualTo(new DateTime(1518, 11, 01, 23, 58, 0)));
-            Assert.That(result.Activity, Is.EqualTo(TimeRecordActivity.FallsAsleep));
-            Assert.That(result.GuardNumber, Is.Null);
-        }
+        Assert.AreEqual(new DateTime(1518, 11, 01, 23, 58, 0), result.DateTime);
+        Assert.AreEqual(TimeRecordActivity.FallsAsleep, result.Activity);
+        Assert.IsNull(result.GuardNumber);
+    }
 
-        [Test]
-        public void CreationFromWakesUpTimeRecordString()
-        {
-            var result = TimeRecord.FromString("[1518-06-09 00:52] wakes up");
+    [TestMethod]
+    public void CreationFromWakesUpTimeRecordString()
+    {
+        var result = TimeRecord.FromString("[1518-06-09 00:52] wakes up");
 
-            Assert.That(result.DateTime, Is.EqualTo(new DateTime(1518, 06, 09, 0, 52, 0)));
-            Assert.That(result.Activity, Is.EqualTo(TimeRecordActivity.WakesUp));
-            Assert.That(result.GuardNumber, Is.Null);
-        }
+        Assert.AreEqual(new DateTime(1518, 06, 09, 0, 52, 0), result.DateTime);
+        Assert.AreEqual(TimeRecordActivity.WakesUp, result.Activity);
+        Assert.IsNull(result.GuardNumber);
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2021.Day09
 {
-    using System;
     using System.Linq;
     using AdventOfCode;
 

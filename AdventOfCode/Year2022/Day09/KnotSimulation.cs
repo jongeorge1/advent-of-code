@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
     using AdventOfCode.Helpers;
 
     public static class KnotSimulation
@@ -17,10 +16,10 @@
 
         public static string Run(string[] input, int knotCount)
         {
-            HashSet<(int X, int Y)> tailVisitedLocations = new()
-            {
+            HashSet<(int X, int Y)> tailVisitedLocations =
+            [
                 (0, 0),
-            };
+            ];
 
             (int X, int Y)[] knots = new (int, int)[knotCount];
 

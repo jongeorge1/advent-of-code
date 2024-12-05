@@ -1,7 +1,6 @@
 ﻿namespace AdventOfCode.Year2016.Day01
 {
     using System.Collections.Generic;
-    using System.Linq;
     using AdventOfCode.Helpers;
 
     public class Part02 : ISolution

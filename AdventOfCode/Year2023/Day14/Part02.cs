@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.CompilerServices;
     using System.Text;
     using AdventOfCode;
 
@@ -19,7 +18,7 @@
         {
             PlatformItem[,] layout = BuildPlatformLayout(input);
 
-            Dictionary<int, int> seenStates = new();
+            Dictionary<int, int> seenStates = [];
 
             int cycles = 0;
 

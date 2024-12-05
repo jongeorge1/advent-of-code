@@ -22,7 +22,7 @@
             ////Console.WriteLine(BuildMap(destination, offset));
 
             // Breadth first search FTW
-            Dictionary<(int, int), int> visitedLocations = new();
+            Dictionary<(int, int), int> visitedLocations = [];
             PriorityQueue<((int x, int y) position, int steps), int> processingQueue = new();
 
             processingQueue.Enqueue(((1, 1), 0), 0);

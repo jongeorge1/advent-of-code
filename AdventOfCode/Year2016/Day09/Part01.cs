@@ -1,6 +1,4 @@
-﻿using AdventOfCode.Year2015.Day07;
-
-namespace AdventOfCode.Year2016.Day09
+﻿namespace AdventOfCode.Year2016.Day09
 {
     public class Part01 : ISolution
     {

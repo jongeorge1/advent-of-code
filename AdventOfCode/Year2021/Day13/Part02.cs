@@ -15,7 +15,7 @@
 
             foreach ((string Axis, int Position) fold in folds)
             {
-                HashSet<(int, int)> results = new();
+                HashSet<(int, int)> results = [];
 
                 if (fold.Axis == "x")
                 {

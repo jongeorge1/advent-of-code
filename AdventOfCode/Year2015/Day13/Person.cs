@@ -11,7 +11,7 @@
 
         public string Name { get; set; }
 
-        public Dictionary<string, int> HappinessRules { get; set; } = new Dictionary<string, int>();
+        public Dictionary<string, int> HappinessRules { get; set; } = [];
 
         public int CalculateHappinessUnits(string left, string right)
         {

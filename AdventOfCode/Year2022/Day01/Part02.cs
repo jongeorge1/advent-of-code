@@ -1,9 +1,7 @@
 ﻿namespace AdventOfCode.Year2022.Day01
 {
     using System;
-    using System.Linq;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part02 : ISolution
     {

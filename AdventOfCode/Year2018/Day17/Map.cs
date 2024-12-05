@@ -10,7 +10,7 @@
         {
             this.YMin = yMin;
             this.YMax = yMax;
-            this.Slices = new Dictionary<int, SoilType[]>();
+            this.Slices = [];
             this.Source = new Point(500, 0);
             this.WaterTilesCount = 0;
         }

@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2018.Day18
 {
-    using System;
     using System.Linq;
 
     public static class MapParser

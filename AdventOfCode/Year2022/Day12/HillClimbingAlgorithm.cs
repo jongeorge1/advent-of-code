@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
-    using System.Linq;
 
     public ref struct HillClimbingAlgorithm
     {
@@ -56,7 +55,7 @@
 
         public bool TryFindShortestPathBetween(Point start, Point end, [NotNullWhen(true)] out int? steps)
         {
-            HashSet<Point> visitedLocations = new();
+            HashSet<Point> visitedLocations = [];
             Queue<State> states = new();
             states.Enqueue(new State(start, 0));
 

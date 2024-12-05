@@ -23,13 +23,12 @@
 
             public int ExtrapolatePreviousValue()
             {
-                List<List<int>> differences = new();
-                differences.Add(this.numbers.ToList());
+                List<List<int>> differences = [this.numbers.ToList()];
 
                 while (differences.Last().Any(x => x != 0))
                 {
                     List<int> target = differences.Last();
-                    List<int> result = new();
+                    List<int> result = [];
                     for (int i = 1; i < target.Count; ++i)
                     {
                         result.Add(target[i] - target[i - 1]);

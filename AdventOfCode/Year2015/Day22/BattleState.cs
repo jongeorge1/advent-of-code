@@ -22,13 +22,13 @@
 
         public bool HardMode { get; set; } = false;
 
-        public Dictionary<Spells, int> ActiveEffects { get; set; } = new Dictionary<Spells, int>();
+        public Dictionary<Spells, int> ActiveEffects { get; set; } = [];
 
         public bool IsComplete => this.PlayerHitPoints <= 0 || this.BossHitPoints <= 0;
 
         public bool PlayerWins => this.BossHitPoints <= 0;
 
-        public List<string> GameLog { get; set; } = new List<string>();
+        public List<string> GameLog { get; set; } = [];
 
         public void SpendPlayerMana(int amount)
         {

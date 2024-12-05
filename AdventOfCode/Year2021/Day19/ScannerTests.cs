@@ -1,14 +1,14 @@
-﻿namespace AdventOfCode.Year2021.Day19
-{
-    using AdventOfCode.Year2021.Day19;
-    using NUnit.Framework;
+﻿namespace AdventOfCode.Year2021.Day19;
 
-    public class ScannerTests
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+[TestClass]
+public class ScannerTests
+{
+    [TestMethod]
+    public void ParsingInput()
     {
-        [Test]
-        public void ParsingInput()
-        {
-            string input = @"--- scanner 0 ---
+        string input = @"--- scanner 0 ---
 404,-588,-901
 528,-643,409
 -838,591,734
@@ -35,20 +35,20 @@
 -789,900,-551
 459,-707,401";
 
-            var scanner = new Scanner(input);
+        var scanner = new Scanner(input);
 
-            Assert.That(scanner.Number, Is.EqualTo(0));
+        Assert.AreEqual(0, scanner.Number);
 
-            Assert.That(scanner.Beacons.Length, Is.EqualTo(25));
-            Assert.That(scanner.Beacons[1].X, Is.EqualTo(528));
-            Assert.That(scanner.Beacons[1].Y, Is.EqualTo(-643));
-            Assert.That(scanner.Beacons[1].Z, Is.EqualTo(409));
-        }
+        Assert.AreEqual(25, scanner.Beacons.Length);
+        Assert.AreEqual(528, scanner.Beacons[1].X);
+        Assert.AreEqual(-643, scanner.Beacons[1].Y);
+        Assert.AreEqual(409, scanner.Beacons[1].Z);
+    }
 
-        [Test]
-        public void OverlapDetection()
-        {
-            var scanner1 = new Scanner(@"--- scanner 0 ---
+    [TestMethod]
+    public void OverlapDetection()
+    {
+        var scanner1 = new Scanner(@"--- scanner 0 ---
 404,-588,-901
 528,-643,409
 -838,591,734
@@ -74,7 +74,7 @@
 443,580,662
 -789,900,-551
 459,-707,401");
-            var scanner2 = new Scanner(@"--- scanner 1 ---
+        var scanner2 = new Scanner(@"--- scanner 1 ---
 686,422,578
 605,423,415
 515,917,-361
@@ -101,19 +101,19 @@
 755,-354,-619
 553,889,-390");
 
-            scanner1.Position = (0, 0, 0);
-            scanner1.TransformationRequiredToBeRelativeToOrigin = x => x;
+        scanner1.Position = (0, 0, 0);
+        scanner1.TransformationRequiredToBeRelativeToOrigin = x => x;
 
-            bool overlaps = scanner1.TryUpdateRelativePositionOf(scanner2);
+        bool overlaps = scanner1.TryUpdateRelativePositionOf(scanner2);
 
-            Assert.That(overlaps, Is.True);
-            Assert.That(scanner2.Position!.Value, Is.EqualTo((68, -1246, -43)));
-        }
+        Assert.IsTrue(overlaps);
+        Assert.AreEqual((68, -1246, -43), scanner2.Position!.Value);
+    }
 
-        [Test]
-        public void MultipleOverlapDetection()
-        {
-            var scanner0 = new Scanner(@"--- scanner 0 ---
+    [TestMethod]
+    public void MultipleOverlapDetection()
+    {
+        var scanner0 = new Scanner(@"--- scanner 0 ---
 404,-588,-901
 528,-643,409
 -838,591,734
@@ -139,7 +139,7 @@
 443,580,662
 -789,900,-551
 459,-707,401");
-            var scanner1 = new Scanner(@"--- scanner 1 ---
+        var scanner1 = new Scanner(@"--- scanner 1 ---
 686,422,578
 605,423,415
 515,917,-361
@@ -166,7 +166,7 @@
 755,-354,-619
 553,889,-390");
 
-            var scanner4 = new Scanner(@"--- scanner 4 ---
+        var scanner4 = new Scanner(@"--- scanner 4 ---
 727,592,562
 -293,-554,779
 441,611,-461
@@ -194,21 +194,20 @@
 -652,-548,-490
 30,-46,-14");
 
-            scanner0.Position = (0, 0, 0);
-            scanner0.TransformationRequiredToBeRelativeToOrigin = x => x;
+        scanner0.Position = (0, 0, 0);
+        scanner0.TransformationRequiredToBeRelativeToOrigin = x => x;
 
-            bool overlaps = scanner0.TryUpdateRelativePositionOf(scanner1);
-            Assert.That(overlaps, Is.True);
-            Assert.That(scanner1.Position!.Value, Is.EqualTo((68, -1246, -43)));
+        bool overlaps = scanner0.TryUpdateRelativePositionOf(scanner1);
+        Assert.IsTrue(overlaps);
+        Assert.AreEqual((68, -1246, -43), scanner1.Position!.Value);
 
-            overlaps = scanner0.TryUpdateRelativePositionOf(scanner4);
-            Assert.That(overlaps, Is.False);
-            Assert.That(scanner1.Position.Value, Is.EqualTo((68, -1246, -43)));
+        overlaps = scanner0.TryUpdateRelativePositionOf(scanner4);
+        Assert.IsFalse(overlaps);
+        Assert.AreEqual((68, -1246, -43), scanner1.Position.Value);
 
-            overlaps = scanner1.TryUpdateRelativePositionOf(scanner4);
-            Assert.That(overlaps, Is.True);
-            Assert.That(scanner1.Position.Value, Is.EqualTo((68, -1246, -43)));
-            Assert.That(scanner4.Position!.Value, Is.EqualTo((-20, -1133, 1061)));
-        }
+        overlaps = scanner1.TryUpdateRelativePositionOf(scanner4);
+        Assert.IsTrue(overlaps);
+        Assert.AreEqual((68, -1246, -43), scanner1.Position.Value);
+        Assert.AreEqual((-20, -1133, 1061), scanner4.Position!.Value);
     }
 }

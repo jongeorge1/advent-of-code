@@ -1,7 +1,5 @@
 ﻿namespace AdventOfCode.Year2022.Day20
 {
-    using AdventOfCode.Helpers;
-
     public class EncryptedFile
     {
         public EncryptedFile(string[] input)

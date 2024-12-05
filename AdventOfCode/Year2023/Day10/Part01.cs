@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using AdventOfCode;
 
     public class Part01 : ISolution
@@ -34,7 +33,7 @@
 
         private static (int, int) GetNextPosition((int X, int Y) currentPosition, (int X, int Y) previousPosition, char tileType, char startTileType)
         {
-            List<(int, int)> connectedTiles = new();
+            List<(int, int)> connectedTiles = [];
 
             if (tileType == TileType.Start)
             {

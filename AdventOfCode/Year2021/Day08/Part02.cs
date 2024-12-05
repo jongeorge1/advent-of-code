@@ -37,8 +37,8 @@
             // - Finally we look at the two remaining with 6 digits, 0 and 9. The one that contains all the signals of 3 is 9. The other is 0.
             // We can then match the outputs against the inputs to determine the code. There's not guarantee that the order of signals in the outputs
             // will match the orders in the inputs, so we sort them before getting started.
-            Dictionary<int, string> digits = new();
-            Dictionary<char, char> signals = new();
+            Dictionary<int, string> digits = [];
+            Dictionary<char, char> signals = [];
 
             string[] inputs = display.Inputs.Select(x => string.Concat(x.OrderBy(y => y))).ToArray();
             string[] outputs = display.Outputs.Select(x => string.Concat(x.OrderBy(y => y))).ToArray();

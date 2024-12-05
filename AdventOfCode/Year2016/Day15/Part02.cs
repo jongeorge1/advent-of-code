@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2016.Day15
 {
-    using System;
     using System.Linq;
     using AdventOfCode.Helpers;
 

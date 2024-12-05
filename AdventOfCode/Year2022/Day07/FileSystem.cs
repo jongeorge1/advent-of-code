@@ -47,7 +47,7 @@
 
         public Directory Root { get; } = new Directory { Name = "/" };
 
-        public List<Directory> AllDirectories { get; } = new List<Directory>();
+        public List<Directory> AllDirectories { get; } = [];
 
         public Directory CurrentDirectory { get; private set; }
 

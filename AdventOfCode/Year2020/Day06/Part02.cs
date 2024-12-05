@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            return input
+            return string.Join(Environment.NewLine, input)
                 .Split(new string[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Sum(CountAnswers)
                 .ToString();

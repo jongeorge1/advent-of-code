@@ -1,12 +1,11 @@
 ﻿namespace AdventOfCode.Year2021.Day22
 {
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
 
     public class Reactor
     {
-        private List<Region> activeRegions = new List<Region>();
+        private List<Region> activeRegions = [];
 
         public void SwitchRegion(Region newRegion, bool on)
         {

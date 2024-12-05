@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2018.Day21
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Instruction = AdventOfCode.Year2018.Day19.Instruction;

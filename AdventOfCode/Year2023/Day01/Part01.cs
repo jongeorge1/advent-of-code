@@ -2,7 +2,6 @@
 {
     using System;
     using System.Buffers;
-    using System.ComponentModel.DataAnnotations;
     using AdventOfCode;
 
     public class Part01 : ISolution

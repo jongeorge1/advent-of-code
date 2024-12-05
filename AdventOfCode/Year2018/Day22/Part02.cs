@@ -39,7 +39,7 @@
             // get to discard many more potential paths at an earlier stage than if we use a
             // normal queue.
             var searchQueue = new SimplePriorityQueue<List<(int X, int Y, Tools equippedTool, int timeTaken)>>();
-            searchQueue.Enqueue(new List<(int X, int Y, Tools equippedTool, int timeTaken)> { (0, 0, Tools.Torch, 0) }, 0);
+            searchQueue.Enqueue([(0, 0, Tools.Torch, 0)], 0);
 
             while (searchQueue.Count != 0)
             {

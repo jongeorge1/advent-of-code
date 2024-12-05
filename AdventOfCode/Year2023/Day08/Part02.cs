@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2023.Day08
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using AdventOfCode;
@@ -11,7 +10,7 @@
         {
             string directions = input[0];
 
-            Dictionary<string, (string Left, string Right)> maps = new();
+            Dictionary<string, (string Left, string Right)> maps = [];
 
             foreach (string step in input[2..])
             {

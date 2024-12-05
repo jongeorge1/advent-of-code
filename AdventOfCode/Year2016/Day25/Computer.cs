@@ -37,7 +37,7 @@
             { "d", 0 },
         };
 
-        public List<int> ToggledLocations { get; } = new();
+        public List<int> ToggledLocations { get; } = [];
 
         public Func<int, bool> Output { get; set; }
 

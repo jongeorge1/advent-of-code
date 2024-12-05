@@ -9,7 +9,6 @@
         public string Solve(string[] input)
         {
             return input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Max(CalculateSeatId)
                 .ToString();
         }

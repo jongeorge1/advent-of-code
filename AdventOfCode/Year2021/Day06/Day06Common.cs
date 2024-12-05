@@ -4,7 +4,7 @@
 
     public static class Day06Common
     {
-        private static readonly Dictionary<int, long> CountCache = new Dictionary<int, long>();
+        private static readonly Dictionary<int, long> CountCache = [];
 
         public static long CalculateDescendantCountAfterDays(int days, int firstOffset)
         {

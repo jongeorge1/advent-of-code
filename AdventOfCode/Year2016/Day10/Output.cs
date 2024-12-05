@@ -9,7 +9,7 @@
         public Output(int number)
         {
             this.Number = number;
-            this.Values = new List<int>();
+            this.Values = [];
         }
 
         public int Number { get; }

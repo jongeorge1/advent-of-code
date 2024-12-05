@@ -11,7 +11,7 @@
     {
         public string Solve(string[] input)
         {
-            Dictionary<string, Valve> valves = new();
+            Dictionary<string, Valve> valves = [];
             int countOfValvesWorthOpening = 0;
             foreach (string line in input)
             {
@@ -35,7 +35,7 @@
             // this.OutputMermaid(valves);
 
             PriorityQueue<PathState, int> states = new();
-            HashSet<string> seenStates = new();
+            HashSet<string> seenStates = [];
 
             var startingState = new PathState
             {
@@ -45,7 +45,7 @@
                 ElephantLocationInPreviousMinute = "AA",
                 TimeRemaining = 26,
                 CurrentPressureReleaseRate = 0,
-                OpenValves = new(),
+                OpenValves = [],
             };
 
             states.Enqueue(startingState, 0);

@@ -84,7 +84,7 @@ namespace AdventOfCode.Year2018.Day15
             // We're doing a basic breadth first search where we'll track all the possible moves
             // until we hit a target space.
             var pathFindingQueue = new Queue<List<MapSpace>>();
-            pathFindingQueue.Enqueue(new List<MapSpace> { unit.CurrentLocation });
+            pathFindingQueue.Enqueue([unit.CurrentLocation]);
             var visitedSpaces = new List<MapSpace>(currentState.YOffset * currentState.YOffset);
 
             while (pathFindingQueue.Count > 0)

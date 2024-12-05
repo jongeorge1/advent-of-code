@@ -8,7 +8,7 @@
     {
         private int? totalSize = null;
 
-        public IList<Directory> ChildDirectories { get; } = new List<Directory>();
+        public IList<Directory> ChildDirectories { get; } = [];
 
         public string Name { get; set; }
 

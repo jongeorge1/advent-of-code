@@ -1,7 +1,5 @@
 ﻿namespace AdventOfCode.Year2015.Day24
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using AdventOfCode.Helpers;
 

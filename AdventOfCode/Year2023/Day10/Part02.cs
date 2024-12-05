@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using AdventOfCode;
 
     public class Part02 : ISolution
@@ -78,7 +77,7 @@
 
         private static Dictionary<(int, int), char> BuildLoopMap(string[] input, (int X, int Y) startPosition, char startTileType)
         {
-            Dictionary<(int X, int Y), char> loopTiles = new();
+            Dictionary<(int X, int Y), char> loopTiles = [];
 
             (int X, int Y) currentPosition = startPosition;
             char currentTileType = startTileType;
@@ -102,7 +101,7 @@
 
         private static (int, int) GetNextPosition((int X, int Y) currentPosition, (int X, int Y) previousPosition, char tileType)
         {
-            List<(int, int)> connectedTiles = new();
+            List<(int, int)> connectedTiles = [];
 
             if (TileType.NorthConnectedTiles.Contains(tileType))
             {

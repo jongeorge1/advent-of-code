@@ -1,10 +1,5 @@
 ﻿namespace AdventOfCode.Year2016.Day09
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-
     public class Part02 : ISolution
     {
         public string Solve(string[] input)

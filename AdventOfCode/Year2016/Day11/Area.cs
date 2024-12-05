@@ -37,7 +37,7 @@
             StringBuilder builder = new();
             builder.Append(this.elevator);
 
-            Dictionary<string, char> map = new();
+            Dictionary<string, char> map = [];
             char current = 'a';
 
             Func<string, char> getMappedValue = (string element) =>
@@ -78,7 +78,7 @@
 
         public Area[] GetPossibleMoves()
         {
-            List<Area> moves = new();
+            List<Area> moves = [];
 
             if (this.elevator != 0)
             {

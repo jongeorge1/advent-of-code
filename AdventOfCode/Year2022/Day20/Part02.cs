@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2022.Day20
 {
-    using System;
     using AdventOfCode;
 
     public class Part02 : ISolution

@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part01 : ISolution
     {

@@ -1,7 +1,6 @@
 ﻿namespace AdventOfCode.Year2023.Day02
 {
     using System;
-    using System.Runtime.InteropServices.Marshalling;
     using AdventOfCode;
     using AdventOfCode.Helpers;
 

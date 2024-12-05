@@ -1,10 +1,8 @@
 ﻿namespace AdventOfCode.Year2021.Day21
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Linq;
-    using System.Text;
     using AdventOfCode;
 
     public class Part02 : ISolution

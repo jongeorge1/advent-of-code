@@ -3,10 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
-    using System.Threading;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part02 : ISolution
     {
@@ -29,7 +26,7 @@
 
         public string Solve(string[] input)
         {
-            Dictionary<(int X, int Y, int Z), SpaceType> cubes = new();
+            Dictionary<(int X, int Y, int Z), SpaceType> cubes = [];
 
             foreach (string current in input)
             {

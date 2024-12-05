@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode.Year2022.Day15
 {
@@ -10,7 +7,7 @@ namespace AdventOfCode.Year2022.Day15
     {
         public static int GetCoveredSpaceCountForTargetRow(this List<Sensor> sensors, int targetRow)
         {
-            List<(int XMin, int XMax)> coveredRangesInTargetRow = new();
+            List<(int XMin, int XMax)> coveredRangesInTargetRow = [];
             foreach (Sensor sensor in sensors)
             {
                 if (sensor.TryGetCoveredXRangeInTargetRow(targetRow, out (int XMin, int XMax)? coveredRange))
@@ -51,7 +48,7 @@ namespace AdventOfCode.Year2022.Day15
 
         public static List<(int XMin, int XMax)> GetCoveredRangesForTargetRow(this List<Sensor> sensors, int targetRow, int minimumStart = int.MinValue, int maximumEnd = int.MaxValue)
         {
-            List<(int XMin, int XMax)> coveredRangesInTargetRow = new();
+            List<(int XMin, int XMax)> coveredRangesInTargetRow = [];
             foreach (Sensor sensor in sensors)
             {
                 if (sensor.TryGetCoveredXRangeInTargetRow(targetRow, out (int XMin, int XMax)? coveredRange))
@@ -62,7 +59,7 @@ namespace AdventOfCode.Year2022.Day15
 
             // Now we've got a bunch of (likely) overlapping ranges in the list. We need to merge them into one or more
             // contiguous ranges and count the number of spaces the ranges cover.
-            List<(int, int)> coveredRanges = new();
+            List<(int, int)> coveredRanges = [];
 
             // Sort the ranges into order of minx to make it easy to find the overlaps.
             coveredRangesInTargetRow.Sort((left, right) => left.XMin.CompareTo(right.XMin));

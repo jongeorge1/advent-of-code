@@ -13,7 +13,7 @@
             List<(string Axis, int Position)> folds = input[1].Split(Environment.NewLine).Select(x => x.Split([' ', '='])).Select(x => (x[^2], int.Parse(x[^1]))).ToList();
 
             // We're only doing one fold.
-            HashSet<(int, int)> results = new();
+            HashSet<(int, int)> results = [];
 
             (string Axis, int Position) firstFold = folds[0];
             if (firstFold.Axis == "x")

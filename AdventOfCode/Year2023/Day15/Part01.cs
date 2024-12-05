@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2023.Day15
 {
-    using System;
     using AdventOfCode;
     using AdventOfCode.Helpers;
     using static AdventOfCode.Helpers.StringExtensions;

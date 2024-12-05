@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part01 : ISolution
     {
@@ -20,7 +18,7 @@
 
         public string Solve(string[] input)
         {
-            HashSet<(int X, int Y, int Z)> cubes = new();
+            HashSet<(int X, int Y, int Z)> cubes = [];
 
             foreach (string current in input)
             {

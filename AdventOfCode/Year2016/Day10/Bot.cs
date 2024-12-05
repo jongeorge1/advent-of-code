@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2016.Day10
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
@@ -11,7 +10,7 @@
         public Bot(int number)
         {
             this.Number = number;
-            this.Values = new List<int>();
+            this.Values = [];
             this.LowDestination = null;
             this.HighDestination = null;
             this.Executed = false;

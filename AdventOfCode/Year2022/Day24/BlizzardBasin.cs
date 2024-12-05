@@ -2,10 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using AdventOfCode.Helpers;
 
     public class BlizzardBasin
     {
@@ -17,8 +13,8 @@
             (0, -1),
         };
 
-        private Dictionary<int, List<(int StartColumn, int Direction)>> horizontalBlizzards = new();
-        private Dictionary<int, List<(int StartRow, int Direction)>> verticalBlizzards = new();
+        private Dictionary<int, List<(int StartColumn, int Direction)>> horizontalBlizzards = [];
+        private Dictionary<int, List<(int StartRow, int Direction)>> verticalBlizzards = [];
         private int width;
         private int height;
 
@@ -32,13 +28,13 @@
 
             while (currentRow < map.Length && map[currentRow][1] != '#')
             {
-                this.horizontalBlizzards[currentRow - 1] = new List<(int StartColumn, int Direction)>();
+                this.horizontalBlizzards[currentRow - 1] = [];
 
                 for (int column = 0; column < map[currentRow].Length - 1; ++column)
                 {
                     if (currentRow == 1)
                     {
-                        this.verticalBlizzards[column] = new List<(int StartRow, int Direction)>();
+                        this.verticalBlizzards[column] = [];
                     }
 
                     switch (map[currentRow][column + 1])
@@ -81,7 +77,7 @@
         {
             // There will be multiple possible moves at any point, so we need the standard BFS to find the path.
             Queue<(int Time, (int X, int Y) Location)> searchQueue = new();
-            HashSet<(int Time, (int X, int Y) Location)> seenLocations = new();
+            HashSet<(int Time, (int X, int Y) Location)> seenLocations = [];
 
             int seenLocationsTimeModulo = this.width * this.height;
 

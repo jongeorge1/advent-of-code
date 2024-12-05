@@ -1,7 +1,5 @@
 ﻿namespace AdventOfCode.Year2016.Day02
 {
-    using System;
-
     public class Part02 : ISolution
     {
         public string Solve(string[] input)

@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            return input.Split(new string[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+            return input
                 .Select(x => new Passport(x))
                 .Count(x => x.ContainsAllRequiredFields)
                 .ToString();

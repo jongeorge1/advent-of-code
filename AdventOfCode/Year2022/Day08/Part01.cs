@@ -20,7 +20,7 @@
             // of visible trees. Use a hashset to avoid the need to check whether we've seen a tree
             // before; adding the same item multiple times does not result in multiple instances
             // in the set.
-            HashSet<(int X, int Y)> visibleTrees = new();
+            HashSet<(int X, int Y)> visibleTrees = [];
 
             // Look from every point at the "top" and "bottom" of the forest.
             for (int x = 0; x < width; ++x)

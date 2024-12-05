@@ -1,8 +1,6 @@
 ﻿namespace AdventOfCode.Year2021.Day04
 {
-    using System;
     using System.Linq;
-    using AdventOfCode;
 
     public static class BoardExtensions
     {

@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            Dictionary<string, Monkey> monkeys = new();
+            Dictionary<string, Monkey> monkeys = [];
 
             foreach (string line in input)
             {

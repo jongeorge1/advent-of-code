@@ -30,7 +30,7 @@
                 // If it's smaller than the required amount, then it's potentially part of a valid combination.
                 if (containers[i] == requiredCapacity)
                 {
-                    possibleCombinations.Add(new List<int> { containers[i] });
+                    possibleCombinations.Add([containers[i]]);
                 }
                 else if (containers[i] > requiredCapacity)
                 {

@@ -16,7 +16,7 @@
             int maxY = int.Parse(components[5]);
 
             // Step 1: Look for x values that could potentially land the probe in our target zone.
-            List<(int launchXVelocity, int stepsToXTargetArea)> potentialXValues = new ();
+            List<(int launchXVelocity, int stepsToXTargetArea)> potentialXValues = [];
 
             for (int potentialX = 1; potentialX <= maxX; ++potentialX)
             {

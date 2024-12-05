@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2015.Day07
 {
-    using System;
     using System.Collections.Generic;
 
     public class Circuit

@@ -1,11 +1,7 @@
 ﻿namespace AdventOfCode.Year2023.Day12
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading.Tasks;
     using AdventOfCode;
 
     public class Part02 : ISolution
@@ -41,7 +37,7 @@
 
             expectedGroups = expandedGroups.ToArray();
 
-            Dictionary<int, long> seenStates = new();
+            Dictionary<int, long> seenStates = [];
             return GetPossibleArrangementCountFromPosition(springs, 0, expectedGroups, seenStates);
         }
 

@@ -1,7 +1,6 @@
 ﻿namespace AdventOfCode.Year2016.Day05
 {
     using System;
-    using System.Linq;
     using System.Security.Cryptography;
     using System.Text;
 

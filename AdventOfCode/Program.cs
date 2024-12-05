@@ -6,7 +6,6 @@
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using AdventOfCode;
 
     public static class Program
     {

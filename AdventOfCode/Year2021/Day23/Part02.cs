@@ -1,9 +1,7 @@
 ﻿namespace AdventOfCode.Year2021.Day23
 {
-    using System;
     using System.Collections.Generic;
     using AdventOfCode;
-    using NUnit.Framework.Constraints;
 
     public class Part02 : ISolution
     {

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
     using System.Linq;
     using AdventOfCode;
 
@@ -10,7 +9,7 @@
     {
         public string Solve(string[] input)
         {
-            Dictionary<(int X, int Y), CaveContent> map = new();
+            Dictionary<(int X, int Y), CaveContent> map = [];
 
             foreach (string line in input)
             {

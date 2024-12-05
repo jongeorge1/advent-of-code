@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode.Year2016.Day10
 {
-    using System;
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
@@ -9,9 +8,9 @@
         private readonly Regex allocationRegex = new(@"value (\d+)[\w\s]+ (\d+)");
         private readonly Regex instructionRegex = new(@"bot (\d+) gives low to (\w+) (\d+) and high to (\w+) (\d+)");
 
-        public Dictionary<int, Bot> Bots { get; } = new();
+        public Dictionary<int, Bot> Bots { get; } = [];
 
-        public Dictionary<int, Output> Outputs { get; } = new();
+        public Dictionary<int, Output> Outputs { get; } = [];
 
         public void ProcessInput(string[] input)
         {

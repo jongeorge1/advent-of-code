@@ -1,12 +1,12 @@
 ﻿namespace AdventOfCode.Helpers
 {
     using System.Linq;
-    using AdventOfCode.Helpers;
-    using NUnit.Framework;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     public class ChineseRemainderTheoremTests
     {
-        [TestCase("3,5,7", "1,4,6", 34)]
+        [TestMethod]
+        [DataRow("3,5,7", "1,4,6", 34)]
         public void Test(string divisorsList, string remaindersList, int expectedResult)
         {
             long[] divisors = divisorsList.Split(',').Select(long.Parse).ToArray();

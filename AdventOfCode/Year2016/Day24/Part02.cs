@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using AdventOfCode.Helpers;
 
     public class Part02 : ISolution
     {
@@ -44,7 +43,7 @@
                 ++y;
             }
 
-            Dictionary<((int X, int Y) From, (int X, int Y) To), int> shortestPaths = new();
+            Dictionary<((int X, int Y) From, (int X, int Y) To), int> shortestPaths = [];
 
             // Next step is a BFS to find the distances between all the POIs in the map. We also need the distances from the start position to
             // each POI.
@@ -76,7 +75,7 @@
 
             var state = new RouteState
             {
-                CollectedPois = new List<(int X, int Y)>(),
+                CollectedPois = [],
                 Location = startLocation,
                 Steps = 0,
             };
@@ -141,7 +140,7 @@
         {
             // Standard BFS for the shortest path.
             Queue<((int X, int Y) Location, int Steps)> pathQueue = new();
-            HashSet<(int X, int Y)> visitedLocations = new();
+            HashSet<(int X, int Y)> visitedLocations = [];
 
             pathQueue.Enqueue((from, 0));
 

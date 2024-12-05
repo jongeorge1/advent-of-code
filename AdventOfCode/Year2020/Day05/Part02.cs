@@ -9,7 +9,6 @@
         public string Solve(string[] input)
         {
             var ids = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(CalculateSeatId)
                 .ToList();
 

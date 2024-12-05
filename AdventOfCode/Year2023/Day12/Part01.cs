@@ -1,10 +1,7 @@
 ﻿namespace AdventOfCode.Year2023.Day12
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Security.Cryptography;
     using AdventOfCode;
 
     public class Part01 : ISolution
@@ -28,7 +25,7 @@
             string springs = item[..spacePosition];
             int[] expectedGroups = item[(spacePosition + 1) ..].Split(',').Select(int.Parse).ToArray();
 
-            Dictionary<int, int> seenStates = new();
+            Dictionary<int, int> seenStates = [];
             return GetPossibleArrangementCountFromPosition(springs, 0, expectedGroups, seenStates);
         }
 

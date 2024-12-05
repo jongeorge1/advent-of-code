@@ -1,49 +1,48 @@
-﻿namespace AdventOfCode.Year2018.Day06
+﻿namespace AdventOfCode.Year2018.Day06;
+
+using System.Drawing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+[TestClass]
+public class PointExtensionTests
 {
-    using System.Drawing;
-    using AdventOfCode.Year2018.Day06;
-    using NUnit.Framework;
+    private static readonly Point[] Points =
+        [
+            new Point { X = 1, Y = 1 },
+            new Point { X = 1, Y = 6 },
+            new Point { X = 8, Y = 3 },
+            new Point { X = 3, Y = 4 },
+            new Point { X = 5, Y = 5 },
+            new Point { X = 8, Y = 9 },
+        ];
 
-    public class PointExtensionTests
+    [TestMethod]
+    public void FindClosestWithSingleMatch()
     {
-        private static readonly Point[] Points =
-            [
-                new Point { X = 1, Y = 1 },
-                new Point { X = 1, Y = 6 },
-                new Point { X = 8, Y = 3 },
-                new Point { X = 3, Y = 4 },
-                new Point { X = 5, Y = 5 },
-                new Point { X = 8, Y = 9 },
-            ];
+        var testPoint = new Point { X = 2, Y = 2 };
 
-        [Test]
-        public void FindClosestWithSingleMatch()
-        {
-            var testPoint = new Point { X = 2, Y = 2 };
+        Point[] closest = testPoint.FindClosest(Points);
 
-            Point[] closest = testPoint.FindClosest(Points);
+        Assert.AreEqual(1, closest.Length);
+    }
 
-            Assert.That(closest.Length, Is.EqualTo(1));
-        }
+    [TestMethod]
+    public void FindClosestWithExactMatch()
+    {
+        var testPoint = new Point { X = 1, Y = 1 };
 
-        [Test]
-        public void FindClosestWithExactMatch()
-        {
-            var testPoint = new Point { X = 1, Y = 1 };
+        Point[] closest = testPoint.FindClosest(Points);
 
-            Point[] closest = testPoint.FindClosest(Points);
+        Assert.AreEqual(1, closest.Length);
+    }
 
-            Assert.That(closest.Length, Is.EqualTo(1));
-        }
+    [TestMethod]
+    public void FindClosestWithMultipleMatches()
+    {
+        var testPoint = new Point { X = 1, Y = 4 };
 
-        [Test]
-        public void FindClosestWithMultipleMatches()
-        {
-            var testPoint = new Point { X = 1, Y = 4 };
+        Point[] closest = testPoint.FindClosest(Points);
 
-            Point[] closest = testPoint.FindClosest(Points);
-
-            Assert.That(closest.Length, Is.EqualTo(2));
-        }
+        Assert.AreEqual(2, closest.Length);
     }
 }

@@ -1,77 +1,75 @@
-﻿namespace AdventOfCode.Year2018.Day15
+﻿namespace AdventOfCode.Year2018.Day15;
+
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+public class StateTests
 {
-    using System;
-    using AdventOfCode.Year2018.Day15;
-    using NUnit.Framework;
-
-    public class StateTests
+    [TestMethod]
+    public void ParseSetsYOffsetCorrectly()
     {
-        [Test]
-        public void ParseSetsYOffsetCorrectly()
-        {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
+        var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
 
-            Assert.That(state.YOffset, Is.EqualTo(7));
+        Assert.AreEqual(7, state.YOffset);
+    }
+
+    [TestMethod]
+    public void ParseSetsYMaxCorrectly()
+    {
+        var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
+
+        Assert.AreEqual(5, state.MaxY);
+    }
+
+    [TestMethod]
+    public void ParseSetsWallsCorrectly()
+    {
+        var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
+
+        int[] wallLocations = [0, 1, 2, 3, 4, 5, 6, 7, 13, 14, 20, 21, 27, 28, 29, 30, 31, 32, 33, 34];
+
+        foreach (int current in wallLocations)
+        {
+            Assert.IsNull(state.Map[current]);
         }
+    }
 
-        [Test]
-        public void ParseSetsYMaxCorrectly()
+    [TestMethod]
+    public void ParseSetsSpacesCorrectly()
+    {
+        var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
+
+        int[] spaceLocations = [8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26];
+
+        foreach (int current in spaceLocations)
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
-
-            Assert.That(state.MaxY, Is.EqualTo(5));
+            Assert.IsInstanceOfType<MapSpace>(state.Map[current]);
         }
+    }
 
-        [Test]
-        public void ParseSetsWallsCorrectly()
+    [TestMethod]
+    public void ParseSetsElvesCorrectly()
+    {
+        var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
+
+        int[] elfLocations = [11, 15, 19, 25];
+
+        foreach (int current in elfLocations)
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
-
-            int[] wallLocations = [0, 1, 2, 3, 4, 5, 6, 7, 13, 14, 20, 21, 27, 28, 29, 30, 31, 32, 33, 34];
-
-            foreach (int current in wallLocations)
-            {
-                Assert.That(state.Map[current], Is.Null);
-            }
+            Assert.IsInstanceOfType<Elf>(state.Map[current].Unit);
         }
+    }
 
-        [Test]
-        public void ParseSetsSpacesCorrectly()
+    [TestMethod]
+    public void ParseSetsGoblinsCorrectly()
+    {
+        var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
+
+        int[] goblinLocations = [9, 17, 23];
+
+        foreach (int current in goblinLocations)
         {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
-
-            int[] spaceLocations = [8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 22, 23, 24, 25, 26];
-
-            foreach (int current in spaceLocations)
-            {
-                Assert.That(state.Map[current], Is.InstanceOf<MapSpace>());
-            }
-        }
-
-        [Test]
-        public void ParseSetsElvesCorrectly()
-        {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
-
-            int[] elfLocations = [11, 15, 19, 25];
-
-            foreach (int current in elfLocations)
-            {
-                Assert.That(state.Map[current].Unit, Is.InstanceOf<Elf>());
-            }
-        }
-
-        [Test]
-        public void ParseSetsGoblinsCorrectly()
-        {
-            var state = State.Parse("#######\r\n#.G.E.#\r\n#E.G.E#\r\n#.G.E.#\r\n#######".Split(Environment.NewLine));
-
-            int[] goblinLocations = [9, 17, 23];
-
-            foreach (int current in goblinLocations)
-            {
-                Assert.That(state.Map[current].Unit, Is.InstanceOf<Goblin>());
-            }
+            Assert.IsInstanceOfType<Goblin>(state.Map[current].Unit);
         }
     }
 }

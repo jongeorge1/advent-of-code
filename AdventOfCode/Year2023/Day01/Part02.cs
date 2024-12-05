@@ -2,7 +2,6 @@
 {
     using System;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part02 : ISolution
     {

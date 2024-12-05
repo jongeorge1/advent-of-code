@@ -5,13 +5,12 @@
     using System.Diagnostics;
     using System.Linq;
     using AdventOfCode;
-    using AdventOfCode.Helpers;
 
     public class Part01 : ISolution
     {
         public string Solve(string[] input)
         {
-            Dictionary<string, Valve> valves = new();
+            Dictionary<string, Valve> valves = [];
             int countOfValvesWorthOpening = 0;
             foreach (string line in input)
             {
@@ -43,7 +42,7 @@
                 LocationInPreviousMinute = "AA",
                 TimeRemaining = 30,
                 CurrentPressureReleaseRate = 0,
-                OpenValves = new(),
+                OpenValves = [],
             };
 
             states.Enqueue(startingState, 0);

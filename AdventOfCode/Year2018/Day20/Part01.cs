@@ -20,7 +20,7 @@
             var location = new Point(0, 0);
             var paths = new List<List<Point>>();
             var searchQueue = new Queue<List<Point>>();
-            searchQueue.Enqueue(new List<Point> { location });
+            searchQueue.Enqueue([location]);
 
             while (searchQueue.Count != 0)
             {

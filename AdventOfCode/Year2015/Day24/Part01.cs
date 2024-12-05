@@ -39,7 +39,7 @@
             {
                 if (weights.Contains(targetWeight))
                 {
-                    results.Add(new List<long> { targetWeight });
+                    results.Add([targetWeight]);
                 }
 
                 return results;
