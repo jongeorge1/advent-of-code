@@ -67,6 +67,9 @@
 
     public class OperatorMonkey : Monkey
     {
+        private string? left;
+        private string? right;
+
         private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new Dictionary<char, Func<long, long, long>>
         {
             { '+', (a, b) => a + b },
@@ -75,9 +78,17 @@
             { '/', (a, b) => a / b },
         };
 
-        public string Left { get; set; }
+        public string Left
+        {
+            get => this.left ?? throw new InvalidOperationException();
+            set => this.left = value;
+        }
 
-        public string Right { get; set; }
+        public string Right
+        {
+            get => this.right ?? throw new InvalidOperationException();
+            set => this.right = value;
+        }
 
         public char Operator { get; set; }
 

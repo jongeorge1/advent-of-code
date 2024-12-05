@@ -5,7 +5,7 @@
 
     public record DeterministicDiceGameState
     {
-        public ImmutableList<DiracDicePlayerState> Players { get; init; }
+        public ImmutableList<DiracDicePlayerState> Players { get; init; } = ImmutableList<DiracDicePlayerState>.Empty;
 
         public int LastDiceRoll { get; init; } = 0;
 

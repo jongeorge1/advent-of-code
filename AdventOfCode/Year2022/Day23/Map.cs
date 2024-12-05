@@ -9,11 +9,9 @@
     {
         private const char Elf = '#';
 
-        delegate bool TryProposeDelegate((int X, int Y) current, [NotNullWhen(true)] out (int X, int Y)? proposed);
+        private readonly TryProposeDelegate[] proposalFunctions;
 
         private HashSet<(int X, int Y)> elfLocations;
-
-        private readonly TryProposeDelegate[] proposalFunctions;
 
         private int currentProposalFunctionStartIndex = 0;
 
@@ -21,7 +19,7 @@
         {
             this.proposalFunctions =
             [
-                    (TryProposeDelegate)this.TryProposeMovingNorth,
+                this.TryProposeMovingNorth,
                 this.TryProposeMovingSouth,
                 this.TryProposeMovingWest,
                 this.TryProposeMovingEast,
@@ -33,6 +31,8 @@
                 .Select(space => (space.x, space.y))
                 .ToHashSet();
         }
+
+        private delegate bool TryProposeDelegate((int X, int Y) current, [NotNullWhen(true)] out (int X, int Y)? proposed);
 
         public bool ExecuteRound()
         {

@@ -21,9 +21,9 @@
             // TODO: operation thing
             this.Operation = operationSegments switch
             {
-                ["old", "*", "old"] => (item) => item * item,
-                ["old", "*", _] => (item) => item * int.Parse(operationSegments[2]),
-                ["old", "+", _] => (item) => item + int.Parse(operationSegments[2]),
+            ["old", "*", "old"] => (item) => item * item,
+            ["old", "*", _] => (item) => item * int.Parse(operationSegments[2]),
+            ["old", "+", _] => (item) => item + int.Parse(operationSegments[2]),
                 _ => throw new Exception("Unexpected operation definition"),
             };
 

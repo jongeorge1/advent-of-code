@@ -23,7 +23,6 @@
             int cycles = 0;
 
             // First, loop until we hit a state we've seen before.
-
             int interval = 0;
             int firstOccurance = 0;
 

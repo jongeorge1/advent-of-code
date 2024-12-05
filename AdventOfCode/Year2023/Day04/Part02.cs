@@ -45,7 +45,7 @@
         private static int ScoreScratchcard(ref string card, int winningNumbersStartColumn, int winningNumbersCount, int actualNumbersStartColumn)
         {
             ReadOnlySpan<char> row = card.AsSpan();
-            ReadOnlySpan<char> winningNumberStrip = row[winningNumbersStartColumn..(actualNumbersStartColumn - 2)];
+            ReadOnlySpan<char> winningNumberStrip = row[winningNumbersStartColumn.. (actualNumbersStartColumn - 2)];
             ReadOnlySpan<char> actualNumberStrip = row[actualNumbersStartColumn..];
 
             int winningNumberCount = 0;
@@ -53,7 +53,7 @@
             for (int winningNumberIndex = 0; winningNumberIndex < winningNumbersCount; ++winningNumberIndex)
             {
                 int startIndex = winningNumberIndex * 3;
-                ReadOnlySpan<char> winningNumber = winningNumberStrip[startIndex..(startIndex + 3)];
+                ReadOnlySpan<char> winningNumber = winningNumberStrip[startIndex.. (startIndex + 3)];
                 if (actualNumberStrip.Contains(winningNumber, StringComparison.InvariantCultureIgnoreCase))
                 {
                     ++winningNumberCount;

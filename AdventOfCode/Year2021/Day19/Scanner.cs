@@ -28,7 +28,9 @@
 
         static Scanner()
         {
-            ////ScannerAllTransforms = ScannerDirectionTransforms.SelectMany(d => ScannerRotationTransforms.Select(r => ((int, int, int) input) => r(d(input)))).ToArray();
+            ScannerAllTransforms = ScannerDirectionTransforms.SelectMany(
+                directionTransform => ScannerRotationTransforms.Select<Func<(int X, int Y, int Z), (int X, int Y, int Z)>, Func<(int X, int Y, int Z), (int X, int Y, int Z)>>(
+                    rotationTransform => ((int, int, int) input) => rotationTransform(directionTransform(input)))).ToArray();
         }
 
         public Scanner(string input)

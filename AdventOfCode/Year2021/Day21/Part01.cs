@@ -27,7 +27,6 @@
             ////    (int.Parse(input[1].Split(' ')[^1]) - 1, 0),
             ////};
 
-
             ////(int Position, int Score)[] playerStates = new[]
             ////{
             ////    (int.Parse(input[0].Split(' ')[^1]) - 1, 0),

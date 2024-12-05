@@ -306,7 +306,6 @@
                         return true;
                     }
                 }
-
             }
 
             // If we've got this far, it should stay where it is.

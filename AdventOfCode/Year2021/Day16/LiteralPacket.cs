@@ -11,7 +11,7 @@
             int pos = 6;
             bool last = false;
 
-            StringBuilder value = new ();
+            StringBuilder value = new();
 
             while (!last)
             {

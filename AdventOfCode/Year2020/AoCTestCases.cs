@@ -4,6 +4,7 @@ using System;
 using AdventOfCode;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+[TestClass]
 public class AoCTestCases
 {
     [TestMethod]

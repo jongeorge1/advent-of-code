@@ -11,7 +11,7 @@ public class Part02 : ISolution
         int separatorIndex = Array.IndexOf(input, string.Empty);
 
         Rule[] rules = input[..separatorIndex].Select(x => new Rule(x)).ToArray();
-        Update[] updates = input[(separatorIndex + 1)..].Select(x => new Update(x)).ToArray();
+        Update[] updates = input[(separatorIndex + 1) ..].Select(x => new Update(x)).ToArray();
 
         Update[] incorrectlyOrderedUpdates = updates.Where(x => !x.IsValid(rules)).ToArray();
 

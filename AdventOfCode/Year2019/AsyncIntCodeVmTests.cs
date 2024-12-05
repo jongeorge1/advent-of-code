@@ -4,6 +4,7 @@ using System.Linq;
 using AdventOfCode.Year2019.IntCodeVm;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+[TestClass]
 public class AsyncIntCodeVmTests
 {
     [TestMethod]

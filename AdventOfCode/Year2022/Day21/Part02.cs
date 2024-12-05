@@ -135,13 +135,11 @@
 
         public abstract class Monkey
         {
-            protected readonly Dictionary<string, Monkey> allMonkeys;
-
             private bool? dependsOnHuman = null;
 
             protected Monkey(ref Dictionary<string, Monkey> allMonkeys)
             {
-                this.allMonkeys = allMonkeys;
+                this.AllMonkeys = allMonkeys;
             }
 
             public string? Name { get; set; }
@@ -159,6 +157,8 @@
                 }
             }
 
+            protected Dictionary<string, Monkey> AllMonkeys { get; }
+
             public abstract long Yell();
 
             protected abstract bool DetermineIfDependsOnHuman();
@@ -169,9 +169,8 @@
             public Human(ref Dictionary<string, Monkey> allMonkeys)
                 : base(ref allMonkeys)
             {
+                this.Name = "humn";
             }
-
-            public string Name { get; set; } = "humn";
 
             public override long Yell() => throw new Exception("I don't know what to say");
 
@@ -194,6 +193,9 @@
 
         public class OperatorMonkey : Monkey
         {
+            private string? left;
+            private string? right;
+
             private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new Dictionary<char, Func<long, long, long>>
             {
                 { '+', (a, b) => a + b },
@@ -207,24 +209,32 @@
             {
             }
 
-            public string Left { get; set; }
+            public string Left
+            {
+                get => this.left ?? throw new InvalidOperationException();
+                set => this.left = value;
+            }
 
-            public Monkey LeftMonkey => this.allMonkeys[this.Left];
+            public string Right
+            {
+                get => this.right ?? throw new InvalidOperationException();
+                set => this.right = value;
+            }
 
-            public string Right { get; set; }
+            public Monkey LeftMonkey => this.AllMonkeys[this.Left];
 
-            public Monkey RightMonkey => this.allMonkeys[this.Right];
+            public Monkey RightMonkey => this.AllMonkeys[this.Right];
 
             public char Operator { get; set; }
 
             public override long Yell()
             {
-                long left = this.allMonkeys[this.Left].Yell();
-                long right = this.allMonkeys[this.Right].Yell();
+                long left = this.AllMonkeys[this.Left].Yell();
+                long right = this.AllMonkeys[this.Right].Yell();
                 return OperatorFunctions[this.Operator](left, right);
             }
 
-            protected override bool DetermineIfDependsOnHuman() => this.allMonkeys[this.Left].DependsOnHuman || this.allMonkeys[this.Right].DependsOnHuman;
+            protected override bool DetermineIfDependsOnHuman() => this.AllMonkeys[this.Left].DependsOnHuman || this.AllMonkeys[this.Right].DependsOnHuman;
         }
     }
 }

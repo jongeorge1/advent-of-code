@@ -14,7 +14,7 @@
 
         public static Packet ReadPacketFromHex(string input)
         {
-            StringBuilder binaryInput = new (input.Length * 4);
+            StringBuilder binaryInput = new(input.Length * 4);
 
             foreach (char current in input)
             {

@@ -45,7 +45,7 @@
             {
                 if (input[i] == input[i + 2] && input[i] != input[i + 1])
                 {
-                    yield return input[i..(i + 3)];
+                    yield return input[i.. (i + 3)];
                 }
             }
         }

@@ -148,7 +148,7 @@
             int x = int.Parse(commandSegments[2]);
             int y = int.Parse(commandSegments[4]);
 
-            char[] reversedSegment = current[x..(y + 1)].Reverse().ToArray();
+            char[] reversedSegment = current[x.. (y + 1)].Reverse().ToArray();
 
             Array.Copy(current, 0, result, 0, x);
             Array.Copy(reversedSegment, 0, result, x, reversedSegment.Length);

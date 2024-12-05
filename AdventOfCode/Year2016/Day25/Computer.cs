@@ -39,7 +39,7 @@
 
         public List<int> ToggledLocations { get; } = [];
 
-        public Func<int, bool> Output { get; set; }
+        public Func<int, bool> Output { get; set; } = _ => throw new InvalidOperationException("Output function not set");
 
         public void Reset()
         {

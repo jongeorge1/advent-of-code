@@ -66,7 +66,7 @@
             }
 
             if (other.DoesNotIntersect(this))
-            {   
+            {
                 return new[] { this };
             }
 

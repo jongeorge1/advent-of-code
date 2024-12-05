@@ -9,10 +9,11 @@
         // Firstly the shapes: We hold them as arrays of bytes, from bottom to top (i.e. the entry with index 0
         // is the bottom.
         // To facilitate the bit shifting we'll need later, our representations will pretend they are at the
-        // left of the play space (left being the high bit). To make this easier to read (and change if I'm 
+        // left of the play space (left being the high bit). To make this easier to read (and change if I'm
         // wrong, then I'll bitshift them here rather than working out the right numbers.
         private static readonly byte[][] Shapes =
         [
+
             // Line
             [15 << 3],
 
@@ -37,7 +38,7 @@
             // Maximum space we could possibly need to store the entire play space would be if 2022 4-high columns landed
             // on one another:
             Span<byte> playSpace = stackalloc byte[8088];
-            //byte[] playSpace = new byte[8088];
+            ////byte[] playSpace = new byte[8088];
             playSpace[0] = 127;
 
             int jetPatternIndex = 0;

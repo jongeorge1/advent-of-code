@@ -9,7 +9,7 @@
             int geodeCount = DetermineLargestNumberOfGeodesThatCanBeOpened(ref blueprint, availableTime);
             int quality = geodeCount * blueprint.Number;
 
-            //Console.WriteLine($"Blueprint {blueprint.Number} can obtain {geodeCount} geodes and has quality {quality}");
+            ////Console.WriteLine($"Blueprint {blueprint.Number} can obtain {geodeCount} geodes and has quality {quality}");
 
             return quality;
         }
@@ -96,6 +96,7 @@
                 // To build an ore robot, we need to wait for (the cost of an ore robot) - (number of ore we already have) * minutes to gather the materials,
                 // plus 1 minute to actually build the thing.
                 timeToNextRobot = (int)Math.Ceiling(Math.Max(blueprint.OreRobotOreCost - state.AvailableOre, 0) / (decimal)state.OreRobotCount) + 1;
+
                 // It's only of any use if there's a minute left after that
                 if (timeToNextRobot < state.TimeRemaining)
                 {

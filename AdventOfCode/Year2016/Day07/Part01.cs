@@ -44,10 +44,10 @@
             // console.log(input);
             for (int i = 0; i < input.Length - 3; i++)
             {
-                string source = input[i..(i + 2)];
+                string source = input[i.. (i + 2)];
                 if (source[0] != source[1])
                 {
-                    string target = input[(i + 2) ..(i + 4)];
+                    string target = input[(i + 2) .. (i + 4)];
                     string search = new string(source.Reverse().ToArray());
 
                     if (target == search)

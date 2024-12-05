@@ -198,7 +198,7 @@
 
         private class RouteState
         {
-            public List<(int X, int Y)> CollectedPois { get; set; }
+            public List<(int X, int Y)> CollectedPois { get; set; } = [];
 
             public (int X, int Y) Location { get; set; }
 

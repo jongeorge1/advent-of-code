@@ -25,3 +25,8 @@ using System.Diagnostics.CodeAnalysis;
     "SA1402:File may only contain a single type",
     Justification = "Sometimes it's better for AOC solutions",
     Scope = "module")]
+[assembly: SuppressMessage(
+    "StyleCop.CSharp.NamingRules",
+    "SA1313:Parameter names should begin with lower-case letter",
+    Justification = "Conflicts with other rules",
+    Scope = "module")]

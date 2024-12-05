@@ -20,7 +20,7 @@
             (int X, int Y) currentLocation = (currentCube.MapGridXBounds.Start, currentCube.MapGridYBounds.Start);
             int currentDirection = 0;
 
-            // Console.WriteLine($"Starting at ({currentLocation.X}, {currentLocation.Y}) on face {currentCube.Id} facing {currentDirection}");
+            //// Console.WriteLine($"Starting at ({currentLocation.X}, {currentLocation.Y}) on face {currentCube.Id} facing {currentDirection}");
 
             while (instructions.Length > 0)
             {
@@ -41,7 +41,7 @@
 
                     if (input[proposedLocation.Y][proposedLocation.X] == CubeMap.OpenTile)
                     {
-                        // Console.WriteLine($"Moving to ({proposedLocation.X}, {proposedLocation.Y}) on face {proposedLocationCubeFace.Id} facing {proposedNewDirection}");
+                        //// Console.WriteLine($"Moving to ({proposedLocation.X}, {proposedLocation.Y}) on face {proposedLocationCubeFace.Id} facing {proposedNewDirection}");
 
                         currentCube = proposedLocationCubeFace;
                         currentLocation = proposedLocation;
@@ -49,7 +49,7 @@
                     }
                     else
                     {
-                        // Console.WriteLine($"Cannot take next step to ({proposedLocation.X}, {proposedLocation.Y}) on face {proposedLocationCubeFace.Id} facing {proposedNewDirection}; moving to next instruction");
+                        //// Console.WriteLine($"Cannot take next step to ({proposedLocation.X}, {proposedLocation.Y}) on face {proposedLocationCubeFace.Id} facing {proposedNewDirection}; moving to next instruction");
                         break;
                     }
                 }

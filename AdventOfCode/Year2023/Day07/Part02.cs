@@ -41,6 +41,12 @@
 
         public struct Hand : IComparable<Hand>
         {
+            public char[] Cards { get; set; }
+
+            public int Bid { get; set; }
+
+            public int Type { get; set; }
+
             public static Hand Create(string input)
             {
                 char[] cards = input[0..5].ToCharArray();
@@ -96,12 +102,6 @@
                     Bid = bid,
                 };
             }
-
-            public char[] Cards { get; set; }
-
-            public int Bid { get; set; }
-
-            public int Type { get; set; }
 
             public int CompareTo(Hand other)
             {

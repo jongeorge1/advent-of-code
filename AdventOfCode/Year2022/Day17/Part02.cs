@@ -15,6 +15,7 @@
         // wrong), then I'll bitshift them here rather than working out the right numbers.
         private static readonly byte[][] Shapes =
         [
+
             // Line
             [15 << 3],
 
@@ -85,7 +86,7 @@
 
                 ++stonesDropped;
 
-                PlaySpaceState newState = MemoizeState(currentMaxHeight, currentShape, (short)(jetPatternIndex - 1), ref playSpace);
+                PlaySpaceState newState = this.MemoizeState(currentMaxHeight, currentShape, (short)(jetPatternIndex - 1), ref playSpace);
 
                 // Have we seen this state before?
                 if (seenStates.TryGetValue(newState, out (int MaxHeight, int StonesDropped) heightAndCount))
@@ -118,8 +119,6 @@
                     seenStates.Add(newState, (currentMaxHeight, stonesDropped));
                 }
             }
-
-            return currentMaxHeight.ToString();
         }
 
         private static bool CanMoveLeft(int currentLeft, int currentBottom, ref byte[] shape, ref Span<byte> playSpace)

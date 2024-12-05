@@ -32,7 +32,7 @@
             {
                 int separatorIndex = current.IndexOf(',');
                 int x = int.Parse(current[..separatorIndex]);
-                ReadOnlySpan<char> remainder = current[(separatorIndex + 1) ..];
+                ReadOnlySpan<char> remainder = current.AsSpan()[(separatorIndex + 1) ..];
                 separatorIndex = remainder.IndexOf(',');
                 int y = int.Parse(remainder[..separatorIndex]);
                 int z = int.Parse(remainder[(separatorIndex + 1) ..]);
@@ -55,7 +55,6 @@
 
             // Now our shape should be surrounded by steam on the outside. This means the next step is to
             // review the lava cubes and count the sides that are next to steam.
-
             int exposedSurfaces = 0;
 
             foreach (KeyValuePair<(int X, int Y, int Z), SpaceType> cube in cubes)

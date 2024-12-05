@@ -23,7 +23,7 @@
             this.program = program.Select(x => x.Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray()).ToArray();
             this.inputs = modelNumber.ToCharArray().Select(x => x - '1' + 1).ToArray();
             this.verbose = verbose;
-            this.instructionMap = new ()
+            this.instructionMap = new()
             {
                 { "inp", this.Inp },
                 { "add", this.Add },
@@ -34,7 +34,7 @@
             };
         }
 
-        public Dictionary<string, long> Registers { get; } = new ()
+        public Dictionary<string, long> Registers { get; } = new()
         {
             { "w", 0 },
             { "x", 0 },

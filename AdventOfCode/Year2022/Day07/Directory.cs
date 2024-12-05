@@ -7,10 +7,15 @@
     public class Directory
     {
         private int? totalSize = null;
+        private string? name;
 
         public IList<Directory> ChildDirectories { get; } = [];
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get => this.name ?? throw new InvalidOperationException();
+            set => this.name = value;
+        }
 
         public Directory? ParentDirectory { get; set; }
 

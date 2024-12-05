@@ -17,7 +17,6 @@ public partial class Part02 : ISolution
         return result.ToString();
     }
 
-
     [GeneratedRegex(@"mul\((\d{1,3}),(\d{1,3})\)")]
     private static partial Regex InstructionRegex();
 }

@@ -54,7 +54,7 @@
                 if (current.TimeRemaining == 0)
                 {
                     maximumPressureReleaseSeen = Math.Max(maximumPressureReleaseSeen, current.TotalPressureReleased);
-                    //return current.TotalPressureReleased.ToString();
+                    ////return current.TotalPressureReleased.ToString();
                 }
 
                 int maximumPossibleTotalPressureRelease = current.MaximumPossibleTotalPressureRelease(valves);

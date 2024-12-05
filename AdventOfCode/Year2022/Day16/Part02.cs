@@ -32,7 +32,7 @@
                 valves.Add(valve.Name, valve);
             }
 
-            // this.OutputMermaid(valves);
+            //// this.OutputMermaid(valves);
 
             PriorityQueue<PathState, int> states = new();
             HashSet<string> seenStates = [];
@@ -203,6 +203,10 @@
 
             public SortedSet<string> OpenValves { get; set; }
 
+            public bool ValveAtPersonLocationIsOpen => this.OpenValves.Contains(this.PersonLocation);
+
+            public bool ValveAtElephantLocationIsOpen => this.OpenValves.Contains(this.ElephantLocation);
+
             public string Memoize()
             {
                 StringBuilder memo = new();
@@ -274,10 +278,6 @@
 
                 return potentialFinalPressureRelease;
             }
-
-            public bool ValveAtPersonLocationIsOpen => this.OpenValves.Contains(this.PersonLocation);
-
-            public bool ValveAtElephantLocationIsOpen => this.OpenValves.Contains(this.ElephantLocation);
 
             public PathState ToFinalState()
             {

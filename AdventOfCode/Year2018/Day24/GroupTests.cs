@@ -3,6 +3,7 @@
 using AdventOfCode.Year2018.Day24;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+[TestClass]
 public class GroupTests
 {
     [TestMethod]
