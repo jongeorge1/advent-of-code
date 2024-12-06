@@ -1,8 +1,8 @@
-﻿namespace AdventOfCode.Year2023.Day17;
+﻿namespace AdventOfCode.Year2024.Day07;
 
 using AdventOfCode;
 
-public class Part02 : ISolution
+public class Part01 : ISolution
 {
     public string Solve(string[] input)
     {
