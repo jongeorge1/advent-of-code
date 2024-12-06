@@ -10,7 +10,7 @@
         {
             string scrambled = "fbgdceah";
 
-            if (input[0].StartsWith("TEST"))
+            if (input[0] == "TEST")
             {
                 scrambled = "decab";
                 input = input[1..];

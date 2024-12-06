@@ -9,7 +9,7 @@
         public string Solve(string[] input)
         {
             string calibrationMolecule = input[^1];
-            (string In, string Out)[] replacements = input[0..^1].Select(x => x.Split(" => ")).Select(x => (x[0], x[1])).ToArray();
+            (string In, string Out)[] replacements = input[0..^2].Select(x => x.Split(" => ")).Select(x => (x[0], x[1])).ToArray();
 
             var potentialMolecules = new List<string>();
             foreach ((string In, string Out) current in replacements)

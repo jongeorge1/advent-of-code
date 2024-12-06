@@ -10,7 +10,7 @@
         {
             string plainText = "abcdefgh";
 
-            if (input[0].StartsWith("TEST"))
+            if (input[0] == "TEST")
             {
                 plainText = "abcde";
                 input = input[1..];

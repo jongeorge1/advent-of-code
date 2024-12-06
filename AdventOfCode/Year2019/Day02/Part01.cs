@@ -6,7 +6,8 @@
     {
         public string Solve(string[] input)
         {
-            int[] program = input
+            int[] program = input[0]
+                .Split(",")
                 .Select(x => int.Parse(x))
                 .ToArray();
 

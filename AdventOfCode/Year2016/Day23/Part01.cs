@@ -4,7 +4,7 @@
     {
         public string Solve(string[] input)
         {
-            bool testMode = input[0].StartsWith("TEST");
+            bool testMode = input[0] == "TEST";
 
             var computer = new Computer(testMode ? input[1..] : input, true);
 
