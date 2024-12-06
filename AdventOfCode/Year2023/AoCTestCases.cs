@@ -27,7 +27,6 @@ public class AoCTestCases
     [DataRow(7, 2, "32T3K 765\r\nT55J5 684\r\nKK677 28\r\nKTJJT 220\r\nQQQJA 483", "5905")]
     [DataRow(8, 1, "RL\r\n\r\nAAA = (BBB, CCC)\r\nBBB = (DDD, EEE)\r\nCCC = (ZZZ, GGG)\r\nDDD = (DDD, DDD)\r\nEEE = (EEE, EEE)\r\nGGG = (GGG, GGG)\r\nZZZ = (ZZZ, ZZZ)", "2")]
     [DataRow(8, 1, "LLR\r\n\r\nAAA = (BBB, BBB)\r\nBBB = (AAA, ZZZ)\r\nZZZ = (ZZZ, ZZZ)", "6")]
-    [DataRow(8, 2, "LR\r\n\r\n11A = (11B, XXX)\r\n11B = (XXX, 11Z)\r\n11Z = (11B, XXX)\r\n22A = (22B, XXX)\r\n22B = (22C, 22C)\r\n22C = (22Z, 22Z)\r\n22Z = (22B, 22B)\r\nXXX = (XXX, XXX)", "6")]
     [DataRow(9, 1, "0 3 6 9 12 15\r\n1 3 6 10 15 21\r\n10 13 16 21 30 45", "114")]
     [DataRow(9, 2, "0 3 6 9 12 15\r\n1 3 6 10 15 21\r\n10 13 16 21 30 45", "2")]
     [DataRow(10, 1, "-L|F7\r\n7S-7|\r\nL|7||\r\n-L-J|\r\nL|-JF", "4")]

@@ -9,13 +9,12 @@
         {
             string directions = input[0];
 
-            Dictionary<string, (string Left, string Right)> maps = [];
+            Dictionary<string, Map> maps = [];
 
             foreach (string step in input[2..])
             {
-                maps.Add(
-                    step[0..3],
-                    (step[7..10], step[12..15]));
+                var map = new Map(step);
+                maps.Add(map.Location, map);
             }
 
             int position = 0;
@@ -25,18 +24,7 @@
             do
             {
                 position %= directions.Length;
-
-                (string Left, string Right) map = maps[location];
-
-                if (directions[position] == 'L')
-                {
-                    location = map.Left;
-                }
-                else
-                {
-                    location = map.Right;
-                }
-
+                location = maps[location].Directions[directions[position]];
                 ++position;
                 ++steps;
             }

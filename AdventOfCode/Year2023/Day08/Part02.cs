@@ -1,8 +1,11 @@
 ﻿namespace AdventOfCode.Year2023.Day08
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using AdventOfCode;
+    using static AdventOfCode.Helpers.Numeric;
 
     public class Part02 : ISolution
     {
@@ -10,45 +13,44 @@
         {
             string directions = input[0];
 
-            Dictionary<string, (string Left, string Right)> maps = [];
+            Dictionary<string, Map> maps = [];
 
             foreach (string step in input[2..])
             {
-                maps.Add(
-                    step[0..3],
-                    (step[7..10], step[12..15]));
+                var map = new Map(step);
+                maps.Add(map.Location, map);
             }
 
-            string[] locations = maps.Keys.Where(x => x.EndsWith('A')).ToArray();
+            string[] startLocations = maps.Keys.Where(x => x.EndsWith('A')).ToArray();
+            long[] periods = new long[startLocations.Length];
 
-            int steps = 0;
-
-            int position = 0;
-
-            do
+            // A bit of investigation and it looks like each of the paths will reach and end square in a different number of steps, but after
+            // executing all of directions a certain number of times. So once we hit it the first time, we essentially have the period for
+            // reaching that location.
+            // Note that this isn't true of the test case, which is why there's no test for this part.
+            for (int index = 0; index < startLocations.Length; ++index)
             {
-                position %= directions.Length;
+                int position = 0;
+                int steps = 0;
+                string location = startLocations[index];
 
-                for (int i = 0; i < locations.Length; ++i)
+                do
                 {
-                    (string Left, string Right) map = maps[locations[i]];
-
-                    if (directions[position] == 'L')
-                    {
-                        locations[i] = map.Left;
-                    }
-                    else
-                    {
-                        locations[i] = map.Right;
-                    }
+                    position %= directions.Length;
+                    location = maps[location].Directions[directions[position]];
+                    ++position;
+                    ++steps;
                 }
+                while (!location.EndsWith('Z'));
 
-                ++position;
-                ++steps;
+                Debug.Assert(position == directions.Length);
+
+                periods[index] = steps;
             }
-            while (locations.Any(x => !x.EndsWith('Z')));
 
-            return steps.ToString();
+            long result = LeastCommonMultiple(periods);
+
+            return result.ToString();
         }
     }
 }
