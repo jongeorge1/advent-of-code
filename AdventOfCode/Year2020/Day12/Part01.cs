@@ -8,7 +8,7 @@
     public class Part01 : ISolution
     {
         private static readonly Dictionary<int, Func<(int, int), (int, int)>> Mutators =
-            new Dictionary<int, Func<(int, int), (int, int)>>
+            new()
             {
                 { 0, input => (input.Item1, input.Item2 + 1) },
                 { 180, input => (input.Item1, input.Item2 - 1) },
@@ -18,14 +18,10 @@
 
         public string Solve(string[] input)
         {
-            // Get rid of the newlines
-            string[] data = input
-                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
             int currentBearing = 90;
             (int, int) position = (0, 0);
 
-            foreach (string current in data)
+            foreach (string current in input)
             {
                 int? movementBearing = null;
                 int quantifier = int.Parse(current[1..]);

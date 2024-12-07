@@ -6,10 +6,10 @@
     {
         public static State Apply(this State state, Rule[] rules)
         {
-            (Rule rule, int matchLocation)[] matches = rules.SelectMany(rule => state.FindMatches(rule).Select(matchLocation => (rule, matchLocation))).ToArray();
+            (Rule Rule, int MatchLocation)[] matches = rules.SelectMany(rule => state.FindMatches(rule).Select(matchLocation => (rule, matchLocation))).ToArray();
 
             // Now apply all the rules to build a new state
-            return new State(matches.Where(x => x.rule.Result).Select(x => x.matchLocation).ToList());
+            return new State(matches.Where(x => x.Rule.Result).Select(x => x.MatchLocation).ToList());
         }
 
         /// <summary>

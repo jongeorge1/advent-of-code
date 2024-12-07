@@ -6,25 +6,25 @@
 
     public class Part01 : ISolution
     {
-        private static readonly Dictionary<string, Func<(int, int, int), (int, int, int)>> Mutators = new Dictionary<string, Func<(int, int, int), (int, int, int)>>
+        private static readonly Dictionary<string, Func<(int X, int Y, int Z), (int X, int Y, int Z)>> Mutators = new()
         {
-            { "ne", ((int x, int y, int z) current) => (current.x + 1, current.y, current.z - 1) },
-            { "nw", ((int x, int y, int z) current) => (current.x, current.y + 1, current.z - 1) },
-            { "se", ((int x, int y, int z) current) => (current.x, current.y - 1, current.z + 1) },
-            { "sw", ((int x, int y, int z) current) => (current.x - 1, current.y, current.z + 1) },
-            { "e", ((int x, int y, int z) current) => (current.x + 1, current.y - 1, current.z) },
-            { "w", ((int x, int y, int z) current) => (current.x - 1, current.y + 1, current.z) },
+            { "ne", ((int X, int Y, int Z) current) => (current.X + 1, current.Y, current.Z - 1) },
+            { "nw", ((int X, int Y, int Z) current) => (current.X, current.Y + 1, current.Z - 1) },
+            { "se", ((int X, int Y, int Z) current) => (current.X, current.Y - 1, current.Z + 1) },
+            { "sw", ((int X, int Y, int Z) current) => (current.X - 1, current.Y, current.Z + 1) },
+            { "e", ((int X, int Y, int Z) current) => (current.X + 1, current.Y - 1, current.Z) },
+            { "w", ((int X, int Y, int Z) current) => (current.X - 1, current.Y + 1, current.Z) },
         };
 
         public string Solve(string[] input)
         {
             // Represent the hex grid using cube coordinate system; see https://www.redblobgames.com/grids/hexagons/
             // for more info.
-            var flippedTiles = new Dictionary<(int, int, int), bool>();
+            var flippedTiles = new Dictionary<(int X, int Y, int Z), bool>();
 
             foreach (string direction in input)
             {
-                (int, int, int) location = GetLocation(direction);
+                (int X, int Y, int Z) location = GetLocation(direction);
                 if (flippedTiles.ContainsKey(location))
                 {
                     flippedTiles.Remove(location);
@@ -38,15 +38,15 @@
             return flippedTiles.Count.ToString();
         }
 
-        private static (int, int, int) GetLocation(string directions)
+        private static (int X, int Y, int Z) GetLocation(string directions)
         {
             ReadOnlySpan<char> remainingDirections = directions.AsSpan();
 
-            (int, int, int) location = (0, 0, 0);
+            (int X, int Y, int Z) location = (0, 0, 0);
 
             while (remainingDirections.Length > 0)
             {
-                foreach (KeyValuePair<string, Func<(int, int, int), (int, int, int)>> mutator in Mutators)
+                foreach (KeyValuePair<string, Func<(int X, int Y, int Z), (int X, int Y, int Z)>> mutator in Mutators)
                 {
                     if (remainingDirections.StartsWith(mutator.Key))
                     {

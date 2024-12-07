@@ -5,13 +5,13 @@
 
     public class BlizzardBasin
     {
-        private static readonly (int dX, int dY)[] DirectionOffsets = new[]
-        {
+        private static readonly (int DX, int DY)[] DirectionOffsets =
+        [
             (1, 0),
             (0, 1),
             (-1, 0),
             (0, -1),
-        };
+        ];
 
         private Dictionary<int, List<(int StartColumn, int Direction)>> horizontalBlizzards = [];
         private Dictionary<int, List<(int StartRow, int Direction)>> verticalBlizzards = [];
@@ -103,9 +103,9 @@
 
                 seenLocations.Add((currentLocationTimeModulo, location));
 
-                foreach ((int dX, int dY) current in DirectionOffsets)
+                foreach ((int DX, int DY) current in DirectionOffsets)
                 {
-                    (int X, int Y) potentialLocation = (location.X + current.dX, location.Y + current.dY);
+                    (int X, int Y) potentialLocation = (location.X + current.DX, location.Y + current.DY);
 
                     // Is this a valid location?
                     if (potentialLocation.X < 0 || potentialLocation.X >= this.width || potentialLocation.Y < 0 || potentialLocation.Y >= this.height)

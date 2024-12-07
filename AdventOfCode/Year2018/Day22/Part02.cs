@@ -22,14 +22,14 @@
             // looking at a separate metric (time) to determine the shortest path, and
             // also the tool we have when we reach a square is important. Note that it's
             // highly likely that Djikstra's algorithm would also be a good choice here.
-            var paths = new List<List<(int X, int Y, Tools equippedTool, int timeTaken)>>();
+            var paths = new List<List<(int X, int Y, Tools EquippedTool, int TimeTaken)>>();
 
             // Rather than just tracking the squares we've visited, we need to track the
             // equipped tool when we visited and how long it took to get here - two potential
             // paths could visit the same square at different times with different tools and
             // we won't know which is best until we've established the entire path - unless
             // we've ended up at the same place with the same tool already in less time.
-            var shortestTimes = new Dictionary<(int X, int Y, Tools equippedTool), int>();
+            var shortestTimes = new Dictionary<(int X, int Y, Tools EquippedTool), int>();
 
             // Today has introduced me to the concept of the "priority queue", which is
             // essentially a sorted queue. Using this type of queue is the difference between
@@ -38,23 +38,23 @@
             // have more likelihood of reaching sqaures in the shortest time, which means we
             // get to discard many more potential paths at an earlier stage than if we use a
             // normal queue.
-            var searchQueue = new SimplePriorityQueue<List<(int X, int Y, Tools equippedTool, int timeTaken)>>();
+            var searchQueue = new SimplePriorityQueue<List<(int X, int Y, Tools EquippedTool, int TimeTaken)>>();
             searchQueue.Enqueue([(0, 0, Tools.Torch, 0)], 0);
 
             while (searchQueue.Count != 0)
             {
                 // Where are we
-                List<(int X, int Y, Tools equippedTool, int timeTaken)> currentPath = searchQueue.Dequeue();
-                (int X, int Y, Tools equippedTool, int timeTaken) currentSituation = currentPath.Last();
+                List<(int X, int Y, Tools EquippedTool, int TimeTaken)> currentPath = searchQueue.Dequeue();
+                (int X, int Y, Tools EquippedTool, int TimeTaken) currentSituation = currentPath.Last();
 
                 // Are we in the right place?
                 if (currentSituation.X == map.TargetLocation.X && currentSituation.Y == map.TargetLocation.Y)
                 {
                     // If we're in the right place but we don't have the torch equipped, fake a move on the end
                     // of the path to reflect the need to change to the torch.
-                    if (currentSituation.equippedTool != Tools.Torch)
+                    if (currentSituation.EquippedTool != Tools.Torch)
                     {
-                        currentPath.Add((currentSituation.X, currentSituation.Y, Tools.Torch, currentSituation.timeTaken + 7));
+                        currentPath.Add((currentSituation.X, currentSituation.Y, Tools.Torch, currentSituation.TimeTaken + 7));
                     }
 
                     paths.Add(currentPath);
@@ -62,10 +62,10 @@
                 else
                 {
                     // Have we been here before with the same tool equipped?
-                    if (shortestTimes.TryGetValue((currentSituation.X, currentSituation.Y, currentSituation.equippedTool), out int currentShortestTime))
+                    if (shortestTimes.TryGetValue((currentSituation.X, currentSituation.Y, currentSituation.EquippedTool), out int currentShortestTime))
                     {
                         // Did it take less time to get here before?
-                        if (currentShortestTime <= currentSituation.timeTaken)
+                        if (currentShortestTime <= currentSituation.TimeTaken)
                         {
                             // It's possible to get to this location faster via an alternate route.
                             // Abandon this path
@@ -74,23 +74,23 @@
                     }
 
                     // An alternate path got here, but in more time. Update the shortest time.
-                    shortestTimes[(currentSituation.X, currentSituation.Y, currentSituation.equippedTool)] = currentSituation.timeTaken;
+                    shortestTimes[(currentSituation.X, currentSituation.Y, currentSituation.EquippedTool)] = currentSituation.TimeTaken;
 
                     // Where can we go from here...
-                    IEnumerable<(int X, int Y, Tools tool, int timeTaken)> potentialMoves = map.GetPotentialMovesFrom(currentSituation);
+                    IEnumerable<(int X, int Y, Tools Tool, int TimeTaken)> potentialMoves = map.GetPotentialMovesFrom(currentSituation);
 
                     // ...that we haven't been before on this path?
                     potentialMoves = potentialMoves.Where(move => !currentPath.Any(prev => prev.X == move.X && prev.Y == move.Y));
 
-                    foreach ((int X, int Y, Tools tool, int timeTaken) move in potentialMoves)
+                    foreach ((int X, int Y, Tools Tool, int TimeTaken) move in potentialMoves)
                     {
-                        searchQueue.Enqueue(new List<(int X, int Y, Tools equippedTool, int timeTaken)>(currentPath) { move }, move.timeTaken);
+                        searchQueue.Enqueue(new List<(int X, int Y, Tools EquippedTool, int TimeTaken)>(currentPath) { move }, move.TimeTaken);
                     }
                 }
             }
 
-            IOrderedEnumerable<List<(int X, int Y, Tools equippedTool, int timeTaken)>> orderedPaths = paths.OrderBy(x => x.Last().timeTaken);
-            return orderedPaths.First().Last().timeTaken.ToString();
+            IOrderedEnumerable<List<(int X, int Y, Tools EquippedTool, int TimeTaken)>> orderedPaths = paths.OrderBy(x => x.Last().TimeTaken);
+            return orderedPaths.First().Last().TimeTaken.ToString();
         }
     }
 }

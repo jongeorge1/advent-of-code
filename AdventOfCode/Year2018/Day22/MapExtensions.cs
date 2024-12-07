@@ -7,7 +7,7 @@
 
     public static class MapExtensions
     {
-        public static IEnumerable<(int X, int Y, Tools tool, int timeTaken)> GetPotentialMovesFrom(this Map map, (int X, int Y, Tools tool, int timeTaken) currentSituation)
+        public static IEnumerable<(int X, int Y, Tools Tool, int TimeTaken)> GetPotentialMovesFrom(this Map map, (int X, int Y, Tools Tool, int TimeTaken) currentSituation)
         {
             var locations = new List<(int X, int Y)>
             {
@@ -26,9 +26,9 @@
 
                 // If the current tool is valid, stick with it... otherwise, return an entry for
                 // a move with each possible option for new tool
-                if ((validTools & currentSituation.tool) == currentSituation.tool)
+                if ((validTools & currentSituation.Tool) == currentSituation.Tool)
                 {
-                    yield return (current.X, current.Y, currentSituation.tool, currentSituation.timeTaken + 1);
+                    yield return (current.X, current.Y, currentSituation.Tool, currentSituation.TimeTaken + 1);
                 }
                 else
                 {
@@ -36,7 +36,7 @@
                     {
                         if ((validTools & tool) == tool)
                         {
-                            yield return (current.X, current.Y, tool, currentSituation.timeTaken + 8);
+                            yield return (current.X, current.Y, tool, currentSituation.TimeTaken + 8);
                         }
                     }
                 }

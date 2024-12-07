@@ -29,7 +29,7 @@
 
             int nextBasinId = 1;
 
-            KeyValuePair<(int x, int y), int> firstUnfilledLocation = grid.FirstOrDefault(x => x.Value == Unfilled);
+            KeyValuePair<(int X, int Y), int> firstUnfilledLocation = grid.FirstOrDefault(x => x.Value == Unfilled);
 
             while (firstUnfilledLocation.Value != 0)
             {
@@ -45,7 +45,7 @@
             return (threeBiggestBasins[0] * threeBiggestBasins[1] * threeBiggestBasins[2]).ToString();
         }
 
-        private static void FillBasinFrom((int X, int Y) location, Dictionary<(int, int), int> grid, int basinId)
+        private static void FillBasinFrom((int X, int Y) location, Dictionary<(int X, int Y), int> grid, int basinId)
         {
             if (grid.TryGetValue(location, out int current) && current == Unfilled)
             {

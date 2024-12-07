@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            var numbers = input
+            var numbers = input[0]
                 .Split(',', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList();

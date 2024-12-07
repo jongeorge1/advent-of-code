@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        private static readonly Regex ExtractionRegex = new Regex(@"((?:turn on)|(?:turn off)|(?:toggle)) (\d+),(\d+) through (\d+),(\d+)", RegexOptions.Compiled);
+        private static readonly Regex ExtractionRegex = new(@"((?:turn on)|(?:turn off)|(?:toggle)) (\d+),(\d+) through (\d+),(\d+)", RegexOptions.Compiled);
 
         private readonly int[,] grid = new int[1000, 1000];
 

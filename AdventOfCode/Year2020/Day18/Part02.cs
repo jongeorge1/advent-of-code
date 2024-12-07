@@ -8,11 +8,9 @@
     {
         public string Solve(string[] input)
         {
-            string[] equations = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
             long total = 0;
 
-            foreach (string current in equations)
+            foreach (string current in input)
             {
                 total += Evaluate(current);
             }

@@ -5,7 +5,7 @@
 
     public class Part01 : ISolution
     {
-        private static readonly Dictionary<string, int> KnownFacts = new Dictionary<string, int>
+        private static readonly Dictionary<string, int> KnownFacts = new()
         {
             { "children", 3 },
             { "cats", 7 },

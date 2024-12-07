@@ -14,9 +14,9 @@
 
         public static Point[] FindClosest(this Point origin, IEnumerable<Point> points)
         {
-            (Point point, int distance)[] distances = points.Select(x => (x, x.ManhattanDistanceFrom(origin))).ToArray();
-            int closestDistance = distances.Min(x => x.distance);
-            return distances.Where(x => x.distance == closestDistance).Select(x => x.point).ToArray();
+            (Point Point, int Distance)[] distances = points.Select(x => (x, x.ManhattanDistanceFrom(origin))).ToArray();
+            int closestDistance = distances.Min(x => x.Distance);
+            return distances.Where(x => x.Distance == closestDistance).Select(x => x.Point).ToArray();
         }
 
         public static IEnumerable<Point> BuildRangeTo(this Point start, Point finish)

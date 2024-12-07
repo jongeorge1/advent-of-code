@@ -7,7 +7,7 @@
 
     public class Part01 : ISolution
     {
-        private static readonly Regex NotRegex = new Regex(@"\[(\w+)\]", RegexOptions.Compiled);
+        private static readonly Regex NotRegex = new(@"\[(\w+)\]", RegexOptions.Compiled);
 
         public string Solve(string[] input)
         {
@@ -48,7 +48,7 @@
                 if (source[0] != source[1])
                 {
                     string target = input[(i + 2)..(i + 4)];
-                    string search = new string(source.Reverse().ToArray());
+                    string search = new(source.Reverse().ToArray());
 
                     if (target == search)
                     {

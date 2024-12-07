@@ -7,16 +7,16 @@
     {
         public string Solve(string[] input)
         {
-            (int x, int y)[] movementMatrices = new[]
-            {
+            (int X, int Y)[] movementMatrices =
+            [
                 (0, 1),
                 (1, 0),
                 (0, -1),
                 (-1, 0),
-            };
+            ];
 
             string[] directions = input[0].Split(", ");
-            (int x, int y) location = (0, 0);
+            (int X, int Y) location = (0, 0);
             int currentDirection = 0;
 
             var visitedLocations = new List<(int, int)>() { location };
@@ -31,12 +31,12 @@
 
                 for (int i = 0; i < distance; i++)
                 {
-                    location.x += movementMatrices[currentDirection].x;
-                    location.y += movementMatrices[currentDirection].y;
+                    location.X += movementMatrices[currentDirection].X;
+                    location.Y += movementMatrices[currentDirection].Y;
 
                     if (visitedLocations.Contains(location))
                     {
-                        return Distance.Manhattan(location.x, location.y).ToString();
+                        return Distance.Manhattan(location.X, location.Y).ToString();
                     }
 
                     visitedLocations.Add(location);

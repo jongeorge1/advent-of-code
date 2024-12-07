@@ -13,36 +13,36 @@
                 int.Parse(input[2].Split(' ')[^1]));
         }
 
-        public static IEnumerable<(Item Weapon, Item Armour, Item rings)> GetKitCombos()
+        public static IEnumerable<(Item Weapon, Item Armour, Item Rings)> GetKitCombos()
         {
             var weapons = new Item[]
             {
-                new Item("Dagger", 8, 4, 0),
-                new Item("Shortsword", 10, 5, 0),
-                new Item("Warhammer", 25, 6, 0),
-                new Item("Longsword", 40, 7, 0),
-                new Item("Greataxe", 74, 8, 0),
+                new("Dagger", 8, 4, 0),
+                new("Shortsword", 10, 5, 0),
+                new("Warhammer", 25, 6, 0),
+                new("Longsword", 40, 7, 0),
+                new("Greataxe", 74, 8, 0),
             };
 
             var armour = new Item[]
             {
-                new Item("Nothing", 0, 0, 0),
-                new Item("Leather", 13, 0, 1),
-                new Item("Chainmail", 31, 0, 2),
-                new Item("Splintmail", 53, 0, 3),
-                new Item("Bandedmail", 75, 0, 4),
-                new Item("Platemail", 102, 0, 5),
+                new("Nothing", 0, 0, 0),
+                new("Leather", 13, 0, 1),
+                new("Chainmail", 31, 0, 2),
+                new("Splintmail", 53, 0, 3),
+                new("Bandedmail", 75, 0, 4),
+                new("Platemail", 102, 0, 5),
             };
 
             var rings = new Item[]
             {
-                new Item("Nothing", 0, 0, 0),
-                new Item("Damage +1", 25, 1, 0),
-                new Item("Damage +2", 50, 2, 0),
-                new Item("Damage +3", 100, 3, 0),
-                new Item("Defense +1", 20, 0, 1),
-                new Item("Defense +2", 40, 0, 2),
-                new Item("Defense +3", 80, 0, 3),
+                new("Nothing", 0, 0, 0),
+                new("Damage +1", 25, 1, 0),
+                new("Damage +2", 50, 2, 0),
+                new("Damage +3", 100, 3, 0),
+                new("Defense +1", 20, 0, 1),
+                new("Defense +2", 40, 0, 2),
+                new("Defense +3", 80, 0, 3),
             };
 
             // We need to analyse all the possible combinations of weapons, armour and rings. This is made slightly more

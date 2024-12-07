@@ -13,10 +13,10 @@
 
         public string Solve(string[] input)
         {
-            this.totalColumns = input.IndexOf(Environment.NewLine);
+            this.totalColumns = input.Length;
 
             // Get rid of the newlines
-            char[] grid = input.Replace(Environment.NewLine, string.Empty).ToCharArray();
+            char[] grid = string.Join(string.Empty, input).ToCharArray();
 
             this.totalRows = grid.Length / this.totalColumns;
 

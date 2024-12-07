@@ -15,5 +15,4 @@ public readonly record struct CalibrationEquation
     public long TestValue { get; }
 
     public long[] Numbers { get; }
-
 }

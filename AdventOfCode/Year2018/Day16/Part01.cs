@@ -7,9 +7,9 @@
     {
         public string Solve(string[] input)
         {
-            (Sample[] Samples, Instruction[] instructions) data = Parser.Parse(input[0]);
+            (Sample[] samples, Instruction[] instructions) = Parser.Parse(input[0]);
 
-            IEnumerable<(Sample x, int)> testResults = data.Samples.Select(x => (x, x.GetMatchingOperationsCount()));
+            IEnumerable<(Sample x, int)> testResults = samples.Select(x => (x, x.GetMatchingOperationsCount()));
 
             int result = testResults.Count(x => x.Item2 >= 3);
 

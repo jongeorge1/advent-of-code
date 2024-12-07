@@ -6,18 +6,18 @@
 
     public static class MapExtensions
     {
-        public static void WriteToConsole(this (char[] Map, int yOffset) state)
+        public static void WriteToConsole(this (char[] Map, int YOffset) state)
         {
-            int rows = state.Map.Length / state.yOffset;
+            int rows = state.Map.Length / state.YOffset;
 
             for (int i = 0; i < rows; i++)
             {
-                string row = new string(state.Map.Skip(i * state.yOffset).Take(state.yOffset).ToArray());
+                string row = new(state.Map.Skip(i * state.YOffset).Take(state.YOffset).ToArray());
                 Console.WriteLine(row);
             }
         }
 
-        public static (char[] Map, int yOffset) GetNextState(this (char[] Map, int yOffset) state)
+        public static (char[] Map, int YOffset) GetNextState(this (char[] Map, int YOffset) state)
         {
             char[] result = new char[state.Map.Length];
 
@@ -26,16 +26,16 @@
                 result[i] = state.GetNextStateForAcre(i);
             }
 
-            return (result, state.yOffset);
+            return (result, state.YOffset);
         }
 
-        public static string Memoize(this (char[] Map, int yOffset) state)
+        public static string Memoize(this (char[] Map, int YOffset) state)
         {
-            // Lazy, as I'm not bothering to include the yOffset...
+            // Lazy, as I'm not bothering to include the YOffset...
             return new string(state.Map);
         }
 
-        public static char GetNextStateForAcre(this (char[] Map, int yOffset) state, int acre)
+        public static char GetNextStateForAcre(this (char[] Map, int YOffset) state, int acre)
         {
             char[] adjacentAcres = state.GetAdjacentAcres(acre).ToArray();
 
@@ -69,15 +69,15 @@
             throw new InvalidOperationException();
         }
 
-        public static IEnumerable<char> GetAdjacentAcres(this (char[] Map, int yOffset) state, int acre)
+        public static IEnumerable<char> GetAdjacentAcres(this (char[] Map, int YOffset) state, int acre)
         {
-            int up = acre - state.yOffset;
+            int up = acre - state.YOffset;
             int left = acre - 1;
             int right = acre + 1;
-            int down = acre + state.yOffset;
+            int down = acre + state.YOffset;
 
-            int minX = (acre / state.yOffset) * state.yOffset;
-            int maxX = minX + state.yOffset;
+            int minX = (acre / state.YOffset) * state.YOffset;
+            int maxX = minX + state.YOffset;
 
             bool canLookUp = up >= 0;
             bool canLookDown = down < state.Map.Length;

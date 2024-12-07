@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        private static readonly Dictionary<char, int> CardValues = new Dictionary<char, int>()
+        private static readonly Dictionary<char, int> CardValues = new()
         {
             { 'A', 14 },
             { 'K', 13 },

@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            IDictionary<(int x, int y), bool> grid = input
+            IDictionary<(int X, int Y), bool> grid = input
                 .Select(x => x.ToCharArray())
                 .SelectMany((entry, row) => entry.Select((item, col) => (Location: (x: col, y: row), Entry: item)))
                 .Where(entry => entry.Entry == '#')
@@ -22,7 +22,7 @@
 
             for (int cycle = 0; cycle < cycles; cycle++)
             {
-                var newGrid = new Dictionary<(int x, int y), bool>(width * height);
+                var newGrid = new Dictionary<(int X, int Y), bool>(width * height);
 
                 // Now iterate through the space and determine the new state of each cube.
                 for (int x = 0; x < width; x++)

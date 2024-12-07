@@ -11,7 +11,7 @@
         private const char Void = ' ';
         private static readonly char[] Directions = ['L', 'R'];
 
-        private static readonly (int dX, int dY)[] DirectionOffsets = new[]
+        private static readonly (int DX, int DY)[] DirectionOffsets = new[]
         {
             (1, 0),
             (0, 1),
@@ -74,7 +74,7 @@
                 for (int i = 0; i < number; ++i)
                 {
                     // Get the next destination in the current direction.
-                    (int X, int Y) destination = (location.X + DirectionOffsets[direction].dX, location.Y + DirectionOffsets[direction].dY);
+                    (int X, int Y) destination = (location.X + DirectionOffsets[direction].DX, location.Y + DirectionOffsets[direction].DY);
 
                     // Handle wrapping.
                     if (direction == 0 || direction == 2)

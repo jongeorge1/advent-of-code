@@ -21,23 +21,23 @@
 
             while (true)
             {
-                foreach ((int x, int y) location in grid.Keys)
+                foreach ((int X, int Y) location in grid.Keys)
                 {
                     ++grid[location];
                 }
 
                 while (true)
                 {
-                    (int x, int y)[] flashers = grid.Where(x => x.Value > 9).Select(x => x.Key).ToArray();
+                    (int X, int Y)[] flashers = grid.Where(x => x.Value > 9).Select(x => x.Key).ToArray();
 
                     if (flashers.Length == 0)
                     {
                         break;
                     }
 
-                    foreach ((int x, int y) flasher in flashers)
+                    foreach ((int X, int Y) flasher in flashers)
                     {
-                        foreach ((int, int) neighbour in this.GetNeighbours(flasher, grid))
+                        foreach ((int X, int Y) neighbour in this.GetNeighbours(flasher, grid))
                         {
                             ++grid[neighbour];
                         }
@@ -47,14 +47,14 @@
                     }
                 }
 
-                (int x, int y)[] allFlashedThisStep = grid.Where(x => x.Value == -1).Select(x => x.Key).ToArray();
+                (int X, int Y)[] allFlashedThisStep = grid.Where(x => x.Value == -1).Select(x => x.Key).ToArray();
 
                 if (allFlashedThisStep.Length == 100)
                 {
                     return step.ToString();
                 }
 
-                foreach ((int x, int y) flashed in allFlashedThisStep)
+                foreach ((int X, int Y) flashed in allFlashedThisStep)
                 {
                     grid[flashed] = 0;
                 }
@@ -63,13 +63,13 @@
             }
         }
 
-        private IEnumerable<(int, int)> GetNeighbours((int x, int y) flasher, Dictionary<(int x, int y), int> grid)
+        private IEnumerable<(int X, int Y)> GetNeighbours((int X, int Y) flasher, Dictionary<(int X, int Y), int> grid)
         {
-            for (int x = flasher.x - 1; x <= flasher.x + 1; ++x)
+            for (int x = flasher.X - 1; x <= flasher.X + 1; ++x)
             {
-                for (int y = flasher.y - 1; y <= flasher.y + 1; ++y)
+                for (int y = flasher.Y - 1; y <= flasher.Y + 1; ++y)
                 {
-                    (int x, int y) location = (x, y);
+                    (int X, int Y) location = (x, y);
                     if (location != flasher && grid.TryGetValue(location, out int val) && val != -1)
                     {
                         yield return location;

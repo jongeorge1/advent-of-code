@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            (int x, int y) destination = (31, 39);
+            (int X, int Y) destination = (31, 39);
 
             if (input[0].StartsWith("TEST"))
             {
@@ -23,13 +23,13 @@
 
             // Breadth first search FTW
             Dictionary<(int, int), int> visitedLocations = [];
-            PriorityQueue<((int x, int y) position, int steps), int> processingQueue = new();
+            PriorityQueue<((int X, int Y) Position, int Steps), int> processingQueue = new();
 
             processingQueue.Enqueue(((1, 1), 0), 0);
 
             while (processingQueue.Count > 0)
             {
-                ((int x, int y) location, int steps) = processingQueue.Dequeue();
+                ((int X, int Y) location, int steps) = processingQueue.Dequeue();
 
                 // Are we where we want to be?
                 if (location == destination)
@@ -50,7 +50,7 @@
                 visitedLocations[location] = steps;
 
                 // Where to next?
-                foreach ((int x, int y) current in GetPotentialNextLocations(location, offset))
+                foreach ((int X, int Y) current in GetPotentialNextLocations(location, offset))
                 {
                     processingQueue.Enqueue((current, steps + 1), steps + 1);
                 }
@@ -59,14 +59,14 @@
             return string.Empty;
         }
 
-        private static bool IsOpenSpace((int x, int y) location, int offset)
+        private static bool IsOpenSpace((int X, int Y) location, int offset)
         {
-            if (location.x < 0 || location.y < 0)
+            if (location.X < 0 || location.Y < 0)
             {
                 return false;
             }
 
-            int step1 = (location.x * location.x) + (3 * location.x) + (2 * location.x * location.y) + location.y + (location.y * location.y);
+            int step1 = (location.X * location.X) + (3 * location.X) + (2 * location.X * location.Y) + location.Y + (location.Y * location.Y);
             int step2 = step1 + offset;
             string step3 = Convert.ToString(step2, 2);
             int step4 = step3.Count(x => x == '1');
@@ -74,22 +74,22 @@
             return step4 % 2 == 0;
         }
 
-        private static IEnumerable<(int x, int y)> GetPotentialNextLocations((int x, int y) location, int offset)
+        private static IEnumerable<(int X, int Y)> GetPotentialNextLocations((int X, int Y) location, int offset)
         {
             (int, int)[] potentialLocations =
             [
-                (location.x + 1, location.y),
-                (location.x - 1, location.y),
-                (location.x, location.y + 1),
-                (location.x, location.y - 1),
+                (location.X + 1, location.Y),
+                (location.X - 1, location.Y),
+                (location.X, location.Y + 1),
+                (location.X, location.Y - 1),
             ];
 
             return potentialLocations.Where(x => IsOpenSpace(x, offset));
         }
 
-        private static string BuildMap((int x, int y) destination, int offset)
+        private static string BuildMap((int X, int Y) destination, int offset)
         {
-            return string.Join(Environment.NewLine, Enumerable.Range(0, destination.y + 10).Select(x => new string(Enumerable.Range(0, destination.x + 10).Select(y => IsOpenSpace((x, y), offset) ? '.' : '#').ToArray())));
+            return string.Join(Environment.NewLine, Enumerable.Range(0, destination.Y + 10).Select(x => new string(Enumerable.Range(0, destination.X + 10).Select(y => IsOpenSpace((x, y), offset) ? '.' : '#').ToArray())));
         }
     }
 }

@@ -23,7 +23,7 @@
                 * CountVisibleTrees(position, (-1, 0), forest);
         }
 
-        private static int CountVisibleTrees((int X, int Y) viewPoint, (int X, int Y) direction, Dictionary<(int, int), int> forest)
+        private static int CountVisibleTrees((int X, int Y) viewPoint, (int X, int Y) direction, Dictionary<(int X, int Y), int> forest)
         {
             int viewPointHeight = forest[viewPoint];
             int visibleTrees = 0;

@@ -16,7 +16,6 @@ namespace AdventOfCode.Year2020.Day11
         {
             // Get rid of the newlines
             char[][] grid = input
-                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.ToCharArray())
                 .ToArray();
 

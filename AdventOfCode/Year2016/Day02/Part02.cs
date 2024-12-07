@@ -15,31 +15,31 @@
 
             string result = string.Empty;
 
-            (int x, int y) location = (0, 2);
+            (int X, int Y) location = (0, 2);
 
             foreach (string command in input)
             {
                 foreach (char step in command)
                 {
-                    if (step == 'U' && location.y > 0 && grid[location.y - 1][location.x].HasValue)
+                    if (step == 'U' && location.Y > 0 && grid[location.Y - 1][location.X].HasValue)
                     {
-                        --location.y;
+                        --location.Y;
                     }
-                    else if (step == 'D' && location.y < 4 && grid[location.y + 1][location.x].HasValue)
+                    else if (step == 'D' && location.Y < 4 && grid[location.Y + 1][location.X].HasValue)
                     {
-                        ++location.y;
+                        ++location.Y;
                     }
-                    else if (step == 'L' && location.x > 0 && grid[location.y][location.x - 1].HasValue)
+                    else if (step == 'L' && location.X > 0 && grid[location.Y][location.X - 1].HasValue)
                     {
-                        --location.x;
+                        --location.X;
                     }
-                    else if (step == 'R' && location.x < 4 && grid[location.y][location.x + 1].HasValue)
+                    else if (step == 'R' && location.X < 4 && grid[location.Y][location.X + 1].HasValue)
                     {
-                        ++location.x;
+                        ++location.X;
                     }
                 }
 
-                result += grid[location.y][location.x];
+                result += grid[location.Y][location.X];
             }
 
             return result;

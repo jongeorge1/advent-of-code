@@ -5,7 +5,7 @@
 
     public class Claim
     {
-        private static readonly Regex ParserRegex = new Regex(@"#(\d*) @ (\d*),(\d*): (\d*)x(\d*)", RegexOptions.Compiled);
+        private static readonly Regex ParserRegex = new(@"#(\d*) @ (\d*),(\d*): (\d*)x(\d*)", RegexOptions.Compiled);
 
         public int Number { get; set; }
 

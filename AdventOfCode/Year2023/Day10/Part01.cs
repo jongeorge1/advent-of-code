@@ -31,7 +31,7 @@
             return (stepsTaken / 2).ToString();
         }
 
-        private static (int, int) GetNextPosition((int X, int Y) currentPosition, (int X, int Y) previousPosition, char tileType, char startTileType)
+        private static (int X, int Y) GetNextPosition((int X, int Y) currentPosition, (int X, int Y) previousPosition, char tileType, char startTileType)
         {
             List<(int, int)> connectedTiles = [];
 
@@ -63,7 +63,7 @@
             return connectedTiles.First(x => x != previousPosition);
         }
 
-        private static (int, int) GetStartPositionCoordinates(string[] input)
+        private static (int X, int Y) GetStartPositionCoordinates(string[] input)
         {
             for (int y = 0; y < input.Length; y++)
             {

@@ -13,31 +13,31 @@
 
             string result = string.Empty;
 
-            (int x, int y) location = (1, 1);
+            (int X, int Y) location = (1, 1);
 
             foreach (string command in input)
             {
                 foreach (char step in command)
                 {
-                    if (step == 'U' && location.y > 0)
+                    if (step == 'U' && location.Y > 0)
                     {
-                        --location.y;
+                        --location.Y;
                     }
-                    else if (step == 'D' && location.y < 2)
+                    else if (step == 'D' && location.Y < 2)
                     {
-                        ++location.y;
+                        ++location.Y;
                     }
-                    else if (step == 'L' && location.x > 0)
+                    else if (step == 'L' && location.X > 0)
                     {
-                        --location.x;
+                        --location.X;
                     }
-                    else if (step == 'R' && location.x < 2)
+                    else if (step == 'R' && location.X < 2)
                     {
-                        ++location.x;
+                        ++location.X;
                     }
                 }
 
-                result += grid[location.y][location.x];
+                result += grid[location.Y][location.X];
             }
 
             return result;

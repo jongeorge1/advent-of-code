@@ -6,7 +6,7 @@
     public class Part02 : ISolution
     {
         private static readonly Dictionary<char, Func<(int, int), (int, int)>> Mutators =
-            new Dictionary<char, Func<(int, int), (int, int)>>
+            new()
             {
                 { '^', input => (input.Item1, input.Item2 + 1) },
                 { 'v', input => (input.Item1, input.Item2 - 1) },

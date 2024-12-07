@@ -75,7 +75,7 @@
             return insideLocations.ToString();
         }
 
-        private static Dictionary<(int, int), char> BuildLoopMap(string[] input, (int X, int Y) startPosition, char startTileType)
+        private static Dictionary<(int X, int Y), char> BuildLoopMap(string[] input, (int X, int Y) startPosition, char startTileType)
         {
             Dictionary<(int X, int Y), char> loopTiles = [];
 
@@ -99,7 +99,7 @@
             return loopTiles;
         }
 
-        private static (int, int) GetNextPosition((int X, int Y) currentPosition, (int X, int Y) previousPosition, char tileType)
+        private static (int X, int Y) GetNextPosition((int X, int Y) currentPosition, (int X, int Y) previousPosition, char tileType)
         {
             List<(int, int)> connectedTiles = [];
 
@@ -126,7 +126,7 @@
             return connectedTiles.First(x => x != previousPosition);
         }
 
-        private static (int, int) GetStartPositionCoordinates(string[] input)
+        private static (int X, int Y) GetStartPositionCoordinates(string[] input)
         {
             for (int y = 0; y < input.Length; y++)
             {

@@ -10,7 +10,6 @@
         public string Solve(string[] input)
         {
             Instruction[] data = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => new Instruction(x))
                 .ToArray();
 

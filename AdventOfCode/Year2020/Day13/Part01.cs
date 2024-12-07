@@ -8,14 +8,10 @@
     {
         public string Solve(string[] input)
         {
-            // Get rid of the newlines
-            string[] data = input
-                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            int earliestDepartureTime = int.Parse(input[0]);
+            int[] departureIntervals = input[1].Split(',').Where(x => x != "x").Select(int.Parse).ToArray();
 
-            int earliestDepartureTime = int.Parse(data[0]);
-            int[] departureIntervals = data[1].Split(',').Where(x => x != "x").Select(int.Parse).ToArray();
-
-            (int serviceNumber, int minutesToWait) earliestSuitableDeparture = (0, int.MaxValue);
+            (int ServiceNumber, int MinutesToWait) earliestSuitableDeparture = (0, int.MaxValue);
 
             foreach (int current in departureIntervals)
             {
@@ -25,13 +21,13 @@
                 // that none of the services will depart exactly on our arrival time.
                 int departureTime = (1 + (earliestDepartureTime / current)) * current;
                 int minutesToWait = departureTime - earliestDepartureTime;
-                if (minutesToWait < earliestSuitableDeparture.minutesToWait)
+                if (minutesToWait < earliestSuitableDeparture.MinutesToWait)
                 {
                     earliestSuitableDeparture = (current, minutesToWait);
                 }
             }
 
-            return (earliestSuitableDeparture.serviceNumber * earliestSuitableDeparture.minutesToWait).ToString();
+            return (earliestSuitableDeparture.ServiceNumber * earliestSuitableDeparture.MinutesToWait).ToString();
         }
     }
 }

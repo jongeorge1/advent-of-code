@@ -6,7 +6,7 @@
     {
         public string Solve(string[] input)
         {
-            (char[] Map, int yOffset) map = MapParser.Parse(input);
+            (char[] Map, int YOffset) map = MapParser.Parse(input);
 
             ////Console.WriteLine("Initial state:");
             ////map.WriteToConsole();

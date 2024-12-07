@@ -6,7 +6,7 @@
 
     public class Part02 : ISolution
     {
-        private static readonly Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownLeftSide = new Dictionary<char, Func<long, long, long>>
+        private static readonly Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownLeftSide = new()
         {
             { '+', (long knownValue, long target) => target - knownValue },
             { '-', (long knownValue, long target) => knownValue - target },
@@ -14,7 +14,7 @@
             { '/', (long knownValue, long target) => knownValue / target },
         };
 
-        private static readonly Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownRightSide = new Dictionary<char, Func<long, long, long>>
+        private static readonly Dictionary<char, Func<long, long, long>> OperatorInversionsForKnownRightSide = new()
         {
             { '+', (long knownValue, long target) => target - knownValue },
             { '-', (long knownValue, long target) => knownValue + target },
@@ -77,6 +77,7 @@
             // the human.
             long currentTarget = 0;
             Monkey current;
+#pragma warning disable CS0184 // 'is' expression's given expression is never of the provided type - as explained, this is wrong.
             if (rootMonkey.Left is NumberMonkey)
             {
                 currentTarget = rootMonkey.LeftMonkey.Yell();
@@ -87,6 +88,7 @@
                 currentTarget = rootMonkey.RightMonkey.Yell();
                 current = rootMonkey.LeftMonkey;
             }
+#pragma warning restore CS0184 // 'is' expression's given expression is never of the provided type
 
             while (!(current is Human))
             {
@@ -113,7 +115,7 @@
         {
             if (!start.DependsOnHuman)
             {
-                allMonkeys[start.Name] = new NumberMonkey(ref allMonkeys)
+                allMonkeys[start.Name!] = new NumberMonkey(ref allMonkeys)
                 {
                     Name = start.Name,
                     Number = start.Yell(),
@@ -193,7 +195,7 @@
 
         public class OperatorMonkey : Monkey
         {
-            private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new Dictionary<char, Func<long, long, long>>
+            private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new()
             {
                 { '+', (a, b) => a + b },
                 { '-', (a, b) => a - b },

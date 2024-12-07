@@ -38,7 +38,7 @@
             // need a count of times we've reached the end.
             // We could do this using breadth or depth first; it doesn't really matter.
             int completeRoutes = 0;
-            var queue = new Queue<(List<string> path, bool visitedASmallCaveTwiceAlready)>();
+            var queue = new Queue<(List<string> Path, bool VisitedASmallCaveTwiceAlready)>();
             queue.Enqueue((new List<string> { "start" }, false));
 
             while (queue.Count > 0)

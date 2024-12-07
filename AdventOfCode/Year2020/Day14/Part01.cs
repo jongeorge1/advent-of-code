@@ -11,7 +11,6 @@
         {
             // Get rid of the newlines
             string[][] data = input
-                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Split(new char[] { ' ', '=', '[', ']' }, StringSplitOptions.RemoveEmptyEntries))
                 .ToArray();
 

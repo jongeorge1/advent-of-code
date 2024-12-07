@@ -6,16 +6,16 @@
     {
         public string Solve(string[] input)
         {
-            (int x, int y)[] movementMatrices = new[]
-            {
+            (int X, int Y)[] movementMatrices =
+            [
                 (0, 1),
                 (1, 0),
                 (0, -1),
                 (-1, 0),
-            };
+            ];
 
             string[] directions = input[0].Split(", ");
-            (int x, int y) location = (0, 0);
+            (int X, int Y) location = (0, 0);
             int currentDirection = 0;
 
             foreach (string direction in directions)
@@ -26,11 +26,11 @@
                 // Change direction
                 currentDirection = ((turn == "L" ? currentDirection - 1 : currentDirection + 1) + 4) % 4;
 
-                location.x += distance * movementMatrices[currentDirection].x;
-                location.y += distance * movementMatrices[currentDirection].y;
+                location.X += distance * movementMatrices[currentDirection].X;
+                location.Y += distance * movementMatrices[currentDirection].Y;
             }
 
-            return Distance.Manhattan(location.x, location.y).ToString();
+            return Distance.Manhattan(location.X, location.Y).ToString();
         }
     }
 }

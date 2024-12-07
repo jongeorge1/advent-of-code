@@ -7,19 +7,19 @@
 
     public class Part02 : ISolution
     {
-        private static readonly Dictionary<string, Func<(int, int, int), (int, int, int)>> Mutators = new Dictionary<string, Func<(int, int, int), (int, int, int)>>
+        private static readonly Dictionary<string, Func<(int, int, int), (int, int, int)>> Mutators = new()
         {
-            { "ne", ((int x, int y, int z) current) => (current.x + 1, current.y, current.z - 1) },
-            { "nw", ((int x, int y, int z) current) => (current.x, current.y + 1, current.z - 1) },
-            { "se", ((int x, int y, int z) current) => (current.x, current.y - 1, current.z + 1) },
-            { "sw", ((int x, int y, int z) current) => (current.x - 1, current.y, current.z + 1) },
-            { "e", ((int x, int y, int z) current) => (current.x + 1, current.y - 1, current.z) },
-            { "w", ((int x, int y, int z) current) => (current.x - 1, current.y + 1, current.z) },
+            { "ne", ((int X, int Y, int Z) current) => (current.X + 1, current.Y, current.Z - 1) },
+            { "nw", ((int X, int Y, int Z) current) => (current.X, current.Y + 1, current.Z - 1) },
+            { "se", ((int X, int Y, int Z) current) => (current.X, current.Y - 1, current.Z + 1) },
+            { "sw", ((int X, int Y, int Z) current) => (current.X - 1, current.Y, current.Z + 1) },
+            { "e", ((int X, int Y, int Z) current) => (current.X + 1, current.Y - 1, current.Z) },
+            { "w", ((int X, int Y, int Z) current) => (current.X - 1, current.Y + 1, current.Z) },
         };
 
         public string Solve(string[] input)
         {
-            Dictionary<(int x, int y, int z), bool>? flippedTiles = Setup(input);
+            Dictionary<(int X, int Y, int Z), bool>? flippedTiles = Setup(input);
 
             for (int generation = 0; generation < 100; generation++)
             {
@@ -55,12 +55,12 @@
             return flippedTiles.Count.ToString();
         }
 
-        private static IEnumerable<(int, int, int)> GetNeighbours((int x, int y, int z) location)
+        private static IEnumerable<(int X, int Y, int Z)> GetNeighbours((int X, int Y, int Z) location)
         {
             return Mutators.Select(m => m.Value(location));
         }
 
-        private static Dictionary<(int x, int y, int z), bool> Setup(string[] input)
+        private static Dictionary<(int X, int Y, int Z), bool> Setup(string[] input)
         {
             // Represent the hex grid using cube coordinate system; see https://www.redblobgames.com/grids/hexagons/
             // for more info.
@@ -82,7 +82,7 @@
             return flippedTiles;
         }
 
-        private static (int, int, int) GetLocation(string directions)
+        private static (int X, int Y, int Z) GetLocation(string directions)
         {
             ReadOnlySpan<char> remainingDirections = directions.AsSpan();
 

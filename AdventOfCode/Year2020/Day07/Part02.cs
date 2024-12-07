@@ -10,7 +10,6 @@
         public string Solve(string[] input)
         {
             var data = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(GetPackingInfo)
                 .ToList();
 
@@ -42,7 +41,7 @@
             string containerColour = input.Substring(0, index);
 
             // Split the remainder on commas
-            IEnumerable<string> containedInput = input[(index + 14) ..].Split(",").Select(x => x.Trim());
+            IEnumerable<string> containedInput = input[(index + 14)..].Split(",").Select(x => x.Trim());
 
             var containedBags = new Dictionary<string, int>();
 

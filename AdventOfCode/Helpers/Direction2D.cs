@@ -2,10 +2,10 @@
 
 public class Direction2D
 {
-    public static readonly Direction2D North = new Direction2D { Vector = (0, -1) };
-    public static readonly Direction2D South = new Direction2D { Vector = (0, 1) };
-    public static readonly Direction2D East = new Direction2D { Vector = (1, 0) };
-    public static readonly Direction2D West = new Direction2D { Vector = (-1, 0) };
+    public static readonly Direction2D North = new() { Vector = (0, -1) };
+    public static readonly Direction2D South = new() { Vector = (0, 1) };
+    public static readonly Direction2D East = new() { Vector = (1, 0) };
+    public static readonly Direction2D West = new() { Vector = (-1, 0) };
 
     static Direction2D()
     {

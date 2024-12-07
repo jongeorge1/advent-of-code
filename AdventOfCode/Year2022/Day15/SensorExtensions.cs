@@ -102,7 +102,7 @@ public static class SensorExtensions
         return range.Max - range.Min + 1;
     }
 
-    private static (int, int) TrimRange((int Min, int Max) range, int minX, int maxX)
+    private static (int X, int Y) TrimRange((int Min, int Max) range, int minX, int maxX)
     {
         return (Math.Max(minX, range.Min), Math.Min(maxX, range.Max));
     }

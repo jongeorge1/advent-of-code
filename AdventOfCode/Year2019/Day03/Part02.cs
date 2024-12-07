@@ -7,7 +7,7 @@
 
     public class Part02 : ISolution
     {
-        private static readonly Dictionary<char, Point> Vectors = new Dictionary<char, Point>
+        private static readonly Dictionary<char, Point> Vectors = new()
         {
             { 'U', new Point(0, 1) },
             { 'D', new Point(0, -1) },

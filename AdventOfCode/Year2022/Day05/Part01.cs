@@ -22,7 +22,7 @@
             return string.Concat(stacks.Select(x => x.Peek()));
         }
 
-        private (Stack<char>[] stacks, (int Count, int From, int To)[]) ParseInput(string[] input)
+        private (Stack<char>[] Stacks, (int Count, int From, int To)[] Moves) ParseInput(string[] input)
         {
             int emptyLineIndex = Array.IndexOf(input, string.Empty);
 

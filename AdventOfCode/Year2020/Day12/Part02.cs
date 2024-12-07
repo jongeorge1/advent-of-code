@@ -8,33 +8,29 @@
     {
         public string Solve(string[] input)
         {
-            // Get rid of the newlines
-            string[] data = input
-                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            (int X, int Y) waypointOffset = (10, 1);
+            (int X, int Y) position = (0, 0);
 
-            (int x, int y) waypointOffset = (10, 1);
-            (int x, int y) position = (0, 0);
-
-            foreach (string current in data)
+            foreach (string current in input)
             {
                 int quantifier = int.Parse(current[1..]);
 
                 switch (current[0])
                 {
                     case 'N':
-                        waypointOffset = (waypointOffset.x, waypointOffset.y + quantifier);
+                        waypointOffset = (waypointOffset.X, waypointOffset.Y + quantifier);
                         break;
 
                     case 'E':
-                        waypointOffset = (waypointOffset.x + quantifier, waypointOffset.y);
+                        waypointOffset = (waypointOffset.X + quantifier, waypointOffset.Y);
                         break;
 
                     case 'S':
-                        waypointOffset = (waypointOffset.x, waypointOffset.y - quantifier);
+                        waypointOffset = (waypointOffset.X, waypointOffset.Y - quantifier);
                         break;
 
                     case 'W':
-                        waypointOffset = (waypointOffset.x - quantifier, waypointOffset.y);
+                        waypointOffset = (waypointOffset.X - quantifier, waypointOffset.Y);
                         break;
 
                     case 'F':
@@ -51,27 +47,27 @@
                 }
             }
 
-            return Distance.Manhattan(position.x, position.y).ToString();
+            return Distance.Manhattan(position.X, position.Y).ToString();
         }
 
-        private static (int, int) Move((int, int) position, (int, int) waypointOffset, int quantifier)
+        private static (int X, int Y) Move((int X, int Y) position, (int X, int Y) waypointOffset, int quantifier)
         {
             for (int i = 0; i < quantifier; i++)
             {
-                position = (position.Item1 + waypointOffset.Item1, position.Item2 + waypointOffset.Item2);
+                position = (position.X + waypointOffset.X, position.Y + waypointOffset.Y);
             }
 
             return position;
         }
 
-        private static (int, int) Transform((int, int) offset, int quantifier)
+        private static (int X, int Y) Transform((int X, int Y) offset, int quantifier)
         {
             return quantifier switch
             {
                 0 => offset,
-                90 => (offset.Item2, -offset.Item1),
-                180 => (-offset.Item1, -offset.Item2),
-                270 => (-offset.Item2, offset.Item1),
+                90 => (offset.Y, -offset.X),
+                180 => (-offset.X, -offset.Y),
+                270 => (-offset.Y, offset.X),
                 _ => throw new Exception(),
             };
         }

@@ -70,8 +70,8 @@ public class CubeMapTests
 
         CubeFaceDescriptor originalCubeFace = map.CubeFaces[originalCubeFaceIndex];
         CubeFaceDescriptor expectedCubeFace = map.CubeFaces[expectedCubeFaceIndex];
-        (int originalX, int originalY) originalLocation = (originalX, originalY);
-        (int expectedX, int expectedY) expectedLocation = (expectedX, expectedY);
+        (int OriginalX, int OriginalY) originalLocation = (originalX, originalY);
+        (int ExpectedX, int ExpectedY) expectedLocation = (expectedX, expectedY);
 
         ((int X, int Y) actualLocation, CubeFaceDescriptor actualCubeFace, int actualDirection) = originalCubeFace.GetNextLocationFrom(originalLocation, originalDirection);
 

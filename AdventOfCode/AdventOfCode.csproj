@@ -10,31 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Year2020\Day07\**" />
-    <Compile Remove="Year2020\Day08\**" />
-    <Compile Remove="Year2020\Day09\**" />
-    <Compile Remove="Year2020\Day10\**" />
-    <Compile Remove="Year2020\Day11\**" />
-    <Compile Remove="Year2020\Day12\**" />
-    <Compile Remove="Year2020\Day13\**" />
-    <Compile Remove="Year2020\Day14\**" />
-    <Compile Remove="Year2020\Day15\**" />
     <Compile Remove="Year2020\Day16\**" />
-    <Compile Remove="Year2020\Day17\**" />
-    <Compile Remove="Year2020\Day18\**" />
     <Compile Remove="Year2020\Day20\**" />
-    <None Remove="Year2020\Day07\**" />
-    <None Remove="Year2020\Day08\**" />
-    <None Remove="Year2020\Day09\**" />
-    <None Remove="Year2020\Day10\**" />
-    <None Remove="Year2020\Day11\**" />
-    <None Remove="Year2020\Day12\**" />
-    <None Remove="Year2020\Day13\**" />
-    <None Remove="Year2020\Day14\**" />
-    <None Remove="Year2020\Day15\**" />
     <None Remove="Year2020\Day16\**" />
-    <None Remove="Year2020\Day17\**" />
-    <None Remove="Year2020\Day18\**" />
     <None Remove="Year2020\Day20\**" />
   </ItemGroup>
 
@@ -51,6 +29,12 @@
 
   <ItemGroup>
     <AdditionalFiles Include="..\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Year2020\Day11\Part01.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -361,6 +345,36 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Year2020\Day06\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day07\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day08\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day09\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day10\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day11\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day12\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day13\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day14\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day15\input.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Year2020\Day17\input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Year2020\Day18\input.txt">

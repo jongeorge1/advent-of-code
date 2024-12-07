@@ -10,7 +10,6 @@
         public string Solve(string[] input)
         {
             var data = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(long.Parse)
                 .ToList();
 
@@ -66,7 +65,7 @@
 
         private bool IsValidAt(int pointer, List<long> data, int preambleSize)
         {
-            Range checkRange = (pointer - preambleSize) ..pointer;
+            Range checkRange = (pointer - preambleSize)..pointer;
             for (int number1Index = checkRange.Start.Value; number1Index < checkRange.End.Value; number1Index++)
             {
                 for (int number2Index = checkRange.Start.Value; number2Index < checkRange.End.Value; number2Index++)

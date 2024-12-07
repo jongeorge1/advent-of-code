@@ -40,7 +40,7 @@
         // 8 - 3 3 2
 
         // 9 - 3 3 3
-        private static readonly (int combination, int universes)[] DiceCombinations = new[]
+        private static readonly (int Combination, int Universes)[] DiceCombinations = new[]
         {
             (3, 1),
             (4, 3),
@@ -61,12 +61,12 @@
         {
             DiracDicePlayerState playerState = this.Players[this.NextPlayer];
 
-            foreach ((int combination, int universes) roll in DiceCombinations)
+            foreach ((int Combination, int Universes) roll in DiceCombinations)
             {
-                int newPosition = (playerState.Position + roll.combination) % 10;
+                int newPosition = (playerState.Position + roll.Combination) % 10;
                 var newPlayerStates = this.Players.ToBuilder();
                 newPlayerStates[this.NextPlayer] = new DiracDicePlayerState { Position = newPosition, Score = playerState.Score + newPosition + 1 };
-                yield return new DiracDiceGameState { Players = newPlayerStates.ToImmutable(), NextPlayer = this.NextPlayer == 0 ? 1 : 0, BranchesRepresented = this.BranchesRepresented * roll.universes };
+                yield return new DiracDiceGameState { Players = newPlayerStates.ToImmutable(), NextPlayer = this.NextPlayer == 0 ? 1 : 0, BranchesRepresented = this.BranchesRepresented * roll.Universes };
             }
         }
 

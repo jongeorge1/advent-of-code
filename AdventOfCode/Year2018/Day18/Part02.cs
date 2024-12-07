@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            (char[] Map, int yOffset) map = MapParser.Parse(input);
+            (char[] Map, int YOffset) map = MapParser.Parse(input);
 
             // Predictably, part 2 is just part 1 amped up. Equally predictably, this means
             // that after a certain amount of time, the pattern will settle into a loop. This

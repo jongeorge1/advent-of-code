@@ -33,7 +33,7 @@
                 throw new Exception();
             }
 
-            (int X, int Y) proposedDestination = (location.X + CubeMap.DirectionOffsets[direction].dX, location.Y + CubeMap.DirectionOffsets[direction].dY);
+            (int X, int Y) proposedDestination = (location.X + CubeMap.DirectionOffsets[direction].DX, location.Y + CubeMap.DirectionOffsets[direction].DY);
             CubeFaceDescriptor proposedCube = this;
             int proposedDirection = direction;
 

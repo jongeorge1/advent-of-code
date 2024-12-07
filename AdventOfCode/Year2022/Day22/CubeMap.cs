@@ -9,7 +9,7 @@ public class CubeMap
     public const char SolidWall = '#';
     public const char Void = ' ';
 
-    public static readonly (int dX, int dY)[] DirectionOffsets = new[]
+    public static readonly (int DX, int DY)[] DirectionOffsets = new[]
     {
         (1, 0),
         (0, 1),
@@ -60,7 +60,7 @@ public class CubeMap
                 if (cubeFace.ConnectedFaces[direction] is null)
                 {
                     CubeFaceDescriptor? directlyConnectedFace = cubeFaces
-                        .SingleOrDefault(target => target.CubeGridColumn == cubeFace.CubeGridColumn + DirectionOffsets[direction].dX && target.CubeGridRow == cubeFace.CubeGridRow + DirectionOffsets[direction].dY);
+                        .SingleOrDefault(target => target.CubeGridColumn == cubeFace.CubeGridColumn + DirectionOffsets[direction].DX && target.CubeGridRow == cubeFace.CubeGridRow + DirectionOffsets[direction].DY);
 
                     if (directlyConnectedFace is not null)
                     {

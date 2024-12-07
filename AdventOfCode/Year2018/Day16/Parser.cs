@@ -7,7 +7,7 @@
 
     public static class Parser
     {
-        public static (Sample[] Samples, Instruction[] instructions) Parse(string input)
+        public static (Sample[] Samples, Instruction[] Instructions) Parse(string input)
         {
             // Split into samples and instructions
             int breakPoint = input.IndexOf(string.Concat(Environment.NewLine, Environment.NewLine, Environment.NewLine, Environment.NewLine));

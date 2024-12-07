@@ -4,7 +4,7 @@
 
     public static class MapParser
     {
-        public static (char[] Map, int yOffset) Parse(string[] rows)
+        public static (char[] Map, int YOffset) Parse(string[] rows)
         {
             int yOffset = rows[0].Length;
             char[] map = rows.SelectMany(x => x.ToCharArray()).ToArray();

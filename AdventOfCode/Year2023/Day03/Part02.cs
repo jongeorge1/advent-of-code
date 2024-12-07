@@ -45,7 +45,7 @@ public class Part02 : ISolution
             // them if we need to.
             // ASSUMPTION: There are no gears adjacent to each other.
             int foundNumbersCount = 0;
-            var foundNumbers = new (int row, int minimumInclusiveStartColumn, int maximumExclusiveEndColumn, bool trimFromStart, bool trimFromEnd)[3];
+            var foundNumbers = new (int Row, int MinimumInclusiveStartColumn, int MaximumExclusiveEndColumn, bool TrimFromStart, bool TrimFromEnd)[3];
 
             // Test row above
             if (lineIndex > 0)
@@ -120,25 +120,25 @@ public class Part02 : ISolution
                     // For 2 digit numbers, we might have a leading or trailing . which we need to remove.
                     // For the above/below center numbers, we might have captured the end of a previous, or the
                     // start of a next number, which we also need to trim.
-                    ReadOnlySpan<char> targetLine = input[foundNumbers[i].row].AsSpan();
-                    int start = foundNumbers[i].minimumInclusiveStartColumn;
-                    if (foundNumbers[i].trimFromStart && targetLine[start + 1] == '.')
+                    ReadOnlySpan<char> targetLine = input[foundNumbers[i].Row].AsSpan();
+                    int start = foundNumbers[i].MinimumInclusiveStartColumn;
+                    if (foundNumbers[i].TrimFromStart && targetLine[start + 1] == '.')
                     {
                         start += 2;
                     }
 
-                    while (foundNumbers[i].trimFromStart && targetLine[start] == '.')
+                    while (foundNumbers[i].TrimFromStart && targetLine[start] == '.')
                     {
                         ++start;
                     }
 
-                    int end = foundNumbers[i].maximumExclusiveEndColumn;
-                    if (foundNumbers[i].trimFromEnd && targetLine[end - 2] == '.')
+                    int end = foundNumbers[i].MaximumExclusiveEndColumn;
+                    if (foundNumbers[i].TrimFromEnd && targetLine[end - 2] == '.')
                     {
                         end -= 2;
                     }
 
-                    while (foundNumbers[i].trimFromEnd && targetLine[end - 1] == '.')
+                    while (foundNumbers[i].TrimFromEnd && targetLine[end - 1] == '.')
                     {
                         --end;
                     }

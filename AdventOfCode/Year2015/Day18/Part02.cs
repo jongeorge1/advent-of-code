@@ -8,7 +8,7 @@
     {
         public string Solve(string[] input)
         {
-            IDictionary<(int x, int y), bool> grid = input
+            IDictionary<(int X, int Y), bool> grid = input
                 .Select(x => x.ToCharArray())
                 .SelectMany((entry, row) => entry.Select((item, col) => (Location: (x: col, y: row), Entry: item)))
                 .Where(entry => entry.Entry == '#')
@@ -28,7 +28,7 @@
 
             for (int cycle = 0; cycle < cycles; cycle++)
             {
-                var newGrid = new Dictionary<(int x, int y), bool>(width * height);
+                var newGrid = new Dictionary<(int X, int Y), bool>(width * height);
 
                 // Now iterate through the space and determine the new state of each cube.
                 for (int x = 0; x < width; x++)
@@ -71,11 +71,11 @@
             return grid.Count.ToString();
         }
 
-        private static IEnumerable<(int, int)> GetNeighbours((int x, int y) location, int width, int height)
+        private static IEnumerable<(int X, int Y)> GetNeighbours((int X, int Y) location, int width, int height)
         {
-            for (int x1 = Math.Max(0, location.x - 1); x1 <= Math.Min(width, location.x + 1); x1++)
+            for (int x1 = Math.Max(0, location.X - 1); x1 <= Math.Min(width, location.X + 1); x1++)
             {
-                for (int y1 = Math.Max(0, location.y - 1); y1 <= Math.Min(height, location.y + 1); y1++)
+                for (int y1 = Math.Max(0, location.Y - 1); y1 <= Math.Min(height, location.Y + 1); y1++)
                 {
                     if ((x1, y1) != location)
                     {

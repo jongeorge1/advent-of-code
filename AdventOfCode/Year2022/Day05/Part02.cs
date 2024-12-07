@@ -20,7 +20,7 @@
             return string.Concat(stacks.Select(x => x[0]));
         }
 
-        private (List<char>[] stacks, (int Count, int From, int To)[]) ParseInput(string[] input)
+        private (List<char>[] Stacks, (int Count, int From, int To)[] Moves) ParseInput(string[] input)
         {
             int emptyLineIndex = Array.IndexOf(input, string.Empty);
 

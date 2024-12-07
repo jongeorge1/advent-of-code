@@ -30,3 +30,8 @@ using System.Diagnostics.CodeAnalysis;
     "SA1313:Parameter names should begin with lower-case letter",
     Justification = "Conflicts with other rules",
     Scope = "module")]
+[assembly: SuppressMessage(
+    "StyleCop.CSharp.SpacingRules",
+    "SA1008:Opening parenthesis should be spaced correctly",
+    Justification = "Wut",
+    Scope = "module")]

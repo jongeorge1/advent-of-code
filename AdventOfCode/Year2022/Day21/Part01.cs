@@ -53,7 +53,7 @@
         {
         }
 
-        required public string Name { get; set; }
+        public required string Name { get; set; }
 
         public abstract long Yell(ref Dictionary<string, Monkey> allMonkeys);
     }
@@ -67,7 +67,7 @@
 
     public class OperatorMonkey : Monkey
     {
-        private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new Dictionary<char, Func<long, long, long>>
+        private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new()
         {
             { '+', (a, b) => a + b },
             { '-', (a, b) => a - b },

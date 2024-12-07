@@ -23,7 +23,7 @@
             }
         }
 
-        public static List<(Group, Group)> SelectTargets(this List<Group> attackers, List<Group> defenders)
+        public static List<(Group Attackers, Group Defenders)> SelectTargets(this List<Group> attackers, List<Group> defenders)
         {
             var allocations = new List<(Group, Group)>();
             var allocatedDefenders = new List<Group>();

@@ -4,7 +4,7 @@
 
     public static class BufferedInstructionFactory
     {
-        private static readonly ConcurrentDictionary<int, BufferedInstruction> Cache = new ConcurrentDictionary<int, BufferedInstruction>();
+        private static readonly ConcurrentDictionary<int, BufferedInstruction> Cache = new();
 
         public static BufferedInstruction GetBufferedInstruction(int instruction)
         {

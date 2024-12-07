@@ -10,7 +10,6 @@
         public string Solve(string[] input)
         {
             var adapters = input
-                .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList();
 

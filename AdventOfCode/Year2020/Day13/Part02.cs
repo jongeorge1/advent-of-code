@@ -9,11 +9,7 @@
     {
         public string Solve(string[] input)
         {
-            // Get rid of the newlines
-            string[] data = input
-                .Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-
-            (long serviceNumber, long offset)[] servicesWithOffsets = data[1]
+            (long ServiceNumber, long Offset)[] servicesWithOffsets = input[1]
                 .Split(',')
                 .Select((x, i) => (x, (long)i))
                 .Where(x => x.x != "x")
@@ -43,8 +39,8 @@
             // luck it turns out that all of our service numbers are primes... almost as if it were by intention) and
             // arbitrary integers a1...ak are obtained by subtracting the time offsets from the service numbers (because
             // at our solution point, x, we'll be that many minutes away from the bus departing).
-            long[] divisors = servicesWithOffsets.Select(x => x.serviceNumber).ToArray();
-            long[] remainders = servicesWithOffsets.Select(x => x.serviceNumber - x.offset).ToArray();
+            long[] divisors = servicesWithOffsets.Select(x => x.ServiceNumber).ToArray();
+            long[] remainders = servicesWithOffsets.Select(x => x.ServiceNumber - x.Offset).ToArray();
 
             return ChineseRemainderTheorem.Solve(divisors, remainders).ToString();
         }

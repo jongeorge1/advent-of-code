@@ -16,7 +16,7 @@
                 _ => 40,
             };
 
-            Dictionary<(int x, int y), bool> tiles = input[0].Select((tile, x) => (tile == '.' ? true : false, x)).ToDictionary(x => (x.x, 0), x => x.Item1);
+            Dictionary<(int X, int Y), bool> tiles = input[0].Select((tile, x) => (tile == '.' ? true : false, x)).ToDictionary(x => (x.x, 0), x => x.Item1);
 
             for (int y = 1; y < rows; ++y)
             {
