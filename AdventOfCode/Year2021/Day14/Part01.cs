@@ -21,7 +21,7 @@
                 {
                     transformed.Append(current[pos]);
 
-                    if (transforms.TryGetValue(current[pos.. (pos + 2)], out char insertion))
+                    if (transforms.TryGetValue(current[pos..(pos + 2)], out char insertion))
                     {
                         transformed.Append(insertion);
                     }

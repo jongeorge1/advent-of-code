@@ -51,7 +51,7 @@
 
             // When we process the instructions, we will subtract 1 from each of the stack numbers so they
             // can be used directly as indexes into our array of stacks.
-            (int, int, int)[] instructions = input[(emptyLineIndex + 1) ..]
+            (int, int, int)[] instructions = input[(emptyLineIndex + 1)..]
                 .Select(x => x.Split(' '))
                 .Select(x => (int.Parse(x[1]), int.Parse(x[3]) - 1, int.Parse(x[5]) - 1))
                 .ToArray();

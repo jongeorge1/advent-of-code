@@ -42,7 +42,7 @@
             for (int row = 0; row < this.height; ++row)
             {
                 int rowStart = row * this.width;
-                if (this.marks[rowStart.. (rowStart + this.width)].All(x => x))
+                if (this.marks[rowStart..(rowStart + this.width)].All(x => x))
                 {
                     return true;
                 }

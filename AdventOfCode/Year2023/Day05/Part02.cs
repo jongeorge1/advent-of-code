@@ -74,8 +74,8 @@
                     int secondSpaceIndex = line.LastIndexOf(' ');
                     items[currentMapIndex++] = new MapItem(
                         long.Parse(line[..firstSpaceIndex]),
-                        long.Parse(line[(firstSpaceIndex + 1) ..secondSpaceIndex]),
-                        long.Parse(line[(secondSpaceIndex + 1) ..]));
+                        long.Parse(line[(firstSpaceIndex + 1)..secondSpaceIndex]),
+                        long.Parse(line[(secondSpaceIndex + 1)..]));
 
                     ++currentLine;
                 }

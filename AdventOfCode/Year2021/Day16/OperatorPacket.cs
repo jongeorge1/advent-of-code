@@ -53,14 +53,14 @@
             {
                 // Next 15 bits represent the number of bits in the subpackets
                 int bitsInSubPackets = Convert.ToInt32(data[7..22].ToString(), 2);
-                ReadOnlySpan<char> subPacketData = data[22.. (22 + bitsInSubPackets)];
+                ReadOnlySpan<char> subPacketData = data[22..(22 + bitsInSubPackets)];
 
                 while (subPacketData.Length > 0)
                 {
                     subPackets.Add(ReadPacketFromBinary(ref subPacketData));
                 }
 
-                data = data[(22 + bitsInSubPackets) ..];
+                data = data[(22 + bitsInSubPackets)..];
             }
             else
             {

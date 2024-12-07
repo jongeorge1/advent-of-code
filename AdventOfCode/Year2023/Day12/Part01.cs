@@ -23,7 +23,7 @@
             // Split into the spring map and checksums
             int spacePosition = item.IndexOf(' ');
             string springs = item[..spacePosition];
-            int[] expectedGroups = item[(spacePosition + 1) ..].Split(',').Select(int.Parse).ToArray();
+            int[] expectedGroups = item[(spacePosition + 1)..].Split(',').Select(int.Parse).ToArray();
 
             Dictionary<int, int> seenStates = [];
             return GetPossibleArrangementCountFromPosition(springs, 0, expectedGroups, seenStates);

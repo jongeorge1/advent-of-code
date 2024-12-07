@@ -39,7 +39,7 @@
             return visibleTrees.Count().ToString();
         }
 
-        private static void AddTreesVisibleFrom((int X, int Y) start, (int X, int Y) direction, Dictionary<(int, int), int> forest, HashSet<(int, int)> visibleTrees)
+        private static void AddTreesVisibleFrom((int X, int Y) start, (int X, int Y) direction, Dictionary<(int X, int Y), int> forest, HashSet<(int X, int Y)> visibleTrees)
         {
             int maxHeightFromThisDirection = -1;
             (int X, int Y) current = start;

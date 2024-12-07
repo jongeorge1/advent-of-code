@@ -29,7 +29,7 @@
                 {
                     for (int y = 0; y < height; y++)
                     {
-                        IEnumerable<(int, int)> neighbours = GetNeighbours((x, y), width, height);
+                        IEnumerable<(int X, int Y)> neighbours = GetNeighbours((x, y), width, height);
                         int activeNeighbours = neighbours.Count(location => grid.ContainsKey(location));
                         if (grid.ContainsKey((x, y)))
                         {
@@ -57,11 +57,11 @@
             return grid.Count.ToString();
         }
 
-        private static IEnumerable<(int, int)> GetNeighbours((int x, int y) location, int width, int height)
+        private static IEnumerable<(int X, int Y)> GetNeighbours((int X, int Y) location, int width, int height)
         {
-            for (int x1 = Math.Max(0, location.x - 1); x1 <= Math.Min(width, location.x + 1); x1++)
+            for (int x1 = Math.Max(0, location.X - 1); x1 <= Math.Min(width, location.X + 1); x1++)
             {
-                for (int y1 = Math.Max(0, location.y - 1); y1 <= Math.Min(height, location.y + 1); y1++)
+                for (int y1 = Math.Max(0, location.Y - 1); y1 <= Math.Min(height, location.Y + 1); y1++)
                 {
                     if ((x1, y1) != location)
                     {

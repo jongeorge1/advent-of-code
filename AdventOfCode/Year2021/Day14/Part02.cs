@@ -16,7 +16,7 @@
             // Break up the input into pairs
             for (int pos = 0; pos < (current.Length - 1); ++pos)
             {
-                ++currentPairs[current[pos.. (pos + 2)]];
+                ++currentPairs[current[pos..(pos + 2)]];
             }
 
             for (int step = 0; step < 40; ++step)

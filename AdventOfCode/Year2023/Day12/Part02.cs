@@ -28,7 +28,7 @@
             springs = string.Concat(springs, "?", springs, "?", springs, "?", springs, "?", springs);
 
             // Expand the groups
-            int[] expectedGroups = item[(spacePosition + 1) ..].Split(',').Select(int.Parse).ToArray();
+            int[] expectedGroups = item[(spacePosition + 1)..].Split(',').Select(int.Parse).ToArray();
             var expandedGroups = new List<int>(expectedGroups);
             expandedGroups.AddRange(expectedGroups);
             expandedGroups.AddRange(expectedGroups);

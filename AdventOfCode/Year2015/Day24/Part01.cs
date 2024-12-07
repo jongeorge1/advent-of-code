@@ -50,7 +50,7 @@
             {
                 // To find the possible combinations that include the item at the current index, we look for
                 // possible combinations out of the remaining items that meet the target weight.
-                List<List<long>> combinationsForRemainingWeight = GetPotentialGroupsOfSize(weights[(index + 1) ..], targetWeight - weights[index], targetGroupSize - 1);
+                List<List<long>> combinationsForRemainingWeight = GetPotentialGroupsOfSize(weights[(index + 1)..], targetWeight - weights[index], targetGroupSize - 1);
 
                 foreach (List<long> combination in combinationsForRemainingWeight)
                 {

@@ -193,9 +193,6 @@
 
         public class OperatorMonkey : Monkey
         {
-            private string? left;
-            private string? right;
-
             private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new Dictionary<char, Func<long, long, long>>
             {
                 { '+', (a, b) => a + b },
@@ -203,6 +200,9 @@
                 { '*', (a, b) => a * b },
                 { '/', (a, b) => a / b },
             };
+
+            private string? left;
+            private string? right;
 
             public OperatorMonkey(ref Dictionary<string, Monkey> allMonkeys)
                 : base(ref allMonkeys)

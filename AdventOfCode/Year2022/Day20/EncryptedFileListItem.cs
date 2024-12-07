@@ -6,13 +6,24 @@
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class EncryptedFileListItem
     {
+        private EncryptedFileListItem? adjustedPrevious;
+        private EncryptedFileListItem? adjustedNext;
+
         public long Number { get; set; }
 
         public long NumberOffset { get; set; }
 
-        public EncryptedFileListItem? AdjustedNext { get; set; }
+        public EncryptedFileListItem AdjustedNext
+        {
+            get => this.adjustedNext ?? throw new InvalidOperationException("AdjustedNext has not been set.");
+            set => this.adjustedNext = value;
+        }
 
-        public EncryptedFileListItem? AdjustedPrevious { get; set; }
+        public EncryptedFileListItem AdjustedPrevious
+        {
+            get => this.adjustedPrevious ?? throw new InvalidOperationException("AdjustedPrevious has not been set.");
+            set => this.adjustedPrevious = value;
+        }
 
         private string DebuggerDisplay
         {
@@ -32,7 +43,7 @@
 
             for (int i = 0; i < count; i++)
             {
-                current = current.AdjustedNext ?? throw new InvalidOperationException("Cannot move forward from the end of the list.");
+                current = current.AdjustedNext;
             }
 
             return current;
@@ -40,11 +51,11 @@
 
         public EncryptedFileListItem MoveBack(long count)
         {
-            EncryptedFileListItem current = this.AdjustedPrevious ?? throw new InvalidOperationException("Cannot move back from the start of the list.");
+            EncryptedFileListItem current = this.AdjustedPrevious;
 
             for (int i = 0; i < count; i++)
             {
-                current = current.AdjustedPrevious ?? throw new InvalidOperationException("Cannot move back from the start of the list.");
+                current = current.AdjustedPrevious;
             }
 
             return current;

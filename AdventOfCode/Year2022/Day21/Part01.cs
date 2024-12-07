@@ -53,7 +53,7 @@
         {
         }
 
-        public string Name { get; set; }
+        required public string Name { get; set; }
 
         public abstract long Yell(ref Dictionary<string, Monkey> allMonkeys);
     }
@@ -67,9 +67,6 @@
 
     public class OperatorMonkey : Monkey
     {
-        private string? left;
-        private string? right;
-
         private static readonly Dictionary<char, Func<long, long, long>> OperatorFunctions = new Dictionary<char, Func<long, long, long>>
         {
             { '+', (a, b) => a + b },
@@ -77,6 +74,9 @@
             { '*', (a, b) => a * b },
             { '/', (a, b) => a / b },
         };
+
+        private string? left;
+        private string? right;
 
         public string Left
         {

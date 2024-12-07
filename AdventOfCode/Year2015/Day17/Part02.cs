@@ -41,7 +41,7 @@
                 else
                 {
                     // We need to see if we can find any combinations that can store the remaining amount.
-                    List<List<int>> combinationsForRemainder = this.FindCombinationsToStoreEggnog(containers[(i + 1) ..], requiredCapacity - containers[i]);
+                    List<List<int>> combinationsForRemainder = this.FindCombinationsToStoreEggnog(containers[(i + 1)..], requiredCapacity - containers[i]);
                     if (combinationsForRemainder.Count > 0)
                     {
                         // Each of the results is a valid combination and we need to add it to the list of possible combinations

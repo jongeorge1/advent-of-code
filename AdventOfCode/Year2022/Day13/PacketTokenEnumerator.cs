@@ -53,7 +53,7 @@
 
                 if (this.packet[index] == ',')
                 {
-                    this.packet = this.packet[(index + 1) ..];
+                    this.packet = this.packet[(index + 1)..];
                 }
                 else
                 {

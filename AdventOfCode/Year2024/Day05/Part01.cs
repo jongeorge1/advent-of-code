@@ -11,7 +11,7 @@ public class Part01 : ISolution
         int separatorIndex = Array.IndexOf(input, string.Empty);
 
         Rule[] rules = input[..separatorIndex].Select(x => new Rule(x)).ToArray();
-        Update[] updates = input[(separatorIndex + 1) ..].Select(x => new Update(x)).ToArray();
+        Update[] updates = input[(separatorIndex + 1)..].Select(x => new Update(x)).ToArray();
 
         return updates.Where(x => x.IsValid(rules)).Sum(x => x.MiddlePageNumber).ToString();
     }

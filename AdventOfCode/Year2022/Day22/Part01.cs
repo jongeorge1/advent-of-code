@@ -124,7 +124,7 @@
                 // Move to the next instruction
                 instructions = nextDirectionChange == -1
                     ? ReadOnlySpan<char>.Empty
-                    : instructions[(nextDirectionChange + 1) ..];
+                    : instructions[(nextDirectionChange + 1)..];
             }
 
             int password = ((location.X + 1) * 4) + ((location.Y + 1) * 1000) + direction;

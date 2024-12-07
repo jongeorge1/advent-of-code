@@ -16,7 +16,7 @@
             while (!last)
             {
                 last = data[pos] == '0';
-                value.Append(data[(pos + 1) .. (pos + 5)]);
+                value.Append(data[(pos + 1)..(pos + 5)]);
                 pos += 5;
             }
 

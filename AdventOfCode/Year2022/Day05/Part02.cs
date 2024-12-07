@@ -54,7 +54,7 @@
                 }
             }
 
-            (int, int, int)[] instructions = input[(emptyLineIndex + 1) ..]
+            (int, int, int)[] instructions = input[(emptyLineIndex + 1)..]
                 .Select(x => x.Split(' '))
                 .Select(x => (int.Parse(x[1]), int.Parse(x[3]) - 1, int.Parse(x[5]) - 1))
                 .ToArray();

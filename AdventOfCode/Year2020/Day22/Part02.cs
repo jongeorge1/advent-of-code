@@ -13,7 +13,7 @@
         {
             int blankLineIndex = Array.IndexOf(input, string.Empty);
             IEnumerable<int>? deck1Input = input[1..blankLineIndex].Select(int.Parse);
-            IEnumerable<int>? deck2Input = input[(blankLineIndex + 2) ..].Select(int.Parse);
+            IEnumerable<int>? deck2Input = input[(blankLineIndex + 2)..].Select(int.Parse);
 
             var deck1 = new Queue<int>(deck1Input);
             var deck2 = new Queue<int>(deck2Input);

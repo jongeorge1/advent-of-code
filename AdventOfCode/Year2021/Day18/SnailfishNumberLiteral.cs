@@ -20,7 +20,7 @@
 
             int endIndex = nextComma == -1 || nextClosingBracket == -1 ? Math.Max(nextComma, nextClosingBracket) : Math.Min(nextComma, nextClosingBracket);
             this.Value = int.Parse(input[0..endIndex]);
-            input = input[(endIndex + 1) ..];
+            input = input[(endIndex + 1)..];
         }
 
         public int Value { get; set; }

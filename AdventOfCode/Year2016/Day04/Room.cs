@@ -14,8 +14,8 @@
             int indexOfSectorId = input.LastIndexOf('-');
 
             this.Name = input[0..indexOfSectorId];
-            this.SectorId = int.Parse(input[(indexOfSectorId + 1) ..indexOfChecksum]);
-            this.Checksum = input[(indexOfChecksum + 1) ..^1];
+            this.SectorId = int.Parse(input[(indexOfSectorId + 1)..indexOfChecksum]);
+            this.Checksum = input[(indexOfChecksum + 1)..^1];
 
             string expectedChecksum = string.Concat(this.Name.Where(x => x != '-').GroupBy(x => x).OrderByDescending(x => x.Count()).ThenBy(x => x.Key).Select(x => x.Key).Take(5));
             this.IsValid = this.Checksum == expectedChecksum;

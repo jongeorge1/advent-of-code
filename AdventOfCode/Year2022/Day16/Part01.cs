@@ -20,7 +20,7 @@
                 {
                     Name = line[6..8].ToString(),
                     FlowRate = int.Parse(line[23..flowRateEnd]),
-                    Destinations = line[(flowRateEnd + 24) ..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
+                    Destinations = line[(flowRateEnd + 24)..].ToString().Split(new[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries),
                 };
 
                 if (valve.FlowRate > 0)

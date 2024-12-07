@@ -38,7 +38,7 @@
                 else
                 {
                     // It's an =, so we need to get the new focal length and then add/replace
-                    int focalLength = int.Parse(enumerator.Current.Line[(operationIndex + 1) ..]);
+                    int focalLength = int.Parse(enumerator.Current.Line[(operationIndex + 1)..]);
                     box.AddOrReplaceLens(lensLabel, focalLength);
                 }
             }

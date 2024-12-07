@@ -15,7 +15,7 @@
 
                 // Find the end index, pull out the numbers
                 int end = data.IndexOf(')', pos);
-                string commandStr = data[(pos + 1) ..end];
+                string commandStr = data[(pos + 1)..end];
                 string[] commandSections = commandStr.Split('x');
                 int repeats = int.Parse(commandSections[1]);
                 int len = int.Parse(commandSections[0]);

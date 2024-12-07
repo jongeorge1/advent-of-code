@@ -43,7 +43,7 @@
 
                 if (lineIndex > 0)
                 {
-                    ReadOnlySpan<char> adjacentColumnsAbove = input[lineIndex - 1][Math.Max(0, indexOfCurrentNumberFirstDigit - 1) .. (Math.Min(line.Length - 1, indexOfAfterCurrentNumberLastDigit) + 1)].AsSpan();
+                    ReadOnlySpan<char> adjacentColumnsAbove = input[lineIndex - 1][Math.Max(0, indexOfCurrentNumberFirstDigit - 1)..(Math.Min(line.Length - 1, indexOfAfterCurrentNumberLastDigit) + 1)].AsSpan();
                     if (adjacentColumnsAbove.IndexOfAnyExcept('.') != -1)
                     {
                         isPartNumber = true;
@@ -52,7 +52,7 @@
 
                 if (!isPartNumber && lineIndex < input.Length - 1)
                 {
-                    ReadOnlySpan<char> adjacentColumnsBelow = input[lineIndex + 1][Math.Max(0, indexOfCurrentNumberFirstDigit - 1) .. (Math.Min(line.Length - 1, indexOfAfterCurrentNumberLastDigit) + 1)].AsSpan();
+                    ReadOnlySpan<char> adjacentColumnsBelow = input[lineIndex + 1][Math.Max(0, indexOfCurrentNumberFirstDigit - 1)..(Math.Min(line.Length - 1, indexOfAfterCurrentNumberLastDigit) + 1)].AsSpan();
                     if (adjacentColumnsBelow.IndexOfAnyExcept('.') != -1)
                     {
                         isPartNumber = true;

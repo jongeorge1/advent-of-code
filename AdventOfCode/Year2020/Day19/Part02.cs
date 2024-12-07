@@ -19,7 +19,7 @@
         {
             int blankRowIndex = Array.IndexOf(input, string.Empty);
             string[] ruleInputs = input[0..blankRowIndex];
-            string[] messages = input[(blankRowIndex + 1) ..];
+            string[] messages = input[(blankRowIndex + 1)..];
 
             int maxLength = messages.Max(x => x.Length);
 
