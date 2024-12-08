@@ -44,6 +44,11 @@ public class AoCTestCases
     [DataRow(6, 2, "....#.....\r\n.........#\r\n..........\r\n..#.......\r\n.......#..\r\n..........\r\n.#..^.....\r\n........#.\r\n#.........\r\n......#...", "6", DisplayName = "Day 06, Part 2 - Example")]
     [DataRow(7, 1, "190: 10 19\r\n3267: 81 40 27\r\n83: 17 5\r\n156: 15 6\r\n7290: 6 8 6 15\r\n161011: 16 10 13\r\n192: 17 8 14\r\n21037: 9 7 18 13\r\n292: 11 6 16 20", "3749", DisplayName = "Day 07, Part 1 - Example")]
     [DataRow(7, 2, "190: 10 19\r\n3267: 81 40 27\r\n83: 17 5\r\n156: 15 6\r\n7290: 6 8 6 15\r\n161011: 16 10 13\r\n192: 17 8 14\r\n21037: 9 7 18 13\r\n292: 11 6 16 20", "11387", DisplayName = "Day 07, Part 2 - Example")]
+    [DataRow(8, 1, "............\r\n........0...\r\n.....0......\r\n.......0....\r\n....0.......\r\n......A.....\r\n............\r\n............\r\n........A...\r\n.........A..\r\n............\r\n............", "14", DisplayName = "Day 08, Part 1 - Example")]
+    [DataRow(8, 1, "..........\r\n..........\r\n..........\r\n....a.....\r\n..........\r\n.....a....\r\n..........\r\n..........\r\n..........\r\n..........", "2", DisplayName = "Day 08, Part 1 - Simple Example with two antennas")]
+    [DataRow(8, 1, "..........\r\n..........\r\n..........\r\n....a.....\r\n........a.\r\n.....a....\r\n..........\r\n..........\r\n..........\r\n..........", "4", DisplayName = "Day 08, Part 1 - Simple Example with three antennas")]
+    [DataRow(8, 2, "............\r\n........0...\r\n.....0......\r\n.......0....\r\n....0.......\r\n......A.....\r\n............\r\n............\r\n........A...\r\n.........A..\r\n............\r\n............", "34", DisplayName = "Day 08, Part 2 - Example")]
+    [DataRow(8, 2, "T.........\r\n...T......\r\n.T........\r\n..........\r\n..........\r\n..........\r\n..........\r\n..........\r\n..........\r\n..........", "9", DisplayName = "Day 08, Part 2 - Simple Example with three antennas")]
     public void Tests(int day, int part, string input, string expectedResult)
     {
         ISolution solution = SolutionFactory.GetSolution(2024, day, part);
