@@ -49,6 +49,8 @@ public class AoCTestCases
     [DataRow(8, 1, "..........\r\n..........\r\n..........\r\n....a.....\r\n........a.\r\n.....a....\r\n..........\r\n..........\r\n..........\r\n..........", "4", DisplayName = "Day 08, Part 1 - Simple Example with three antennas")]
     [DataRow(8, 2, "............\r\n........0...\r\n.....0......\r\n.......0....\r\n....0.......\r\n......A.....\r\n............\r\n............\r\n........A...\r\n.........A..\r\n............\r\n............", "34", DisplayName = "Day 08, Part 2 - Example")]
     [DataRow(8, 2, "T.........\r\n...T......\r\n.T........\r\n..........\r\n..........\r\n..........\r\n..........\r\n..........\r\n..........\r\n..........", "9", DisplayName = "Day 08, Part 2 - Simple Example with three antennas")]
+    [DataRow(9, 1, "2333133121414131402", "1928", DisplayName = "Day 09, Part 1 - Example")]
+    [DataRow(9, 2, "2333133121414131402", "2858", DisplayName = "Day 09, Part 2 - Example")]
     public void Tests(int day, int part, string input, string expectedResult)
     {
         ISolution solution = SolutionFactory.GetSolution(2024, day, part);

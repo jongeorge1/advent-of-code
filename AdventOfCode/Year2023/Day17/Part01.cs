@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using AdventOfCode;
 using AdventOfCode.Helpers;
@@ -24,7 +25,7 @@ public class Part01 : ISolution
         int maxCol = input[0].Length - 1;
         (int X, int Y) destination = (maxCol, maxRow);
 
-        var lowestSeenHeatLosses = heatLossMap.Keys.SelectMany<(int X, int Y), ((int X, int Y) Location, Direction2D Direction)>(x => [(x, Direction2D.North), (x, Direction2D.East), (x, Direction2D.South), (x, Direction2D.West)]).ToDictionary(x => x, x => int.MaxValue);
+        var lowestSeenHeatLosses = heatLossMap.Keys.SelectMany<(int X, int Y), ((int X, int Y) Location, Direction2D.Orientations Orientation)>(x => [(x, Direction2D.Orientations.Vertical), (x, Direction2D.Orientations.Horizontal)]).ToDictionary(x => x, x => int.MaxValue);
 
         var queue = new PriorityQueue<PathState, int>();
 
@@ -36,13 +37,27 @@ public class Part01 : ISolution
 
             if (current.Location == destination)
             {
+                ((int X, int Y) Location, Direction2D Direction)[] allVisitedLocations = [..current.VisitedLocations, (current.Location, current.Direction)];
+
                 for (int row = 0; row <= maxRow; ++row)
                 {
                     for (int col = 0; col <= maxCol; ++col)
                     {
-                        if (current.VisitedLocations.Contains((col, row)))
+                        if (allVisitedLocations.Contains(((col, row), Direction2D.North)))
                         {
-                            Console.Write("O");
+                            Console.Write("^");
+                        }
+                        else if (allVisitedLocations.Contains(((col, row), Direction2D.East)))
+                        {
+                            Console.Write(">");
+                        }
+                        else if (allVisitedLocations.Contains(((col, row), Direction2D.West)))
+                        {
+                            Console.Write("<");
+                        }
+                        else if (allVisitedLocations.Contains(((col, row), Direction2D.South)))
+                        {
+                            Console.Write("v");
                         }
                         else
                         {
@@ -57,43 +72,45 @@ public class Part01 : ISolution
             }
 
             // Have we been here before in the same direction with a lower heat loss? If so, abandon this path.
-            if (lowestSeenHeatLosses[(current.Location, current.Direction)] <= current.HeatLoss)
+            if (lowestSeenHeatLosses[(current.Location, current.Direction.Orientation)] <= current.HeatLoss)
             {
                 continue;
             }
 
-            lowestSeenHeatLosses[(current.Location, current.Direction)] = current.HeatLoss;
+            lowestSeenHeatLosses[(current.Location, current.Direction.Orientation)] = current.HeatLoss;
 
-            // Add next steps based on going straight, turning left and turning right.
-            if (current.StepsSinceLastTurn < 3)
-            {
-                (int X, int Y) straightLocation = current.Direction.GetNextLocation(current.Location);
-                if (IsLocationValid(straightLocation, maxRow, maxCol) && !current.VisitedLocations.Contains(straightLocation))
-                {
-                    var nextState = new PathState(straightLocation, [.. current.VisitedLocations, current.Location], current.Steps + 1, current.HeatLoss + heatLossMap[straightLocation], current.Direction, current.StepsSinceLastTurn + 1);
-                    queue.Enqueue(nextState, nextState.HeatLoss);
-                }
-            }
-
+            (int X, int Y) straightLocation = current.Direction.GetNextLocation(current.Location);
             (int X, int Y) leftLocation = current.Direction.Left.GetNextLocation(current.Location);
-            if (IsLocationValid(leftLocation, maxRow, maxCol) && !current.VisitedLocations.Contains(leftLocation))
-            {
-                var nextState = new PathState(leftLocation, [.. current.VisitedLocations, current.Location], current.Steps + 1, current.HeatLoss + heatLossMap[leftLocation], current.Direction.Left, 1);
-                queue.Enqueue(nextState, nextState.HeatLoss);
-            }
-
             (int X, int Y) rightLocation = current.Direction.Right.GetNextLocation(current.Location);
-            if (IsLocationValid(rightLocation, maxRow, maxCol) && !current.VisitedLocations.Contains(rightLocation))
+
+            List<((int X, int Y) Location, Direction2D Direction)> newVisitedLocations = [.. current.VisitedLocations, (current.Location, current.Direction)];
+
+            PathState[] possibleNextPathStates =
+                [
+                    new PathState(straightLocation, newVisitedLocations, current.Steps + 1, current.HeatLoss + heatLossMap[straightLocation], current.Direction, current.StepsSinceLastTurn + 1),
+                    new PathState(leftLocation, newVisitedLocations, current.Steps + 1, current.HeatLoss + heatLossMap[leftLocation], current.Direction.Left, 1),
+                    new PathState(rightLocation, newVisitedLocations, current.Steps + 1, current.HeatLoss + heatLossMap[rightLocation], current.Direction.Right, 1),
+                ];
+
+            foreach (PathState state in possibleNextPathStates)
             {
-                var nextState = new PathState(rightLocation, [.. current.VisitedLocations, current.Location], current.Steps + 1, current.HeatLoss + heatLossMap[rightLocation], current.Direction.Right, 1);
-                queue.Enqueue(nextState, nextState.HeatLoss);
+                if (IsStateValid(state, maxRow, maxCol, current.VisitedLocations))
+                {
+                    queue.Enqueue(state, state.HeatLoss);
+                }
             }
         }
 
         throw new Exception("No path found");
     }
 
+    private static bool IsStateValid(PathState state, int maxRow, int maxCol, List<((int X, int Y) Location, Direction2D Direction)> visitedLocations)
+    {
+        return state.StepsSinceLastTurn <= 3 && IsLocationValid(state.Location, maxRow, maxCol) && !visitedLocations.Contains((state.Location, state.Direction));
+    }
+
     private static bool IsLocationValid((int X, int Y) location, int maxRow, int maxCol) => location.X >= 0 && location.X <= maxCol && location.Y >= 0 && location.Y <= maxRow;
 
-    public readonly record struct PathState((int X, int Y) Location, List<(int X, int Y)> VisitedLocations, int Steps, int HeatLoss, Direction2D Direction, int StepsSinceLastTurn);
+    [DebuggerDisplay("At ({Location.X}, {Location.Y}) heading {Direction.Name}, Heat loss {HeatLoss}, Steps since last turn {StepsSinceLastTurn}")]
+    public readonly record struct PathState((int X, int Y) Location, List<((int X, int Y) Location, Direction2D Direction)> VisitedLocations, int Steps, int HeatLoss, Direction2D Direction, int StepsSinceLastTurn);
 }
