@@ -9,12 +9,12 @@ public class Part01 : ISolution
 {
     public string Solve(string[] input)
     {
-        var map = Map<char>.CreateCharMap(input);
+        var map = new InvertedMap<char>(Map<char>.CreateCharMap(input));
 
-        (int X, int Y)[] barriers = map.Where(x => x.Value == '#').Select(x => x.Key).ToArray();
+        (int X, int Y)[] barriers = map['#'];
 
         HashSet<(int X, int Y)> visitedLocations = new();
-        (int X, int Y) currentLocation = map.First(x => x.Value == '^').Key;
+        (int X, int Y) currentLocation = map['^'][0];
         Direction2D currentDirection = Direction2D.North;
 
         while (true)
