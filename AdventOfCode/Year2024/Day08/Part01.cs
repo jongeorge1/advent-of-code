@@ -9,12 +9,11 @@ public class Part01 : ISolution
 {
     public string Solve(string[] input)
     {
-        var map = Map<char>.CreateCharMap(input, ['.']);
+        var map = new InvertedMap<char>(Map<char>.CreateCharMap(input, ['.']));
 
-        var antennasByLocation = map.GroupBy(x => x.Value).ToDictionary(x => x.Key, x => x.Select(y => y.Key).ToArray());
         var antinodeLocations = new HashSet<(int X, int Y)>();
 
-        foreach ((int X, int Y)[] antennaGroup in antennasByLocation.Values)
+        foreach ((int X, int Y)[] antennaGroup in map.Values)
         {
             foreach ((int X, int Y) antenna1 in antennaGroup)
             {

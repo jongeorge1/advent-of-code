@@ -11,15 +11,14 @@ public class Part02 : ISolution
 {
     public string Solve(string[] input)
     {
-        var map = Map<char>.CreateCharMap(input, ['.']);
+        var map = new InvertedMap<char>(Map<char>.CreateCharMap(input, ['.']));
 
-        var antennasByLocation = map.Where(x => x.Value != '.').GroupBy(x => x.Value).ToDictionary(x => x.Key, x => x.Select(y => y.Key).ToArray());
         var antinodeLocations = new HashSet<(int X, int Y)>();
 
         int maxX = input[0].Length - 1;
         int maxY = input.Length - 1;
 
-        foreach ((int X, int Y)[] antennaGroup in antennasByLocation.Values)
+        foreach ((int X, int Y)[] antennaGroup in map.Values)
         {
             foreach ((int X, int Y) antenna1 in antennaGroup)
             {
@@ -54,6 +53,6 @@ public class Part02 : ISolution
             }
         }
 
-        return antinodeLocations.Count().ToString();
+        return antinodeLocations.Count.ToString();
     }
 }
