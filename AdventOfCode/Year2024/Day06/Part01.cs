@@ -9,15 +9,12 @@ public class Part01 : ISolution
 {
     public string Solve(string[] input)
     {
-        int maxX = input[0].Length - 1;
-        int maxY = input.Length - 1;
+        var map = Map<char>.CreateCharMap(input);
 
-        ((int X, int Y) Location, char Space)[] map = input.SelectMany((row, rowIndex) => row.Select((col, colIndex) => ((colIndex, rowIndex), col))).ToArray();
-
-        (int X, int Y)[] barriers = map.Where(x => x.Space == '#').Select(x => x.Location).ToArray();
+        (int X, int Y)[] barriers = map.Where(x => x.Value == '#').Select(x => x.Key).ToArray();
 
         HashSet<(int X, int Y)> visitedLocations = new();
-        (int X, int Y) currentLocation = map.First(x => x.Space == '^').Location;
+        (int X, int Y) currentLocation = map.First(x => x.Value == '^').Key;
         Direction2D currentDirection = Direction2D.North;
 
         while (true)
@@ -32,7 +29,7 @@ public class Part01 : ISolution
                 nextLocation = currentDirection.GetNextLocation(currentLocation);
             }
 
-            if (nextLocation.X < 0 || nextLocation.X > maxX || nextLocation.Y < 0 || nextLocation.Y > maxY)
+            if (!map.IsLocationInBounds(nextLocation))
             {
                 return visitedLocations.Count.ToString();
             }

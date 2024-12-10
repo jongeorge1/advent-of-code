@@ -2,6 +2,7 @@
 
 namespace AdventOfCode.Helpers;
 
+using System.Collections.Immutable;
 using System.Diagnostics;
 
 [DebuggerDisplay("{Name}")]
@@ -11,6 +12,8 @@ public class Direction2D
     public static readonly Direction2D South = new() { Name = "South", Vector = (0, 1), Orientation = Orientations.Vertical };
     public static readonly Direction2D East = new() { Name = "East", Vector = (1, 0), Orientation = Orientations.Horizontal };
     public static readonly Direction2D West = new() { Name = "West", Vector = (-1, 0), Orientation = Orientations.Horizontal };
+
+    public static readonly ImmutableArray<Direction2D> All = [North, South, East, West];
 
     static Direction2D()
     {

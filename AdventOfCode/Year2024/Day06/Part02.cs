@@ -10,27 +10,24 @@ public class Part02 : ISolution
 {
     public string Solve(string[] input)
     {
-        int maxX = input[0].Length - 1;
-        int maxY = input.Length - 1;
+        var map = Map<char>.CreateCharMap(input);
 
-        ((int X, int Y) Location, char Space)[] map = input.SelectMany((row, rowIndex) => row.Select((col, colIndex) => ((colIndex, rowIndex), col))).ToArray();
-
-        (int X, int Y)[] barriers = map.Where(x => x.Space == '#').Select(x => x.Location).ToArray();
-        (int X, int Y) startLocation = map.First(x => x.Space == '^').Location;
+        (int X, int Y)[] barriers = map.Where(x => x.Value == '#').Select(x => x.Key).ToArray();
+        (int X, int Y) startLocation = map.First(x => x.Value == '^').Key;
 
         // Only check locations that were visited in part 1
-        (int X, int Y)[] possibleBarrierLocations = GetVisitedLocationsForPathWithoutObstacles(startLocation, barriers, maxX, maxY);
+        (int X, int Y)[] possibleBarrierLocations = GetVisitedLocationsForPathWithoutObstacles(startLocation, barriers, map);
         possibleBarrierLocations = possibleBarrierLocations.Where(x => x != startLocation).ToArray();
 
         // Now try putting a barrier in each of these locations.
         // Could probably increase the efficiency of this approach by walking the path without obstacles and at every step, branch off to see if a loop would
         // be created by putting a barrier in the next location. This would avoid repeatedly walking the increasingly large part of the path before the
         // new obstacle.
-        int locationsThatWillCauseALoop = possibleBarrierLocations.AsParallel().Count(possibleBarrierLocations => WillPathLoop(startLocation, barriers, possibleBarrierLocations, maxX, maxY));
+        int locationsThatWillCauseALoop = possibleBarrierLocations.AsParallel().Count(possibleBarrierLocations => WillPathLoop(startLocation, barriers, possibleBarrierLocations, map));
         return locationsThatWillCauseALoop.ToString();
     }
 
-    private static (int X, int Y)[] GetVisitedLocationsForPathWithoutObstacles((int X, int Y) startLocation, (int X, int Y)[] barrierLocations, int maxX, int maxY)
+    private static (int X, int Y)[] GetVisitedLocationsForPathWithoutObstacles((int X, int Y) startLocation, (int X, int Y)[] barrierLocations, Map<char> map)
     {
         HashSet<(int X, int Y)> visitedLocations = new();
         (int X, int Y) currentLocation = startLocation;
@@ -48,7 +45,7 @@ public class Part02 : ISolution
                 nextLocation = currentDirection.GetNextLocation(currentLocation);
             }
 
-            if (nextLocation.X < 0 || nextLocation.X > maxX || nextLocation.Y < 0 || nextLocation.Y > maxY)
+            if (!map.IsLocationInBounds(nextLocation))
             {
                 return visitedLocations.ToArray();
             }
@@ -57,7 +54,7 @@ public class Part02 : ISolution
         }
     }
 
-    private static bool WillPathLoop((int X, int Y) startLocation, (int X, int Y)[] barrierLocations, (int X, int Y) extraBarrierLocation, int maxX, int maxY)
+    private static bool WillPathLoop((int X, int Y) startLocation, (int X, int Y)[] barrierLocations, (int X, int Y) extraBarrierLocation, Map<char> map)
     {
         List<((int X, int Y) Location, Direction2D Direction)> visitedLocationsWithDirections = new();
         (int X, int Y) currentLocation = startLocation;
@@ -80,7 +77,7 @@ public class Part02 : ISolution
                 nextLocation = currentDirection.GetNextLocation(currentLocation);
             }
 
-            if (nextLocation.X < 0 || nextLocation.X > maxX || nextLocation.Y < 0 || nextLocation.Y > maxY)
+            if (!map.IsLocationInBounds(nextLocation))
             {
                 return false;
             }

@@ -3,17 +3,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode;
+using AdventOfCode.Helpers;
 
 public class Part01 : ISolution
 {
     public string Solve(string[] input)
     {
-        IEnumerable<((int X, int Y) Location, char Frequency)> map = input.SelectMany((row, rowIndex) => row.Select<char, ((int X, int Y) Location, char Frequency)>((col, colIndex) => ((colIndex, rowIndex), col)));
-        var antennasByLocation = map.Where(x => x.Frequency != '.').GroupBy(x => x.Frequency).ToDictionary(x => x.Key, x => x.Select(y => y.Location).ToArray());
-        var antinodeLocations = new HashSet<(int X, int Y)>();
+        var map = Map<char>.CreateCharMap(input, ['.']);
 
-        int maxX = input[0].Length - 1;
-        int maxY = input.Length - 1;
+        var antennasByLocation = map.GroupBy(x => x.Value).ToDictionary(x => x.Key, x => x.Select(y => y.Key).ToArray());
+        var antinodeLocations = new HashSet<(int X, int Y)>();
 
         foreach ((int X, int Y)[] antennaGroup in antennasByLocation.Values)
         {
@@ -33,6 +32,6 @@ public class Part01 : ISolution
             }
         }
 
-        return antinodeLocations.Count(location => location.X >= 0 && location.X <= maxX && location.Y >= 0 && location.Y <= maxY).ToString();
+        return antinodeLocations.Count(map.IsLocationInBounds).ToString();
     }
 }
