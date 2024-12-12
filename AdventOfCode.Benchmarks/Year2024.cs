@@ -81,4 +81,20 @@
         {
         }
     }
+
+    [MemoryDiagnoser]
+    public class Year2024Day11Part01 : BenchmarkBase
+    {
+        public Year2024Day11Part01() : base(2024, 11, 1)
+        {
+        }
+    }
+
+    [MemoryDiagnoser]
+    public class Year2024Day11Part02 : BenchmarkBase
+    {
+        public Year2024Day11Part02() : base(2024, 11, 2)
+        {
+        }
+    }
 }

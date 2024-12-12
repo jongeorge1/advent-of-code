@@ -52,7 +52,16 @@ public class AoCTestCases
     [DataRow(9, 1, "2333133121414131402", "1928", DisplayName = "Day 09, Part 1 - Example")]
     [DataRow(9, 2, "2333133121414131402", "2858", DisplayName = "Day 09, Part 2 - Example")]
     [DataRow(10, 1, "89010123\r\n78121874\r\n87430965\r\n96549874\r\n45678903\r\n32019012\r\n01329801\r\n10456732", "36", DisplayName = "Day 10, Part 1 - Example")]
-    [DataRow(10, 2, "89010123\r\n78121874\r\n87430965\r\n96549874\r\n45678903\r\n32019012\r\n01329801\r\n10456732", "81", DisplayName = "Day 10, Part 2 - Example")]
+    [DataRow(10, 2, "89010123\r\n78121874\r\n87430965\r\n96549874\r\n45678903\r\n2019012\r\n01329801\r\n10456732", "81", DisplayName = "Day 10, Part 2 - Example")]
+    [DataRow(11, 1, "125 17", "55312", DisplayName = "Day 11, Part 1 - Example")]
+    [DataRow(12, 1, "AAAA\r\nBBCD\r\nBBCC\r\nEEEC", "140", DisplayName = "Day 12, Part 1 - Example 1")]
+    [DataRow(12, 1, "OOOOO\r\nOXOXO\r\nOOOOO\r\nOXOXO\r\nOOOOO", "772", DisplayName = "Day 12, Part 1 - Example 2")]
+    [DataRow(12, 1, "RRRRIICCFF\r\nRRRRIICCCF\r\nVVRRRCCFFF\r\nVVRCCCJFFF\r\nVVVVCJJCFE\r\nVVIVCCJJEE\r\nVVIIICJJEE\r\nMIIIIIJJEE\r\nMIIISIJEEE\r\nMMMISSJEEE", "1930", DisplayName = "Day 12, Part 1 - Example 3")]
+    [DataRow(12, 2, "AAAA\r\nBBCD\r\nBBCC\r\nEEEC", "80", DisplayName = "Day 12, Part 2 - Example 1")]
+    [DataRow(12, 2, "OOOOO\r\nOXOXO\r\nOOOOO\r\nOXOXO\r\nOOOOO", "436", DisplayName = "Day 12, Part 2 - Example 2")]
+    [DataRow(12, 2, "EEEEE\r\nEXXXX\r\nEEEEE\r\nEXXXX\r\nEEEEE", "236", DisplayName = "Day 12, Part 2 - Example 3")]
+    [DataRow(12, 2, "AAAAAA\r\nAAABBA\r\nAAABBA\r\nABBAAA\r\nABBAAA\r\nAAAAAA", "368", DisplayName = "Day 12, Part 2 - Example 4")]
+    [DataRow(12, 2, "RRRRIICCFF\r\nRRRRIICCCF\r\nVVRRRCCFFF\r\nVVRCCCJFFF\r\nVVVVCJJCFE\r\nVVIVCCJJEE\r\nVVIIICJJEE\r\nMIIIIIJJEE\r\nMIIISIJEEE\r\nMMMISSJEEE", "1206", DisplayName = "Day 12, Part 2 - Example 5")]
     public void Tests(int day, int part, string input, string expectedResult)
     {
         ISolution solution = SolutionFactory.GetSolution(2024, day, part);

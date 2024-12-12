@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode.Year2024.Day09;
+﻿namespace AdventOfCode.Helpers;
 
 using System;
 using System.Collections.Generic;

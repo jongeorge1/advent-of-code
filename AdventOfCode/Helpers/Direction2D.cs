@@ -2,6 +2,7 @@
 
 namespace AdventOfCode.Helpers;
 
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
 
@@ -14,6 +15,12 @@ public class Direction2D
     public static readonly Direction2D West = new() { Name = "West", Vector = (-1, 0), Orientation = Orientations.Horizontal };
 
     public static readonly ImmutableArray<Direction2D> All = [North, South, East, West];
+
+    public static readonly ImmutableDictionary<Orientations, Direction2D[]> AllByOrientation = new Dictionary<Orientations, Direction2D[]>()
+    {
+        [Orientations.Horizontal] = [East, West],
+        [Orientations.Vertical] = [North, South],
+    }.ToImmutableDictionary();
 
     static Direction2D()
     {
@@ -42,6 +49,8 @@ public class Direction2D
     public required (int DX, int DY) Vector { get; init; }
 
     public required Orientations Orientation { get; init; }
+
+    public Orientations PerpendicularOrientation => this.Orientation == Orientations.Horizontal ? Orientations.Vertical : Orientations.Horizontal;
 
     public Direction2D Left { get; set; }
 
