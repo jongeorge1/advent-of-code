@@ -62,6 +62,9 @@ public class AoCTestCases
     [DataRow(12, 2, "EEEEE\r\nEXXXX\r\nEEEEE\r\nEXXXX\r\nEEEEE", "236", DisplayName = "Day 12, Part 2 - Example 3")]
     [DataRow(12, 2, "AAAAAA\r\nAAABBA\r\nAAABBA\r\nABBAAA\r\nABBAAA\r\nAAAAAA", "368", DisplayName = "Day 12, Part 2 - Example 4")]
     [DataRow(12, 2, "RRRRIICCFF\r\nRRRRIICCCF\r\nVVRRRCCFFF\r\nVVRCCCJFFF\r\nVVVVCJJCFE\r\nVVIVCCJJEE\r\nVVIIICJJEE\r\nMIIIIIJJEE\r\nMIIISIJEEE\r\nMMMISSJEEE", "1206", DisplayName = "Day 12, Part 2 - Example 5")]
+    [DataRow(13, 1, "Button A: X+94, Y+34\r\nButton B: X+22, Y+67\r\nPrize: X=8400, Y=5400\r\n\r\nButton A: X+26, Y+66\r\nButton B: X+67, Y+21\r\nPrize: X=12748, Y=12176\r\n\r\nButton A: X+17, Y+86\r\nButton B: X+84, Y+37\r\nPrize: X=7870, Y=6450\r\n\r\nButton A: X+69, Y+23\r\nButton B: X+27, Y+71\r\nPrize: X=18641, Y=10279", "480", DisplayName = "Day 13, Part 1 - Example 1")]
+    [DataRow(13, 1, "Button A: X+94, Y+34\r\nButton B: X+22, Y+67\r\nPrize: X=8400, Y=5400", "280", DisplayName = "Day 13, Part 1 - Single machine with expected result")]
+    [DataRow(13, 1, "Button A: X+26, Y+66\r\nButton B: X+67, Y+21\r\nPrize: X=12748, Y=12176", "0", DisplayName = "Day 13, Part 1 - Single machine with no solution")]
     public void Tests(int day, int part, string input, string expectedResult)
     {
         ISolution solution = SolutionFactory.GetSolution(2024, day, part);
