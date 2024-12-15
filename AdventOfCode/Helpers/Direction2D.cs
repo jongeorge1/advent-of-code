@@ -22,6 +22,14 @@ public class Direction2D
         [Orientations.Vertical] = [North, South],
     }.ToImmutableDictionary();
 
+    public static readonly ImmutableDictionary<char, Direction2D> ArrowToDirectionMap = new Dictionary<char, Direction2D>()
+    {
+        ['^'] = North,
+        ['v'] = South,
+        ['>'] = East,
+        ['<'] = West,
+    }.ToImmutableDictionary();
+
     static Direction2D()
     {
         North.Left = West;

@@ -2,6 +2,7 @@
 
 using System;
 using System.Linq;
+using static AdventOfCode.Helpers.Numeric;
 
 public class ClawMachine
 {
@@ -30,25 +31,19 @@ public class ClawMachine
         return input.Chunk(4).Select(rows => new ClawMachine(rows[0..3], prizeOffset)).ToArray();
     }
 
-    public int GetCostOfCheapestSolution()
+    public long GetCostOfCheapestSolution()
     {
-        int minimumCost = int.MaxValue;
+        decimal buttonBPresses = (decimal)((this.ButtonA.DeltaX * this.PrizeLocation.Y) - (this.ButtonA.DeltaY * this.PrizeLocation.X)) /
+                              ((this.ButtonA.DeltaX * this.ButtonB.DeltaY) - (this.ButtonA.DeltaY * this.ButtonB.DeltaX));
 
-        for (int buttonAPresses = 0; buttonAPresses < 100; ++buttonAPresses)
+        decimal buttonAPresses = (decimal)(this.PrizeLocation.X - (buttonBPresses * this.ButtonB.DeltaX)) / this.ButtonA.DeltaX;
+
+        if (buttonAPresses >= 0 && buttonAPresses == Math.Floor(buttonAPresses) && buttonBPresses >= 0 && buttonBPresses == Math.Floor(buttonBPresses))
         {
-            for (int buttonBPresses = 0; buttonBPresses < 100; ++buttonBPresses)
-            {
-                if (this.PrizeLocation.X == (buttonAPresses * this.ButtonA.DeltaX) + (buttonBPresses * this.ButtonB.DeltaX) &&
-                    this.PrizeLocation.Y == (buttonAPresses * this.ButtonA.DeltaY) + (buttonBPresses * this.ButtonB.DeltaY))
-                {
-
-                    int cost = (3 * buttonAPresses) + buttonBPresses;
-                    minimumCost = Math.Min(minimumCost, cost);
-                }
-            }
+            return (long)((buttonAPresses * 3) + buttonBPresses);
         }
 
-        return minimumCost == int.MaxValue ? 0 : minimumCost;
+        return 0;
     }
 
     public readonly record struct Button
