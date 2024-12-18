@@ -30,6 +30,14 @@ public class Direction2D
         ['<'] = West,
     }.ToImmutableDictionary();
 
+    public static readonly ImmutableDictionary<char, Direction2D> UpDownLeftRightToDirectionMap = new Dictionary<char, Direction2D>()
+    {
+        ['U'] = North,
+        ['D'] = South,
+        ['L'] = West,
+        ['R'] = East,
+    }.ToImmutableDictionary();
+
     static Direction2D()
     {
         North.Left = West;
@@ -58,11 +66,13 @@ public class Direction2D
 
     public required Orientations Orientation { get; init; }
 
-    public Orientations PerpendicularOrientation => this.Orientation == Orientations.Horizontal ? Orientations.Vertical : Orientations.Horizontal;
+    public Orientations PerpendicularOrientation => GetPerpendicularOrientation(this.Orientation);
 
     public Direction2D Left { get; set; }
 
     public Direction2D Right { get; set; }
+
+    public static Orientations GetPerpendicularOrientation(Orientations orientation) => orientation == Orientations.Vertical ? Orientations.Horizontal : Orientations.Vertical;
 
     public (int X, int Y) GetNextLocation((int X, int Y) currentLocation) => (currentLocation.X + this.Vector.DX, currentLocation.Y + this.Vector.DY);
 }

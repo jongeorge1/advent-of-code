@@ -2,7 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using AdventOfCode;
 using AdventOfCode.Helpers;
@@ -11,94 +13,127 @@ public class Part01 : ISolution
 {
     public string Solve(string[] input)
     {
-        var map = Map<int>.CreateDigitMap(input);
-
-        (int X, int Y) destination = (map.MaxX, map.MaxY);
-
-        Dictionary<((int X, int Y) Location, Direction2D Direction, int StepsSinceLastTurn), int> lowestSeenHeatLosses = [];
-
-        var queue = new PriorityQueue<PathState, int>();
-
-        queue.Enqueue(new PathState((0, 0), [], 0, 0, Direction2D.East, 0), 0);
-
-        while (queue.Count > 0)
+        var map = Map<Node>.Create(input, Node.TryCreateFromInputItem);
+        foreach (Node node in map.Values)
         {
-            PathState current = queue.Dequeue();
+            node.AddEdges(map);
+        }
 
-            if (current.Location == destination)
+        Node start = map[(0, 0)];
+        Node destination = map[(map.MaxX, map.MaxY)];
+
+        PriorityQueue<(Node, Direction2D.Orientations), int> unvisited = new();
+        unvisited.Enqueue((start, Direction2D.Orientations.Horizontal), 0);
+        unvisited.Enqueue((start, Direction2D.Orientations.Vertical), 0);
+
+        var heatLosses = map.Values
+            .SelectMany<Node, (Node, Direction2D.Orientations)>(node => [(node, Direction2D.Orientations.Vertical), (node, Direction2D.Orientations.Horizontal)])
+            .ToDictionary(x => x, _ => int.MaxValue);
+
+        heatLosses[(start, Direction2D.Orientations.Vertical)] = 0;
+        heatLosses[(start, Direction2D.Orientations.Horizontal)] = 0;
+
+        while (unvisited.Count > 0)
+        {
+            (Node currentNode, Direction2D.Orientations currentOrientation) = unvisited.Dequeue();
+
+            if (currentNode == destination)
             {
-                ////((int X, int Y) Location, Direction2D Direction)[] allVisitedLocations = [.. current.VisitedLocations, (current.Location, current.Direction)];
-
-                ////for (int row = 0; row <= map.MaxY; ++row)
-                ////{
-                ////    for (int col = 0; col <= map.MaxX; ++col)
-                ////    {
-                ////        if (allVisitedLocations.Contains(((col, row), Direction2D.North)))
-                ////        {
-                ////            Console.Write("^");
-                ////        }
-                ////        else if (allVisitedLocations.Contains(((col, row), Direction2D.East)))
-                ////        {
-                ////            Console.Write(">");
-                ////        }
-                ////        else if (allVisitedLocations.Contains(((col, row), Direction2D.West)))
-                ////        {
-                ////            Console.Write("<");
-                ////        }
-                ////        else if (allVisitedLocations.Contains(((col, row), Direction2D.South)))
-                ////        {
-                ////            Console.Write("v");
-                ////        }
-                ////        else
-                ////        {
-                ////            Console.Write(".");
-                ////        }
-                ////    }
-
-                ////    Console.WriteLine();
-                ////}
-
-                return current.HeatLoss.ToString();
+                return heatLosses[(currentNode, currentOrientation)].ToString();
             }
 
-            // Have we been here before in the same direction with a lower heat loss? If so, abandon this path.
-            if (lowestSeenHeatLosses.TryGetValue((current.Location, current.Direction, current.StepsSinceLastTurn), out int lowestHeatLoss) && lowestHeatLoss <= current.HeatLoss)
+            int currentNodeHeatLoss = heatLosses[(currentNode, currentOrientation)];
+
+            // Edges to consider are the ones that are in the opporsite orientation to the one we are currently in.
+            Direction2D.Orientations targetOrientation = Direction2D.GetPerpendicularOrientation(currentOrientation);
+            IEnumerable<Edge> edges = currentNode.Edges.Where(edge => edge.Direction.Orientation == targetOrientation);
+
+            foreach (Edge edge in edges)
             {
-                continue;
-            }
+                int targetNodeCurrentHeatLoss = heatLosses[(edge.End, targetOrientation)];
+                int targetNodeHeatlossViaThisEdge = currentNodeHeatLoss + edge.HeatLoss;
 
-            lowestSeenHeatLosses[(current.Location, current.Direction, current.StepsSinceLastTurn)] = current.HeatLoss;
-
-            List<((int X, int Y) Location, Direction2D Direction)> newVisitedLocations = [.. current.VisitedLocations, (current.Location, current.Direction)];
-
-            if (current.StepsSinceLastTurn < 3)
-            {
-                (int X, int Y) straightLocation = current.Direction.GetNextLocation(current.Location);
-                if (map.IsLocationInBounds(straightLocation) && !current.VisitedLocations.Contains((straightLocation, current.Direction)))
+                if (targetNodeHeatlossViaThisEdge < targetNodeCurrentHeatLoss)
                 {
-                    int heatLoss = current.HeatLoss + map[straightLocation];
-                    queue.Enqueue(new PathState(straightLocation, newVisitedLocations, current.Steps + 1, heatLoss, current.Direction, current.StepsSinceLastTurn + 1), heatLoss);
+                    heatLosses[(edge.End, targetOrientation)] = targetNodeHeatlossViaThisEdge;
+                    unvisited.Remove((edge.End, targetOrientation), out _, out _);
+                    unvisited.Enqueue((edge.End, targetOrientation), targetNodeHeatlossViaThisEdge);
                 }
-            }
-
-            (int X, int Y) leftLocation = current.Direction.Left.GetNextLocation(current.Location);
-            if (map.IsLocationInBounds(leftLocation) && !current.VisitedLocations.Contains((leftLocation, current.Direction.Left)))
-            {
-                int heatLoss = current.HeatLoss + map[leftLocation];
-                queue.Enqueue(new PathState(leftLocation, newVisitedLocations, current.Steps + 1, heatLoss, current.Direction.Left, 1), heatLoss);
-            }
-
-            (int X, int Y) rightLocation = current.Direction.Right.GetNextLocation(current.Location);
-            if (map.IsLocationInBounds(rightLocation) && !current.VisitedLocations.Contains((rightLocation, current.Direction.Right)))
-            {
-                int heatLoss = current.HeatLoss + map[rightLocation];
-                queue.Enqueue(new PathState(rightLocation, newVisitedLocations, current.Steps + 1, heatLoss, current.Direction.Right, 1), heatLoss);
             }
         }
 
         throw new Exception("No path found");
     }
 
-    [DebuggerDisplay("At ({Location.X}, {Location.Y}) heading {Direction.Name}, Heat loss {HeatLoss}, Steps since last turn {StepsSinceLastTurn}")]
-    public readonly record struct PathState((int X, int Y) Location, List<((int X, int Y) Location, Direction2D Direction)> VisitedLocations, int Steps, int HeatLoss, Direction2D Direction, int StepsSinceLastTurn);
+    [DebuggerDisplay("({Location.X}, {Location.Y}): {HeatLossOnEntry}")]
+    public class Node((int X, int Y) location, int heatLossOnEntry)
+    {
+        private Edge[]? edges;
+
+        public (int X, int Y) Location { get; } = location;
+
+        public int HeatLossOnEntry { get; } = heatLossOnEntry;
+
+        public Edge[] Edges
+        {
+            get => this.edges ?? throw new InvalidOperationException("Edges has not been initialised");
+            set => this.edges = value;
+        }
+
+        public static bool TryCreateFromInputItem(char characterAtLocation, (int X, int Y) location, [MaybeNullWhen(false)] out Node? item)
+        {
+            item = new Node(location, characterAtLocation - '0');
+            return true;
+        }
+
+        public void AddEdges(Map<Node> map)
+        {
+            this.Edges = Direction2D.All.SelectMany(direction => this.CreateEdges(direction, 1, 3, map)).ToArray();
+        }
+
+        private Edge[] CreateEdges(Direction2D direction, int minSteps, int maxSteps, Map<Node> map)
+        {
+            // Move the minimum number of steps, aggregating heat losses as we go.
+            int steps = 1;
+            int heatLossSoFar = 0;
+            (int X, int Y) currentLocation = this.Location;
+
+            while (steps < minSteps)
+            {
+                currentLocation = direction.GetNextLocation(currentLocation);
+
+                if (!map.IsLocationInBounds(currentLocation))
+                {
+                    return [];
+                }
+
+                heatLossSoFar += map[currentLocation].HeatLossOnEntry;
+
+                ++steps;
+            }
+
+            List<Edge> edges = [];
+
+            while (steps <= maxSteps)
+            {
+                currentLocation = direction.GetNextLocation(currentLocation);
+
+                if (!map.IsLocationInBounds(currentLocation))
+                {
+                    break;
+                }
+
+                heatLossSoFar += map[currentLocation].HeatLossOnEntry;
+
+                edges.Add(new Edge(direction, map[currentLocation], steps, heatLossSoFar));
+
+                ++steps;
+            }
+
+            return [.. edges];
+        }
+    }
+
+    [DebuggerDisplay("{Steps} steps {Direction.Name} to ({End.Location.X}, {End.Location.Y}) with heat loss {HeatLoss}")]
+    public record Edge(Direction2D Direction, Node End, int Steps, int HeatLoss);
 }
