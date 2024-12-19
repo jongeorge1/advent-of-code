@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode;
 using AdventOfCode.Helpers;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 public class Part02 : ISolution
 {
@@ -26,15 +25,33 @@ public class Part02 : ISolution
             return (x, y);
         })];
 
-        // We can safely start at byte 1024 as we found a path to the exit...
-        int startingByte = isTest ? 12 : 1024;
+        // We can safely start at byte 1024 as we found a path to the exit... to avoid being lazy, testing all the locations in
+        // sequence and taking forever, we will do a binary search. We'll need to test values in pairs. I did have a cache here,
+        // but in reality we're only likely to evaluate the same item more than once when we reach the end of the search.
+        // Also, there should be something to kick you out of the loop if no match is found, but we know there's going to be one
+        // so I didn't bother.
+        int minByte = isTest ? 12 : 1024;
+        int maxByte = corruptedLocations.Length - 1;
 
-        for (int byteIndex = startingByte; byteIndex < corruptedLocations.Length; ++byteIndex)
+        while (minByte <= maxByte)
         {
-            Console.WriteLine($"Testing byte {byteIndex} - [{input[byteIndex]}]");
-            if (!CanReachExit(maxX, maxY, corruptedLocations[0..(byteIndex + 1)]))
+            int targetByte = minByte + ((maxByte - minByte) / 2);
+
+            bool previousHasAPath = CanReachExit(maxX, maxY, corruptedLocations[0..targetByte]);
+            bool currentHasAPath = CanReachExit(maxX, maxY, corruptedLocations[0..(targetByte + 1)]);
+
+            if (previousHasAPath && !currentHasAPath)
             {
-                return input[byteIndex];
+                return input[targetByte];
+            }
+
+            if (currentHasAPath)
+            {
+                minByte = targetByte;
+            }
+            else if (!previousHasAPath)
+            {
+                maxByte = targetByte - 1;
             }
         }
 
