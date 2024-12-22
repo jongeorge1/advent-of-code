@@ -10,16 +10,17 @@ using System.Linq;
 public class InvertedMap<T>(Map<T> map) : IImmutableDictionary<T, (int X, int Y)[]>
     where T : notnull
 {
-    private readonly Map<T> originalMap = map;
     private readonly ImmutableDictionary<T, (int X, int Y)[]> invertedMap = map.GroupBy(x => x.Value).ToImmutableDictionary(x => x.Key, x => x.Select(y => y.Key).ToArray());
 
-    public int MinY => this.originalMap.MinY;
+    public Map<T> OriginalMap => map;
 
-    public int MinX => this.originalMap.MinX;
+    public int MinY => this.OriginalMap.MinY;
 
-    public int MaxX => this.originalMap.MaxX;
+    public int MinX => this.OriginalMap.MinX;
 
-    public int MaxY => this.originalMap.MaxY;
+    public int MaxX => this.OriginalMap.MaxX;
+
+    public int MaxY => this.OriginalMap.MaxY;
 
     public IEnumerable<T> Keys => this.invertedMap.Keys;
 
@@ -29,7 +30,7 @@ public class InvertedMap<T>(Map<T> map) : IImmutableDictionary<T, (int X, int Y)
 
     public (int X, int Y)[] this[T key] => this.invertedMap[key];
 
-    public bool IsLocationInBounds((int X, int Y) location) => this.originalMap.IsLocationInBounds(location);
+    public bool IsLocationInBounds((int X, int Y) location) => this.OriginalMap.IsLocationInBounds(location);
 
     public IImmutableDictionary<T, (int X, int Y)[]> Add(T key, (int X, int Y)[] value) =>
         throw new NotImplementedException();

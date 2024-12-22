@@ -44,7 +44,11 @@ public class Part01 : ISolution
         {
             for (int x = minX; x <= maxX; x++)
             {
-                if (holeLocations.Contains((x, y)))
+                if ((x, y) == (0, 0))
+                {
+                    Console.Write('S');
+                }
+                else if (holeLocations.Contains((x, y)))
                 {
                     Console.Write('#');
                 }
