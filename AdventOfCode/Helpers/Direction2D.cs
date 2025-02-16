@@ -5,6 +5,7 @@ namespace AdventOfCode.Helpers;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
+using System.Linq;
 
 [DebuggerDisplay("{Name}")]
 public class Direction2D
@@ -29,6 +30,8 @@ public class Direction2D
         ['>'] = East,
         ['<'] = West,
     }.ToImmutableDictionary();
+
+    public static readonly ImmutableDictionary<Direction2D, char> DirectionToArrowMap = ArrowToDirectionMap.ToDictionary(x => x.Value, x => x.Key).ToImmutableDictionary();
 
     public static readonly ImmutableDictionary<char, Direction2D> UpDownLeftRightToDirectionMap = new Dictionary<char, Direction2D>()
     {
