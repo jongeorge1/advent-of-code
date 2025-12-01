@@ -57,6 +57,7 @@ public class Part01 : ISolution
                     Console.Write('.');
                 }
             }
+
             Console.WriteLine();
         }
     }

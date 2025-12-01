@@ -9,7 +9,7 @@
         {
             (Sample[] samples, Instruction[] instructions) = Parser.Parse(input[0]);
 
-            IEnumerable<(Sample x, int)> testResults = samples.Select(x => (x, x.GetMatchingOperationsCount()));
+            IEnumerable<(Sample, int)> testResults = samples.Select(x => (x, x.GetMatchingOperationsCount()));
 
             int result = testResults.Count(x => x.Item2 >= 3);
 

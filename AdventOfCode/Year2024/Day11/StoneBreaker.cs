@@ -6,7 +6,6 @@ public class StoneBreaker
 {
     private Dictionary<(long Value, int CurrentDepth), long> cachedValues = new();
 
-
     public long BreakStone(long value, int currentDepth, int targetDepth)
     {
         if (this.cachedValues.TryGetValue((value, currentDepth), out long previousResult))

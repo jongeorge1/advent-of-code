@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AdventOfCode.Year2024.Day14;
+﻿namespace AdventOfCode.Year2024.Day14;
 
 public readonly record struct Robot
 {
@@ -34,5 +32,4 @@ public readonly record struct Robot
 
         return (positionX, positionY);
     }
-
 }
