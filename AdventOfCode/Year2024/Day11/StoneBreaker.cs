@@ -22,7 +22,6 @@ public class StoneBreaker
         else if (value == 0)
         {
             result = this.BreakStone(1, currentDepth + 1, targetDepth);
-
         }
         else
         {

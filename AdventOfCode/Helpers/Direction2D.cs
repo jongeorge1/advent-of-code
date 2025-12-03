@@ -78,4 +78,10 @@ public class Direction2D
     public static Orientations GetPerpendicularOrientation(Orientations orientation) => orientation == Orientations.Vertical ? Orientations.Horizontal : Orientations.Vertical;
 
     public (int X, int Y) GetNextLocation((int X, int Y) currentLocation) => (currentLocation.X + this.Vector.DX, currentLocation.Y + this.Vector.DY);
+
+    public (long X, long Y) GetNextLocation((long X, long Y) currentLocation) => (currentLocation.X + this.Vector.DX, currentLocation.Y + this.Vector.DY);
+
+    public (int X, int Y) GetNextLocation((int X, int Y) currentLocation, int distance) => (currentLocation.X + (this.Vector.DX * distance), currentLocation.Y + (this.Vector.DY * distance));
+
+    public (long X, long Y) GetNextLocation((long X, long Y) currentLocation, long distance) => (currentLocation.X + (this.Vector.DX * distance), currentLocation.Y + (this.Vector.DY * distance));
 }

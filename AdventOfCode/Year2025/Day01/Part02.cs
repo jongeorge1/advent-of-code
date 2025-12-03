@@ -33,7 +33,7 @@ public class Part02 : ISolution
             // Now work out the necessary increments to the password. Firstly, we'll have passed 0 for every complete revolution.
             password += completeRevolutions;
 
-            // If current is now > max, or < 0, we have crossed 0 during the incomplete revolution - unless we started on 0.
+            // If current is now > max, or < 0, we have crossed 0 during the incomplete revolution - unless we started on 0, in which case we'll already have covered this case.
             if (!startedOnZero && (current > max || current < 0))
             {
                 password++;
