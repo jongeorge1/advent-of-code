@@ -15,7 +15,13 @@ public class Direction2D
     public static readonly Direction2D East = new() { Name = "East", Vector = (1, 0), Orientation = Orientations.Horizontal };
     public static readonly Direction2D West = new() { Name = "West", Vector = (-1, 0), Orientation = Orientations.Horizontal };
 
+    public static readonly Direction2D Northeast = new() { Name = "Northeast", Vector = (1, -1), Orientation = Orientations.Diagonal };
+    public static readonly Direction2D Northwest = new() { Name = "Northwest", Vector = (-1, -1), Orientation = Orientations.Diagonal };
+    public static readonly Direction2D Southeast = new() { Name = "Southeast", Vector = (1, 1), Orientation = Orientations.Diagonal };
+    public static readonly Direction2D Southwest = new() { Name = "Southwest", Vector = (-1, 1), Orientation = Orientations.Diagonal };
+
     public static readonly ImmutableArray<Direction2D> All = [North, South, East, West];
+    public static readonly ImmutableArray<Direction2D> AllWithDiagonals = [North, South, East, West, Northeast, Northwest, Southeast, Southwest];
 
     public static readonly ImmutableDictionary<Orientations, Direction2D[]> AllByOrientation = new Dictionary<Orientations, Direction2D[]>()
     {
@@ -61,6 +67,7 @@ public class Direction2D
     {
         Horizontal,
         Vertical,
+        Diagonal,
     }
 
     public required string Name { get; init; }
