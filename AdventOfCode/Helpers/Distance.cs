@@ -2,6 +2,7 @@
 {
     using System;
     using System.Drawing;
+    using System.Reflection;
 
     public static class Distance
     {
@@ -37,6 +38,16 @@
         public static int Manhattan((int X, int Y, int Z) first, (int X, int Y, int Z) second)
         {
             return Math.Abs(second.X - first.X) + Math.Abs(second.Y - first.Y) + Math.Abs(second.Z - first.Z);
+        }
+
+        public static double StraightLine((int X, int Y, int Z) first, (int X, int Y, int Z) second)
+        {
+            // Convert to longs now to avoid overflow issues.
+            long dx = second.X - first.X;
+            long dy = second.Y - first.Y;
+            long dz = second.Z - first.Z;
+
+            return Math.Sqrt((dx * dx) + (dy * dy) + (dz * dz));
         }
     }
 }
