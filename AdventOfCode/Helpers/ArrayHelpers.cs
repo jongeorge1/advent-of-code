@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.CompilerServices;
 
     public static class ArrayHelpers
     {
@@ -28,6 +29,24 @@
         public static long Product(this IEnumerable<long> list)
         {
             return list.Aggregate(1, (long a, long b) => a * b);
+        }
+
+        public static bool IsIdenticalTo<T>(this T[] list, T[] comparison)
+        {
+            if (list.Length != comparison.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < list.Length; i++)
+            {
+                if (!EqualityComparer<T>.Default.Equals(list[i], comparison[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

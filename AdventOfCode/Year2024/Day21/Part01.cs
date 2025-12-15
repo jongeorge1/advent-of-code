@@ -8,6 +8,8 @@ using AdventOfCode;
 
 public class Part01 : ISolution
 {
+    const int DirectionBotCount = 2;
+
     public string Solve(string[] input)
     {
         int totalComplexity = 0;
@@ -31,8 +33,12 @@ public class Part01 : ISolution
     private static int GetShortestButtonPressSequenceLength(string code)
     {
         string[] sequences = GetPossibleDoorPadButtonPressSequences(code);
-        sequences = [..sequences.SelectMany(s => GetPossibleDirectionPadButtonPressSequences(s))];
-        sequences = [.. sequences.SelectMany(s => GetPossibleDirectionPadButtonPressSequences(s))];
+
+        for (int i = 0; i < DirectionBotCount; ++i)
+        {
+            sequences = [.. sequences.SelectMany(s => GetPossibleDirectionPadButtonPressSequences(s))];
+        }
+
         return sequences.Min(x => x.Length);
     }
 

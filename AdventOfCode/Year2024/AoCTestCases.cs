@@ -86,7 +86,7 @@ public class AoCTestCases
     [DataRow(21, 1, "179A", "12172", DisplayName = "Day 21, Part 1 - Example (c)")]
     [DataRow(21, 1, "456A", "29184", DisplayName = "Day 21, Part 1 - Example (d)")]
     [DataRow(21, 1, "379A", "24256", DisplayName = "Day 21, Part 1 - Example (e)")]
-    [DataRow(21, 2, "", "", DisplayName = "Day 21, Part 2 - Example")]
+    [DataRow(21, 2, "029A", "1972", DisplayName = "Day 21, Part 2 - Example (a)")]
     [DataRow(22, 1, "", "", DisplayName = "Day 22, Part 1 - Example")]
     [DataRow(22, 2, "", "", DisplayName = "Day 22, Part 2 - Example")]
     [DataRow(23, 1, "", "", DisplayName = "Day 23, Part 1 - Example")]
